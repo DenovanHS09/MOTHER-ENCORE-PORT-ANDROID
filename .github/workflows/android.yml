@@ -8,7 +8,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Importar recursos
-        run: godot -v --editor --quit || true
+        run: |
+          godot -v --editor --quit || true
+          godot -v --editor --quit || true
       - name: Exportar APK
         run: |
           mkdir -p build
