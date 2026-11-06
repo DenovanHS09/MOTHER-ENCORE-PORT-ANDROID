@@ -9,9 +9,19 @@ jobs:
       - uses: actions/checkout@v4
       - name: Plantillas de exportacion
         run: |
-          mkdir -p ~/.local/share/godot/templates
-          cp -r /root/.local/share/godot/templates/3.6.2.stable ~/.local/share/godot/templates/
-          ls ~/.local/share/godot/templates/3.6.2.stable | grep -i android || true
+          DEST=$HOME/.local/share/godot/templates/3.6.2.stable
+          mkdir -p $DEST
+          SRC=$(find /root /usr /opt -type d -name "3.6.2*" -path "*templates*" 2>/dev/null | head -1)
+          echo "SRC=$SRC"
+          if [ -n "$SRC" ] && [ -f "$SRC/android_debug.apk" ]; then
+            cp -r $SRC/. $DEST/
+          else
+            echo "Descargando plantillas oficiales..."
+            wget -q -O /tmp/t.tpz https://github.com/godotengine/godot/releases/download/3.6.2-stable/Godot_v3.6.2-stable_export_templates.tpz
+            unzip -q /tmp/t.tpz -d /tmp/t
+            cp -r /tmp/t/templates/. $DEST/
+          fi
+          ls $DEST | grep -i android
       - name: Importar recursos
         run: |
           godot -v --editor --quit || true
