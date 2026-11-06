@@ -40,12 +40,14 @@ func _on_Door_body_entered(body):
 	enter(body)
 
 func enter(player := global.get_player()):
+	global.scene_transition.dbg("enter busy=" + str(global.entering_door))
 	if global.entering_door:
 		return
 
 	global.entering_door = true
 
 	if uiManager.is_in_cutscene():
+		global.scene_transition.dbg("blocked: cutscene")
 		return
 	_player = player
 	_set_flag()
