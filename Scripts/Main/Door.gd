@@ -45,9 +45,13 @@ func enter(player := global.get_player()):
 		return
 
 	global.entering_door = true
-	global.scene_transition.dbg("a player=" + str(player))
 
-	if uiManager.is_in_cutscene():
+	var ui = get_node_or_null("/root/uiManager")
+	global.scene_transition.dbg("ui=" + str(ui))
+	if ui:
+		global.scene_transition.dbg("script=" + str(ui.get_script()))
+		global.scene_transition.dbg("method=" + str(ui.has_method("is_in_cutscene")))
+	if ui and ui.has_method("is_in_cutscene") and ui.is_in_cutscene():
 		global.scene_transition.dbg("blocked: cutscene")
 		return
 	global.scene_transition.dbg("b cutscene ok")
