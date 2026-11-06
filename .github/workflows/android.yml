@@ -11,10 +11,16 @@ jobs:
         run: |
           godot -v --editor --quit || true
           godot -v --editor --quit || true
+      - name: Diagnostico
+        run: |
+          echo "ANDROID_HOME=$ANDROID_HOME ANDROID_SDK_ROOT=$ANDROID_SDK_ROOT"
+          java -version 2>&1 | head -1
+          ls ~/.config/godot 2>/dev/null || true
+          grep -i android ~/.config/godot/editor_settings-3.tres 2>/dev/null || echo "sin ajustes android"
       - name: Exportar APK
         run: |
           mkdir -p build
-          godot -v --export-debug "Android" build/mother-encore.apk || godot -v --export-debug "Android" build/mother-encore.apk
+          godot -v --export-debug "Android" build/mother-encore.apk 2>&1 | grep -v -e "VisualServer" -e "visual_server_raster" -e "Loading resource" -e "Cannot open file" -e "Failed loading resource" -e "load_interactive" -e "_load (core" | tail -60
           ls -la build
       - uses: actions/upload-artifact@v4
         with:
