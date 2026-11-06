@@ -13,6 +13,8 @@ const BUTTONS = [
 	["ui_cancel", "X", KEY_X, 258, 146, 26, 26],
 	["ui_select", "C", KEY_C, 258, 112, 26, 26],
 	["ui_map", "M", 16777218, 292, 4, 24, 16],
+	["ui_focus_prev", "A", KEY_A, 4, 4, 24, 16],
+	["ui_focus_next", "S", KEY_S, 262, 4, 24, 16],
 ]
 
 var rects = []
