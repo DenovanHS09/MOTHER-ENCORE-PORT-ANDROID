@@ -45,12 +45,15 @@ func enter(player := global.get_player()):
 		return
 
 	global.entering_door = true
+	global.scene_transition.dbg("a player=" + str(player))
 
 	if uiManager.is_in_cutscene():
 		global.scene_transition.dbg("blocked: cutscene")
 		return
+	global.scene_transition.dbg("b cutscene ok")
 	_player = player
 	_set_flag()
+	global.scene_transition.dbg("c calling")
 
 	global.scene_transition.start_door_transition(self, _player)
 
