@@ -15,6 +15,7 @@ const BUTTONS = [
 	["ui_map", "M", 16777218, 292, 4, 24, 16],
 	["ui_focus_prev", "A", KEY_A, 4, 4, 24, 16],
 	["ui_focus_next", "S", KEY_S, 262, 4, 24, 16],
+	["debug_door", "T", 0, 150, 4, 24, 16],
 ]
 
 var rects = []
@@ -57,7 +58,7 @@ func _input(event):
 	if event is InputEventScreenTouch:
 		var p = _to_virtual(event.position)
 		if event.pressed:
-			debug_label.text = "raw " + str(int(event.position.x)) + "," + str(int(event.position.y)) + " -> " + str(int(p.x)) + "," + str(int(p.y))
+			debug_label.text = "raw " + str(int(event.position.x)) + "," + str(int(event.position.y)) + " -> " + str(int(p.x)) + "," + str(int(p.y)) + " | " + _scene_name()
 			_touch(event.index, p)
 		else:
 			_release_finger(event.index)
@@ -105,6 +106,10 @@ func _set_pressed(i, down):
 	pressed[i] = down
 	panels[i].color = Color(1, 1, 1, 0.6) if down else Color(1, 1, 1, 0.25)
 	var b = BUTTONS[i]
+	if b[0] == "debug_door":
+		if down:
+			_test_door()
+		return
 	if down:
 		Input.action_press(b[0])
 	else:
@@ -113,3 +118,21 @@ func _set_pressed(i, down):
 	ev.scancode = b[2]
 	ev.pressed = down
 	Input.parse_input_event(ev)
+
+
+func _scene_name():
+	var sc = get_tree().current_scene
+	return sc.name if sc else "?"
+
+
+# Prueba: llama a la puerta del Disclaimer directamente (sin teclas)
+func _test_door():
+	var sc = get_tree().current_scene
+	var door = null
+	if sc:
+		door = sc.get_node_or_null("Objects/DoorToTitle")
+	if door:
+		debug_label.text = "puerta: enter() | " + _scene_name()
+		door.enter()
+	else:
+		debug_label.text = "puerta: no encontrada | " + _scene_name()
