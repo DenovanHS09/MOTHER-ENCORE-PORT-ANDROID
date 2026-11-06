@@ -63,38 +63,19 @@ func enter(player := global.get_player()):
 	_probe_ui()
 
 func _probe_ui():
-	var sc = load("res://Scripts/global/uiManager.gd")
-	var can = "x"
-	if sc:
-		can = str(sc.can_instance())
-	global.scene_transition.dbg("uis=" + str(sc != null) + " can=" + can)
-	var paths = [
-		"res://Nodes/Ui/GameOver.tscn",
-		"res://Nodes/Ui/Pause menu.tscn",
-		"res://Nodes/Ui/DialogueBox.tscn",
-		"res://Nodes/Ui/Battle/BattleDialogueBox.tscn",
-		"res://Nodes/Ui/Battle/Battle.tscn",
-		"res://Nodes/Ui/Blackbars.tscn",
-		"res://Nodes/Ui/ATM/ATM Menu.tscn",
-		"res://Nodes/Ui/CashBox.tscn",
-		"res://Nodes/Ui/PhoneUnitsBox.tscn",
-		"res://Nodes/Ui/KeyCount.tscn",
-		"res://Nodes/Ui/Shop/ShopUI.tscn",
-		"res://Nodes/Ui/Storage.tscn",
-		"res://Maps/SaveSelect.tscn",
-		"res://Nodes/Ui/OcarinaScreen/OcarinaScreen.tscn",
-		"res://Maps/Naming screen.tscn",
-		"res://Nodes/Ui/MapScreen/MapScreen.tscn",
-		"res://Maps/misc/TrainCutscene.tscn",
-		"res://Nodes/Ui/PartyInfo.tscn",
-		"res://Nodes/Ui/Battle/Battle Transition.tscn",
-		"res://Shaders/MenuFlavors.tres"
-	]
+	var scene_path = "res://Nodes/Ui/Pause menu.tscn"
+	var deps = ResourceLoader.get_dependencies(scene_path)
 	var bad = []
-	for p in paths:
+	for d in deps:
+		var p = str(d)
+		for part in p.split("::"):
+			if part.begins_with("res://"):
+				p = part
 		if load(p) == null:
-			bad.append(p.get_file())
-	global.scene_transition.dbg("bad=" + str(bad))
+			bad.append(p)
+	global.scene_transition.dbg("deps=" + str(deps.size()) + " bad=" + str(bad.size()))
+	for i in range(min(3, bad.size())):
+		global.scene_transition.dbg(bad[i].get_file())
 
 func change_scene():
 	global.add_persistent(self)
