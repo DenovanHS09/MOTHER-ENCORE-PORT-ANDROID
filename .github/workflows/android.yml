@@ -7,6 +7,8 @@ jobs:
       image: barichello/godot-ci:3.6.2
     steps:
       - uses: actions/checkout@v4
+      - name: Importar recursos
+        run: godot -v --editor --quit || true
       - name: Exportar APK
         run: |
           mkdir -p build
