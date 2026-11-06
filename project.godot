@@ -622,6 +622,7 @@ controlsManager="*res://Scripts/global/controlsManager.tscn"
 IntegerResolutionHandler="*res://addons/integer_resolution_handler/integer_resolution_handler.gd"
 ECSInterpreter="*res://Scripts/global/ECSInterpreter.gd"
 Debug="*res://Scripts/global/debug.tscn"
+TouchControls="*res://Scripts/global/TouchControls.gd"
 
 [debug]
 
