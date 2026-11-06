@@ -7,16 +7,24 @@ jobs:
       image: barichello/godot-ci:3.6.2
     steps:
       - uses: actions/checkout@v4
+      - name: Plantillas de exportacion
+        run: |
+          mkdir -p ~/.local/share/godot/templates
+          cp -r /root/.local/share/godot/templates/3.6.2.stable ~/.local/share/godot/templates/
+          ls ~/.local/share/godot/templates/3.6.2.stable | grep -i android || true
       - name: Importar recursos
         run: |
           godot -v --editor --quit || true
           godot -v --editor --quit || true
-      - name: Diagnostico
+      - name: Configurar Android
         run: |
-          echo "ANDROID_HOME=$ANDROID_HOME ANDROID_SDK_ROOT=$ANDROID_SDK_ROOT"
-          java -version 2>&1 | head -1
-          ls ~/.config/godot 2>/dev/null || true
-          grep -i android ~/.config/godot/editor_settings-3.tres 2>/dev/null || echo "sin ajustes android"
+          JAVA_PATH=$(dirname $(dirname $(readlink -f $(which java))))
+          keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore $HOME/debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999 -deststoretype pkcs12
+          SETTINGS=$HOME/.config/godot/editor_settings-3.tres
+          sed -i "s|export/android/java_sdk_path = \"\"|export/android/java_sdk_path = \"$JAVA_PATH\"|" $SETTINGS
+          sed -i "s|export/android/android_sdk_path = \"\"|export/android/android_sdk_path = \"/usr/lib/android-sdk\"|" $SETTINGS
+          sed -i "s|export/android/debug_keystore = \"\"|export/android/debug_keystore = \"$HOME/debug.keystore\"|" $SETTINGS
+          grep -i "export/android" $SETTINGS
       - name: Exportar APK
         run: |
           mkdir -p build
