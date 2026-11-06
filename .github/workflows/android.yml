@@ -1,0 +1,17 @@
+name: android-debug
+on: workflow_dispatch
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:3.6.2
+    steps:
+      - uses: actions/checkout@v4
+      - name: Exportar APK
+        run: |
+          mkdir -p build
+          godot -v --export-debug "Android" build/mother-encore.apk
+      - uses: actions/upload-artifact@v4
+        with:
+          name: apk
+          path: build/mother-encore.apk
