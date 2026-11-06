@@ -60,6 +60,41 @@ func enter(player := global.get_player()):
 	global.scene_transition.dbg("c calling")
 
 	global.scene_transition.start_door_transition(self, _player)
+	_probe_ui()
+
+func _probe_ui():
+	var sc = load("res://Scripts/global/uiManager.gd")
+	var can = "x"
+	if sc:
+		can = str(sc.can_instance())
+	global.scene_transition.dbg("uis=" + str(sc != null) + " can=" + can)
+	var paths = [
+		"res://Nodes/Ui/GameOver.tscn",
+		"res://Nodes/Ui/Pause menu.tscn",
+		"res://Nodes/Ui/DialogueBox.tscn",
+		"res://Nodes/Ui/Battle/BattleDialogueBox.tscn",
+		"res://Nodes/Ui/Battle/Battle.tscn",
+		"res://Nodes/Ui/Blackbars.tscn",
+		"res://Nodes/Ui/ATM/ATM Menu.tscn",
+		"res://Nodes/Ui/CashBox.tscn",
+		"res://Nodes/Ui/PhoneUnitsBox.tscn",
+		"res://Nodes/Ui/KeyCount.tscn",
+		"res://Nodes/Ui/Shop/ShopUI.tscn",
+		"res://Nodes/Ui/Storage.tscn",
+		"res://Maps/SaveSelect.tscn",
+		"res://Nodes/Ui/OcarinaScreen/OcarinaScreen.tscn",
+		"res://Maps/Naming screen.tscn",
+		"res://Nodes/Ui/MapScreen/MapScreen.tscn",
+		"res://Maps/misc/TrainCutscene.tscn",
+		"res://Nodes/Ui/PartyInfo.tscn",
+		"res://Nodes/Ui/Battle/Battle Transition.tscn",
+		"res://Shaders/MenuFlavors.tres"
+	]
+	var bad = []
+	for p in paths:
+		if load(p) == null:
+			bad.append(p.get_file())
+	global.scene_transition.dbg("bad=" + str(bad))
 
 func change_scene():
 	global.add_persistent(self)
