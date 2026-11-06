@@ -9,22 +9,13 @@ script/source = "extends Control
 
 onready var arrow = $arrow
 
-var soundEffects = {
-	'back':load('res://Audio/Sound effects/M3/curshoriz.wav'), 
-	'menu_open': load('res://Audio/Sound effects/M3/menu_open.wav'),
-	'menu_open2': load('res://Audio/Sound effects/M3/menu_open2.wav'),
-}
-
 func _ready():
 	arrow.on = true
 	yield(get_tree(), 'idle_frame')
 	global.currentCamera.anchor_mode = 0
 
-func _input(event):
-	pass
-
-func _on_Arrow_selected(cursor_index):
-	audioManager.play_sfx(soundEffects['menu_open2'], 'menu_open')
+func _on_Arrow_selected(cursor_index: int):
+	audioManager.play_sfx_by_name('menu_open2', 'menu_open')
 	match cursor_index:
 		0:
 			for i in range(1,100):

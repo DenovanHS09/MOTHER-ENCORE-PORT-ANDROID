@@ -162,7 +162,7 @@ func _process_load_action(resource_id, resource_path):
 	
 	_print(str("process load resource ", resource_id))
 
-	var ts = OS.get_ticks_msec()
+	var ts = Time.get_ticks_msec()
 	
 	var loader = ResourceLoader.load_interactive(resource_path)
 	var resource
@@ -181,7 +181,7 @@ func _process_load_action(resource_id, resource_path):
 			resource = loader.get_resource()
 			loaded_resources_lock.lock()
 			loaded_resources[resource_id] = {resource = resource, instance = null}
-			_print(str("resource ", resource_id, " loaded in ", (OS.get_ticks_msec() - ts) / 1000.0, "s"))
+			_print(str("resource ", resource_id, " loaded in ", (Time.get_ticks_msec() - ts) / 1000.0, "s"))
 			loaded_resources_lock.unlock()
 			break
 			
@@ -257,9 +257,9 @@ func _process_instance_action(resource_id, resource_path):
 	resource = loaded_resources[resource_id].resource
 	loaded_resources_lock.unlock()
 
-	var ts = OS.get_ticks_msec()
+	var ts = Time.get_ticks_msec()
 	resource_instance = resource.instance()
-	_print(str("resource ", resource_id, " instanced in ", (OS.get_ticks_msec() - ts) / 1000.0, "s"))
+	_print(str("resource ", resource_id, " instanced in ", (Time.get_ticks_msec() - ts) / 1000.0, "s"))
 
 	loaded_resources_lock.lock()
 	loaded_resources[resource_id].instance = resource_instance

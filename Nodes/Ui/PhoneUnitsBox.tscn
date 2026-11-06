@@ -85,10 +85,11 @@ expand_margin_top = 1.0
 
 [node name="PhoneUnitsBox" type="CanvasLayer"]
 script = ExtResource( 1 )
-_source_value = "phone_units"
+_phone_units_mode = true
 _container = NodePath("Box")
 _anim_player = NodePath("AnimationPlayer")
 _amount_label = NodePath("Box/HBoxContainer/BoxInside/Amount")
+_timer = NodePath("Timer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Close = SubResource( 1 )
@@ -145,3 +146,7 @@ custom_fonts/font = ExtResource( 2 )
 text = "9"
 align = 1
 valign = 1
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true

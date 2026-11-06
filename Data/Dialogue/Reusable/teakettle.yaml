@@ -25,11 +25,11 @@
   fadeout:
     speed: 1
     anim: Fade
-  heal: All
+  heal: all
   cure:
-    character: All
-    status: All
-  restorepp: All
+    character: all
+    status: all
+  restorepp: all
   wait: 0.5
   autoadvance: true
   goto: '6'

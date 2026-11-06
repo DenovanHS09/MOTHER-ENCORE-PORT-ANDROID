@@ -5,17 +5,10 @@ article: HAMBURGER_ART
 keyitem: false
 cost: 30
 value: 15
-usable:
-  ninten: true
-  ana: true
-  lloyd: true
-  teddy: true
-  pippi: true
-action_one:
-  name: HAMBURGER_ACT1_NAME
-  function: consume
-action_two: null
-battle_action: ''
+actions:
+  - name: HAMBURGER_ACT1
+    function: consume
+is_food: true
 transform: ''
 slot: ''
 HPrecover: 50

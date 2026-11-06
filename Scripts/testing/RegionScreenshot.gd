@@ -53,7 +53,7 @@ func take_screenshot(parent : Node):
 	
 	get_parent().get_node("NinePatchRect/Label").text = "Done!"
 	print("Screenshot taken!")
-	audioManager.play_sfx(load("res://Audio/Sound effects/Save.mp3"), "menu")
+	audioManager.play_sfx_by_name("save", "menu")
 	
 	yield(get_tree().create_timer(1),"timeout")
 	

@@ -1,17 +1,8 @@
-[gd_resource type="TileSet" load_steps=502 format=2]
+[gd_resource type="TileSet" load_steps=492 format=2]
 
 [ext_resource path="res://Graphics/Tilesets/TilPodunk.png" type="Texture" id=1]
 [ext_resource path="res://Tilesets/PodunkWater.tres" type="Texture" id=2]
-[ext_resource path="res://Translations/TranslatedTiles/Shared_BurgerBuilding.png" type="Texture" id=3]
-[ext_resource path="res://Translations/TranslatedTiles/Shared_StoreBuilding.png" type="Texture" id=4]
-[ext_resource path="res://Translations/TranslatedTiles/Shared_HospitalBuilding.png" type="Texture" id=5]
-[ext_resource path="res://Translations/TranslatedTiles/Shared_HotelBuilding.png" type="Texture" id=6]
-[ext_resource path="res://Translations/TranslatedTiles/Shared_Stop.png" type="Texture" id=7]
-[ext_resource path="res://Translations/TranslatedTiles/Shared_Hotel.png" type="Texture" id=8]
-[ext_resource path="res://Translations/TranslatedTiles/Podunk_Canary.png" type="Texture" id=9]
-[ext_resource path="res://Translations/TranslatedTiles/Podunk_Zoo.png" type="Texture" id=10]
-[ext_resource path="res://Translations/TranslatedTiles/Podunk_Welcome.png" type="Texture" id=11]
-[ext_resource path="res://Translations/TranslatedTiles/Podunk_ZooBuilding.png" type="Texture" id=12]
+[ext_resource path="res://Translations/TranslatedTilesets/TilPodunk_translate.png" type="Texture" id=13]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 0, 16 )
@@ -547,12 +538,6 @@ segments = PoolVector2Array( 0, 8, 8, 8, 8, 8, 16, 0, 16, 0, 16, 16, 16, 16, 0, 
 [sub_resource type="ConcavePolygonShape2D" id=36]
 segments = PoolVector2Array( 0, 0, 8, 8, 8, 8, 16, 8, 16, 8, 16, 16, 16, 16, 0, 16, 0, 16, 0, 0 )
 
-[sub_resource type="ConvexPolygonShape2D" id=37]
-points = PoolVector2Array( 16, 0, 16, 16, 0, 0 )
-
-[sub_resource type="ConvexPolygonShape2D" id=38]
-points = PoolVector2Array( 0, 0, 16, 0, 0, 16 )
-
 [sub_resource type="ConvexPolygonShape2D" id=39]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 8, 8, 16, 0, 16 )
 
@@ -616,12 +601,6 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 [sub_resource type="ConvexPolygonShape2D" id=59]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 8, 16, 8 )
 
-[sub_resource type="ConvexPolygonShape2D" id=60]
-points = PoolVector2Array( 0, 8, 8, 16, 0, 16 )
-
-[sub_resource type="ConvexPolygonShape2D" id=61]
-points = PoolVector2Array( 8, 16, 16, 8, 16, 16 )
-
 [sub_resource type="ConvexPolygonShape2D" id=62]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 
@@ -664,12 +643,6 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 [sub_resource type="ConvexPolygonShape2D" id=75]
 points = PoolVector2Array( 16, 0, 16, 8, 8, 16, 0, 16, 0, 0 )
 
-[sub_resource type="ConvexPolygonShape2D" id=96]
-points = PoolVector2Array( 0, 0, 0, 0, 0, 16, 0, 16 )
-
-[sub_resource type="ConvexPolygonShape2D" id=97]
-points = PoolVector2Array( 16, 0, 16, 0, 16, 16, 16, 16 )
-
 [sub_resource type="ConvexPolygonShape2D" id=98]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 8, 16, 8 )
 
@@ -677,10 +650,10 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 8, 16, 8 )
 points = PoolVector2Array( 16, 16, 8, 16, 0, 8, 0, 0, 16, 0 )
 
 [sub_resource type="ConcavePolygonShape2D" id=100]
-segments = PoolVector2Array( 0, 8, 16, 8, 16, 8, 16, 16, 16, 16, 8, 12, 8, 12, 0, 12, 0, 12, 0, 8 )
+segments = PoolVector2Array( 0, 8, 8, 8, 8, 8, 16, 16, 16, 16, 8, 12, 8, 12, 0, 12, 0, 12, 0, 8 )
 
 [sub_resource type="ConcavePolygonShape2D" id=101]
-segments = PoolVector2Array( 0, 8, 16, 8, 16, 8, 16, 12, 16, 12, 8, 12, 8, 12, 0, 16, 0, 16, 0, 8 )
+segments = PoolVector2Array( 8, 8, 16, 8, 16, 8, 16, 12, 16, 12, 8, 12, 8, 12, 0, 16, 0, 16, 8, 8 )
 
 [sub_resource type="ConcavePolygonShape2D" id=102]
 segments = PoolVector2Array( 0, 16, 8, 8, 8, 8, 8, 0, 8, 0, 16, 0, 16, 0, 16, 16, 16, 16, 0, 16 )
@@ -723,18 +696,6 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=115]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 8, 16, 0, 8 )
-
-[sub_resource type="ConvexPolygonShape2D" id=116]
-points = PoolVector2Array( 16, 0, 16, 0, 16, 16, 16, 16 )
-
-[sub_resource type="ConvexPolygonShape2D" id=117]
-points = PoolVector2Array( 0, 0, 0, 8, 0, 16 )
-
-[sub_resource type="ConvexPolygonShape2D" id=118]
-points = PoolVector2Array( 8, 16, 16, 16, 0, 16 )
-
-[sub_resource type="ConvexPolygonShape2D" id=119]
-points = PoolVector2Array( 8, 16, 16, 16, 0, 16 )
 
 [sub_resource type="ConcavePolygonShape2D" id=120]
 segments = PoolVector2Array( 16, 16, 8, 16, 8, 16, 0, 8, 0, 8, 0, 0, 0, 0, 8, 8, 8, 8, 16, 8, 16, 8, 16, 16 )
@@ -820,6 +781,36 @@ points = PoolVector2Array( 16, 0, 0, 16, 0, 0 )
 [sub_resource type="ConvexPolygonShape2D" id=527]
 points = PoolVector2Array( 16, 0, 16, 16, 0, 0 )
 
+[sub_resource type="ConvexPolygonShape2D" id=546]
+points = PoolVector2Array( 0, 8, 4, 12, 16, 12, 16, 16, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=547]
+points = PoolVector2Array( 0, 12, 12, 12, 16, 8, 16, 16, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=548]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 12, 16, 12 )
+
+[sub_resource type="ConvexPolygonShape2D" id=549]
+points = PoolVector2Array( 4, 16, 0, 16, 0, 0, 4, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=550]
+points = PoolVector2Array( 16, 16, 12, 16, 12, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=551]
+points = PoolVector2Array( 4, 0, 16, 12, 16, 16, 0, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=552]
+points = PoolVector2Array( 0, 12, 12, 0, 16, 0, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=553]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 12, 16, 12 )
+
+[sub_resource type="ConvexPolygonShape2D" id=554]
+points = PoolVector2Array( 0, 0, 4, 0, 4, 16, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=555]
+points = PoolVector2Array( 16, 16, 12, 16, 12, 0, 16, 0 )
+
 [sub_resource type="ConvexPolygonShape2D" id=532]
 points = PoolVector2Array( 8, 0, 72, 0, 88, 32, 112, 64, 152, 96, 64, 96, 40, 32 )
 
@@ -828,12 +819,6 @@ points = PoolVector2Array( 8, 96, 16, 80, 120, 8, 160, 8, 160, 24, 96, 96 )
 
 [sub_resource type="ConvexPolygonShape2D" id=542]
 points = PoolVector2Array( 32, 48, 8, 48, 8, 32, 32, 32 )
-
-[sub_resource type="OccluderPolygon2D" id=544]
-polygon = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
-
-[sub_resource type="ConvexPolygonShape2D" id=543]
-points = PoolVector2Array( 4, 16, 4, 32, 36, 32, 36, 16 )
 
 [sub_resource type="ConvexPolygonShape2D" id=140]
 points = PoolVector2Array( 0, 0, 16, 0, 0, 16 )
@@ -861,6 +846,9 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=148]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=545]
+points = PoolVector2Array( 3.95968, 16.1139, 35.9797, 16.0598, 36.0879, 32, 4.01376, 32 )
 
 [sub_resource type="ConvexPolygonShape2D" id=299]
 points = PoolVector2Array( 4, 52, 4, 28, 48, 28, 48, 48, 40, 48, 32, 52, 36, 40, 12, 40 )
@@ -1738,8 +1726,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 9/tile_mode = 0
 9/occluder_offset = Vector2( 0, 0 )
 9/navigation_offset = Vector2( 0, 0 )
-9/shape_offset = Vector2( 0, -16 )
-9/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+9/shape_offset = Vector2( 0, 0 )
+9/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 9/shape = SubResource( 298 )
 9/shape_one_way = false
 9/shape_one_way_margin = 1.0
@@ -1748,7 +1736,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 298 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 9/z_index = 0
 10/name = "SignLarge"
@@ -1759,8 +1747,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 10/tile_mode = 0
 10/occluder_offset = Vector2( 0, 0 )
 10/navigation_offset = Vector2( 0, 0 )
-10/shape_offset = Vector2( 0, -16 )
-10/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+10/shape_offset = Vector2( 0, 0 )
+10/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 10/shape = SubResource( 10 )
 10/shape_one_way = false
 10/shape_one_way_margin = 1.0
@@ -1769,7 +1757,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 10 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 10/z_index = 0
 11/name = "PathBrown"
@@ -1787,6 +1775,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 11/autotile/navpoly_map = [  ]
 11/autotile/priority_map = [  ]
 11/autotile/z_index_map = [  ]
+11/autotile/fallback_mode = 0
 11/occluder_offset = Vector2( 0, 0 )
 11/navigation_offset = Vector2( 0, 0 )
 11/shape_offset = Vector2( 0, 0 )
@@ -1810,6 +1799,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 12/autotile/navpoly_map = [  ]
 12/autotile/priority_map = [  ]
 12/autotile/z_index_map = [  ]
+12/autotile/fallback_mode = 0
 12/occluder_offset = Vector2( 0, 0 )
 12/navigation_offset = Vector2( 0, 0 )
 12/shape_offset = Vector2( 0, 0 )
@@ -1833,6 +1823,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 13/autotile/navpoly_map = [  ]
 13/autotile/priority_map = [  ]
 13/autotile/z_index_map = [  ]
+13/autotile/fallback_mode = 0
 13/occluder_offset = Vector2( 0, 0 )
 13/navigation_offset = Vector2( 0, 0 )
 13/shape_offset = Vector2( 0, 0 )
@@ -1849,8 +1840,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 14/tile_mode = 0
 14/occluder_offset = Vector2( 0, 0 )
 14/navigation_offset = Vector2( 0, 0 )
-14/shape_offset = Vector2( 0, -64 )
-14/shape_transform = Transform2D( 1, 0, 0, 1, 0, -64 )
+14/shape_offset = Vector2( 0, 0 )
+14/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 14/shape = SubResource( 11 )
 14/shape_one_way = false
 14/shape_one_way_margin = 1.0
@@ -1859,7 +1850,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 11 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -64 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 14/z_index = 0
 15/name = "TreeBush"
@@ -1870,8 +1861,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 15/tile_mode = 0
 15/occluder_offset = Vector2( 0, 0 )
 15/navigation_offset = Vector2( 0, 0 )
-15/shape_offset = Vector2( 0, -16 )
-15/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+15/shape_offset = Vector2( 0, 0 )
+15/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 15/shape = SubResource( 12 )
 15/shape_one_way = false
 15/shape_one_way_margin = 1.0
@@ -1880,7 +1871,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 12 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 15/z_index = 0
 16/name = "TreeDead"
@@ -1891,8 +1882,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 16/tile_mode = 0
 16/occluder_offset = Vector2( 0, 0 )
 16/navigation_offset = Vector2( 0, 0 )
-16/shape_offset = Vector2( 0, -64 )
-16/shape_transform = Transform2D( 1, 0, 0, 1, 0, -64 )
+16/shape_offset = Vector2( 0, 0 )
+16/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 16/shape = SubResource( 359 )
 16/shape_one_way = false
 16/shape_one_way_margin = 1.0
@@ -1901,7 +1892,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 359 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -64 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 16/z_index = 0
 17/name = "StreetLampBottom"
@@ -2085,18 +2076,6 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "shape": SubResource( 36 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
-"autotile_coord": Vector2( 3, 4 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 37 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 1, 4 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 38 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
 "autotile_coord": Vector2( 5, 8 ),
 "one_way": false,
 "one_way_margin": 1.0,
@@ -2223,18 +2202,6 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "shape": SubResource( 59 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
-"autotile_coord": Vector2( 9, 5 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 60 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 10, 5 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 61 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
 "autotile_coord": Vector2( 10, 6 ),
 "one_way": false,
 "one_way_margin": 1.0,
@@ -2317,18 +2284,6 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 75 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 4, 5 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 96 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 0, 5 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 97 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 7, 4 ),
@@ -2437,30 +2392,6 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 115 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 1, 11 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 116 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 0, 11 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 117 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 0, 10 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 118 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-}, {
-"autotile_coord": Vector2( 2, 3 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 119 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 13, 1 ),
@@ -2630,6 +2561,66 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way_margin": 1.0,
 "shape": SubResource( 527 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 9, 5 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 546 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 10, 5 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 547 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 2, 3 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 548 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 4, 5 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 549 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 5 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 550 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 3, 4 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 551 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 1, 4 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 552 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 10 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 553 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 11 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 554 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 1, 11 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 555 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 18/z_index = 0
 19/name = "FenceChain"
@@ -2661,8 +2652,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 22/tile_mode = 0
 22/occluder_offset = Vector2( 0, 0 )
 22/navigation_offset = Vector2( 0, 0 )
-22/shape_offset = Vector2( 0, -16 )
-22/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+22/shape_offset = Vector2( 0, 0 )
+22/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 22/shape = SubResource( 299 )
 22/shape_one_way = false
 22/shape_one_way_margin = 1.0
@@ -2671,7 +2662,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 299 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 22/z_index = 0
 23/name = "DoorSquareYellow"
@@ -2682,8 +2673,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 23/tile_mode = 0
 23/occluder_offset = Vector2( 0, 0 )
 23/navigation_offset = Vector2( 0, 0 )
-23/shape_offset = Vector2( 0, -16 )
-23/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+23/shape_offset = Vector2( 0, 0 )
+23/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 23/shape = SubResource( 300 )
 23/shape_one_way = false
 23/shape_one_way_margin = 1.0
@@ -2692,7 +2683,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 300 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 23/z_index = 0
 24/name = "DoorRoundWhite"
@@ -2703,8 +2694,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 24/tile_mode = 0
 24/occluder_offset = Vector2( 0, 0 )
 24/navigation_offset = Vector2( 0, 0 )
-24/shape_offset = Vector2( 0, -16 )
-24/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+24/shape_offset = Vector2( 0, 0 )
+24/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 24/shape = SubResource( 301 )
 24/shape_one_way = false
 24/shape_one_way_margin = 1.0
@@ -2713,7 +2704,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 301 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 24/z_index = 0
 25/name = "DoorRoundYellow"
@@ -2724,8 +2715,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 25/tile_mode = 0
 25/occluder_offset = Vector2( 0, 0 )
 25/navigation_offset = Vector2( 0, 0 )
-25/shape_offset = Vector2( 0, -16 )
-25/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+25/shape_offset = Vector2( 0, 0 )
+25/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 25/shape = SubResource( 302 )
 25/shape_one_way = false
 25/shape_one_way_margin = 1.0
@@ -2734,7 +2725,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 302 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 25/z_index = 0
 26/name = "HouseBottom"
@@ -2815,8 +2806,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 27/tile_mode = 0
 27/occluder_offset = Vector2( 0, 0 )
 27/navigation_offset = Vector2( 0, 0 )
-27/shape_offset = Vector2( 0, -16 )
-27/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+27/shape_offset = Vector2( 0, 0 )
+27/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 27/shape = SubResource( 161 )
 27/shape_one_way = false
 27/shape_one_way_margin = 1.0
@@ -2825,7 +2816,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 161 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 27/z_index = 0
 28/name = "HouseRedDog"
@@ -2970,8 +2961,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 43/tile_mode = 0
 43/occluder_offset = Vector2( 0, 0 )
 43/navigation_offset = Vector2( 0, 0 )
-43/shape_offset = Vector2( 0, -64 )
-43/shape_transform = Transform2D( 1, 0, 0, 1, 0, -64 )
+43/shape_offset = Vector2( 0, 0 )
+43/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 43/shape = SubResource( 179 )
 43/shape_one_way = false
 43/shape_one_way_margin = 1.0
@@ -2980,7 +2971,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 179 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -64 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 43/z_index = 0
 44/name = "HouseRed"
@@ -2991,8 +2982,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 44/tile_mode = 0
 44/occluder_offset = Vector2( 0, 0 )
 44/navigation_offset = Vector2( 0, 0 )
-44/shape_offset = Vector2( 0, -64 )
-44/shape_transform = Transform2D( 1, 0, 0, 1, 0, -64 )
+44/shape_offset = Vector2( 0, 0 )
+44/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 44/shape = SubResource( 180 )
 44/shape_one_way = false
 44/shape_one_way_margin = 1.0
@@ -3001,7 +2992,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 180 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -64 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 44/z_index = 0
 45/name = "HouseBlueLarge"
@@ -3012,8 +3003,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 45/tile_mode = 0
 45/occluder_offset = Vector2( 0, 0 )
 45/navigation_offset = Vector2( 0, 0 )
-45/shape_offset = Vector2( 0, -80 )
-45/shape_transform = Transform2D( 1, 0, 0, 1, 0, -80 )
+45/shape_offset = Vector2( 0, 0 )
+45/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 45/shape = SubResource( 181 )
 45/shape_one_way = false
 45/shape_one_way_margin = 1.0
@@ -3022,7 +3013,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 181 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -80 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 45/z_index = 0
 46/name = "HouseRedLarge"
@@ -3033,8 +3024,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 46/tile_mode = 0
 46/occluder_offset = Vector2( 0, 0 )
 46/navigation_offset = Vector2( 0, 0 )
-46/shape_offset = Vector2( 0, -80 )
-46/shape_transform = Transform2D( 1, 0, 0, 1, 0, -80 )
+46/shape_offset = Vector2( 0, 0 )
+46/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 46/shape = SubResource( 182 )
 46/shape_one_way = false
 46/shape_one_way_margin = 1.0
@@ -3043,7 +3034,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 182 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -80 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 46/z_index = 0
 48/name = "BuildingBrownDoor"
@@ -3907,8 +3898,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 59/tile_mode = 0
 59/occluder_offset = Vector2( 0, 0 )
 59/navigation_offset = Vector2( 0, 0 )
-59/shape_offset = Vector2( 0, -96 )
-59/shape_transform = Transform2D( 1, 0, 0, 1, 0, -96 )
+59/shape_offset = Vector2( 0, 0 )
+59/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 59/shape = SubResource( 296 )
 59/shape_one_way = false
 59/shape_one_way_margin = 1.0
@@ -3917,7 +3908,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 296 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -96 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 59/z_index = 0
 60/name = "SignPodunk"
@@ -3928,8 +3919,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 60/tile_mode = 0
 60/occluder_offset = Vector2( 0, 0 )
 60/navigation_offset = Vector2( 0, 0 )
-60/shape_offset = Vector2( 0, -48 )
-60/shape_transform = Transform2D( 1, 0, 0, 1, 0, -48 )
+60/shape_offset = Vector2( 0, 0 )
+60/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 60/shape = SubResource( 297 )
 60/shape_one_way = false
 60/shape_one_way_margin = 1.0
@@ -3938,7 +3929,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 297 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -48 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 60/z_index = 0
 61/name = "SignPodunkShadow"
@@ -4222,8 +4213,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 81/tile_mode = 0
 81/occluder_offset = Vector2( 0, 0 )
 81/navigation_offset = Vector2( 0, 0 )
-81/shape_offset = Vector2( 0, -64 )
-81/shape_transform = Transform2D( 1, 0, 0, 1, 0, -64 )
+81/shape_offset = Vector2( 0, 0 )
+81/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 81/shape = SubResource( 310 )
 81/shape_one_way = false
 81/shape_one_way_margin = 1.0
@@ -4232,7 +4223,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 310 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -64 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 81/z_index = 0
 82/name = "TreeBirdWhite"
@@ -4243,8 +4234,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 82/tile_mode = 0
 82/occluder_offset = Vector2( 0, 0 )
 82/navigation_offset = Vector2( 0, 0 )
-82/shape_offset = Vector2( 0, -64 )
-82/shape_transform = Transform2D( 1, 0, 0, 1, 0, -64 )
+82/shape_offset = Vector2( 0, 0 )
+82/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 82/shape = SubResource( 311 )
 82/shape_one_way = false
 82/shape_one_way_margin = 1.0
@@ -4253,7 +4244,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 311 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -64 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 82/z_index = 0
 83/name = "TreeNest"
@@ -4264,8 +4255,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 83/tile_mode = 0
 83/occluder_offset = Vector2( 0, 0 )
 83/navigation_offset = Vector2( 0, 0 )
-83/shape_offset = Vector2( 0, -64 )
-83/shape_transform = Transform2D( 1, 0, 0, 1, 0, -64 )
+83/shape_offset = Vector2( 0, 0 )
+83/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 83/shape = SubResource( 312 )
 83/shape_one_way = false
 83/shape_one_way_margin = 1.0
@@ -4274,7 +4265,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 312 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -64 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 83/z_index = 0
 86/name = "BirdHouseBrown"
@@ -4285,8 +4276,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 86/tile_mode = 0
 86/occluder_offset = Vector2( 0, 0 )
 86/navigation_offset = Vector2( 0, 0 )
-86/shape_offset = Vector2( 0, -48 )
-86/shape_transform = Transform2D( 1, 0, 0, 1, 0, -48 )
+86/shape_offset = Vector2( 0, 0 )
+86/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 86/shape = SubResource( 518 )
 86/shape_one_way = false
 86/shape_one_way_margin = 1.0
@@ -4295,7 +4286,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 518 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -48 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 86/z_index = 0
 87/name = "CanaryWalls"
@@ -4659,8 +4650,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 96/tile_mode = 0
 96/occluder_offset = Vector2( 0, 0 )
 96/navigation_offset = Vector2( 0, 0 )
-96/shape_offset = Vector2( 0, -16 )
-96/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+96/shape_offset = Vector2( 0, 0 )
+96/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 96/shape = SubResource( 388 )
 96/shape_one_way = false
 96/shape_one_way_margin = 1.0
@@ -4669,7 +4660,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 388 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 96/z_index = 0
 97/name = "CemeteryGraveCross"
@@ -4764,8 +4755,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 101/tile_mode = 0
 101/occluder_offset = Vector2( 0, 0 )
 101/navigation_offset = Vector2( 0, 0 )
-101/shape_offset = Vector2( 0, -64 )
-101/shape_transform = Transform2D( 1, 0, 0, 1, 0, -64 )
+101/shape_offset = Vector2( 0, 0 )
+101/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 101/shape = SubResource( 354 )
 101/shape_one_way = false
 101/shape_one_way_margin = 1.0
@@ -4774,7 +4765,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 354 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -64 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 101/z_index = 0
 102/name = "CemeteryTreeSmall"
@@ -4785,8 +4776,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 102/tile_mode = 0
 102/occluder_offset = Vector2( 0, 0 )
 102/navigation_offset = Vector2( 0, 0 )
-102/shape_offset = Vector2( 0, -16 )
-102/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+102/shape_offset = Vector2( 0, 0 )
+102/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 102/shape = SubResource( 355 )
 102/shape_one_way = false
 102/shape_one_way_margin = 1.0
@@ -4795,7 +4786,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 355 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 102/z_index = 0
 103/name = "CemeteryTreeDead"
@@ -4806,8 +4797,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 103/tile_mode = 0
 103/occluder_offset = Vector2( 0, 0 )
 103/navigation_offset = Vector2( 0, 0 )
-103/shape_offset = Vector2( 0, -64 )
-103/shape_transform = Transform2D( 1, 0, 0, 1, 0, -64 )
+103/shape_offset = Vector2( 0, 0 )
+103/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 103/shape = SubResource( 356 )
 103/shape_one_way = false
 103/shape_one_way_margin = 1.0
@@ -4816,7 +4807,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 356 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -64 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 103/z_index = 0
 104/name = "CemeteryBranchLeft"
@@ -4918,6 +4909,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 109/autotile/navpoly_map = [  ]
 109/autotile/priority_map = [  ]
 109/autotile/z_index_map = [  ]
+109/autotile/fallback_mode = 0
 109/occluder_offset = Vector2( 0, 0 )
 109/navigation_offset = Vector2( 0, 0 )
 109/shape_offset = Vector2( 0, 0 )
@@ -4941,6 +4933,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 110/autotile/navpoly_map = [  ]
 110/autotile/priority_map = [  ]
 110/autotile/z_index_map = [  ]
+110/autotile/fallback_mode = 0
 110/occluder_offset = Vector2( 0, 0 )
 110/navigation_offset = Vector2( 0, 0 )
 110/shape_offset = Vector2( 0, 0 )
@@ -4964,6 +4957,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 111/autotile/navpoly_map = [  ]
 111/autotile/priority_map = [  ]
 111/autotile/z_index_map = [  ]
+111/autotile/fallback_mode = 0
 111/occluder_offset = Vector2( 0, 0 )
 111/navigation_offset = Vector2( 0, 0 )
 111/shape_offset = Vector2( 0, 0 )
@@ -4980,8 +4974,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 112/tile_mode = 0
 112/occluder_offset = Vector2( 0, 0 )
 112/navigation_offset = Vector2( 0, 0 )
-112/shape_offset = Vector2( 0, -80 )
-112/shape_transform = Transform2D( 1, 0, 0, 1, 0, -80 )
+112/shape_offset = Vector2( 0, 0 )
+112/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 112/shape = SubResource( 360 )
 112/shape_one_way = false
 112/shape_one_way_margin = 1.0
@@ -4990,7 +4984,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 360 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -80 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 112/z_index = 0
 113/name = "CemeteryCrossWhiteTop"
@@ -5071,8 +5065,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 117/tile_mode = 0
 117/occluder_offset = Vector2( 0, 0 )
 117/navigation_offset = Vector2( 0, 0 )
-117/shape_offset = Vector2( 0, -64 )
-117/shape_transform = Transform2D( 1, 0, 0, 1, 0, -64 )
+117/shape_offset = Vector2( 0, 0 )
+117/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 117/shape = SubResource( 389 )
 117/shape_one_way = false
 117/shape_one_way_margin = 1.0
@@ -5081,7 +5075,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 389 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -64 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 117/z_index = 0
 118/name = "CemeteryCatacEntrance"
@@ -5260,8 +5254,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 121/autotile/z_index_map = [  ]
 121/occluder_offset = Vector2( 0, 0 )
 121/navigation_offset = Vector2( 0, 0 )
-121/shape_offset = Vector2( 0, -16 )
-121/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+121/shape_offset = Vector2( 0, 0 )
+121/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 121/shape = SubResource( 376 )
 121/shape_one_way = false
 121/shape_one_way_margin = 1.0
@@ -5270,13 +5264,13 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 376 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 377 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 121/z_index = 0
 122/name = "GraveyardGateTopDiag"
@@ -5336,6 +5330,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 125/autotile/navpoly_map = [  ]
 125/autotile/priority_map = [  ]
 125/autotile/z_index_map = [  ]
+125/autotile/fallback_mode = 0
 125/occluder_offset = Vector2( 0, 0 )
 125/navigation_offset = Vector2( 0, 0 )
 125/shape_offset = Vector2( 0, 0 )
@@ -5394,8 +5389,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 130/tile_mode = 0
 130/occluder_offset = Vector2( 0, 0 )
 130/navigation_offset = Vector2( 0, 0 )
-130/shape_offset = Vector2( 0, -16 )
-130/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+130/shape_offset = Vector2( 0, 0 )
+130/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 130/shape = SubResource( 394 )
 130/shape_one_way = false
 130/shape_one_way_margin = 1.0
@@ -5404,7 +5399,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 394 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 130/z_index = 0
 131/name = "Bench Seat"
@@ -5450,8 +5445,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 133/tile_mode = 0
 133/occluder_offset = Vector2( 0, 0 )
 133/navigation_offset = Vector2( 0, 0 )
-133/shape_offset = Vector2( 0, -16 )
-133/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+133/shape_offset = Vector2( 0, 0 )
+133/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 133/shape = SubResource( 390 )
 133/shape_one_way = false
 133/shape_one_way_margin = 1.0
@@ -5460,7 +5455,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 390 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 133/z_index = 0
 134/name = "Rock Big Brown"
@@ -5471,8 +5466,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 134/tile_mode = 0
 134/occluder_offset = Vector2( 0, 0 )
 134/navigation_offset = Vector2( 0, 0 )
-134/shape_offset = Vector2( 0, -16 )
-134/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+134/shape_offset = Vector2( 0, 0 )
+134/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 134/shape = SubResource( 391 )
 134/shape_one_way = false
 134/shape_one_way_margin = 1.0
@@ -5481,7 +5476,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 391 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 134/z_index = 0
 135/name = "Rock Small"
@@ -5583,8 +5578,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 141/tile_mode = 0
 141/occluder_offset = Vector2( 0, 0 )
 141/navigation_offset = Vector2( 0, 0 )
-141/shape_offset = Vector2( 0, -16 )
-141/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+141/shape_offset = Vector2( 0, 0 )
+141/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 141/shape = SubResource( 472 )
 141/shape_one_way = false
 141/shape_one_way_margin = 1.0
@@ -5593,7 +5588,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 472 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 141/z_index = 0
 142/name = "Sign Directions"
@@ -5667,8 +5662,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 146/tile_mode = 0
 146/occluder_offset = Vector2( 0, 0 )
 146/navigation_offset = Vector2( 0, 0 )
-146/shape_offset = Vector2( 0, -112 )
-146/shape_transform = Transform2D( 1, 0, 0, 1, 0, -112 )
+146/shape_offset = Vector2( 0, 0 )
+146/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 146/shape = SubResource( 469 )
 146/shape_one_way = false
 146/shape_one_way_margin = 1.0
@@ -5677,7 +5672,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 469 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -112 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 146/z_index = 0
 147/name = "Zoo Entry"
@@ -5688,8 +5683,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 147/tile_mode = 0
 147/occluder_offset = Vector2( 0, 0 )
 147/navigation_offset = Vector2( 0, 0 )
-147/shape_offset = Vector2( 0, -48 )
-147/shape_transform = Transform2D( 1, 0, 0, 1, 0, -48 )
+147/shape_offset = Vector2( 0, 0 )
+147/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 147/shape = SubResource( 466 )
 147/shape_one_way = false
 147/shape_one_way_margin = 1.0
@@ -5698,13 +5693,13 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 466 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -48 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 467 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -48 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 147/z_index = 0
 148/name = "Zoo Cage"
@@ -5868,8 +5863,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 153/autotile/z_index_map = [  ]
 153/occluder_offset = Vector2( 0, 0 )
 153/navigation_offset = Vector2( 0, 0 )
-153/shape_offset = Vector2( 0, -16 )
-153/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+153/shape_offset = Vector2( 0, 0 )
+153/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 153/shape = SubResource( 406 )
 153/shape_one_way = false
 153/shape_one_way_margin = 1.0
@@ -5878,313 +5873,313 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 406 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 8, 7 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 407 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 8, 6 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 408 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 7, 6 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 409 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 10, 6 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 410 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 6, 6 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 411 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 9, 6 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 412 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 7, 5 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 413 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 8, 5 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 416 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 9, 5 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 418 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 10, 5 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 419 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 1, 5 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 420 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 1, 4 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 421 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 3, 4 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 425 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 3, 5 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 426 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 4, 4 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 428 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 5, 4 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 431 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 5, 5 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 432 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 7, 4 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 433 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 8, 4 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 434 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 9, 4 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 435 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 10, 4 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 436 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 11, 4 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 437 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 7, 3 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 438 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 6, 3 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 439 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 8, 3 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 440 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 8, 2 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 441 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 7, 2 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 442 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 6, 2 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 443 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 3, 2 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 444 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 4, 2 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 445 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 5, 2 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 446 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 5, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 447 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 4, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 448 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 3, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 449 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 1, 2 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 450 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 2, 2 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 451 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 0, 2 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 452 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 6, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 453 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 7, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 454 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 10, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 455 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 11, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 456 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 11, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 457 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 10, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 458 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 9, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 459 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 8, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 460 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 7, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 461 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 6, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 462 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 1, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 463 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 0, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 464 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 2, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 465 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 2, 4 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 471 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 153/z_index = 0
 154/name = "Sign Small Left"
@@ -6516,8 +6511,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 164/tile_mode = 0
 164/occluder_offset = Vector2( 0, 0 )
 164/navigation_offset = Vector2( 0, 0 )
-164/shape_offset = Vector2( 0, -48 )
-164/shape_transform = Transform2D( 1, 0, 0, 1, 0, -48 )
+164/shape_offset = Vector2( 0, 0 )
+164/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 164/shape = SubResource( 510 )
 164/shape_one_way = false
 164/shape_one_way_margin = 1.0
@@ -6526,7 +6521,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 510 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -48 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 164/z_index = 0
 166/name = "Zoo Debris 3"
@@ -6558,8 +6553,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 167/tile_mode = 0
 167/occluder_offset = Vector2( 0, 0 )
 167/navigation_offset = Vector2( 0, 0 )
-167/shape_offset = Vector2( 0, -32 )
-167/shape_transform = Transform2D( 1, 0, 0, 1, 0, -32 )
+167/shape_offset = Vector2( 0, 0 )
+167/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 167/shape = SubResource( 539 )
 167/shape_one_way = false
 167/shape_one_way_margin = 1.0
@@ -6568,7 +6563,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 539 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -32 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 167/z_index = 0
 168/name = "Roadblock"
@@ -6579,8 +6574,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 168/tile_mode = 0
 168/occluder_offset = Vector2( 0, 0 )
 168/navigation_offset = Vector2( 0, 0 )
-168/shape_offset = Vector2( 0, -16 )
-168/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+168/shape_offset = Vector2( 0, 0 )
+168/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 168/shape = SubResource( 514 )
 168/shape_one_way = false
 168/shape_one_way_margin = 1.0
@@ -6589,7 +6584,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 514 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 168/z_index = 0
 169/name = "Roadblock2"
@@ -6600,8 +6595,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 169/tile_mode = 0
 169/occluder_offset = Vector2( 0, 0 )
 169/navigation_offset = Vector2( 0, 0 )
-169/shape_offset = Vector2( 0, -16 )
-169/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+169/shape_offset = Vector2( 0, 0 )
+169/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 169/shape = SubResource( 515 )
 169/shape_one_way = false
 169/shape_one_way_margin = 1.0
@@ -6610,7 +6605,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 515 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 169/z_index = 0
 170/name = "Road Railings Top 2"
@@ -6663,8 +6658,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 172/tile_mode = 0
 172/occluder_offset = Vector2( 0, 0 )
 172/navigation_offset = Vector2( 0, 0 )
-172/shape_offset = Vector2( 0, -48 )
-172/shape_transform = Transform2D( 1, 0, 0, 1, 0, -48 )
+172/shape_offset = Vector2( 0, 0 )
+172/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 172/shape = SubResource( 517 )
 172/shape_one_way = false
 172/shape_one_way_margin = 1.0
@@ -6673,7 +6668,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 517 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -48 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 172/z_index = 0
 173/name = "BirdHouseBrownTop"
@@ -6712,8 +6707,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 175/tile_mode = 0
 175/occluder_offset = Vector2( 0, 0 )
 175/navigation_offset = Vector2( 0, 0 )
-175/shape_offset = Vector2( 0, -64 )
-175/shape_transform = Transform2D( 1, 0, 0, 1, 0, -64 )
+175/shape_offset = Vector2( 0, 0 )
+175/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 175/shape = SubResource( 524 )
 175/shape_one_way = false
 175/shape_one_way_margin = 1.0
@@ -6722,7 +6717,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 524 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -64 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 175/z_index = 0
 176/name = "TreeTallDark"
@@ -6733,8 +6728,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 176/tile_mode = 0
 176/occluder_offset = Vector2( 0, 0 )
 176/navigation_offset = Vector2( 0, 0 )
-176/shape_offset = Vector2( 0, -64 )
-176/shape_transform = Transform2D( 1, 0, 0, 1, 0, -64 )
+176/shape_offset = Vector2( 0, 0 )
+176/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 176/shape = SubResource( 525 )
 176/shape_one_way = false
 176/shape_one_way_margin = 1.0
@@ -6743,7 +6738,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 525 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -64 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 176/z_index = 0
 177/name = "Zoo Debris 1"
@@ -6775,8 +6770,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 178/tile_mode = 0
 178/occluder_offset = Vector2( 0, 0 )
 178/navigation_offset = Vector2( 0, 0 )
-178/shape_offset = Vector2( 0, -32 )
-178/shape_transform = Transform2D( 1, 0, 0, 1, 0, -32 )
+178/shape_offset = Vector2( 0, 0 )
+178/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 178/shape = SubResource( 538 )
 178/shape_one_way = false
 178/shape_one_way_margin = 1.0
@@ -6785,7 +6780,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 538 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -32 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 178/z_index = 0
 179/name = "Zoo Debris 4"
@@ -6834,7 +6829,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 181/texture = ExtResource( 1 )
 181/tex_offset = Vector2( 0, 0 )
 181/modulate = Color( 1, 1, 1, 1 )
-181/region = Rect2( 880, 624, 160, 96 )
+181/region = Rect2( 880, 624, 176, 96 )
 181/tile_mode = 0
 181/occluder_offset = Vector2( 0, 0 )
 181/navigation_offset = Vector2( 0, 0 )
@@ -6929,8 +6924,8 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 188/tile_mode = 0
 188/occluder_offset = Vector2( 0, 0 )
 188/navigation_offset = Vector2( 0, 0 )
-188/shape_offset = Vector2( 0, -32 )
-188/shape_transform = Transform2D( 1, 0, 0, 1, 0, -32 )
+188/shape_offset = Vector2( 0, 0 )
+188/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 188/shape = SubResource( 542 )
 188/shape_one_way = false
 188/shape_one_way_margin = 1.0
@@ -6939,7 +6934,7 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 542 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -32 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 188/z_index = 0
 189/name = "ZooMachine"
@@ -6970,151 +6965,164 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 190/shape_one_way_margin = 0.0
 190/shapes = [  ]
 190/z_index = 0
-191/name = "BuildingBurgerSignTRANSLATED"
-191/texture = ExtResource( 3 )
-191/tex_offset = Vector2( -32, 0 )
-191/modulate = Color( 1, 1, 1, 1 )
-191/region = Rect2( 0, 0, 128, 32 )
-191/tile_mode = 0
-191/occluder_offset = Vector2( 0, 0 )
-191/navigation_offset = Vector2( 0, 0 )
-191/shape_offset = Vector2( 0, 0 )
-191/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-191/shape_one_way = false
-191/shape_one_way_margin = 0.0
-191/shapes = [  ]
-191/z_index = 0
-192/name = "BuildingStoreSignTRANSLATED"
-192/texture = ExtResource( 4 )
-192/tex_offset = Vector2( -40, 0 )
-192/modulate = Color( 1, 1, 1, 1 )
-192/region = Rect2( 0, 0, 160, 32 )
-192/tile_mode = 0
-192/occluder_offset = Vector2( 0, 0 )
-192/navigation_offset = Vector2( 0, 0 )
-192/shape_offset = Vector2( 0, 0 )
-192/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-192/shape_one_way = false
-192/shape_one_way_margin = 0.0
-192/shapes = [  ]
-192/z_index = 0
-193/name = "BuildingHospitalSignTRANSLATED"
-193/texture = ExtResource( 5 )
-193/tex_offset = Vector2( 0, -16 )
-193/modulate = Color( 1, 1, 1, 1 )
-193/region = Rect2( 0, 0, 112, 32 )
-193/tile_mode = 0
-193/occluder_offset = Vector2( 0, 0 )
-193/navigation_offset = Vector2( 0, 0 )
-193/shape_offset = Vector2( 0, 0 )
-193/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-193/shape_one_way = false
-193/shape_one_way_margin = 0.0
-193/shapes = [  ]
-193/z_index = 0
-194/name = "BuildingHotelSignTRANSLATED"
-194/texture = ExtResource( 6 )
-194/tex_offset = Vector2( 0, 0 )
-194/modulate = Color( 1, 1, 1, 1 )
-194/region = Rect2( 0, 0, 64, 32 )
-194/tile_mode = 0
-194/occluder_offset = Vector2( 0, 0 )
-194/navigation_offset = Vector2( 0, 0 )
-194/shape_offset = Vector2( 0, 0 )
-194/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-194/shape_one_way = false
-194/shape_one_way_margin = 0.0
-194/shapes = [  ]
-194/z_index = 0
-195/name = "StopSignTRANSLATED"
-195/texture = ExtResource( 7 )
-195/tex_offset = Vector2( -4, -4 )
-195/modulate = Color( 1, 1, 1, 1 )
-195/region = Rect2( 0, 0, 32, 32 )
-195/tile_mode = 0
-195/occluder_offset = Vector2( 0, 0 )
-195/occluder = SubResource( 544 )
-195/navigation_offset = Vector2( 0, 0 )
-195/shape_offset = Vector2( 0, 0 )
-195/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-195/shape_one_way = false
-195/shape_one_way_margin = 0.0
-195/shapes = [  ]
-195/z_index = 0
-196/name = "HotelSignTRANSLATED"
-196/texture = ExtResource( 8 )
-196/tex_offset = Vector2( -4, 0 )
-196/modulate = Color( 1, 1, 1, 1 )
-196/region = Rect2( 0, 0, 40, 32 )
-196/tile_mode = 0
-196/occluder_offset = Vector2( 0, 0 )
-196/navigation_offset = Vector2( 0, 0 )
-196/shape_offset = Vector2( -4, 0 )
-196/shape_transform = Transform2D( 1, 0, 0, 1, -4, 0 )
-196/shape = SubResource( 543 )
-196/shape_one_way = false
-196/shape_one_way_margin = 1.0
-196/shapes = [ {
+202/name = "WelcomeTRANSLATED"
+202/texture = ExtResource( 13 )
+202/tex_offset = Vector2( -3, -16 )
+202/modulate = Color( 1, 1, 1, 1 )
+202/region = Rect2( 8, 168, 51, 32 )
+202/tile_mode = 0
+202/occluder_offset = Vector2( 0, 0 )
+202/navigation_offset = Vector2( 0, 0 )
+202/shape_offset = Vector2( 0, 0 )
+202/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+202/shape_one_way = false
+202/shape_one_way_margin = 0.0
+202/shapes = [  ]
+202/z_index = 0
+204/name = "BuildingBurgerSignTRANSLATED"
+204/texture = ExtResource( 13 )
+204/tex_offset = Vector2( -32, 0 )
+204/modulate = Color( 1, 1, 1, 1 )
+204/region = Rect2( 184, 8, 128, 32 )
+204/tile_mode = 0
+204/occluder_offset = Vector2( 0, 0 )
+204/navigation_offset = Vector2( 0, 0 )
+204/shape_offset = Vector2( 0, 0 )
+204/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+204/shape_one_way = false
+204/shape_one_way_margin = 0.0
+204/shapes = [  ]
+204/z_index = 0
+206/name = "ZooSignTRANSLATED"
+206/texture = ExtResource( 13 )
+206/tex_offset = Vector2( 0, 0 )
+206/modulate = Color( 1, 1, 1, 1 )
+206/region = Rect2( 184, 168, 48, 32 )
+206/tile_mode = 0
+206/occluder_offset = Vector2( 0, 0 )
+206/navigation_offset = Vector2( 0, 0 )
+206/shape_offset = Vector2( 0, 0 )
+206/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+206/shape_one_way = false
+206/shape_one_way_margin = 0.0
+206/shapes = [  ]
+206/z_index = 0
+207/name = "BuildingZooTRANSLATED"
+207/texture = ExtResource( 13 )
+207/tex_offset = Vector2( 0, 0 )
+207/modulate = Color( 1, 1, 1, 1 )
+207/region = Rect2( 360, 168, 64, 32 )
+207/tile_mode = 0
+207/occluder_offset = Vector2( 0, 0 )
+207/navigation_offset = Vector2( 0, 0 )
+207/shape_offset = Vector2( 0, 0 )
+207/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+207/shape_one_way = false
+207/shape_one_way_margin = 0.0
+207/shapes = [  ]
+207/z_index = 0
+208/name = "StopSignTRANSLATED"
+208/texture = ExtResource( 13 )
+208/tex_offset = Vector2( -4, -4 )
+208/modulate = Color( 1, 1, 1, 1 )
+208/region = Rect2( 360, 88, 24, 24 )
+208/tile_mode = 0
+208/occluder_offset = Vector2( 0, 0 )
+208/navigation_offset = Vector2( 0, 0 )
+208/shape_offset = Vector2( 0, 0 )
+208/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+208/shape_one_way = false
+208/shape_one_way_margin = 0.0
+208/shapes = [  ]
+208/z_index = 0
+209/name = "BuildingHotelSignTRANSLATED"
+209/texture = ExtResource( 13 )
+209/tex_offset = Vector2( 0, 0 )
+209/modulate = Color( 1, 1, 1, 1 )
+209/region = Rect2( 184, 88, 64, 32 )
+209/tile_mode = 0
+209/occluder_offset = Vector2( 0, 0 )
+209/navigation_offset = Vector2( 0, 0 )
+209/shape_offset = Vector2( 0, 0 )
+209/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+209/shape_one_way = false
+209/shape_one_way_margin = 0.0
+209/shapes = [  ]
+209/z_index = 0
+210/name = "HotelSignTRANSLATED"
+210/texture = ExtResource( 13 )
+210/tex_offset = Vector2( -4, 0 )
+210/modulate = Color( 1, 1, 1, 1 )
+210/region = Rect2( 8, 88, 40, 32 )
+210/tile_mode = 0
+210/occluder_offset = Vector2( 0, 0 )
+210/navigation_offset = Vector2( 0, 0 )
+210/shape_offset = Vector2( 0, 0 )
+210/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+210/shape = SubResource( 545 )
+210/shape_one_way = false
+210/shape_one_way_margin = 1.0
+210/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 543 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, -4, 0 )
+"shape": SubResource( 545 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
-196/z_index = 0
-197/name = "CanarySignTRANSLATED"
-197/texture = ExtResource( 9 )
-197/tex_offset = Vector2( 0, 0 )
-197/modulate = Color( 1, 1, 1, 1 )
-197/region = Rect2( 0, 0, 62, 32 )
-197/tile_mode = 0
-197/occluder_offset = Vector2( 0, 0 )
-197/navigation_offset = Vector2( 0, 0 )
-197/shape_offset = Vector2( 0, 0 )
-197/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-197/shape_one_way = false
-197/shape_one_way_margin = 0.0
-197/shapes = [  ]
-197/z_index = 1
-198/name = "ZooSignTRANSLATED"
-198/texture = ExtResource( 10 )
-198/tex_offset = Vector2( 0, 0 )
-198/modulate = Color( 1, 1, 1, 1 )
-198/region = Rect2( 0, 0, 48, 32 )
-198/tile_mode = 0
-198/occluder_offset = Vector2( 0, 0 )
-198/navigation_offset = Vector2( 0, 0 )
-198/shape_offset = Vector2( 0, 0 )
-198/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-198/shape_one_way = false
-198/shape_one_way_margin = 0.0
-198/shapes = [  ]
-198/z_index = 0
-199/name = "WelcomeTRANSLATED"
-199/texture = ExtResource( 11 )
-199/tex_offset = Vector2( -3, -16 )
-199/modulate = Color( 1, 1, 1, 1 )
-199/region = Rect2( 0, 0, 51, 32 )
-199/tile_mode = 0
-199/occluder_offset = Vector2( 0, 0 )
-199/navigation_offset = Vector2( 0, 0 )
-199/shape_offset = Vector2( 0, 0 )
-199/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-199/shape_one_way = false
-199/shape_one_way_margin = 0.0
-199/shapes = [  ]
-199/z_index = 0
-200/name = "BuildingZooTRANSLATED"
-200/texture = ExtResource( 12 )
-200/tex_offset = Vector2( 0, 0 )
-200/modulate = Color( 1, 1, 1, 1 )
-200/region = Rect2( 0, 0, 64, 32 )
-200/tile_mode = 0
-200/occluder_offset = Vector2( 0, 0 )
-200/navigation_offset = Vector2( 0, 0 )
-200/shape_offset = Vector2( 0, 0 )
-200/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-200/shape_one_way = false
-200/shape_one_way_margin = 0.0
-200/shapes = [  ]
-200/z_index = 0
+210/z_index = 0
+211/name = "CanarySignTRANSLATED"
+211/texture = ExtResource( 13 )
+211/tex_offset = Vector2( 0, 0 )
+211/modulate = Color( 1, 1, 1, 1 )
+211/region = Rect2( 360, 8, 62, 32 )
+211/tile_mode = 0
+211/occluder_offset = Vector2( 0, 0 )
+211/navigation_offset = Vector2( 0, 0 )
+211/shape_offset = Vector2( 0, 0 )
+211/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+211/shape_one_way = false
+211/shape_one_way_margin = 0.0
+211/shapes = [  ]
+211/z_index = 1
+212/name = "BuildingHospitalSignTRANSLATED"
+212/texture = ExtResource( 13 )
+212/tex_offset = Vector2( 0, -16 )
+212/modulate = Color( 1, 1, 1, 1 )
+212/region = Rect2( 536, 8, 112, 32 )
+212/tile_mode = 0
+212/occluder_offset = Vector2( 0, 0 )
+212/navigation_offset = Vector2( 0, 0 )
+212/shape_offset = Vector2( 0, 0 )
+212/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+212/shape_one_way = false
+212/shape_one_way_margin = 0.0
+212/shapes = [  ]
+212/z_index = 0
+213/name = ""
+213/texture = ExtResource( 13 )
+213/tex_offset = Vector2( 0, 0 )
+213/modulate = Color( 1, 1, 1, 1 )
+213/region = Rect2( 8, 8, 80, 64 )
+213/tile_mode = 0
+213/occluder_offset = Vector2( 0, 0 )
+213/navigation_offset = Vector2( 0, 0 )
+213/shape_offset = Vector2( 0, 0 )
+213/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+213/shape_one_way = false
+213/shape_one_way_margin = 0.0
+213/shapes = [  ]
+213/z_index = 0
+214/name = "BuildingStoreSignTRANSLATED"
+214/texture = ExtResource( 13 )
+214/tex_offset = Vector2( -40, 0 )
+214/modulate = Color( 1, 1, 1, 1 )
+214/region = Rect2( 536, 88, 160, 32 )
+214/tile_mode = 0
+214/occluder_offset = Vector2( 0, 0 )
+214/navigation_offset = Vector2( 0, 0 )
+214/shape_offset = Vector2( 0, 0 )
+214/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+214/shape_one_way = false
+214/shape_one_way_margin = 0.0
+214/shapes = [  ]
+214/z_index = 0

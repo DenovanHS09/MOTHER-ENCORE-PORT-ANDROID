@@ -1,14 +1,21 @@
-extends TextureProgress
+extends Control
 
-var highlighted = false setget _set_highlighted
+onready var value: float = $Texture.value setget _set_value, _get_value
+var highlighted := false setget _set_highlighted
 
 func _ready():
-	uiManager.connect("menuFlavorUpdated", self, "_refresh_tint")
+	uiManager.connect("menu_flavor_updated", self, "_refresh_tint")
 	_refresh_tint()
 
 func _set_highlighted(value):
 	highlighted = value
 	_refresh()
+
+func _set_value(value):
+	$Texture.value = value
+
+func _get_value():
+	return $Texture.value
 
 func _on_visibility_changed():
 	if !is_visible_in_tree():
@@ -19,19 +26,19 @@ func _on_value_changed(value):
 	_refresh()
 
 func _refresh():
-	var volRange = max_value - min_value
-	$Thumb.rect_position.x = (value - 1) * (rect_size.x) / volRange
+	var volRange = $Texture.max_value - $Texture.min_value
+	$Texture/Thumb.rect_position.x = ($Texture.value - 1) * ($Texture.rect_size.x) / volRange
 
-	$Thumb/ThumbRect.rect_size.y = value
-	$Thumb/ThumbRect.rect_position.y = volRange - $Thumb/ThumbRect.rect_size.y
+	$Texture/Thumb/ThumbRect.rect_size.y = $Texture.value
+	$Texture/Thumb/ThumbRect.rect_position.y = volRange - $Texture/Thumb/ThumbRect.rect_size.y
 
-	$Thumb/ThumbLowerRect.visible = highlighted
-	$LowerLine.visible = highlighted
+	$Texture/Thumb/ThumbLowerRect.visible = highlighted
+	$Texture/LowerLine.visible = highlighted
 
 func _refresh_tint():
-	tint_under = uiManager.menuFlavorShader.get_shader_param("NEWCOLOR%s" % 3)
-	tint_progress = uiManager.menuFlavorShader.get_shader_param("NEWCOLOR%s" % 5)
-	$Thumb/ThumbRect.color = uiManager.menuFlavorShader.get_shader_param("NEWCOLOR%s" % 1)
-	$Thumb/ThumbLowerRect.color = uiManager.menuFlavorShader.get_shader_param("NEWCOLOR%s" % 1)
-	$LowerLine.color = uiManager.menuFlavorShader.get_shader_param("NEWCOLOR%s" % 3)
+	$Texture.tint_under = uiManager.get_flavor_color(3)
+	$Texture.tint_progress = uiManager.get_flavor_color(5)
+	$Texture/Thumb/ThumbRect.color = uiManager.get_flavor_color(1)
+	$Texture/Thumb/ThumbLowerRect.color = uiManager.get_flavor_color(1)
+	$Texture/LowerLine.color = uiManager.get_flavor_color(3)
 

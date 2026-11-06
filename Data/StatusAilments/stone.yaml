@@ -10,3 +10,4 @@ status_bubble: stone
 effects_by_char:
   any:
     turn_skip: true
+    incapacitated: true

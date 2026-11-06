@@ -3,22 +3,12 @@ sorting_name: SLINGSHOT_SORT
 description: SLINGSHOT_DESC
 article: SLINGSHOT_ART
 keyitem: false
-cost: 120
-value: 60
-usable:
-  ninten: true
-  ana: true
-  lloyd: true
-  teddy: true
-  pippi: true
-action_one:
-  name: INVENTORY_ACTION_EQUIP
-  nametwo: INVENTORY_ACTION_UNEQUIP
-  function: equip
-action_two: null
-battle_action: ''
-basic_skill: shoot
-transform: ''
+cost: 160
+value: 80
+actions:
+  - function: equip
+basic_skill: attack_slingshot
+transform: ""
 slot: weapon
 HPrecover: 0
 PPrecover: 0

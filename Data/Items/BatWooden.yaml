@@ -3,22 +3,13 @@ sorting_name: BATWOODEN_SORT
 description: BATWOODEN_DESC
 article: BATWOODEN_ART
 keyitem: false
-cost: 350
-value: 175
-usable:
-  ninten: true
-  ana: false
-  lloyd: false
-  teddy: false
-  pippi: true
-action_one:
-  name: INVENTORY_ACTION_EQUIP
-  nametwo: INVENTORY_ACTION_UNEQUIP
-  function: equip
-action_two: null
-battle_action: ''
+cost: 200
+value: 100
+can_use: [ninten, pippi]
+actions:
+  - function: equip
 basic_skill: attack_bat
-transform: ''
+transform: ""
 slot: weapon
 HPrecover: 0
 PPrecover: 0

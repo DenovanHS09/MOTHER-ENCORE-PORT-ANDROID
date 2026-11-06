@@ -1,11 +1,11 @@
 name: FLY_NAME
 description: FLY_DESC
 article: FLY_ART
-maxhp: 20
-hp: 20
+maxhp: 60
+hp: 60
 maxpp: 0
 pp: 0
-offense: 5
+offense: 9
 defense: 12
 speed: 9
 iq: 10
@@ -16,7 +16,7 @@ cash: 1
 skills:
 - skill: float
   weight: 1
-- skill: callHelpFly
+- skill: callHelp
   weight: 1
 - skill: tackle
   weight: 10
@@ -32,3 +32,8 @@ ov:
   acceleration: 800
   friction: 800
   walkFrequency: 0.5
+affinity_multipliers:
+  insecticide: 2
+  fire: 2
+  sleeping: 2
+  blinded: 2

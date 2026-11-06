@@ -124,6 +124,7 @@ extents = Vector2( 7.5, 4.5 )
 position = Vector2( 0, -4 )
 script = ExtResource( 1 )
 dialog = "Reusable/dad_normal"
+_key_item = "PhoneCard"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Idle = SubResource( 103 )
@@ -157,6 +158,8 @@ stream = ExtResource( 4 )
 bus = "SFX"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 573
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( 1, 8.5 )

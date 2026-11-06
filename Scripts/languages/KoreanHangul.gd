@@ -74,7 +74,6 @@ static func _decompose_syllable(syllable: String):
 	]
 
 static func compose_addition(prevStr: String, newChar: String):
-	print("compose_with_previous %s %s" % [prevStr, newChar])
 	if prevStr == "":
 		return # Back to default handling
 	var prevChar = prevStr[-1]

@@ -83,6 +83,7 @@ patch_margin_right = 9
 patch_margin_bottom = 9
 script = ExtResource( 4 )
 loop_around = true
+_scroll_with_x = true
 
 [node name="MarginContainer" type="MarginContainer" parent="ShopBox/BuyMenu"]
 anchor_right = 1.0
@@ -277,6 +278,7 @@ position = Vector2( 12, 13 )
 menu_parent_path = NodePath("../MarginContainer/VBoxContainer")
 cursor_offset = Vector2( -5, 2 )
 consume_input_events = true
+_exact_dir_input = true
 skip_empty_labels = true
 skip_hidden_items = true
 move_sfx = true
@@ -287,6 +289,13 @@ margin_left = 141.0
 margin_top = 6.0
 margin_right = 149.0
 margin_bottom = 94.0
+
+[node name="Separator" type="ColorRect" parent="ShopBox/BuyMenu"]
+margin_left = 1.0
+margin_right = 155.0
+margin_bottom = 4.0
+color = Color( 0.952941, 0.94902, 0.956863, 1 )
+script = ExtResource( 19 )
 
 [node name="SellMenu" type="NinePatchRect" parent="ShopBox"]
 material = ExtResource( 20 )
@@ -301,6 +310,7 @@ patch_margin_bottom = 9
 script = ExtResource( 4 )
 _is_resale_price = true
 loop_around = true
+_scroll_with_x = true
 
 [node name="MarginContainer" type="MarginContainer" parent="ShopBox/SellMenu"]
 anchor_right = 1.0
@@ -471,6 +481,7 @@ position = Vector2( 12, 14 )
 menu_parent_path = NodePath("../MarginContainer/VBoxContainer")
 cursor_offset = Vector2( -5, 2 )
 consume_input_events = true
+_exact_dir_input = true
 skip_empty_labels = true
 skip_hidden_items = true
 move_sfx = true
@@ -491,11 +502,10 @@ margin_top = 6.0
 margin_right = 149.0
 margin_bottom = 94.0
 
-[node name="Separator" type="ColorRect" parent="ShopBox"]
+[node name="Separator" type="ColorRect" parent="ShopBox/SellMenu"]
 margin_left = 1.0
-margin_top = 25.0
 margin_right = 155.0
-margin_bottom = 29.0
+margin_bottom = 4.0
 color = Color( 0.952941, 0.94902, 0.956863, 1 )
 script = ExtResource( 19 )
 
@@ -592,6 +602,7 @@ menu_parent_path = NodePath("../VBoxContainer")
 on = true
 consume_input_events = true
 loop_around = true
+skip_hidden_items = true
 highlight = true
 move_sfx = true
 select_sfx = true

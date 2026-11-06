@@ -1,19 +1,21 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Nodes/Overworld/Objects/Present.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Graphics/Rooms/DebugWorld.png" type="Texture" id=2]
 [ext_resource path="res://Nodes/Overworld/Door.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Nodes/Overworld/MusicChanger.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Nodes/Overworld/Objects/Barrel.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Nodes/Reusables/npc.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Nodes/Overworld/birds.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Nodes/Reusables/atm.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Nodes/Overworld/Objects/Item.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Nodes/Overworld/Objects/DroppedItem.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Nodes/Overworld/butterfly.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Nodes/Reusables/door_npc.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Nodes/Overworld/jump area.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Shaders/Outline.shader" type="Shader" id=12]
 [ext_resource path="res://Nodes/Overworld/Enemies/Enemy Spawner.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Scripts/Main/room.gd" type="Script" id=14]
+[ext_resource path="res://Scripts/Main/RoomTypes/AreaRoom.gd" type="Script" id=14]
+[ext_resource path="res://Nodes/Overworld/Objects/Barrel Duncans.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scripts/debug/DebugStartPos.gd" type="Script" id=16]
 
 [sub_resource type="ShaderMaterial" id=2]
 resource_local_to_scene = true
@@ -31,12 +33,14 @@ shader_param/width = 1.0
 shader_param/pattern = 2
 shader_param/inside = true
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 552, 280 )
-
 [node name="Debug world" type="Node2D"]
 script = ExtResource( 14 )
-region_name = "Testing"
+_region_name = "Testing"
+
+[node name="DebugStartPos" type="Position2D" parent="."]
+position = Vector2( -400, -32 )
+z_index = 1
+script = ExtResource( 16 )
 
 [node name="Room" type="Sprite" parent="."]
 position = Vector2( -256, -96 )
@@ -64,6 +68,7 @@ position = Vector2( -168, -32 )
 scale = Vector2( 2, 1 )
 targetX = 354
 targetY = -7
+dir = Vector2( 1, 0 )
 
 [node name="Position2D" parent="Objects/Doors/battleDoor" index="1"]
 position = Vector2( 260, 32 )
@@ -73,6 +78,7 @@ position = Vector2( 328, -16 )
 scale = Vector2( 2, 2 )
 targetX = -160
 targetY = -24
+dir = Vector2( 0, 1 )
 
 [node name="Position2D" parent="Objects/Doors/BattleDebug" index="1"]
 position = Vector2( -244, 0 )
@@ -82,6 +88,7 @@ position = Vector2( -136, -32 )
 scale = Vector2( 2, 1 )
 targetX = 135
 targetY = 256
+dir = Vector2( -1, 0 )
 
 [node name="Position2D" parent="Objects/Doors/mapDoor" index="1"]
 position = Vector2( 136, 296 )
@@ -91,25 +98,30 @@ position = Vector2( 144, 248 )
 scale = Vector2( 2, 2 )
 targetX = -126
 targetY = -24
+dir = Vector2( 0, 1 )
 
 [node name="Position2D" parent="Objects/Doors/mapDebug" index="1"]
 position = Vector2( -136, -132 )
 
-[node name="creditsDoor" parent="Objects/Doors" instance=ExtResource( 3 )]
+[node name="TrainDoor" parent="Objects/Doors" instance=ExtResource( 3 )]
 position = Vector2( -104, -32 )
 scale = Vector2( 2, 1 )
-targetScene = "Snowman/TrainBridge"
+fadeout_music_on_scene_change = false
+targetScene = "misc/TrainCutscene"
+_target_scene_params = [ "Merrysville", "Reindeer" ]
+unpause_player = false
 
-[node name="Position2D" parent="Objects/Doors/creditsDoor" index="1"]
+[node name="Position2D" parent="Objects/Doors/TrainDoor" index="1"]
 position = Vector2( 52, 32 )
 
-[node name="BossDoor" parent="Objects/Doors" instance=ExtResource( 3 )]
+[node name="ItemDoor" parent="Objects/Doors" instance=ExtResource( 3 )]
 position = Vector2( -72, -32 )
 scale = Vector2( 2, 1 )
 targetX = 354
 targetY = 256
+dir = Vector2( 1, 0 )
 
-[node name="Position2D" parent="Objects/Doors/BossDoor" index="1"]
+[node name="Position2D" parent="Objects/Doors/ItemDoor" index="1"]
 position = Vector2( 212, 296 )
 
 [node name="BossDebug" parent="Objects/Doors" instance=ExtResource( 3 )]
@@ -117,6 +129,7 @@ position = Vector2( 328, 248 )
 scale = Vector2( 2, 2 )
 targetX = -64
 targetY = -24
+dir = Vector2( 0, 1 )
 
 [node name="Position2D" parent="Objects/Doors/BossDebug" index="1"]
 position = Vector2( -196, -132 )
@@ -244,36 +257,24 @@ item = "FranklinBadge0.8"
 
 [node name="npc5" parent="Objects" instance=ExtResource( 5 )]
 position = Vector2( 48, -23 )
-sprite = "Lloyd"
+sprite = "Npcs/4dir/minnie"
 dialog = "Testing/names"
-thoughts = "Testing/gay thoughts"
-player_turn = {
-"x": true,
-"y": true
-}
+_thoughts = "Testing/gay thoughts"
 initial_dir = Vector2( 0, 1 )
 staring = true
 
 [node name="npc6" parent="Objects" instance=ExtResource( 5 )]
 position = Vector2( 24, 16 )
-sprite = "Ana"
+sprite = "Ana/main"
 dialog = "Testing/addlloyd"
 yaml = "res://Data/Animations/PartyMember.yaml"
-player_turn = {
-"x": true,
-"y": true
-}
 initial_dir = Vector2( 0, 1 )
 staring = true
 
 [node name="npc8" parent="Objects" instance=ExtResource( 5 )]
 position = Vector2( -456, -200 )
-sprite = "Lloyd"
+sprite = "Lloyd/main"
 dialog = "Testing/addlloyd"
-player_turn = {
-"x": true,
-"y": true
-}
 initial_dir = Vector2( 0, 1 )
 staring = true
 
@@ -281,57 +282,37 @@ staring = true
 position = Vector2( -40, -32 )
 sprite = "Npcs/4dir/healer"
 dialog = "Testing/boboo"
-player_turn = {
-"x": true,
-"y": true
-}
 initial_dir = Vector2( 0, 1 )
 
 [node name="npc12" parent="Objects" instance=ExtResource( 5 )]
 position = Vector2( -191, -28 )
 sprite = "Npcs/4dir/queenmary"
 dialog = "Testing/skills"
-player_turn = {
-"x": true,
-"y": true
-}
 initial_dir = Vector2( 0, 1 )
 
 [node name="npc4" parent="Objects" instance=ExtResource( 5 )]
 position = Vector2( 16, -32 )
 sprite = "Npcs/4dir/npc"
 dialog = "Testing/addparty"
-player_turn = {
-"x": true,
-"y": true
-}
 initial_dir = Vector2( 0, 1 )
 
 [node name="npc9" parent="Objects" instance=ExtResource( 5 )]
 position = Vector2( 64, 16 )
 sprite = "Npcs/4dir/npc"
 dialog = "Testing/removelloyd"
-player_turn = {
-"x": true,
-"y": true
-}
 initial_dir = Vector2( 0, 1 )
 
 [node name="npc10" parent="Objects" instance=ExtResource( 5 )]
 position = Vector2( -23, 16 )
-sprite = "Npcs/4dir/minnie"
-dialog = "Podunk/minnie_storage"
-player_turn = {
-"x": true,
-"y": true
-}
+sprite = "Lloyd/main"
+dialog = "Testing/nuke"
 staring = true
 
 [node name="npc3" parent="Objects" instance=ExtResource( 5 )]
-visible = false
 self_modulate = Color( 1, 1, 1, 0 )
-position = Vector2( -6, -29 )
-dialog = "debugtut"
+position = Vector2( 95, -28 )
+sprite = "Npcs/4dir/npc"
+dialog = "Testing/debugtut"
 player_turn = {
 "x": false,
 "y": false
@@ -347,6 +328,12 @@ position = Vector2( -127, 36 )
 
 [node name="bird3" parent="Objects" instance=ExtResource( 6 )]
 position = Vector2( -181, 40 )
+
+[node name="horror_movie_bully" parent="Objects" instance=ExtResource( 5 )]
+position = Vector2( 145, 72 )
+sprite = "Npcs/4dir/redcapboy"
+dialog = "Merrysville/TwinkleElementary/horror_movie_bully"
+_thoughts = "Merrysville/TwinkleElementary/horror_movie_bully_thoughts"
 
 [node name="Item3" parent="Objects" instance=ExtResource( 8 )]
 position = Vector2( 632, 240 )
@@ -375,7 +362,7 @@ item = "BaseballCap"
 
 [node name="Item8" parent="Objects" instance=ExtResource( 8 )]
 position = Vector2( 736, 288 )
-item = "Bread"
+item = "CupOfLifenoodles"
 
 [node name="Item11" parent="Objects" instance=ExtResource( 8 )]
 position = Vector2( 704, 240 )
@@ -424,7 +411,6 @@ position = Vector2( -159, 22 )
 
 [node name="Sprite" parent="Objects/Jump Area" index="0"]
 material = SubResource( 2 )
-rotation = -0.352557
 
 [node name="Position2D" parent="Objects/Jump Area/Jump Points" index="0"]
 position = Vector2( -34, -16 )
@@ -440,7 +426,6 @@ position = Vector2( -200, 72 )
 
 [node name="Sprite" parent="Objects/Jump Area2" index="0"]
 material = SubResource( 3 )
-rotation = -0.352557
 
 [node name="Position2D" parent="Objects/Jump Area2/Jump Points" index="0"]
 position = Vector2( 8, -24 )
@@ -461,7 +446,7 @@ enemy = "rat"
 
 [node name="Enemy Spawner3" parent="Objects" instance=ExtResource( 13 )]
 position = Vector2( 544, -16 )
-enemy = "gorilla"
+enemy = "alligator"
 
 [node name="ATM" parent="Objects" instance=ExtResource( 7 )]
 position = Vector2( -8, -28 )
@@ -470,47 +455,78 @@ position = Vector2( -8, -28 )
 position = Vector2( -192, 48 )
 sprite = "Npcs/4dir/npc"
 dialog = "Testing/helloworld"
-player_turn = {
-"x": true,
-"y": true
-}
+_all_dialog = [ PoolStringArray( "", "Testing/helloworld", "Testing/helloworld2" ) ]
 initial_dir = Vector2( 0, 1 )
 
 [node name="npc7" parent="Objects" instance=ExtResource( 5 )]
 position = Vector2( -192, 16 )
 sprite = "Npcs/4dir/npc"
 dialog = "Testing/sounds"
-player_turn = {
-"x": true,
-"y": true
-}
 initial_dir = Vector2( 0, 1 )
 
 [node name="npc11" parent="Objects" instance=ExtResource( 5 )]
 position = Vector2( -92, 17 )
 sprite = "Npcs/4dir/dogstray"
 dialog = "Testing/playername"
-player_turn = {
-"x": true,
-"y": true
-}
 
-[node name="MusicArea" parent="." instance=ExtResource( 4 )]
-visible = false
-position = Vector2( -104, 0 )
-music = "Flying_Man.mp3"
+[node name="Barrel" parent="Objects" instance=ExtResource( 4 )]
+position = Vector2( -432, -40 )
+New_parent = NodePath("../../Ground")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MusicArea"]
-position = Vector2( 312, 112 )
-shape = SubResource( 1 )
+[node name="Barrel5" parent="Objects" instance=ExtResource( 4 )]
+position = Vector2( -368, -16 )
+New_parent = NodePath("../../Ground")
+
+[node name="Barrel6" parent="Objects" instance=ExtResource( 4 )]
+position = Vector2( -360, -48 )
+New_parent = NodePath("../../Ground")
+
+[node name="Barrel9" parent="Objects" instance=ExtResource( 4 )]
+position = Vector2( -472, 8 )
+New_parent = NodePath("../../Ground")
+
+[node name="Barrel10" parent="Objects" instance=ExtResource( 4 )]
+position = Vector2( -424, 40 )
+New_parent = NodePath("../../Ground")
+
+[node name="Barrel11" parent="Objects" instance=ExtResource( 4 )]
+position = Vector2( -488, 56 )
+New_parent = NodePath("../../Ground")
+
+[node name="Barrel7" parent="Objects" instance=ExtResource( 4 )]
+position = Vector2( -384, -96 )
+New_parent = NodePath("../../Ground")
+
+[node name="Barrel2" parent="Objects" instance=ExtResource( 15 )]
+position = Vector2( -400, 8 )
+New_parent = NodePath("../../Ground")
+
+[node name="Barrel3" parent="Objects" instance=ExtResource( 15 )]
+position = Vector2( -360, 24 )
+New_parent = NodePath("../../Ground")
+
+[node name="Barrel12" parent="Objects" instance=ExtResource( 15 )]
+position = Vector2( -312, 56 )
+New_parent = NodePath("../../Ground")
+
+[node name="Barrel13" parent="Objects" instance=ExtResource( 15 )]
+position = Vector2( -376, 56 )
+New_parent = NodePath("../../Ground")
+
+[node name="Barrel4" parent="Objects" instance=ExtResource( 15 )]
+position = Vector2( -320, -16 )
+New_parent = NodePath("../../Ground")
+
+[node name="Barrel8" parent="Objects" instance=ExtResource( 15 )]
+position = Vector2( -328, -64 )
+New_parent = NodePath("../../Ground")
 
 [editable path="Objects/Doors/battleDoor"]
 [editable path="Objects/Doors/BattleDebug"]
 [editable path="Objects/Doors/mapDoor"]
 [editable path="Objects/Doors/mapDebug"]
-[editable path="Objects/Doors/creditsDoor"]
-[editable path="Objects/Doors/BossDoor"]
+[editable path="Objects/Doors/TrainDoor"]
+[editable path="Objects/Doors/ItemDoor"]
 [editable path="Objects/Doors/BossDebug"]
 [editable path="Objects/Jump Area"]
 [editable path="Objects/Jump Area2"]
-[editable path="MusicArea"]

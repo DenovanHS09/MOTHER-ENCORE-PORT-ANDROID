@@ -11,8 +11,8 @@
 [ext_resource path="res://Nodes/Ui/arrow.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Nodes/Ui/ButtonPrompt.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scripts/UI/NamingScreen/ButtonPrompts.gd" type="Script" id=11]
-[ext_resource path="res://Graphics/Objects/Present Box.png" type="Texture" id=12]
-[ext_resource path="res://Graphics/Character Sprites/Npcs/4dir/woman/main.png" type="Texture" id=13]
+[ext_resource path="res://Graphics/Objects/Common/Present Box.png" type="Texture" id=12]
+[ext_resource path="res://Graphics/Character Sprites/Npcs/4dir/woman.png" type="Texture" id=13]
 [ext_resource path="res://Scripts/UI/NamingScreen/TextSpeed.gd" type="Script" id=14]
 [ext_resource path="res://Scripts/UI/NamingScreen/Flavors.gd" type="Script" id=15]
 
@@ -161,6 +161,7 @@ margin_bottom = 180.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="Body" type="Control" parent="CanvasLayer"]
 anchor_right = 1.0
@@ -541,8 +542,6 @@ material = SubResource( 20 )
 position = Vector2( 0, -16 )
 type = "NPCs"
 offset = Vector2( 0, -16 )
-
-[node name="Tween" type="Tween" parent="."]
 
 [connection signal="cancel" from="CanvasLayer/SaveConfirmation/saveArrow" to="." method="_on_arrow_cancel"]
 [connection signal="selected" from="CanvasLayer/SaveConfirmation/saveArrow" to="." method="_on_arrow_selected"]

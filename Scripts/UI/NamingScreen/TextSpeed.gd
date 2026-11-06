@@ -1,46 +1,36 @@
 extends NinePatchRect
 
-var t = 0
-var textSpeed = 0.02
-var finished = true
-onready var dialogueLabel = $VBoxContainer/Fast
+var _t := 0.0
+var _text_speed: float = globaldata.TEXT_SPEEDS[0]
+var _finished := true
+onready var _dialogue_label := $VBoxContainer/Fast
 
-func _process(delta):
-	if !finished and dialogueLabel != null:
-		t += delta
-		if t > textSpeed:
-			dialogueLabel.visible_characters += 1
-			t = 0
-		# LOCALIZATION Code change: Animation was left incomplete if the translated text was long
-		if dialogueLabel.visible_characters >= len(tr(dialogueLabel.text)):
-			finished = true
-			dialogueLabel.visible_characters = len(tr(dialogueLabel.text))
-			t = 0
+func _process(delta: float):
+	if !_finished and _dialogue_label != null:
+		_t += delta
+		if _t > _text_speed:
+			_dialogue_label.visible_characters += 1
+			_t = 0
+		if _dialogue_label.visible_characters >= len(tr(_dialogue_label.text)):
+			_finished = true
+			_dialogue_label.visible_characters = len(tr(_dialogue_label.text))
+			_t = 0
 
 func _on_TextSpeedArrow_moved(dir):
-	dialogueLabel.percent_visible = 1
-	match $TextSpeedArrow.cursor_index:
-		0:
-			textSpeed = 0.02
-			dialogueLabel = $VBoxContainer/Fast
-		1:
-			textSpeed = 0.03
-			dialogueLabel = $VBoxContainer/Medium
-		2:
-			textSpeed = 0.06
-			dialogueLabel = $VBoxContainer/Slow
+	_dialogue_label.percent_visible = 1
+	var cur_index: int = $TextSpeedArrow.cursor_index
+	_text_speed = globaldata.TEXT_SPEEDS[cur_index]
+	_dialogue_label = [$VBoxContainer/Fast, $VBoxContainer/Medium, $VBoxContainer/Slow][cur_index]
 	
-	# LOCALIZATION Code change: Disable animation if the text speed label is too short
-	# (Only 3 characters or less in certain languages)
-	if !_isAnimationWorthIt():
-		dialogueLabel.percent_visible = 1
-		finished = true
+	if !_is_animation_worth_it():
+		_dialogue_label.percent_visible = 1
+		_finished = true
 	else:
-		dialogueLabel.percent_visible = 0
-		finished = false
+		_dialogue_label.percent_visible = 0
+		_finished = false
 
 
-func _isAnimationWorthIt():
-	return len(tr($VBoxContainer/Fast.text)) > 3 \
-		and len(tr($VBoxContainer/Medium.text)) > 3 \
-		and len(tr($VBoxContainer/Slow.text)) > 3
+func _is_animation_worth_it() -> bool:
+	return len(tr($VBoxContainer/Fast.text)) > 5 \
+		and len(tr($VBoxContainer/Medium.text)) > 5 \
+		and len(tr($VBoxContainer/Slow.text)) > 5

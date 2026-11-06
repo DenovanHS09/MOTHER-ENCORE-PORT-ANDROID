@@ -11,15 +11,15 @@
   actorsmove:
     ninten:
       movement:
-      - x: 8
-        y: -579
+        - x: 8
+          y: -579
       speed: 32
       animation: Walk
       type: position
     pippi:
       movement:
-      - x: -10
-        y: -579
+        - x: -10
+          y: -579
       speed: 32
       animation: Walk
       type: position
@@ -85,9 +85,9 @@
   actorsmove:
     abbott:
       movement:
-      - wait: 1
-      - x: 8
-        y: -552
+        - wait: 1
+        - x: 8
+          y: -552
       speed: 108
       animation: Walk
       type: position
@@ -134,8 +134,8 @@
   actorsmove:
     abbott:
       movement:
-      - x: 8
-        y: -472
+        - x: 8
+          y: -472
       speed: 108
       animation: Walk
       type: position
@@ -196,9 +196,9 @@
   actorsmove:
     abbott:
       movement:
-      - wait: 1.2
-      - x: 8
-        y: -552
+        - wait: 1.2
+        - x: 8
+          y: -552
       speed: 108
       animation: Walk
       type: position
@@ -242,8 +242,8 @@
   actorsmove:
     abbott:
       movement:
-      - x: 8
-        y: -565
+        - x: 8
+          y: -565
       speed: 64
       animation: Walk
       type: position
@@ -265,8 +265,8 @@
   actorsmove:
     abbott:
       movement:
-      - x: 8
-        y: -472
+        - x: 8
+          y: -472
       speed: 108
       animation: Walk
       type: position
@@ -330,7 +330,7 @@
   setflags: pippi_delivered
   cure:
     character: ninten
-    status: Unconscious
+    status: unconscious
   setpartymembers:
     pippi: false
   changereplaced:

@@ -1,0 +1,600 @@
+key,en,fr,it,ja,ko,es,es_ES,pt_BR,pl,de,ru,uk,zh_CN
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_CANCARTWHEELKID_0,"[@]Do you know how to do a cartwheel?
+[W@]All first graders know how to do a cartwheel.
+[W@]It's one of our natural abilities.
+","[@]Tu sais faire la roue, toi ?[W@]Tous les élèves de CP savent faire la roue.[W@]C'est une de nos capacités naturelles. [D:6]Eh ouais !","[@]Sai fare la ruota?
+[W@]Tutti quelli in prima elementare sanno come si fa.
+[W@]Ce l'abbiamo nel sangue.
+",[@]しょうがく　いちねんせいだったら[BR]さかあがりくらい　できるものよねぇ。[W@]あなたも　さかあがり　できるよね？,[@]물구나무선 채로 옆돌기할 줄 알아?[W@]1학년이면 다 할 줄 안다고 하던데...[W@]우리 모두에게 타고난 능력인가 봐.,"[@]¿Sabes cómo hacer una voltereta?
+[W@]Todos los de primero sabemos cómo hacer una.
+[W@]Es una de nuestras habilidades naturales.
+",[@]¿Sabes hacer la rueda?[W@]Todos los de primero sabemos hacerla.[W@]Es una de nuestras habilidades naturales.,[@]Você sabe dar estrelinha?[W@]Todos os alunos do primeiro ano sabem dar estrelinha.[W@]É um dom natural.,"[@]Umiesz zrobić gwiazdę?
+[W@]Wszyscy pierwszoklasiści to potrafią.
+[W@]To jedna z naszych naturalnych zdolności.","[@]Weißt du, wie man einen Radschlag macht?
+[W@]Alle Erstklässler wissen, wie man ein Rad schlägt.
+[W@]Das gehört zu unseren natürlichen Fähigkeiten.","[@]А ты можешь сделать колесо?
+[W@]Все первоклашки умеют делать колесо.
+[W@]Это у нас врождённое.","[@]А ти можеш зробити колесо?
+[W@]Усі ми, першокласники, вміємо робити колесо.
+[W@]Це одна з наших вроджених здібностей.",[@]你知道怎么做侧手翻吗？[W@]一年级的小学生全都会做哦，[W@]这可是我们与生俱来的能力。
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_CANCARTWHEELKID_SPEAKER,Enid,Enid,Enid,エニド,이니드,Enid,Enid,Enídia,Enid,Enid,Энид,Енід,伊妮德
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_CANTCARTWHEELKID_0,[@]I can’t do a cartwheel.,[@]J'arrive pas à faire la roue !,[@]Io non so fare la ruota.,[@]ぼく　さかあがりできないのよ。,[@]난 물구나무 못 해.,[@]No sé hacer una voltereta.,[@]No sé hacer la rueda.,[@]Eu não sei dar estrelinha.,[@]Nie umiem zrobić gwiazdy.,[@]Ich kann kein Rad schlagen.,[@]Я не умею делать колесо.,[@]Я не вмію робити колесо.,[@]我还是不会做侧手翻。
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_CANTCARTWHEELKID_SPEAKER,Kayo,Kayo,Kayo,カヨ,카요,Kayo,Kayo,Kayo,Kayo,Kayo,Каё,Кайо,佳代
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_COMPUTERHATER_0,"[@][LLOYD]’s the type to become a “computer engineer” when he grows up.
+[W@]Sounds pretty lame, if you ask me. Computers are just a fad.
+","[@][LLOYD] est le genre de gars à devenir un ""ingénieur informatique"" quand il sera grand.
+[W@]C'est nul si tu veux mon avis. C'est juste un truc à la mode, les ordis.","[@][LLOYD] è il tipo da diventare un “ingegnere informatico” da grande.
+[W@]Secondo me è da sfigati. I computer passeranno di moda.
+",[@][Lloyd]って　しょうらいは[BR]コンピュータかんけいの　しごとに[BR]つくんじゃないかな。　[W@]だれもが　インターネットを　つかう[BR]せかいなんて　そうぞう　つかないなあ。,[@][LLOYD][particle:LLOYD:0] 나중에 커서 “컴퓨터 엔지니어”가 될 거 같아.[W@]내가 보기엔 완전 별로야. [W@]컴퓨터 같은 건 그냥 지나가는 유행일 뿐이라고.,"[@][LLOYD] es el típico que quiere ser un “informático” cuando sea grande.
+[W@]A mí me parece ridículo, se nota que la moda de las computadoras no durará nada.
+",[@][LLOYD] es el típico que de mayor quiere ser «ingeniero informático».[W@]A mí me parece de pringaos. Lo de los ordenadores es una moda pasajera.,"[@][LLOYD] leva jeito para ser um ""engenheiro da computação"" quando crescer.[W@]Parece bem chato. Essa coisa de computador é pura modinha.","[@][LLOYD] chyba zostanie “inżynierem komputerowym” kiedy dorośnie.
+[W@]Według mnie, to strasznie lamerskie. Komputery szybko wyjdą z mody.","[@][LLOYD] ist so ein Typ, der später einmal „Computeringenieur” wird.
+[W@]Klingt ziemlich lahm, wenn du mich fragst. Computer sind doch nur eine Modeerscheinung.","[@][LLOYD] хочет стать «компьютерным инженером».
+[W@]Ерунда, как по мне. Вся эта мода на компьютеры быстро утихнет.","[@][LLOYD], коли виросте, напевно стане «комп'ютерним інженером».
+[W@]Дурниця якась, як на мене.[D] Усі знають, що комп'ютери скоро вийдуть із моди.",[@][LLOYD]长大后大概会成为那种“电脑工程师”吧。[W@]依我看，那工作太没劲了，电脑不过是一时流行罢了。
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_COMPUTERHATER_SPEAKER,Zachary,Zachary,Zachary,ザッカリー,재커리,Zachary,Zachary,Zachary,Zachary,Zachary,Закари,Закарі,扎卡利
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_FAILSUBTRACTGIRL_0,[@]I still don’t know how to carry over in subtraction...[W@]Why does math need to be so hard?,"[@]Je ne sais toujours pas utiliser les retenues dans les soustractions...[W@]Est-ce que ça a vraiment besoin d'être aussi dur, les maths ?","[@]Non ho ancora capito le sottrazioni con il prestito...[W@]Perché la matematica è così difficile?
+
+",[@]わたし　ひきざんの　くりさがりが　わからない。[W@]さんすうって　むずかしい！,[@]난 아직도 뺄셈할 때 받아내림이 뭔지 모르겠어...[W@]수학은 왜 이렇게 어려워야 하는 거야?,"[@]Aún no me se dan las restas...[W@]¿Por qué las matemáticas son tan difíciles?
+",[@]Todavía no me salen las restas con llevada...[W@]¿Por qué las mates son tan difíciles?,"[@]Eu ainda não sei como que faz o ""pegar emprestado"" na subtração...[W@]Por que matemática é tão difícil?",[@]Nadal nie wiem na czym polega pożyczanie w odejmowaniu...[W@]Czemu matma musi być taka trudna?,"[@]Ich weiß immer noch nicht, wie man bei der Subtraktion überträgt ...[W@]Warum muss Mathe so schwer sein?","[@]Я так и не поняла, как вычитать столбиком с двумя цифрами...[W@]Почему математика такая сложная?","[@]Я досі не розумію, як віднімати в стовпчик з переходом... [W@]Чому математика така складна?",[@]我还是搞不懂减法里要怎么进位…[W@]为什么数学非得这么难啊？
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_FAILSUBTRACTGIRL_1,"[@]I looked at an older kid's math book just now...
+[W@]You tellin’ me I’ll have to subtract letters and stuff?!
+[W@]I'm never making it outta first grade, man...
+","[@]J'ai regardé dans le livre de maths d'un grand...
+[W@]Tu vas me dire que j'vais devoir soustraire des lettres et tout ?!
+[W@]J'vais jamais réussir à passer en CE1...","[@]Ho sbirciato il libro di matematica di un bambino più grande...
+[W@]Perciò dobbiamo sottrarre perfino lettere e simili?!
+[W@]Non andrò mai in seconda elementare...",[@]まえに　にいちゃんの　きょうかしょ[BR]こっそり　よんでみたけど・・・[W@]こめおんなまなぶ？　ってきょうかで　なんと！[DELAY:4][BR]えいごを　ひきざんしてたの！[W@]・・・もうわかんないや！,[@]방금 위에 학년의 수학책을 펼쳐봤는데...[W@]글자까지 뺄셈하는 거야?![W@]난 평생 1학년에서 못 벗어날 거 같아...,"[@]Acabo de revisar el cuaderno de matemáticas a uno de los niños grandes...
+[W@]¡¿Acaso tendré que restar letras después?!
+[W@]Nunca voy a pasar de primero, bro...",[@]Acabo de ver el cuaderno de mates de un niño mayor...[W@]¡¿Me estás diciendo que también hay letras?![W@]Nunca voy a pasar de primero...,"[@]Eu estava olhando o livro de matemática de um colega mais velho...[W@]Quer dizer que depois vou ter que subtrair letras e outras coisas?![W@]Nossa, eu nunca vou sair do primeiro ano...","[@]Miałem okazję zerknąć na podręcznik od matmy starszaka...
+[W@]I co, będę musiał odejmować jakieś literki i co bądź?!
+[W@]Jeny, nigdy nie zdam do drugiej klasy...","[@]Ich habe mir gerade das Mathebuch von jemand Älteren angesehen ...
+[W@]Du willst mir sagen, dass ich Buchstaben und sowas subtrahieren muss?!
+[W@]Ich werde die erste Klasse nie schaffen, Mann ...","[@]Я заглянула в учебник по математике второго класса...
+[W@]То есть мне ещё придётся решать примеры с буквами?!
+[W@]Я так из первого класса никогда не вылезу...","[@]Я заглянула до підручника з математики у старшокласника... [D]Нам ще доведеться вирішувати приклади з літерами?!
+[W@]Ех, так я ніколи не вилізу з першого класу...",[@]我刚才看了一眼高年级学生的数学书…[W@]你是说，我以后还得计算字母之类的东西？！[W@]天呐，我觉得我这辈子都没法从一年级升上去了…
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_FAILSUBTRACTGIRL_SPEAKER,Polly,Polly,Polly,ポリー,폴리,Polly,Polly,Polly,Polly,Polly,Полли,Поллі,波莉
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_FAVFOODHATER_0,"[@]I’m so hungry, I could eat[DELAY:4:3]... [D]anything but [FavFood].[W@]Hey, why do you look so offended?","[@]J'ai tellement faim que je pourrais manger n'importe quoi[DELAY:4:3]... sauf un plat d[elision][FavFood].[W@]Hé, pourquoi t'as l'air énervé[LeadArt6] ?","[@]Ho così tanta fame che mi mangerei[DELAY:4:3]... [D]qualunque cosa a parte [FavFood].[W@]Ehi, perché te la sei presa?",[@]おなかがすいて　なんでもたべられちゃいそう。[BR][D][FavFood]　じゃなければね。[W@][DELAY:4:3]・・・どうして　おこった　かおをしてるの？,"[@]배고파 죽겠어, 아무거라도 당장 집어 먹고 싶을 정도야[DELAY:4:3]... [D][FavFood] 빼고.[W@]왜 그런 표정이야?","[@]Estoy tan hambriento, me comería[DELAY:4:3]... [D]todo menos 
+[FavFood].[W@]Oye, ¿por qué tan enojad[LeadArt6]?","[@]Tengo tanta hambre que me comería[DELAY:4:3]... [D]lo que sea menos [FavFood].[W@]Oye, ¿por qué pareces enfadad[LeadArt6]?","[@]Mas que fome, eu poderia comer[DELAY:4:3]... [D]qualquer coisa, menos [FavFood] agora.[W@]Ei, por que está fazendo essa cara?","[@]Jestem taki głodny, że mógłbym zjeść[DELAY:4:3]... [D]cokolwiek, byle nie [FavFood].[W@]Hej, co cię tak nagle uraziło?","[@]Ich bin so hungrig, ich könnte alles fressen [DELAY:4:3]... [D]alles außer [FavFood].[W@]Hey, warum schaust du so beleidigt?",[@]Я сейчас готов съесть всё что угодно.[DELAY:4:2].. [D]только если это не [FavFood]![W@]Ты чего вдруг такой серьёзный?,"[@]Я такий голодний, що готовий з'їсти все[DELAY:4:3]... [D]тільки не [FavFood].[W@]Гей, що тебе так засмутило?",[@]我饿得简直什么都能吃得下，除了…[D][FavFood]。[W@]嘿，你那一脸不爽的表情是什么意思？
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_FAVFOODHATER_SPEAKER,Devin,Devin,Devin,デビン,데빈,Devin,Devin,Devin,Devin,Devin,Девин,Девін,德文
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_GETLOSTGIRL_0,"[@]I tried to play with a boy during recess...[D] but he told me to “get lost”.
+[W@]How do you get lost in a schoolyard, though?
+[W@]I just don’t get it.
+","[@]J'ai essayé de jouer avec un garçon pendant la pause...[D] mais il m'a dit « va voir ailleurs si j'y suis ».
+[W@]Mais comment je peux le trouver ailleurs que là où il est ?
+[W@]J'ai pas compris.
+","[@]Volevo giocare con un bambino a ricreazione...[D] ma mi ha detto di “sparire”.
+[W@]Come fai a sparire se dobbiamo stare nel cortile?
+[W@]Non ho capito.",[@]ともだちと　おひるやすみのときに[BR]あそぼうとしたけど[D]　あっちいけって[BR]いわれちゃった。[W@]あっちって　どこにいけばいいのかな。[W@]がっこうのそとだと　せんせいにしかられちゃう。,[@]점심 시간에 남자애랑 놀려고 했는데...[D] “저쪽으로 꺼져”라고 소리쳤어.[W@]근데 저쪽이 어디인 걸까?[W@]난 아직도 이해가 안 돼.,"[@]Intenté jugar con un niño en el recreo...
+[D]pero me dijo “que me fuera”.
+[W@]¿Pero cómo me voy a ir si aún tengo que volver a clases?
+[W@]De verdad no entiendo.
+","[@]Intenté jugar con un niño en el recreo...
+[D] pero me dijo que «me fuera a freír espárragos».
+[W@]¿Pero cómo voy a hacer eso? ¡Estamos en el patio, no en una cocina!
+[W@]Es que no lo entiendo.","[@]Eu fui brincar com um menino no recreio...[D] mas ele me mandou ""ver se ele tá na esquina"".[W@]Como é que eu vou ver se você tá na esquina, se eu não posso sair da escola?[W@]Não entendi bulhufas.","[@]Chciałam pobawić się z chłopcem podczas przerwy...[D] ale powiedział, że ""mam spadać"".
+[W@]Ale jak, skoro tu nie ma żadnych dziur?
+[W@]Czegoś tu nie rozumiem.","[@]Ich habe versucht, in der Pause mit einem Jungen zu spielen ...[D] aber er sagte, ich soll mich „verpissen“.
+[W@]Aber gibt es dafür nicht Toiletten?
+[W@]Ich versteh's einfach nicht.","[@]Я на перемене хотела поиграть с мальчиком...[D][BR]А он мне сказал «иди в баню».
+[W@]Как же я пойду, если из школы выходить нельзя?
+[W@]Не понимаю...","[@]Я хотіла пограти з хлопчиком на перерві...[D] А він мені сказав «Йди гедь звідси»!
+[W@]Але куди ж мені йти,[DELAY:3] якщо за територію школи виходити не дозволено?
+[W@]Зовсім не розумію...",[@]下课的时候，我试着找个男生一起玩…[BR][D]但他却让我“滚远点”…[W@]可是，在学校操场上要怎么“滚”才算远呢？[W@]真是搞不懂他。
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_GETLOSTGIRL_SPEAKER,Mandy,Mandy,Mandy,マンディー,맨디,Mandy,Mandy,Mandy,Mandy,Mandy,Мэнди,Менді,曼迪
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_HALLMONITOR1_0,"[@]Wait a minute, I don’t believe I’ve seen you before.[W@]Are you a new student?","[@]Hé, attendez une minute ! Je ne crois pas vous avoir déjà vu ici.[W@]Vous êtes un nouvel élève ?",[@]Un momento! Non penso di averti mai visto prima.[W@]Hai fatto da poco l'iscrizione a scuola?,[@]コラッ　みかけない　こどもだな。[W@]この　がっこうの　せいとか？,"[@]잠깐, 너 처음 보는 얼굴인데.[W@]전학생이야?","[@]Espera un minuto, no recuerdo haberte visto antes.[W@]¿Eres un estudiante nuevo?",[@]¡Un momento! No recuerdo haberte visto por aquí.[W@]¿Eres un nuevo estudiante?,"[@]Espera aí, acho que eu nunca te vi por aqui antes.[W@]Você é um aluno novo?","[@]Chwileczkę, nigdy cię tu wcześniej nie widziałem.[W@]Jesteś nowym uczniem?","[@]Warte mal kurz, ich glaub nicht, dass ich dich hier schonmal gesehen habe. [W@]Bist du ein neuer Mitschüler?",[@]Погоди... [DELAY:5]Что-то я тебя здесь раньше не видел.[W@]Ты новенький?,"[@]Так, хвилинку...[D] Якщо не помиляюсь, я тебе тут раніше не бачив.[W@]Ти новий учень?
+",[@]等一下，我之前好像没见过你…[W@]你是新来的转校生吗？
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_HALLMONITOR1_0-OPT_0,Yes,Oui,Sì,はい,네,Sí,Sí,Sim,Tak,Ja,Да,Так,是
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_HALLMONITOR1_0-OPT_1,No,Non,No,いいえ,아니오,No,No,Não,Nie,Nein,Нет,Ні,否
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_HALLMONITOR1_1,"[@]I see. Carry on, then.[W@]Just don’t run in the halls.",[@]Je vois. [D]Allez-y.[W@]Mais attention à ne pas courir dans les couloirs.,"[@]OK. Vai pure, allora.[W@]Ma non correre nei corridoi.",[@]そうか　なら　だいじょうぶだ。[W@]ろうかを　はしるなよ。,[@]그렇구나. 지나가도 좋아.[W@]복도에서 뛰지만 마.,"[@]Ya veo. [D]Entonces, adelante.[W@]Nada más no corras por los pasillos.",[@]Ya veo. [D]Adelante. [W@]Pero no corras por los pasillos.,"[@]Entendi. Pode ir, então.[W@]Só não corra nos corredores.",[@]Aha. To możesz iść.[W@]Tylko nie biegaj po korytarzu.,[@]Verstehe. [D]Dann geh weiter. [W@]Aber renne nicht im Flur.,"[@]Ну, [D:4]тогда удачи.[W@]Только не бегай по коридорам.","[@]Зрозуміло.[D] Тоді проходь.[W@]Тільки не бігай по коридорам.
+",[@]我知道了，去忙你的吧。[W@]只要别在走廊上乱跑就行。
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_HALLMONITOR1_2,"[@]Ah, a parent, then![W@]Welcome to our school.[W@]Though, upon further inspection, you look too[DELAY:4:3]...[D] “hip” [D]to be one.","[@]Ah, vous êtes un parent d'élève alors ![W@]Non, à y regarder de plus près, vous avez l'air trop[DELAY:4:3]...[D] « branché » pour être un parent d'élève.","[@]Ah, lei è un genitore![W@]Prego, vada pure.[W@]Guardando meglio, però, è un po' troppo[DELAY:4:3]...[D] “alla moda” [D]per essere un genitore.",[@]ならば　おやごさんでしたか！[W@]ほんじつは　じゅぎょうさんかんに[BR]おこしいただき　ありがとうございます。[W@]・・・ずいぶんと　わかい　おやごさんだなぁ。,"[@]아, 학부모님이셨나요![W@]저희 학교에 오신 걸 환영합니다.[W@]근데 다시 보니 꽤[DELAY:4:3]... [D]하도 젊게 사시는 듯해서... [D] 학부모 같진 않으시네요.","[@]Ah, entonces debes ser un padre.[W@]Bienvenido a nuestra escuela.[W@]Aunque, ahora que te veo más de cerca, te ves demasiado[DELAY:4:3]...[D] “en onda” [D]para ser uno.","[@]Ah, entonces debes ser un padre.[W@]Bienvenido al colegio.[W@]Aunque ahora que me fijo mejor, pareces muy[DELAY:4:3]...[D] «a la moda» para ser un padre.","[@]Ah, então é um pai de aluno![W@]Bem-vindo à nossa escola.[W@]Se bem que, olhando melhor, você parece[DELAY:4:3]...[D]""maneiro""[D] demais para ser um pai.","[@]Ach, więc jesteś rodzicem![W@]Witaj w naszej szkole.[W@]Chociaż, jak ci się bardziej przyjrzę, wydajesz się zbyt[DELAY:4:3]...[D] “modny” [D]na rodzica.","[@]Ah, ein Elternteil also![W@]Willkommen an unserer Schule.[W@]Wobei bei genauerer Betrachtung, siehst du zu [DELAY:4:3]...[D] „hip” [D]aus, um erziehungsberechtigt zu sein.","[@]А,[D:4] значит, вы...[D:6] родитель![W@]Добро пожаловать в нашу школу.[W@]Хотя... для родителя вы выглядите[DELAY:4:3]...[D] больно «круто».","[@]А, тоді батько![W@]Ласкаво просимо до нашої школи.[W@]Хоча, якщо вдивлятися, для батька ви одягаєтеся[DELAY:4:3]...[D] зовсім молодіжно.
+",[@]啊，原来是家长啊！[W@]欢迎来到我们学校。[W@]不过，仔细一瞧…[WAITBR]你看起来有点太…[D]“潮”[D]了，不太像个家长。
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_HALLMONITOR1_SPEAKER,Nabber,Nabber,Nabber,ナッバー,내버,Nabber,Nabber,Nabber,Nabber,Herr Nörgel,Наббер,Наббер,纳博
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_HALLMONITOR2_0,[@]No running in the halls!,[@]On ne court pas dans le couloir !,"[@]Non si corre nei corridoi!
+",[@]ろうかを　はしるんじゃ　ありませんよ！,[@]복도에서 뛰지 마!,[@]¡No corran en los pasillos!,[@]¡Nada de correr por los pasillos!,[@]Não corra nos corredores!,[@]Nie biegaj po korytarzu!,[@]Nicht auf den Fluren rennen!,[@]Не бегайте по коридорам!,[@]Не бігати по коридорах!,[@]走廊内禁止奔跑！
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_HALLMONITOR2_SPEAKER,Mitsy,Mitsy,Mitsy,ミッツィ,미치,Mitsy,Mitsy,Mitsy,Mitsy,Mitsy,Митси,Мітсі,米琪
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_HORRORMOVIEBULLY_0,"[@][LLOYD]’s such a wimp![WAIT] I bet he can’t even watch horror movies without wetting his pants!
+[W@]H...[D:6] huh?![D] O-of course I’m not afraid of horror movies![D] What a dumb question!
+","[@][LLOYD] est trop une mauviette ![WAIT] Je suis sûr qu'il peut même pas regarder un film d'horreur sans se faire dessus !
+[W@]H...[D:6]Hein ?![D] B-Bien sûr que j'ai pas peur des films d'horreur ![D] Stupide, comme question !
+","[@][LLOYD] è uno sfigato![WAIT] Secondo me se la fa sotto ogni volta che guarda un film horror.
+[W@]C...[D:6] Come?![D] I-Io non ho paura dei film horror![D] Che domanda scema!",[@][LLOYD]の　よわむしけむし！[WAIT][BR]きっと　ホラーえいがを　みて　ちびっているんだろうなぁ。[W@]え？[D:6]　ぼくのことは　どうだって？[D][BR]そ　そりゃあこわくないさ。[D][BR]ば　ば　ばかげたはなし　いうなよ。,[@][LLOYD][particle:LLOYD:0] 완전 쫄보라니까![WAIT] 분명 공포 영화도 오줌 지리면서 볼 걸![W@]ㅁ...[D:6] 뭐?![D] 나-나는 공포 영화 같은 거 하나도 안 무섭거든![D] 완전 바보 같은 질문이네!,"[@]¡Ese [LLOYD] es un debilucho![WAIT] ¡Seguro que ni puede ver películas de terror sin mojarse los pantalones!
+[W@]¿¡Q..[D:6] qué?![D] ¡C-claro que yo no les tengo miedo![D] ¡Qué tonterías preguntas!",[@]¡[LLOYD] es un cobardica![WAIT] ¡Seguro que no puede ver películas de terror sin mojarse los pantalones![W@]¡¿E...[D:6] eh?![D] ¡P-pues claro que a mí no me dan miedo![D] ¡Vaya pregunta más tonta!,[@]O [LLOYD] é o maior medroso![WAIT] Aposto que ele nem consegue assistir filmes de terror sem fazer xixi nas calças![W@]H...[D:6] Hein?![D] C-claro que eu não tenho medo de filmes de terror![D] Que pergunta idiota!,"[@][LLOYD] to taki mięczak![WAIT] Założę się, że nie obejrzałby horroru bez popuszczenia w gacie!
+[W@]H...[D:6] hę?![D] O-oczywiście, że nie boję się horrorów![D] Co za durne pytanie!","[@][LLOYD] ist so ein Weichei![WAIT] Ich wette, er kann nichtmal Horrorfilme schauen, ohne sich einzunässen!
+[W@]H...[D:6] Häh?![D] N-natürlich habe ich keine Angst vor Horrorfilmen![D] Was für eine dumme Frage!","[@][LLOYD] такой слабак![W] Да ему даже если ужастик показать, тот наделает в штаны!
+[W@]Кто...[D:6] я?![D] С-с чего бы мне бояться ужастиков?..","[@][LLOYD] такий слабак![D] Упевнений, він навіть фільм жахів не зможе подивитися, не надудливши у штани!
+[W@]Щ...[D:6] що?![D] З-зовсім ні, я не боюся фільмів жахів![D] Яке дурне питання!",[@][LLOYD]真是个胆小鬼！[BR][WAIT]我敢打赌，他看恐怖片肯定会吓得尿裤子！[W@]什…[DELAY:6]什么？！[BR][D]我-我当然不怕恐怖片！[D]你在说什么傻话！
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_HORRORMOVIEBULLY_1,"[@]Is that...? 
+[W@]Hey, [LLOYD]![D] How much money did you pay this kid to hang out with you?
+","[@]C'est...
+[W@]Hé, [LLOYD] ! T'as payé combien pour que quelqu'un se trimballe avec toi ?","[@]Ma quello è...? 
+[W@]Ehi, [LLOYD]![D] Quanto hai dato a questo qui per passare il tempo con te?",[@]もしかして...？[W@][LLOYD][D]　まさか　カツアゲされてるわけ？,"[@]으응...?[W@]이봐, [LLOYD]![D] 이 녀석한테 친구비 얼마나 쥐여줬길래, 같이 다녀주는 거야?","[@]¿Ese no es...? 
+[W@]¡Oye, [LLOYD]![D] ¿Cuánto dinero le pagaste a ese niño para que se juntara contigo?","[@]¿Ese no es...?[W@]¡Eh, [LLOYD]![D] ¿Cuánto le has pagado a este pavo para que se junte contigo?","[@]Mas esse é...?[W@]Ei, [LLOYD]![D] Quanto que você pagou pra esse menino andar com você?","[@]Czy to...? 
+[W@]Hej, [LLOYD]![D] Ile kasy dałeś temu dzieciakowi by za tobą łaził?","[@]Ist das ...? 
+[W@]Hey, [LLOYD]![D] Wie viel hast du dem Kind da bezahlt, dass es mit dir abhängt?","[@]Чего?..[W@]Эй, [LLOYD],[D:4] ты сколько заплатил этому пацану,[BR]чтоб он с тобой подружился?","[@]Чи це...?[W@]Гей, [LLOYD]![D] Скільки ти заплатив цьому хлопцю, щоб він з тобою дружив?",[@]那是…？[W@]喂，[LLOYD]！[BR][D]你花了多少钱，才让这孩子愿意跟你混一起的？
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_HORRORMOVIEBULLY_SPEAKER,Raph,Ralph,Raph,ラフィ,라피,Raph,Raph,Raph,Raph,Raph,Раф,Раф,拉夫
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_HORRORMOVIEBULLY_THOUGHTS_0,[@]That clown still gives me the creeps...,[@]Ce clown me fait toujours flipper...,"[@]Quel clown mi dà ancora i brividi...
+",[@]あのピエロ　みててゾクゾクするなぁ。,[@]그 광대는 아직도 소름 끼쳐...,[@]Ese payaso aún me da miedo...,[@]Ese payaso todavía me sigue dando mal rollo...,[@]Aquele palhaço ainda me dá medo...,[@]Ten klaun wciąż przyprawia mnie o dreszcze...,[@]Dieser Clown macht mir immer noch Angst ...,[@]Мне всё ещё не по себе от того клоуна...,[@]У мене досі мурашки по шкірі лише від думки про того клоуна...,[@]那个小丑还是让我感觉心里发毛…
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_JANITORKEYGIRL_0,"[@]The janitor has the key to the rooftop, but he doesn’t give it to students.[W@]I tried asking him for it the other day, but he just started chewing my ear off, complaining about his wife![W@]I’d take a hundred math classes over that...","[@]C'est le concierge de l'école qui a la clé du toit, mais il la donne pas aux élèves.[W@]L’autre jour, j'ai essayé de la lui demander, et il a commencé à me prendre la tête, genre gnagnagna ma femme ceci, ma femme cela ![W@]J’aurais préféré avoir mille cours de maths plutôt que de subir ça...","[@]Il bidello ha la chiave per il tetto, ma non la dà agli alunni.[W@]Gliel'ho provata a chiedere l'altro giorno, ma continuava a lamentarsi senza fine di sua moglie![W@]Preferisco cento ore di matematica piuttosto...
+",[@]おくじょうのカギを　ようむいんさんが[BR]もってるんだけど[DELAY:4]　かしてくれないのよ。[W@]たのんでも　おくさんのはなし　ばかりで・・・[W@]さんすうの　じゅぎょうほうが　ましだわ。,[@]수위아저씨가 옥상 열쇠를 갖고 있는데 학생들한텐 안 빌려줘.[W@]전에 부탁해 봤는데 갑자기 아내 욕만 한참을 늘어놓더라![W@]차라리 수학 수업을 백 번 듣는 게 낫겠어...,"[@]El conserje tiene la llave para la azotea, pero no se la pasa a los estudiantes.[W@]Se la intenté pedir el otro día, ¡pero comenzó a hablar sin parar quejándose de su esposa!
+[W@]Prefiero cien clases de matemáticas antes de escuchar eso otra vez...","[@]El conserje tiene la llave de la azotea, pero no se la da a los alumnos.[W@]El otro día intenté pedírsela y empezó a darme la lata. ¡Que si su mujer esto, su mujer lo otro![W@]Habría preferido mil clases de matemáticas antes que escucharle...","[@]O zelador tem a chave do terraço, mas ele não deixa ninguém pegar.[W@]Eu tentei pedir emprestado outro dia, mas aí ele começou a reclamar da esposa no meu ouvido![W@]Eu preferiria ter mil aulas de matemática do que passar por isso de novo...","[@]Woźny ma klucz na dach, ale nie daje go uczniom.[W@]Chciałam go raz o niego spytać, ale on zaczął tak truć o swojej żonie, aż mi uszy zwiędły![W@]Wolę sto lekcji matmy od jego tyrad...","[@]Der Hausmeister hat den Schlüssel zum Dach, aber den gibt er nicht an Schüler.[W@]Ich hab neulich versucht, ihn darum zu bitten, aber er hat sich nur über seine Frau beschwert und meine Ohren vollgequasselt![W@]Da würde ich lieber hundert Mathestunden nehmen ...","[@]У уборщика есть ключ на крышу, только он нам[BR]его не даёт.[W@]Я один раз у него попросила, а он давай про свою жену ныть.[D:6] Уши завяли![W@]Уж лучше сто раз на математику сходить.","[@]У прибиральника є ключ на дах,[DELAY:4] тільки він учням його не дає.[W@]Нещодавно я попросила у нього ключ,[D] а він як почав теревені правити![DELAY:9] І все про свою жінку![W@]Краще б я відсиділа сто уроків математики...
+",[@]校工那里有天台的钥匙，但他从来不给学生。[W@]前几天我试着找他要过，但他却对着我没完没了地抱怨他老婆的事，简直听得我耳朵要起茧子了！[W@]比起听那个，我宁愿去上几百节数学课……
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_JANITORKEYGIRL_SPEAKER,Teresa,Teresa,Teresa,テレーサ,테레사,Teresa,Teresa,Teresa,Teresa,Teresa,Тереза,Тереза,特蕾莎
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_LABRUMORGIRL_0,"[@]Did you hear the rumors?
+[W@]Apparently, when the school closes at night,[D:6] a strange man can be seen lurking in the lab...
+","[@]Tu as entendu les rumeurs ?
+[W@]Apparemment, quand l'école ferme la nuit,[D:6] un homme étrange peut être vu rôdant dans le laboratoire...","[@]Hai saputo?
+[W@]Sembra che di notte, quando la scuola è chiusa,[D:6] si aggiri un uomo sospetto nel laboratorio...
+
+",[@]へんなうわさ　きかなかったぁ？[W@]・・・わたし　きいた。[W@]よるの　りかしつには[D:6] なぞの　おとこが[BR]コソコソしてるんだって・・・,"[@]그 소문 들었어?[W@]학교가 새벽에 문 닫고 나면,[D:6] 수상한 사람이 실험실 주위를 어슬렁거린대...","[@]¿Escuchaste los rumores?
+[W@]Al parecer, cuando cierran la escuela en la noche,[D:6] se ve un hombre extraño merodeando por el laboratorio...","[@]¿Te has enterado?[W@]Al parecer, cuando el cole cierra de noche,[D:6] aparece un hombre raro por el laboratorio...","[@]Você ouviu os boatos?[W@]Dizem que, quando a escola fecha à noite,[D:6] um homem estranho pode ser visto vagando pelo laboratório...","[@]Słyszałeś plotki?
+[W@]Słuchy głoszą, że w nocy, kiedy szkoła jest zamknięta[D:6] po laboratorium myszkuje jakiś dziwny mężczyzna...
+","[@]Hast du schon die Gerüchte gehört?
+[W@]Angeblich sieht man nachts, wenn die Schule geschlossen ist,[D:6] einen gruseligen Mann im Labor herumschleichen ...","[@]А ты тоже слышал?
+[W@]Говорят, когда школа закрывается на ночь, [D:4]по лабораторной ходит странный человек...","[@]А ти чув?[W@]Кажуть,[DELAY:3] коли школа закривається на ніч,[DELAY:3] у лабораторії бродить дивний чоловік...
+",[@]你听说过那个传闻吗？[W@]据说，每当学校晚上关门之后，[D:6]总能看到一个奇怪的人影在实验室徘徊…
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_LABRUMORGIRL_SPEAKER,Wendy,Wendy,Wendy,ウェンディ,웬디,Wendy,Wendy,Wendy,Wendy,Wendy,Венди,Венді,温迪
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_LATESNITCHGIRL_0,"[@]O[DELAY:4:4]ooh, you’re late for class![W@]I’m telling!","[@]O[DELAY:4:4]ooh, t'es en retard ![W@]J'vais te balancer !","[@]O[DELAY:4:4]ooh, sei in ritardo![W@]Ora lo dico alla maestra!
+",[@]あーっ。[D][BR]ちこくはいけないんっだーっ。[W@]せんせいに　いってやろっーと！,"[@]우[DELAY:4:4]우우우, 지각![W@]선생님께 일러야지!","[@]¡U[DELAY:4:4]yyy, llegaste tarde a clase![W@]¡Te voy a acusar!","[@]¡U[DELAY:4:4]yyy, llegas tarde a clase![W@]¡Me voy a chivar!","[@]I[DELAY:4:4]hhh, você está atrasado![W@]Eu vou contar pra tia!","[@]O[DELAY:4:4]ooo, spóźniłeś się na zajęcia![W@]Naskarżę na ciebie!","[@]O[DELAY:4:4]ooh, du kommst zu spät zum Unterricht![W@]Das werde ich petzen!",[@]А[DELAY:2:6]-а-а![D:4] Ты опоздал![W@]Я всё учителю расскажу!,[@]O[DELAY:4:4]-о-о-о-о![D] Ти запізнився на урок![W@]Я все вчителю розповім!,[@]哦[DELAY:4:4]——你上课迟到啦！[W@]我要去告状！
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_LATESNITCHGIRL_SPEAKER,Grace,Grace,Grace,グレース,그레이스,Grace,Grace,Grace,Grace,Grace,Грейс,Грейс,格蕾丝
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_LIBRARYSNEEZEGIRL_0,"[@]Sh-hhhhh!
+[W@]We gotta keep quiet in the library, or else we’ll get our a[DELAY:4:3]... a-ah[DELAY:4:3]...
+[W@]AHH--CHOO!!
+","[@]Sh-hhhhh !
+[W@]Pas un bruit dans la bibliothèque, sinon on est dans la[DELAY:4:3]...
+la-ah[DELAY:4:3]...
+[W@]AHH-TCHOUM !!
+","[@]Sh-hhhhh!
+[W@]Dobbiamo fare silenzio in biblioteca, se no ci e[DELAY:4:3]... e-eh[DELAY:4:3]...
+[W@]EHH--CCIÙ!!
+
+",[@]しーっ！[D:6][BR]としょしつで　おおごえだしちゃ[BR]いっけないのよォ！[W@]じゃないと　せんせいからっ[DELAY:4:3]・・・[BR]ハッ[DELAY:4:3]・・・ハッ[DELAY:4:3]・・・ハーーーックション！！,"[@]쉬-이이이이이잇![W@]도서관에서는 정숙해야지, 안 그러면 우리 에[DELAY:4:3]... ㅇ-엣[DELAY:4:3]...[W@]에엣--취이이!!","[@]¡Cállate!
+[W@]Tenemos que estar calladitos en la librería o nos van a[DELAY:4:3]... a-ah[DELAY:4:3]...
+[W@]¡¡AAA--CHUU!!","[@]¡Chitón![W@]Tenemos que estar callados en la biblioteca, o si no, nos van a[DELAY:4:3]... a-ah[DELAY:4:3]...[W@]¡¡ACHÍS!!","[@]Shhhhh![W@]Tem que fazer silêncio na biblioteca, senão a gente leva uma[DELAY:4:3]... a-ah[DELAY:4:3]...[W@]ATCHIM!!","[@]Cśśśśśś!
+[W@]Musimy być cicho w bibliotece, albo dostanie się na[DELAY:4:3]... a-aa[DELAY:4:3]...
+[W@]A-PSIK!","[@]Pschhhhht!
+[W@]Wir müssen leise in der Bibliothek sein, ansonsten bekommen wir H[DELAY:4:3]...a-ah [DELAY:4:3]...
+[W@]HA--TSCHIE!!","[@]Ч-щ-щ-щ-щ![W@]В библиотеке нельзя шуметь, а иначе а[DELAY:4:2]... а-а-а[DELAY:4:3]...
+[W@]А-А-А-АПЧХИ!!!","[@]Ш-ш-ш-ш-ш-ш-ш-ш, тихо!
+[W@]У бібліотеці шуміти заборонено, інакше нам а[DELAY:4:3]... а-а-а[DELAY:4:3]...
+[W@]А-А-А-АПЧХІ!!""",[@]嘘——！[W@]在图书馆里要保持安静，不然我们会遭大[DELAY:4:3]…啊[DELAY:4:3]…[W@]啊——嚏！！
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_LIBRARYSNEEZEGIRL_SPEAKER,Linda,Linda,Linda,リンダ,린다,Linda,Linda,Linda,Linda,Linda,Линда,Лінда,琳达
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_LLOYDBULLYBOY_0,"[@]I still can't get over what happened this morning![W@]I knew [LLOYD] was a wuss, but seeing it for myself was hilarious!","[@]J'arrive toujours pas à croire ce qui s'est passé ce matin ![W@]Je savais que [LLOYD] était un lâche, mais le voir de mes propres yeux c'était hilarant !","[@]Sto ancora pensando a stamattina![W@]Sapevo che [LLOYD] fosse un pappamolle, ma vederlo dal vivo fa morire dal ridere!
+",[@]けさのこと　いまだにわらえるよ。 [W@][LLOYD]が　よわむしなのは　しってたけど[BR]まさか　そんなことをするとはねぇ。,[@]오늘 아침 일은 아직도 못 잊겠어![W@][LLOYD][particle:LLOYD:1] 완전 겁쟁이인 건 알았지만 직접 보니까 진짜 웃기더라!,"[@]¡Aún no me creo lo que pasó en la mañana![W@]Sabía que [LLOYD] era un debilucho, ¡pero verlo en vivo y en directo fue graciosísimo!","[@]¡Todavía no me puedo creer lo de esta mañana![W@]Ya sabía que [LLOYD] era un gallina, ¡pero verlo con mis propios ojos ha sido tronchante!","[@]Ainda tô rindo do que aconteceu hoje de manhã![W@]Eu sabia que o [LLOYD] era um cagão, mas ver ao vivo é muito mais engraçado!","[@]Nadal myślę o tym co się stało tego ranka![W@]Wiedziałem, że [LLOYD] to tchórz, ale zobaczenie tego na własne oczy było prześmieszne!","[@]Ich kann immer noch nicht fassen, was heute Morgen passiert ist![W@]Ich wusste, dass [LLOYD] ein Feigling ist, aber es selbst zu sehen, war zu komisch!","[@]Ха-ха-ха! Ты бы видел, что было утром![W@]Понятно, что [LLOYD] та ещё тряпка, но видеть это вживую ещё смешнее!","[@]Ха-ха-ха![DELAY:4] Ніяк не можу перестати сміятися від того, що сталося цього ранку!
+[W@]Я знав, що [LLOYD] — той ще розмазня, але побачити це наживо?[DELAY:4] Взагалі кумедія!",[@]一想到今天早上发生的事，我就忍不住想笑！[W@]我早就知道[LLOYD]他是个怂蛋了，但亲眼看到那一幕还是太好笑了！
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_LLOYDBULLYBOY_1,"[@]Hey, look![D] It's the scaredy-cat!",[@]Regarde ![D] C'est le froussard !,"[@]Guarda chi c'è![D] Il fifone!
+",[@]おい　みんなみろよ！[D][BR]やーい　よわむしけむし！,"[@]야, 봐라![D] 찐따 지나간다!",[@]¡Eh mira![D] ¡Es el miedoso!,"[@]¡Eh, mirad![D] ¡El miedica!",[@]Olha só![D] É o bebezão!,"[@]Hej, patrzcie![D] Tchórzofretka wróciła!","[@]Hey, schau an![D] Es ist der Angsthase!",[@]Опа![D] Трусишка идёт!,"[@]Гей, дивіться![D] Це ж той боягуз!",[@]嘿，快看！[D]是那个小怂蛋！
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_LLOYDBULLYBOY_SPEAKER,Christopher,Christopher,Christopher,クリストフ,크리스토퍼,Christopher,Christopher,Cristopher,Christopher,Christopher,Кристофер,Крістофер,克里斯托弗
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_MARIOFANBOY_0,"[@]Have you ever played Super Mario Bros. 7?
+[W@]My uncle works at [NINTEN]do, and he gave me a cartridge. It’s really fun!
+[W@]Who knew Mario had grandkids!","[@]T'as déjà joué à Super Mario Bros. 7 ?
+[W@]Mon oncle travaille à [NINTEN]do, et il m'a donné une cartouche. C'est vraiment fun ![W@]Qui aurait pu penser que Mario avait des \npetits-enfants !","[@]Hai giocato a Super Mario Bros. 7?
+[W@]Mio zio lavora alla [NINTEN]do e me l'ha regalato. È troppo divertente!
+[W@]Non sapevo che Mario avesse dei nipoti!
+",[@]あのゲーム　やった？[BR]おれ　まだ　やってないんだ。,"[@]혹시 슈퍼 마리오 7 해본 적 있어?[W@]우리 삼촌이 [NINTEN]도에서 일하는데 카트리지를 하나 줬거든, 엄청 재밌어![W@]설마 마리오한테 손자가 있을 줄이야!","[@]¿Has jugado al Super Mario Bros. 7?
+[W@]Mi tío trabaja en [NINTEN]do, y me dio un cartucho. ¡Es súper divertido!
+[W@]¡Quién hubiera sabido que Mario tenía nietos!",[@]¿Has jugado a Super Mario Bros. 7?[W@]Mi tío trabaja en [NINTEN]do y me ha dado un cartucho. ¡Es superdíver![W@]¡No sabía que Mario tenía nietos!,"[@]Você já jogou Super Mario Bros. 7?[W@]Meu tio trabalha na [NINTEN]do, e conseguiu um cartucho para mim. É bem da hora![W@]Quem diria que o Mario tinha netos!","[@]Graliście już w Super Mario Bros. 7?
+[W@]Mój wujek pracuje w [NINTEN]do i dał mi kartridż. To świetna zabawa!
+[W@]Kto by pomyślał, że Mario miał wnuki?!","[@]Hast du schon mal Super Mario Bros. 7 gespielt?
+[W@]Mein Onkel arbeitet bei [NINTEN]do und hat mir eine Karte geschenkt. Das macht echt Spaß!
+[W@]Wer hätte gedacht, dass Mario Enkel hat!","[@]Ты играл в Super Mario Bros. 7?
+[W@]Мой дядя работает в «[NINTEN]до», и он подарил[BR]мне картридж. Классная игра!
+[W@]Только я не понял, почему он теперь с дубиной и в шкуре...","[@]Ти грав у Super Mario Bros. 7?
+[W@]Мій дядько працює в [NINTEN]до, і він подарував мені картридж з грою. Вона дуже кумедна!
+[W@]Я навіть і не знав, що Маріо вміє так спритно орудувати палицею!",[@]你玩过《超级玛丽7》吗？[W@]我叔叔就在[NINTEN]堂上班，他带给我过一盒卡带。[BR][WAIT]真的超好玩！[W@]我是真没想到超级玛丽他居然还有个孙子！
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_MARIOFANBOY_SPEAKER,Rick,Rick,Rick,リック,릭,Rick,Rick,Rick,Rick,Rick,Рик,Рік,里克
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_MISSMERRYSVILLEGIRL_0,[@]My mom says that I’m pretty enough to run for Miss Merrysville! [WAIT]Don’t you agree?,"[@]Ma mère me dit que je pourrais être Miss Merryville tellement je suis jolie ! [WAIT]Et elle a raison, non ?","[@]La mamma dice che sono così bella che potrei diventare Miss Merrysville! [WAIT]Tu che dici?
+",[@]あたし　スージー。[BR]ミス・いなかまちに　えらばれたのよ。[W@]ママもあたしのこと　きれいって　いってくれるの！[BR]あなたもそうおもわない？,[@]우리 엄마는 내가 미스-땡스기빙에 나가도 될 만큼 예쁘대![WAIT] 너도 그렇게 생각하지?,[@]¡Mi mami dice que soy suficientemente linda para ser miss Merrysville! [WAIT]¿No estás de acuerdo?,[@]¡Mi mamá dice que soy muy guapa y que podría presentarme a Miss Merrysville! [WAIT]¿No piensas lo mismo?,[@]Minha mãe diz que sou tão bonita que poderia participar do Miss Gratidão![W@]Você não concorda?,"[@]Moja mama mówi, że z moją urodą mogłabym zostać Miss Merrysville! [WAIT]Zgodziłbyś się?","[@]Meine Mama hat gesagt, dass ich hübsch genug bin, um bei der Miss Merrysville mitzumachen! [WAIT]Findest du das auch so?","[@]Моя мама говорит, что я красивая и подхожу на роль Мисс Меррисвиль! [WAIT]А ты как думаешь?","[@]Моя мама каже,[DELAY:3] я така красива,[DELAY:3] що можу стати кандидатом на «Міс Меррісвіль»![WAIT] А ти як вважаєш?
+",[@]我妈妈说，[BR]我的长相完全可以去竞选“梅里斯维尔镇花”呢！[BR][WAIT]你也这么认为吧？
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_MISSMERRYSVILLEGIRL_0-OPT_0,Yes,Oui,Sì,はい,네,Sí,Sí,Sim,Tak,Ja,Да,Так,是
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_MISSMERRYSVILLEGIRL_0-OPT_1,No,Non,No,いいえ,아니오,No,No,Não,Nie,Nein,Нет,Ні,否
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_MISSMERRYSVILLEGIRL_1,"[@]You’re not too far off from Mr. Merrysville either, cutie.","[@]Et toi tu pourrais peut-être devenir Mr. Merrysville, mon mignon.","[@]Tu invece potresti essere Mr Merrysville, tesoro.
+",[@]フフッ　ありがと。　あなたも　すてきよ。,"[@]너도 미스터-땡스기빙이랑 그렇게 멀어 보이진 않네, 이 귀요미!","[@]A ti tampoco te falta mucho para ser Mister Merrysville, lindura.","[@]Tú tampoco estás muy lejos de ser Mister Merrysville, bombón.","[@]Você também não tá tão longe de ser um Mister Gratidão,[D:6] fofinho.","[@]Tobie też niewiele brakuje do Mister Merrysville, słodziaku.","[@]Du bist auch nicht weit entfernt vom Mister Merrysville, Süßer.","[@]Ты не так далеко от Мистера Меррисвиля, красавчик.","[@]А ти й сам недалеко від Містера Меррісвіль, красень.
+",[@]你也很有角逐“梅里斯维尔镇草”的潜质嘛，小可爱。
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_MISSMERRYSVILLEGIRL_2,"[@]Well, my mom also says that jealousy is a disease![W@]You're just as mean and ugly as that nerd [LLOYD].[W@]I hope you die alone with him.","[@]Tu sais quoi, ma mère me dit aussi que la jalousie est un vilain défaut ! [W@]T'es aussi moche et stupide que ce crétin de [LLOYD].[W@]J'espère que tu mourras seul avec lui.",[@]La mamma dice anche che la gelosia è una malattia![W@]Sei brutto e cattivo come quel pappamolle di [LLOYD].[W@]Spero che moriate entrambi da soli.,[@]まぁ　ひどい！[W@]あなたのほうが　ブス！[BR]うすのろぶたって　かんじよ！[W@]あのよわむし　[LLOYD]のように[BR]メガネでも　かけなおしてきなさいよ！[D:6][BR]ホントに　イラつく！,"[@]흥, 우리 엄마는 질투는 병이랬어![W@]넌 그 안경, [LLOYD]만큼 못되고 못생겼어.[W@]걔랑 같이 평생 외롭게 살다가 죽어버려.","[@]¡Pues, mi mami también dice que la envidia es una enfermedad!
+[W@]¡Eres igual de tonto y feo que ese baboso de [LLOYD]!
+[W@]Ojalá te mueras solo con él. ",[@]¡Pues mi mamá también dice que los celos son una enfermedad![W@]Eres igual de tonto y feo que el cabeza de chorlito de [LLOYD].[W@]Ojalá que te mueras solo con él.,"[@]Bem, minha mãe também diz que a inveja é uma doença![W@]Você é burro e feio que nem o nerd do [LLOYD].[W@]Espero que você morra sozinho com ele.","[@]Cóż, moja mama też mówi, że zazdrość to zaraza!
+[W@]Jesteś tak głupi i brzydki jak ten pajac [LLOYD].[W@]Mam nadzieję, że obaj umrzecie w samotności.","[@]Tja, meine Mama hat auch gesagt, dass Eifersucht eine Krankheit ist![W@]Du bist genauso doof und hässlich wie dieser Nerd [LLOYD].[W@]Ich hoffe, ihr sterbt einsam.
+","[@]Ах так?[D:6] А ещё моя мама говорит, что завидуют только дураки![W@]Ты такой же злой и страшный, как тот зануда [LLOYD]![W@]Надеюсь, вы умрёте в один день!","[@]Ах, так?![D] А ще моя мама каже, що від заздрощів люди старіють![W@]Ти такий же дурний і некрасивий, як той бовдур [LLOYD]![W@]Cподіваюся, ти помреш на самоті разом з ним.",[@]哼，我妈妈还说嫉妒是一种病！[W@]你就和那个书呆子[LLOYD]一样又蠢又坏。[W@]你们两个一块孤独终老去吧！
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_MISSMERRYSVILLEGIRL_3,"[@]Well well well, if it isn't [LLOYD].[W@]I know what you are...[D:8] [F:1.8]just a big meanie![/F][W@]Even with those glasses,[D:6] you can't appreciate true beauty when it's standing right in front of you.[W@]All the other boys can tell how pretty I am,[D:6] so why can't you?","[@]Bah alors, ce ne serait pas [LLOYD] ?[W@]Je sais ce que tu es...[D:8] [F:1.8]un gros méchant pas beau ![/F][W@]Même avec tes lunettes,[D:6] ça reste impossible pour toi d'apprécier une vraie beauté.[W@]Tout les garçons me disent que je suis trop belle,[D:6] alors pourquoi pas toi aussi ?","[@]Guarda chi si fa vedere, ciao [LLOYD].[W@]Io so cosa sei...[D:8] [F:1.8]sei un cattivone![/F][W@]Cosa li porti a fare gli occhiali,[D:6] se neanche riconosci la bellezza quando ti si para davanti?[W@]Tutti gli altri ragazzi lo capiscono che sono bellissima,[D:6] quindi perché tu no?",[@]あらあら　[LLOYD]さん。[W@]メガネをかけてるのに　あたしの　びぼうが　みえないの？[W@]ほかの　だんしから[BR]「おまえ　みる　めが　ねーな」[BR]って　いわれるわよ。[W@]メガネ　だけに。,"[@]뭐야 뭐야, [LLOYD] 아냐?[W@]네 정체 다 알아...[D:8] [F:1.8]진짜 못된 멍청이![/F][W@]그 안경을 쓰고도,[D:6] 네 눈앞에 있는 진짜 아름다움은 못 알아보는구나.[W@]다른 남자애들은 다 내가 예쁜 걸 아는데, [D:6]넌 왜 못 알아봐 주는 거야!","[@]Vaya, vaya, vaya, pero si es [LLOYD].[W@]Yo sé lo que eres...[D:8] [F:1.8]¡un gran y miserable idiota![/F][W@]Ni con esos lentes puestos,[D:6] eres capaz de apreciar la verdadera belleza cuando está frente a ti.[W@]Todos los otros niños ven lo linda que soy,[D:6] ¿por qué tú no?","[@]¡Vaya, vaya, vaya! Pero si es [LLOYD].
+[W@]Sé muy bien lo que eres...[D:8] [F:1:8]¡un pedazo de borde![/F]
+[W@]Incluso con esas gafotas que tienes,[D:6] no eres capaz de apreciar la belleza divina cuando la tienes delante.
+[W@]Todos los demás chicos pueden ver lo guapa que soy,[D:6] ¿por qué tú no?","[@]Ora ora ora, se não é o [LLOYD].[W@]Eu sei o que você é...[D:8] [F:1.8]você é um grande bocó![/F][W@]Mesmo com esses óculos,[D:6] você não consegue apreciar a verdadeira beleza que está na sua frente.[W@]Todos os outros garotos falam o quão bonita eu sou,[D:6] então por que você não?","[@]Proszę, proszę, toż to [LLOYD].[W@]Wiem, kim naprawdę jesteś...[D:8] [F:1.8]strasznym bucem![/F][W@]Nawet w tych grubych szkłach[D:6] nie potrafisz dostrzec prawdziwej piękności, mimo że patrzy ci w oczy.[W@]Wszyscy inni chłopcy widzą, jaka jestem piękna,[D:6] więc czemu ty nie możesz?","[@]Na, na, na, wenn das nicht [LLOYD] ist.[W@]Ich weiß, was du bist ...[D:8] [F:1.8]einfach nur ein großer Fiesling![/F][W@]Selbst mit dieser Brille[D:6] kannst du eine wahre Schönheit nicht erkennen, wenn sie direkt vor dir steht.[W@]Alle anderen Jungs sehen, wie hüsch ich bin,[D:6] also warum nur du nicht?","[@]Ах, кого я вижу![W@][LLOYD], ты...[D:8] [F:1.8]самый настоящий вредина![/F][W@]Даже с огромными очками ты не можешь признать всю мою истинную красоту![W@]Все мальчики могут сказать, насколько я красивая,[D:6] а ты почему-то не можешь?!","[@]Ох, кого я бачу?[D] Невже це [LLOYD]?
+[W@]Я знаю, що ти...[D:8] [F:1.8]справжнісінький капосник![/F]
+[W@]Навіть у окулярах з такими товстими лінзами ти не здатний побачити мою красу.
+[W@]Всі інші хлопчики кажуть, яка я чарівна,[D:6] а ти чого мовчиш?",[@]哎呀呀，这不是[LLOYD]嘛。[W@]我可知道你是怎么回事…[D:8][F:1.8]你就是个大坏蛋！[/F][W@]就算戴着那副眼镜，[D:6]站在你面前你也看不出什么是美。[W@]别的男孩子都知道我有多漂亮，[D:6]怎么你就看不出来呢？
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_MISSMERRYSVILLEGIRL_SPEAKER,Suzy,Suzy,Suzy,スージー,수지,Suzy,Suzy,Suzy,Suzy,Suzy,Сьюзи,С'юзі,苏茜
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_MUSICLOVINGGIRL_0,"[@]Laa-la-laaa...[D] That's what being friends is about...[D] Laa-la-laaa...
+[W@]I love music most of all!
+","[@]Laa-la-laaa...[D] C'est à ça que ça sert, l'amitié...[D] Laa-la-laaa...
+[W@]J'aime la musique par-dessus tout !","[@]Laa-la-laaa...[D] È questo il senso dell'amicizia...[D] Laa-la-laaa...
+[W@]Mi piace un sacco la musica!
+
+",[@]ラララ・・・[D][BR]たんぽぽの　わたげを　そーらーに・・・[BR][D]ラララ・・・[W@]わたしは　おんがくが　いちばんすき。,[@]랄-라-라아아...[D] 친구란 그런 거야... [D] 랄-라-라아아...[W@]난 노래가 제일 좋아!,"[@]Laa-la-laaa...[D]Porque de eso se trata la amistad...[D] Laa-la-laaa...
+[W@]¡Me gusta la música sobre todas las cosas!","Laa, la, laaa...[D]Porque de eso trata la amistad...[D] Laa, la, laaa...[W@]¡La música es lo que más me gusta del mundo mundial!",[@]Laa-la-laaa...[D] Isso que é ser amigo...[D] Laa-la-laaa... [W@]Eu amo música mais que tudo!,"[@]Laa-la-laaa...[D] Bo po to się przyjaciół ma...[D] Laa-la-laaa...
+[W@]Kocham muzykę ponad wszystko!","[@]Laa-la-laaa ...[D] Das ist was dir Freundschaft bringt ...[D] Laa-la-laaa ...
+[W@]Musik liebe ich am meisten!
+","[@]Ла-а-ла-ла-а-а...[D] Вот что значит дружба для нас...[D] Ла-а-ла-ла-а-а...
+[W@]Обожаю музыку!","[@]Ла-а-ла-ла-а-а...[D] Ось що означає дружба для нас...[D] Ла-а-ла-ла-а-а...
+[W@]А музику я особливо люблю!",[@]啦——啦——啦……♪[BR][D]这就是朋友的意义呀…♪[BR][D]啦——啦——啦……♪[W@]我最喜欢音乐啦！
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_MUSICLOVINGGIRL_SPEAKER,Elizabeth,Elizabeth,Elizabeth,エリザベス,엘리자베스,Elizabeth,Elizabeth,Elizabeth,Elizabeth,Elizabeth,Элизабет,Єлизавета,伊丽莎白
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_NURSE_0,"[@]Small wounds can be treated here, but if you have something more serious, you should go to a hospital.","[@]Ici, on soigne les petits bobos, mais si tu as quelque chose de plus grave, tu devrais plutôt aller à l'hôpital.","[@]Qui possiamo medicare le ferite più semplici, ma se hai qualcosa di grave dovresti andare all'ospedale.
+",[@]かすりきずなら　ここでもなおせるけど[BR]それいじょうは　びょういんをたよるのよ。,"[@]가벼운 상처는 여기서 치료할 수 있지만, 심한 건 병원에 가세요.","[@]Puedo tratar heridas leves, pero si tienes algo más serio deberías ir al hospital.","[@]Puedo tratar heridas leves, pero si tienes algo más grave, deberías ir al hospital.","[@]Ferimentos leves podem ser tratados aqui, mas se você tem algo mais sério, precisa ir a um hospital.","[@]Można tu opatrzeć małe rany, ale jeśli dolega ci coś poważnego, lepiej idź do szpitala.","[@]Kleine Wunden können hier versorgt werden. Aber wenn du etwas Größeres hast, solltest du ins Krankenhaus gehen.","[@]Здесь я смогу только вылечить ранки, с проблемами посерьёзнее тебе следует пойти в больницу.","[@]Тут я зможу вилікувати лише ранки,[D] а з проблемами серйозніше тобі слід піти до лікарні.",[@]小伤口在这里就能处理，但你要是伤得比较重，那还是去医院比较好哦。
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_NURSE_SPEAKER,Nurse,Infirmière,Infermiera,ほけんしつのせんせい,보건선생님,Enfermera,Enfermera,Enfermeira,Pielęgniarka,Krankenschwester,Медсестра,Медсестра,护士
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_PUSHUPSBOY_0,"[@]The gym teacher made me do extra push-ups again.
+[W@]I’d rather do sit-ups, though. 
+","[@]Le prof de sport m'a encore fait faire des pompes en plus.
+[W@]Perso, je préfère les abdos. ","[@]Il maestro di ginnastica mi ha fatto fare di nuovo delle flessioni in più.
+[W@]Io preferirei fare gli addominali. 
+
+",[@]たいいくの　せんせいに　たたかれた。　[W@]おれ　ふりょうに　なっちまおうかなぁ・・・。,[@]체육 선생님이 또 팔굽혀펴기를 추가했어.[W@]난 차라리 윗몸일으키기가 좋은데.,"[@]El profe de educación física me hizo hacer flexiones extra de nuevo.
+[W@]Preferiría hacer sentadillas, la verdad.",[@]El profe de educación física me ha vuelto a castigar con flexiones.[W@]Yo preferiría hacer abdominales...,[@]O professor de Educação Física me botou de castigo fazendo flexões de novo.[W@]Eu preferia que fossem abdominais.,"[@]Wuefista znowu kazał mi zrobić więcej pompek.
+[W@]Wolałbym porobić przysiady.","[@]Der Sportlehrer hat mich wieder extra Liegestütze machen lassen.
+[W@]Ich will aber lieber Rumpfbeugen machen.","[@]Учитель физкультуры опять заставил меня отжиматься.
+[W@]Хотя я бы лучше поприседал.","[@]Вчитель фізкультури знову змусив мене віджиматися.
+[W@]Хоча я б краще поприсідав.",[@]体育老师又罚我多做俯卧撑了。[W@]我宁愿去做仰卧起坐啊！
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_PUSHUPSBOY_SPEAKER,Tyrone,Tyrone,Tyrone,タイロン,타이론,Tyrone,Tyrone,Tyrone,Tyrone,Tyrone,Тайрон,Тайрон,泰隆
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_ROCKETBULLYGIRL_0,"[@]I was having fun by the playground earlier,[D:6] when something big fell from the sky and wrecked everything!
+[W@]I wonder where it came from...","[@]Je m'amusais bien dans la cour de récré,[D:6] quand d'un coup, un truc énorme est tombé du ciel et a tout détruit sur son passage !
+[W@]Je me demande d'où ça a pu venir...","[@]Mi stavo divertendo nel cortile,[D:6] e poi è caduta una cosa enorme dal cielo e ha distrutto tutto!
+[W@]Chissà da dove veniva...
+",[@]グラウンドで　あそんでいたら[BR][D:6]おっきいものが　そらからおちて[BR]あたりが　こっぱみじんになったのよぉ。[W@]いったいどこから　ふってきたのかしら・・・,"[@]아까 놀이터에서 재밌게 놀고 있었는데,[D:6] 하늘에서 엄청 큰 게 떨어져서 다 박살 내 버렸어![W@]대체 어디서 날아 온 걸까?","[@]Me andaba divirtiendo en el patio,[D:6] ¡cuando de repente algo cayó del cielo y destruyó todo!
+[W@]Me pregunto de dónde salió...","[@]Estaba jugando en el patio hace poco,[D:6] y de la nada, ¡algo gigante ha caído del cielo y lo ha destrozado todo![W@]¿De dónde habrá salido...?","[@]Eu estava brincando no playground mais cedo,[D:6] quando um troço grandão caiu do céu acabando com tudo![W@]De onde será que aquilo veio?","[@]Bawiłam się na placu zabaw,[D:6] gdy nagle coś wielkiego spadło z nieba i wszystko rozwaliło!
+[W@]Ciekawe skąd się to wzięło...
+","[@]Ich hab mich gerade auf dem Spielplatz amüsiert,[D:6] plötzlich ist was großes vom Himmel gefallen und hat alles zerstört!
+[W@]Ich frage mich, woher es kam ...","[@]Когда я играла на площадке, [D:6]с неба вдруг бабахнула какая-то странная штука!
+[W@]Откуда она вообще прилетела?","[@]Вранці я грала на спортивному майданчику,[D:6] як раптом з неба впало щось величезне і все зруйнувало!
+[W@]Цікаво, звідки воно..?",[@]我刚才在操场那边正玩得开心呢，[BR][D:6]忽然有个好大的东西从天上掉下来，把一切都砸烂了！[W@]不知道那是从哪儿来的…
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_ROCKETBULLYGIRL_1,"[@]Hey, four-eyes, you got something on your shirt!
+[W@][FASTER](SMACK!)[/FASTER][D] Hah! [D]Got you!","[@]Hé, binoclard, t'as un truc sur ton tee-shirt !
+[W@][FASTER](PAF !)[/FASTER][D] Ha ! [D]Je t'ai eu !","[@]Ehi, quattrocchi, hai la camicia sporca!
+[W@][FASTER](SMACK!)[/FASTER][D] Hah! [D]Fregato!
+",[@]やーい　メガネくん。[BR]シャツに　クモがくっついてるよ！[W@][FASTER]（バチン！）[/FASTER][D][BR]わーい[D]　ひっかかったぁ。,"[@]야, 안경! 셔츠에 뭐 묻었는데![W@][FASTER](찰싹!)[/FASTER][D] 헤! [D]구라야!","[@]Oye, cuatro ojos, ¡tienes algo en la camisa!
+[W@][FASTER](¡PUM!)[/FASTER][D] ¡Ja! [D]¡Te pillé!","[@]¡Eh, gafotas, tienes algo en la camiseta![W@][FASTER](¡ZAS!)[/FASTER][D] ¡Ja! [D]¡Has picado!","[@]Ei, quatro-olhos, tá sujo aqui!
+[W@][FASTER](PAF!)[/FASTER][D] Haha! [D]Te peguei!","[@]Te, czterooki, masz coś na koszulce!
+[W@][FASTER](PLASK!)[/FASTER][D] Ha! [D]Nabrałam cię!","[@]Hey, Vierauge, du hast da was auf deinem Shirt!
+[W@][FASTER](KLAPS!)[/FASTER][D] Hah! [D]Hab dich!","[@]Эй, очкарик, у тебя что-то на толстовке!
+[W@][FASTER](ШЛЁП!)[/FASTER][D] Ха! [D]Повёлся!","[@]Гей, очкарик, у тебе щось на толстовці!
+[W@][FASTER](ХРЯСЬ!)[/FASTER][D] Ха![D] Попався!",[@]嘿，小四眼儿，你衬衫上沾东西了！[W@][FASTER]（啪——！）[/FASTER][D]哈！[D]中招了吧！
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_ROCKETBULLYGIRL_SPEAKER,Sarah,Sarah,Sarah,サラ,사라,Sarah,Sarah,Sarah,Sarah,Sarah,Сара,Сара,莎拉
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_SKIPPINGCLASSBOY_0,"[@]Aw, man! The door to the rooftop is locked!
+[W@]I usually skip classes to go play on my Game & Watch there...
+[W@]Hey! Wanna skip class with me?
+","[@]Mince ! La porte du toit est fermée !
+[W@]D'habitude, je monte là-haut pour sécher les cours et jouer à ma Game & Watch...
+[W@]Dis ! Tu veux sécher avec moi ?","[@]Uffa! La porta per andare sul tetto è chiusa a chiave!
+[W@]Di solito ci vado per giocare con il Game & Watch invece di stare in classe...
+[W@]Ehi! Vuoi marinare la scuola con me?
+
+",[@]おくじょうのドア　しまってるぜ。[W@]トランジスタラジオでも　ききながら[BR]サボろうと　おもってたのによぉ・・・[W@]おい　おまえもいっしょに　サボらないか？[BR]なっ？！,[@]이런! 옥상 문은 잠겨 있어![W@]수업 빼먹고 옥상에서 게임 & 워치하는게 낙이었는데...[W@]이봐! 나랑 수업 빠질래?,"[@]¡Ay no! ¡La puerta hacia la azotea esta cerrada!
+[W@]Usualmente me salto clases para jugar con mi Game & Watch allí...
+[W@]¡Oye! ¿Te quieres saltar clase conmigo?","[@]¡Jo, tío! ¡La puerta de la azotea está cerrada![W@]Normalmente me subo allí a jugar a la Game & Watch cuando me escaqueo de clase...[W@]¡Eh! ¿Quieres hacer novillos conmigo?","[@]Poxa vida! A porta do terraço está trancada!
+[W@]Eu costumo subir lá para matar aula jogando Game & Watch...
+[W@]Ei! Quer vir matar aula comigo?
+","[@]Kurza stopa! Drzwi na dach są zamknięte!
+[W@]Zwykle wagaruję, by grać tam na swoim Game & Watch'u...
+[W@]Hej! Chcesz ze mną powagarować?","[@]Ach Mann! Die Tür zum Dach ist verschlossen!
+[W@]Eigentlich schwänze ich, um dort Game & Watch zu spielen ...
+[W@]Hey! Willst du mit mir schwänzen?","[@]Балин!..[D:4] Двери на крышу закрыли!
+[W@]Я хожу туда играть в свой Game & Watch во время уроков...
+[W@]Давай вместе прогуляем урок!","[@]Блін[DELAY:4] Двері на дах зачинені!
+[W@]Я часто ходжу туди грати у свій Game & Watch під час уроків.
+[W@]Гей! Хочеш прогуляти урок разом зі мною?",[@]啊，真是的！天台的门锁上了！[W@]我平常都会翘课去那儿玩GameBoy游戏机的…[W@]嘿！你要不要跟我一块翘课？
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_SKIPPINGCLASSBOY_0-OPT_0,Yes,Oui,Sì,はい,네,Sí,Sí,Sim,Tak,Ja,Да,Так,是
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_SKIPPINGCLASSBOY_0-OPT_1,No,Non,No,いいえ,아니오,No,No,Não,Nie,Nein,Нет,Ні,否
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_SKIPPINGCLASSBOY_1,"[@]Psh, nerd. [D]You and [LLOYD] would be good friends. ","[@]Hé, le nerd. [D]Toi et [LLOYD] seriez bons amis. ","[@]Pff, che secchione. [D]Tu e [LLOYD] sareste buoni amici.
+",[@]マジメなやつ。[D][BR][LLOYD]のやつと　おにあいだよ。,"[@]어휴, 쫄보야.[D] 너랑 [LLOYD][particle:LLOYD:0] 정말 좋은 친구가 될 거 같네.","[@]Pff, nerd. [D]Tú y [LLOYD] serían buenos amigos.",[@]Menudo friki. [D]Harías buenas migas con [LLOYD].,"[@]Afff, seu nerd. [D]Você e o [LLOYD] se dariam muito bem. ","[@]Phi, kujon. [D][LLOYD] by się z tobą dogadał.","[@]Pst, Nerd. [D]Du und [LLOYD] wärt gute Freunde.","[@]Пф, зануда. [D]Прямо как [LLOYD]. [D:4]Вам бы познакомиться.","[@]Пф-ф, зануда. [D]Ти би став відмінним другом для [decline:Lloyd:M:1].",[@]呸，书呆子。[BR][D]你和[LLOYD]会成为好朋友的。
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_SKIPPINGCLASSBOY_2,"[@]Wait[DELAY:4:3]...[D] If you're not a student here, [D:6]does it count as skipping class?
+[W@]Ugh! [D]Thinking makes my head hurt...
+","[@]Attends[DELAY:4:3]...[D] Si t'es pas un élève ici, [D:6]est-ce que ça compte vraiment comme sécher les cours ?
+[W@]Pouah! [D]Penser, ça me fait mal à la tête...","[@]Aspetta[DELAY:4:3]...[D] Se non sei uno studente, [D:6]conta come marinare la scuola?
+[W@]Ugh... [D]Pensare mi fa venire mal di testa...
+
+",[@]おまえ　うちのせいとじゃないのに[BR]べつのがっこうから　サボってきたのか？[W@]がっこうでサボったら　それはマジメってことか？[W@]わからなくなってきたよ。,"[@]잠시만[DELAY:4:3]...[D] 넌 이 학교 학생이 아니니까, [D:6]수업을 빼먹는다고 할 수 있는 건가?","[@]Espérate[DELAY:4:3]...[D] Si no eres estudiante de aquí, [D:6]¿acaso cuenta como saltarse clases?
+[W@]¡Agh! [D]Pensarlo hace que me duela la cabeza...","[@]Espera[DELAY:4:3]... [D]Si no eres alumno de aquí,[D:6] ¿cuenta como hacer novillos?[W@]¡Aah! [D]Pensar tanto me da dolor de cabeza...","[@]Mas, peraí[DELAY:4:3]...[D] Como você não é aluno daqui, [D:6]isso ainda conta como matar aula?
+[W@]Ugh! [D]Pensar me dá dor de cabeça...
+","[@]Chwila[DELAY:4:3]...[D] Czy to się liczy jako wagary, [D:6]jeżeli nie jesteś tu uczniem?
+[W@]Och! [D]Przez myślenie boli mnie głowa...","[@]Moment[DELAY:4:3] ...[D] Wenn du kein Schüler hier bist, [D:6]zählt das schon als Schwänzen?
+[Warte@]Ugh! [D]Ich bekomme Kopfschmerzen vom ganzen Nachdenken ...","[@]А, стой.[DELAY:4:2]..[D] Если ты здесь не учишься, [D:6]это вообще считается за прогул?
+[W@]Ох, что-то голова разболелась...","[@]Зачекай...[W@]Якщо ти тут не вчишся, [D:6]чи вважається це прогулом?
+[W@]Ох! [D]Від таких думок у мене болить голова...",[@]等等…[D]你要不是这儿的学生，[D:6]那也算翘课吗？[W@]呃！[D]想的我头疼…
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_SKIPPINGCLASSBOY_3,"[@]Well, anyway, it's too bad that the roof is locked.[W@]The janitor has the keys to open it.[W@]But you'd have to suck up to him just to get him to do what you want.[W@]Only a sissy like [LLOYD] would do that, though.","[@]De toute façon, c'est bien dommage que le toit soit fermé.[W@]Le concierge a la clé pour ouvrir la porte.[W@]La seule manière de l'obtenir, c'est d'être le plus gros des lèche-bottes pour qu'il te la donne.[W@]Y'a que ce crétin de [LLOYD] pour faire un truc comme ça.","[@]Vabbè, comunque, peccato che il tetto sia chiuso.[W@]Le chiavi ce le ha il bidello.[W@]Ma per fargli fare quello che vuoi, devi fare il ruffiano con lui.[W@]Anche se solo una femminuccia come [LLOYD] lo farebbe.
+",[@]しっかし　おくじょうしまってて　やなこった。[W@]ようむいんの　せんせーが　カギを　もってんだよな。[W@]ゴマすり　ゴミひろい　コマまわしでも　しないと　あけてくれないだろうよ。[W@]そんなこと　やるやつ　[LLOYD]ぐらい　だけだろうけどな。　,"[W@]음, 뭐 어때, 생각할수록 머리만 아프네.[W@]문 여는 열쇠는 수위 아저씨가 가지고 있어.[W@]근데 원하는 걸 얻고 싶으면 아저씨한테 아부를 좀 떨어야 할걸.[W@][LLOYD] 같은 찐따나 빌빌대겠지만 말이야.","[@]En fin, es una pena que la azotea esté cerrada.[W@]El conserje tiene las llaves para abrirla.[W@]Pero tendrías que andar de lamebotas para que te las dé.[W@]Aunque claro, solo la niñita de [LLOYD] haría algo así.","[@]En fin, es una pena que la azotea esté cerrada.
+[W@]El conserje tiene las llaves.
+[W@]Pero tendrías que hacerle la pelota para conseguir que haga lo que quieres.
+[W@]Aunque eso solo lo haría un moñas como [LLOYD].","[@]Bem, de qualquer forma, não vai dar porque o terraço está fechado.[W@]O zelador tem a chave de lá.[W@]Mas o único jeito é ficar paparicando ele até conseguir que abra para você.[W@]Só um frouxo como o [LLOYD] faria isso.","[@]W każdym razie, wielka szkoda, że wejście na dach jest zamknięte.[W@]Woźny ma do niego klucz.[W@]Ale musiałbyś mu się nieźle podlizać, żeby dał ci, czego chcesz.[W@]Tylko taki maminsynek jak [LLOYD] by tak zrobił.","[@]Naja, schade, dass das Dach verschlossen ist.[W@]Der Hausmeister hat den Schlüssel, um's zu öffnen.[W@]Aber man müsste sich einschleimen, damit er tut, was du willst.[W@]Das würde aber nur ein Weichei wie [LLOYD] tun.","[@]Жаль, конечно, что двери закрыли.[W@]Ключи от всех дверей — у уборщика.[W@]Только он тебе ничего не выдаст, если к нему не подлизаться.[W@]А кроме нашего неженки [decline:Lloyd:M:1], никто таким заниматься точно не будет.","[@]Ось тільки шкода, що двері на дах зачинені.[W@]У прибиральника, кажуть, є ключі від неї...[W@]Але єдиний спосіб їх отримати — це підлизуватися до нього.[W@]Окрім нашого слабака [decline:Lloyd:M:1] ніхто на таке не піде.",[@]哎呀，反正天台被锁着也挺可惜的。[W@]只有校工的手上有钥匙。[W@]不过你得使劲巴结他，他才肯帮你。[W@]这种事情估计也只有[LLOYD]那种软蛋才能干得出来。
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_SKIPPINGCLASSBOY2_0,"[@]Finally, the rooftop door is open! [W@]Oh, what?! [D]The weather outside sucks, nevermind.","[@]La porte qui mène au toit est enfin ouverte ! [W@]Hein, quoi ?! [D]Le temps est pourri, oublie.","[@]La porta che dà sul tetto è aperta! Finalmente![W@]Aspetta, cosa?! [D]C'è un tempo terribile, mi sa che rimango qui.",[@]おくじょうのドア　あけてくれてサンキュー。　[W@]げげっ　てんきわりぃな。[D][BR]じゃあ　かんけいないこった。,"[@]드디어, 옥상 문이 열렸잖아![W@]아, 잠시만?! [D]오늘 날씨 완전 최악이네.[@]됐다, 됐어.","[@]Por fin, ¡la puerta de la azotea esta abierta! [W@]¡¿Eh, cómo?! [D]El clima afuera está horrible, para eso mejor me quedo aquí.","[@]¡Por fin han abierto la puerta de la azotea!
+[W@]¡¿Eh, qué?! [D]Vaya asco de tiempo hace fuera, paso.","[@]Finalmente, o terraço tá aberto! [W@]Pera, o quê?! [D]O tempo tá terrível, deixa pra lá.","[@]W końcu otworzyli drzwi na dach! [W@]Ej, co jest?! [D]Nieważne, pogoda na zewnątrz ssie.","[@]Endlich, die Tür zum Dach ist offen![W@]Ne, was?! [D]Das Wetter ist nass, vergiss es.","[@]Ну наконец-то крышу открыли![W@]Стоп... [D]не, фу, [D:4]погода на улице отвратительная.","[@]Ну нарешті! Вхід на дах відкритий! [W@]Гей, що це?! [D]Погода на вулиці мерзенна, навіть виходити не хочеться.",[@]总算，天台的门开了！[W@]呃，什么啊！[D]外面这天也太差了吧，还是算了。
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_SKIPPINGCLASSBOY3_0,[@]Don't bother me![W@]I'm playing Mario Bros. on my Game & Watch.,[@]Ne me dérange pas ![W@]Je joue à Mario Bros. sur ma Game & Watch.,[@]Non disturbarmi![W@]Sto giocando a Mario Bros. sul mio Game & Watch.,[@]ラジオが　いま　いいとこなんだよ。[W@]はなしかけんな。,[@]방해하지 마![W@]게임 & 워치로 마리오 중이란 말이야.,[@]¡No molestes![W@]Estoy jugando Mario Bros. en mi Game & Watch.,"[@]¡No me des la brasa!
+[W@]Estoy jugando al Mario Bros. en mi Game & Watch.",[@]Não me atrapalhe![W@]Tô jogando Mario Bros. no meu Game & Watch.,[@]Nie przeszkadzaj mi![W@]Gram w Mario Bros. na swoim Game & Watch'u.,[@]Störe mich nicht![W@]Ich spiele Mario Bros. auf meinem Game & Watch.,[@]Не отвлекай![W@]Я играю в Марио на своём Game & Watch’е.,[@]Не заважай![W@]Я граю в Mario Bros. на своєму Game & Watch.,[@]别烦我！[W@]我正忙着玩我Game&Watch上的《马力欧兄弟》呢。
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_SKIPPINGCLASSBOY_SPEAKER,Rony,Rony,Rony,ロニー,로니,Rony,Rony,Rony,Rony,Rony,Рони,Роні,罗尼
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_STRAWBERRYTOFULOVER_0,"[@]My mom bought me some strawberry tofu the other day.[W@]It was the tastiest thing I’ve ever had.
+",[@]Ma maman m'a acheté du tofu à la fraise l'autre jour.[W@]J'ai jamais goûté un truc aussi délicieux.,"[@]La mamma mi ha comprato del tofu alla fragola l'altro giorno.[W@]Era la cosa più buona che abbia mai mangiato.
+
+",[@]どうやら　とかいのほうでは[BR]いちごあじのとうふって　はやってるらしいな。[W@]かあさんに　かってきてもらって[BR]いちどでいいから　くってみてぇよ。,"[@]우리 엄마가 저번에 딸기 두부를 사주셨는데,[W@]인생에서 먹어본 것 중에서 제일 맛있었어.",[@]Mi mamá me compro un tofu de frutilla el otro día.[W@]¡Fue la cosa más sabrosa que he probado!,"[@]Mi mamá me compró tofu de fresa el otro día.[W@]¡Estaba buenísimo, lo más rico que he probado nunca!","[@]A minha mãe comprou tofu de morango um dia desses.[W@]Eu nunca comi nada tão gostoso na minha vida.
+","[@]Mama ostatnio kupiła mi trochę truskawkowego tofu.[W@]To była najsmaczniejsza rzecz, jaką kiedykolwiek jadłem.","[@]Meine Mama hat mir letztens Erdbeer-Tofu gekauft.[W@]Das war das leckerste, das ich je gegessen habe.
+",[@]Однажды моя мама купила мне тофу с клубникой.[W@]Вкуснее я в жизни ничего не ел!,"[@]Нещодавно мама купила мені тофу з полуницею.[W@]Це була найсмачніша страва, що я коли-небудь їв.
+",[@]前几天我妈妈给我买了一些草莓豆腐。[W@]那是我吃过最好吃的东西了。
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_STRAWBERRYTOFULOVER_SPEAKER,Caleb,Caleb,Caleb,カレブ,갈렙,Caleb,Caleb,Caleb,Caleb,Caleb,Калеб,Калеб,凯莱布
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_TOILETMISOGYNYGIRL_0,"[@]The girl's bathroom is always filled!
+[W@]Apparently, the boys' bathroom has way more toilets than the girls' bathroom.
+[W@]Don't you think that's unfair?
+","[@]Les toilettes des filles sont toujours occupées !
+[W@]Apparemment, il y a plus de toilettes pour les garçons que pour les filles.
+[W@]T'es d'accord que c'est injuste ?",[@]I bagni delle femmine sono sempre pieni![W@]Sembra che i maschi abbiano più bagni delle femmine.[W@]Non ti sembra ingiusto?,[@]ここにならんでると　なぜか　わからないけど[BR]ラーメンやを　おもいだすわ。[W@]ぎょうれつができるほど　だいにんきで…[W@]あなたも　そうおもわない？,[@]여자 화장실은 항상 꽉 차 있어![D:6] 남자 화장실이 여자 화장실보다 변기가 훨씬 많다던데.[W@]완전 불공평하지 않아?,"[@]¡El baño de las niñas siempre está repleto!
+[W@]Aparentemente el de los niños tiene muchos más inodoros que el de las niñas.
+[W@]¿No crees que es injusto?","[@]¡El baño de chicas siempre está lleno!
+[W@]Por lo visto, en el baño de chicos hay muchos más váteres que en el de chicas.
+[W@]¿A que es injusto?","[@]Não é justo! O banheiro das meninas vive cheio!
+[W@]Estou achando que o banheiro dos meninos tem muito mais vasos que o das meninas.
+[W@]Você não acha isso injusto?
+","[@]Damska łazienka jest wiecznie zatłoczona!
+[W@]Okazuje się, że w łazience dla chłopców jest znacznie więcej toalet, niż w tej dla dziewczyn.
+[W@]Nie uważasz, że to niesprawiedliwe?",[@]Die Mädchentoiletten sind immer alle besetzt![W@]Aber bei den Jungs gibt es auch viel mehr Toiletten als bei den Mädchen.[W@]Ist das nicht unfair?,"[@]Туалет для девочек постоянно занят! [W@]У мальчиков унитазов явно больше. [D:6]Разве это справедливо![W@]А по-твоему, справедливо?","[@]Несправедливо![D:6] Чому в туалеті для хлопчиків більше унітазів, ніж у туалеті у дівчаток?[W@]Як гадаєш, це несправедливо?",[@]女厕所里经常满人！[W@]而且很明显，男厕所的马桶可比女厕所的要多太多了。[W@]这样也太不公平了吧！
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_TOILETMISOGYNYGIRL_0-OPT_0,Yes,Oui,Sì,はい,네,Sí,Sí,Sim,Tak,Ja,Да,Так,的确
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_TOILETMISOGYNYGIRL_0-OPT_1,No,Non,No,いいえ,아니오,No,No,Não,Nie,Nein,Нет,Ні,并非
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_TOILETMISOGYNYGIRL_1,[@]Hee-hee! That's right!,[@]Hi hi ! [D:6]C'est ça !,[@]Eheh! Vero?,[@]ほんとに？,[@]히히! 그렇지!,"[@]¡Ji, ji! ¡Tal cual!","[@]¡Je, je! ¡Así es!",[@]Hi-hi! É isso aí!,[@]Tihi! Dokładnie!,[@]Hihihi! Das stimmt!,[@]Справедливо?!,[@]Хі-хі! Правильно!,[@]呵呵，[DELAY]就是说啊！
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_TOILETMISOGYNYGIRL_2,[@]Are you single by any chance?,"[@]Dis-moi, tu sors avec quelqu'un ?",[@]Per caso sei single?,[@][D:3:3]・・・あなたも　なかなか　ツウなのね・・・,[@]혹시 혼자야?,[@]¿Por casualidad eres soltero?,[@]¿Por casualidad estás soltero?,"[@]Você é solteiro, por acaso?",[@]Czy jesteś może singlem?,[@]Bist du vielleicht Single?,[@]Ну и катись в унитаз!,"[@]До речі, у тебе є дівчина?",[@]要是大家都能这么想该多好啊！
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_TOILETMISOGYNYGIRL_3,[@]Oh yeah? [D]Well I hope you fall in your toilet!,[@]Ah bon ? J'espère que tu tomberas dans la cuvette !,[@]Ah sì? [D]Allora spero che tu cada dentro al water!,[@]あら　そう・・・[D][BR]ちゅうかそばで　たとえたほうが　よかったかしら。,[@]그래? [D]변기에 빠져버리길 바라!,"[@]¿Ah, sí? [D]¡Pues ojalá te caigas directito en tu inodoro!","[@]¿Ah, no? [D]¡Pues ojalá que te caigas en un váter!",[@]Ah é? [D]Pois eu espero que você caia dentro de um vaso!,"[@]Ta? [D]Cóż, mam nadzieję, że wpadniesz do swojej toalety!",[@]Ach ja?[D] Ich hoffe du rutschst das Klo hinunter!,"[@]Ну конечно! Хи-хи...
+[W@]А у тебя случайно нет девушки?","[@]Грубіян! [D]Я сподіваюся, ти впадеш в унітаз!",[@]哦，呵呵，[D]你可真没眼力见！
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_TOILETMISOGYNYGIRL_SPEAKER,Alicia,Alicia,Alicia,アリシア,알리시아,Alicia,Alicia,Alicia,Alicja,Alicia,Алисия,Алісія,艾莉西亚
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_TOILETWAITINGGIRL_0,"[@]I've been waiting for ages, but all the toilets are taken!","[@]Ça fait une éternité que j'attends, mais toutes les toilettes sont quand même prises !",[@]Sono secoli che aspetto e i bagni sono ancora tutti occupati!,[@]ずっとまってるのに　トイレがあかないの。,"[@]계속 기다리고 있는데, 대체 언제쯤 열리는 거야!","[@]Llevo siglos esperando, ¡pero todos los inodoros están ocupados!","[@]¡Llevo esperando una eternidad, pero es que todos los baños siguen ocupados!","[@]Estou esperando há horas, mas todos os vasos estão ocupados!","[@]Czekam tu już wieki, a toalety nadal są zajęte!","[@]Ich warte schon seit Ewigkeiten, aber alle Toiletten sind besetzt!",[@]Да почему никто не выходит![W@]Я тут уже сто лет стою!,"[@]Я чекаю вже вічність, але усі туалети ще досі зайняти!",[@]我已经等了好长时间了，可是所有马桶都有人占着！
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_TOILETWAITINGGIRL_SPEAKER,Jade,Jade,Jade,ジェード,제이드,Jade,Jade,Jade,Jade,Jade,Джейд,Джейд,捷德
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_NOORDINARYDAUGHTER_0,"[@]“I am no ordinary man!”
+[W@]Those are my dad's favorite words.
+","[@]« Je suis tout sauf un homme ordinaire ! »
+[W@]C'est les mots préférés de mon papa.","[@]“Io non sono come gli altri!”
+[W@]È la frase preferita di papà.
+
+",[@]おれを　ただのおじさんと　おもうなよ。[W@]っていうのが　うちのパパのくちぐせなの。,[@]“난 평범한 사람이 아니다!”[W@]우리 아빠가 제일 좋아하는 말이야.,"[@]“¡No soy un hombre ordinario!”
+[W@]Esa es la frase favorita de mi papá.
+","[@]«¡No soy un tipo cualquiera!»
+[W@]Esa es la frase favorita de mi papá.","[@]“Eu não sou qualquer um!”
+[W@]É a frase favorita do meu pai.
+","[@]“Żaden ze mnie przeciętniak!”
+[W@]To ulubione słowa mojego taty.","[@]„Ich bin kein gewöhnlicher Mann!“
+[W@]Das ist der Lieblingssatz von meinem Papa.
+","[@]«Я не обычный прохожий!»
+[W@]Так любит говорить мой папа.","[@]«Я не простак!»
+[W@]Так любить говорити мій тато.",[@]“我可不是平庸之辈！”[W@]那是我爸爸最喜欢的一句话。
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_NOORDINARYDAUGHTER_SPEAKER,Janet,Janet,Janet,ジャネット,자넷,Janet,Janet,Janet,Janet,Janet,Джанет,Джанет,珍妮特
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_JANITOR_ROOF_UNCHECKED_0,"[@]What is it now?![D] I'm busy!
+[W@]If you need my help, you'll have to come back later!
+[W@]Now get!
+","[@]Qu'est-ce qu'il y a ?![D] Je suis occupé !
+[W@]Si tu as besoin de mon aide, il faudra revenir plus tard !
+[W@]Pars d'ici !","[@]Che c'è?![D] Ho da fare!
+[W@]Se hai bisogno, torna più tardi!
+[W@]Vai via!
+
+",[@]はいってます！[D]って　ここはトイレじゃないけどな。[W@]いま　てがはなせないんだ。[D]あとでおいで。　,[@]이번엔 또 뭐냐?![D] 바빠 죽겠구만![W@]뭐가 필요하면 나중에 다시 와라![W@]가! 빨리!,"[@]¡¿Y ahora qué?![D] ¡Estoy ocupado!
+[W@]¡Si necesitas mi ayuda, tendrás que volver más tarde!
+[W@]¡Fuera de aquí!
+","[@]¡¿Qué quieres?![D] ¡Estoy ocupado!
+[W@]¡Si me necesitas para algo, tendrás que volver más tarde!
+[W@]¡Ahora, largo!","[@]O que você quer?![D] Eu tô ocupado!
+[W@]Se você precisa de alguma coisa, volta depois!
+[W@]Vaza!
+","[@]Co znowu?![D] Zajęty jestem!
+[W@]Jeżeli chcesz żebym ci pomógł, wróć tu później.
+[W@]A teraz spadaj!","[@]Was ist denn jetzt schon wieder?![D] Ich bin beschäftigt!
+[W@]Wenn du meine Hilfe brauchst, musst du später wiederkommen!
+[W@]Jetzt verschwinde!","[@]Чего тебе?![D] Я занят!
+[W@]Если что-то нужно, приходи позже!
+[W@]А теперь не мешай!","[@]Та що ж вам, клятим, треба?![D] Я зайнятий!
+[W@]Якщо хочете щось взяти, повертайтеся пізніше![W@]А тепер киш звідси!",[@]又怎么了？！[D]我正忙着呢！[W@]要是想找我帮忙，晚点再来吧！[W@]快走开！
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_JANITOR_ROOF_UNCHECKED_SPEAKER,Janitor,Concierge,Bidello,ようむいん,수위,Conserje,Conserje,Zelador,Woźny,Hausmeister,Уборщик,Прибиральник,校工
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_JANITOR_0,"[@]The door to the roof, eh?[D] Of course it’s locked!
+[W@]Otherwise, instead of studying, all the naughty little punks in this school would sneak out to play games!
+[W@]Are you a punk, kid?
+","[@]La porte qui amène au toit, c'est ça ?[D] Bien sûr qu'elle est fermée !
+[W@]Sinon, au lieu d'étudier, tous les sales petits voyous de cette école iraient jouer là-haut !
+[W@]T'es un voyou, gamin ?","[@]La porta per il tetto?[D] Certo che è chiusa a chiave!
+[W@]Se no, poi tutti i monelli si nasconderebbero lì a giocare invece di studiare!
+[W@]Tu sei un monello?
+",[@]おくじょうのドアが　あかないって　いうのか。[D][BR]うちにかかれば　たいしたもんだいじゃねえな。[W@]しっかし　ちかごろ　べんきょうのかわりに[BR]おくじょうでゲームする　ガキが　おおいこった。　[W@]さてはきみも　ふりょうだな？,"[@]옥상 문 말하는 거냐, 응?[D] 당연히 잠겨 있지![W@]대문짝만하게 열려있으면 날라리들이 공부는커녕 몰래 게임이나 하러 올라갈 테니까![W@]너도 그런 부류냐?","[@]La puerta de la azotea, ¿eh?[D] ¡Pues claro que está cerrada!
+[W@]Si no, en vez de estudiar, ¡todos los holgazanes de esta escuela se escaparían para jugar!
+[W@]¿Eres un holgazán, niño?
+","[@]La puerta de la azotea, ¿eh?[D] ¡Pues claro que está cerrada!
+[W@]¡Si no, todos los granujillas del colegio se escaparían para jugar con las maquinitas!
+[W@]¿Eres un granuja, niño?","[@]A porta do terraço, é?[D] Claro que está trancada!
+[W@]Senão, em vez de estudar, todos esses marginaizinhos vão lá para cima ficar jogando videogame!
+[W@]Você é um marginalzinho?
+","[@]Drzwi na dach, ta?[D] Oczywiście, że są zamknięte!
+[W@]Gdyby nie były, wszystkie małe hultaje w tej szkole wymykałyby się tam by grać w gierki!
+[W@]Czy też jesteś hultajem?","[@]Die Tür zum Dach, was?[D] Klar ist sie verschlossen!
+[W@]Sonst würden sich alle kleinen frechen Lümmel in dieser Schule zum Spielen davonschleichen, anstatt zu lernen!
+[W@]Bist du ein frecher Lümmel, Kleiner?","[@]Дверь на крышу?[D] Ну конечно она заперта!
+[W@]Иначе бы всё местное хулиганьё пробиралось туда играть в электронные игры!
+[W@]Ты что, тоже хулиган?","[@]Двері на дах, кажеш?[D] Звичайно, вони замкнені!
+[W@]Якщо відкрию, всі хулігани школи почнуть туди лазити, уроки прогулювати!
+[W@]А ти, хлопче, що?[D] Теж хуліган?",[@]天台的门，嗯？[D]当然锁上了！[W@]要不然，学校里那些调皮捣蛋的小混球们全都会溜出去打游戏，谁还学习啊！[W@]小子，你也是个混混吗？
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_JANITOR_0-OPT_0,Yes,Oui,Sì,はい,네,Sí,Sí,Sim,Tak,Ja,Да,Так,是
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_JANITOR_0-OPT_1,No,Non,No,いいえ,아니오,No,No,Não,Nie,Nein,Нет,Ні,否
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_JANITOR_1,"[@]Hah![D] At least you have the integrity to admit it!
+[W@]With integrity, even being a punk isn’t a problem.
+","[@]Ha ![D] Au moins, t'as l'honnêteté de l'admettre !
+[W@]Avec assez d'honnêteté, c'est pas grave d'être un voyou.","[@]Hah![D] Almeno sei onesto e lo ammetti!
+[W@]Se uno è onesto, va bene anche se è un monello.
+
+",[@]だったとしても　たいしたもんだい　じゃねえな。[W@]しょうじきなら　ふりょうでも　いいってことさ。,[@]하![D] 그래도 솔직하게 인정할 배짱은 있구만![W@]배짱만 있다면 날라리라도 상관없어.,"[@]¡Ja![D] ¡Al menos tienes la franqueza de admitirlo!
+[W@]Con franqueza, ni siquiera ser un holgazán es un problema.
+","[@]¡Ja![D] Al menos tienes principios y lo admites.
+[W@]Con principios, hasta un granuja tiene su pase.
+","[@]Ora![D] Pelo menos, você tem caráter para assumir!
+[W@]Um marginal com caráter não é tanto problema.
+","[@]Ha![D] Przynajmniej to wiesz i nie boisz się przyznać!
+[W@]Jak się wie, kim się jest, to żaden problem być nawet hultajem.","[@]Hah![D] Immerhin hast du Mumm um's zuzugeben!
+[W@]Mit Mumm ist's kein Problem, auch ein Lümmel zu sein.","[@]Ага![D] Ну хотя бы совести хватает cознаться.
+[W@]С совестью быть хулиганом уже не такая беда.
+[W@]А знаешь, что такое настоящая беда?","[@]Ха![D] Ну, хоча б тобі вистачає сумлінності зізнатися!
+[W@]А з сумлiннiстю навіть бути хуліганом не проблема.",[@]哈！[D]至少你诚实的承认了！[W@]只要为人正直，就算是个小混球也没关系。
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_JANITOR_2,"[@]Well, isn’t that a rare sight![D] I oughta treat you to some tea.
+[W@]No, no, I insist! It's not a problem.
+","[@]Eh bien, en voilà quelque chose de rare ![D] Laisse-moi t'inviter à prendre une tasse de thé.
+[W@]Non, non, j'insiste ! Il n'y a pas de problème.","[@]Questa è una rarità![D] Devo proprio offrirti del tè.
+[W@]No, no, insisto! Non è un problema.
+
+",[@]ちかごろだと　めずらしいな。[BR]いや　ホントに　たいしたもんだいじゃないんだ。[@]おちゃでも　のみなって　なッ。　,"[@]오, 너 같은 애들은 드물어![D] 차라도 한잔 대접해 주지.[W@]아냐, 아냐. 어른이 주면 그냥 받는 거다.","[@]¡Vaya, eso sí que es algo raro de ver![D] Debería invitarte un té.
+[W@]¡Que sí, que sí, yo invito! No es ningún problema.
+","[@]¡Vaya, qué sorpresa![D] Debería invitarte a un té.
+[W@]¡Que sí, que sí, que invito yo! No es ningún problema.","[@]Ora, mas que beleza![D] Vamos tomar um chá.
+[W@]Não, não, eu insisto! Não é nenhum incômodo.
+","[@]A to dopiero rzadki widok![D] Aż muszę cię poczęstować herbatą.
+[W@]Ależ proszę, nalegam! To żaden problem.","[@]Na, wenn das mal nicht ein seltener Anblick ist![D] Ich muss dich mal auf einen Tee einladen.[W@]Nein, ich bestehe darauf! Das ist kein Problem.","[@]Что ж, такое редко увидишь![D:6] Угощу-ка я тебя чаем.
+[W@]Нет уж, я настаиваю.[D:4] Ты меня не побеспокоишь!
+[W@]Вот знаешь, что меня беспокоит?","[@]Ох, таке зустрінеш не щодня![D] Мені варто пригостити тебе чаєм.
+[W@]Ні, ні, я наполягаю! Це зовсім не проблема.",[@]诶哟，这可不常见啊！[D]我得请你喝杯茶了。[W@]不不不，别客气，这不算什么。
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_JANITOR_3,"[@]My wife, though?[D] Now THAT’S a problem, if I’ve ever seen one!
+[W@]She doesn't get out of bed until noon...
+[W@]And she won't even pack me a brown bag lunch!
+[W@]Isn't that just horrible?
+","[@]Ma femme, par contre ?[D] ÇA, c'est un vrai problème !
+[W@]Elle ne sort pas du lit avant midi...
+[W@]Et elle ne me prépare même pas de casse-croûte !
+[W@]Horrible, j'ai pas raison ?","[@]Mia moglie, invece?[D] Lei SÌ che è un problema!
+[W@]Non si alza prima di mezzogiorno...
+[W@]E neanche mi prepara il pranzo al sacco!
+[W@]Non ti sembra tremenda?
+
+",[@]そんなことより　うちのにょうぼうだよ。[D][BR]そっちのほうが　もんだいさ。[W@]まいあさ　ひるまで　ねむってやがって・・・[D][BR]しかも　べんとうも　つくってくれねぇ！[W@]ひでぇはなしだろ？　,[@]근데 우리 집사람은 말이야?[D] 그게 진짜 문제라니까![W@]해가 중천에 떠도 침대에선 나오지도 않아...[W@]게다가 남편이 출근하는데 도시락 하나 안 싸준다니까![W@]네가 생각해도 너무하지 않냐?,"[@]En cambio mi esposa...[D] ¡Esa sí que es un problema, y de los grandes!
+[W@]¡No se levanta de la cama hasta el mediodía...!
+[W@]¡Y ni siquiera me prepara el almuerzo para el trabajo!
+[W@]¿Acaso no es terrible?
+","[@]¿Pero mi mujer?[D] ¡Eso sí que es un problema, y de los gordos!
+[W@]No se levanta de la cama hasta el mediodía...
+[W@]¡Y ni siquiera me prepara un almuerzo para llevar!
+[W@]¿A que es un espanto?","[@]E a minha esposa?[D] Ela SIM é um incômodo, vou te contar!
+[W@]Ela fica deitada na cama até meio dia...
+[W@]E nem arruma a minha marmita!
+[W@]Isso não é terrível?
+","[@]Za to moja żona?[D] Z NIĄ to dopiero problem, jak z nikim innym!
+[W@]Wyleguje się w łóżku aż do południa...
+[W@]I nawet nie spakuje mi kanapek do pracy!
+[W@]Czyż to nie okropne?","[@]Meine Frau, aber?[D] Die ist ein RIESIGES Problem![W@]Sie kommt erst gegen Mittag aus den Federn ...[W@]Und dann macht sie mir nicht mal mein Pausenbrot![W@]Ist das nicht schrecklich?","[@]Моя жена![D] Горе на мою седую голову!
+[W@]Мало того, что она отлёживается до полудня...
+[W@]Так она мне даже обед на работу не собирает!
+[W@]Просто кошмар!","[@]Хочеш побачити справжню проблему?[D] Глянь на мою дружину![W@]Мало того, що вона спить до полудня...[W@]Так вона ще й не збирає мені на роботу обід![W@]Кошмар, правда?",[@]不过我老婆呢？[D]那才叫个大麻烦呢，我可从没见过她这样的！[W@]每天不到中午不起床…[W@]连给我准备一份便当都不肯！[W@]你说这是不是太过分了？
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_JANITOR_3-OPT_0,Yeah...,Ouais...,Già...,うん・・・,예...,Ya veo...,Ya...,Pois é...,Ta...,Ja ...,Ага...,Ага...,的确…
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_JANITOR_3-OPT_1,No way,Pas du tout,Per niente,いえ・・・,아뇨,No me diga,Para nada,Não muito.,Nie aż tak,Nö,Да не,Та ну,没有吧
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_JANITOR_4,"[@]And when she finally gets up, she does nothing but shop all day!
+[W@]Luckily, I hid all my credit cards from that woman!
+[W@]Don't you think she's a terrible wife?
+","[@]Et quand elle décide d'enfin se lever, elle sort faire des emplettes toute la journée !
+[W@]Heureusement, j'ai caché mes cartes de crédit depuis longtemps !
+[W@]En voila, une épouse horrible, n'est-ce pas ?","[@]E poi quando finalmente si alza, fa shopping tutto il giorno!
+[W@]Per fortuna ho nascosto tutte le mie carte di credito!
+[W@]Non ti sembra una moglie terribile?
+
+",[@]ぶくぶく　ふとるばっかしでよ。[W@]しかもおきたら　おきたで　デパートで　かいものばかりさ。[W@]ひでぇおんなだろ。,[@]그러고 일어나서 한다는 게 쓰잘데기 없이 쇼핑이나 해대고![W@]내 카드는 다 숨겨놨지만![W@]정말 최악의 마누라 아니냐?,"[@]¡Y cuando por fin se levanta, no hace nada más que irse de compras por todo el día!
+[W@]¡Por suerte, le escondí todas mis tarjetas de crédito a esa mujer!
+[W@]¿No te parece que es una esposa horrible?
+","[@]Y cuando por fin se levanta, ¡se pasa el día entero de compras!
+[W@]¡Menos mal que he dejado las tarjetas de crédito bien lejos de esa mujer!
+[W@]¿No crees que es una esposa horrible?","[@]Pois é![D] E quando finalmente se levanta, ela vai para a rua gastar!
+[W@]Ainda bem que eu escondi o meu cartão de crédito daquela mulher!
+[W@]Ela não é uma esposa horrível?
+","[@]A jak już w końcu wstanie, resztę dnia spędza na zakupach!
+[W@]Na szczęście schowałem przed tą kobietą wszystkie swe karty kredytowe!
+[W@]Okropna z niej żona, nie uważasz?","[@]Und wenn sie dann mal aufgestanden ist, geht sie den ganzen Tag nur Einkaufen![W@]Zum Glück hab ich all meine Kreditkarten vor ihr versteckt![W@]Findest du nicht, dass sie eine schreckliche Ehefrau ist?","[@]Так и более того! [D:6]После этого она целый день шляется по магазинам!
+[W@]Хорошо хоть, я спрятал от неё все свои кредитки!
+[W@]Вот как ты думаешь, она ужасная жена?","[@]Та коли вона врешті-решт встає, вона цілий день нічим не займається крім закупів![W@]На щастя, я сховав усі свої кредитні карти від тієї жінки![W@]Хіба ти не думаєш що вона жахлива дружина?",[@]等她终于起了床，又一天到晚只知道买东西！[W@]还好我早就把信用卡全藏起来，不让她找到！[W@]你说她是不是个糟糕透顶的老婆？
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_JANITOR_5,[@]Pah![D] Kids don't know the sorrows of real life!,[@]Pouah ![D] Les gamins n'ont pas idée d'à quel point la vie peut être dure !,"[@]Bah![D] I mocciosi non hanno idea di quanto si soffre nella vita reale!
+",[@]こどもにゃ　わからねぇ。[BR][D]じんせいのかなしみは・・・,[@]허![D] 대가리에 피도 안 마른 놈이 뭘 알겠어!,[@]¡Bah![D] ¡Los mocosos no tienen ni idea de los golpes que da la vida!,[@]¡Bah![D] ¡Los críos no tenéis ni idea de los palos que da la vida!,[@]Tsc![D] As crianças não conhecem as tristezas da vida!,[@]Feh![D] Dzieciaki nie znają smutków prawdziwego życia!,[@]Pah![D] Kinder heutzutage kennen die echten Sorgen des Lebens nicht!,"[@]Вы, дети, ещё горя не знаете! [D]Тьфу!","[@]Ви, жовторотi, ще горя не знаєте![D] Тьху!",[@]切！[D]小孩子可不懂生活的苦！
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_JANITOR_4-OPT_0,Uhuh...,"Oui, oui...","Beh, sì...",うんうん・・・,으음...,Ajá...,Ajá...,Pois é...,Yhym...,Mmhmm ...,Ага-а-а...,Угу...,呃呃…
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_JANITOR_4-OPT_1,Nuh-uh...,"Je crois pas, non...","Beh, no...",いえいえ・・・,아뇨...음...,No sé...,No sé...,Sei não...,Nie-e...,Neeee ...,Не-а...,Нє-а...,不-呃…
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_JANITOR_6,"[@]Yeah, exa—[DELAY:5] Wait, what?!
+[W@]How dare you talk about my wife like that! Scram! 
+","[@]Ouais, exa—[DELAY:5] Attends, quoi ?!
+[W@]Qui t'a permis de parler de ma femme de cette manière! Sors d'ici !","[@]Sì, esa—[DELAY:5] Scusa, come?!
+[W@]Come ti permetti di parlare così di mia moglie?! Smamma!
+
+",[@]そうそう・・・[D]って[BR][DELAY:5]おまえに　うちのにょうぼうのことを[BR]そんなふうにいわれる　すじあいは　ないね。　[W@]でてってくれ！,"[@]그래, 맞—[DELAY:5] 잠시만, 뭐?![W@]이 새끼가 우리 마누라를 욕 해?! 썩 꺼져!","[@]¡Sí, exac—[DELAY:5] ¡Un momento! ¡¿Qué?!
+[W@]¡Pero qué te has creído! ¡¿Cómo te atreves a hablar así de mi esposa?! ¡Largo de aquí!","[@]¡Sí, exac—[DELAY:5] ¡Un momento! ¡¿Qué?!
+[W@]¡Pero qué te has creído! ¡¿Cómo te atreves a hablar así de mi mujer?! ¡Largo de aquí!","[@]Pois é, exa—[DELAY:5] Peraí, o quê?!
+[W@]Como você ousa falar da minha esposa assim! Sai fora! 
+","[@]No, dokła—[DELAY:5] Zaraz, co?!
+[W@]Jak śmiesz mówić tak o mojej żonie! Zmiataj stąd!","[@]Ja, ma-[DELAY:5] Warte, was?![W@]Wie sprichst du über meine Frau! Verzieh dich!","[@]Да, именн...[DELAY:5] Стоп, что?!
+[W@]Да как ты смеешь говорить так о моей жене![BR]Пошёл вон отсюда!","[@]Так, правиль...[DELAY: 5] Що-що?!
+[W@]Як ти смієш казати це про мою дружину! Геть звiдси!",[@]是的，你说的没——[BR][DELAY:5]等等，什么？！[W@]你竟敢这么说我老婆！滚开！
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_JANITOR_7,"[@]Is that so?[D] Hrm.
+[W@]You are a pretty good kid.[D] Would you like some tea?
+","[@]Ah bon ?[D] Hmm.
+[W@]T'es un bon gamin.[D] Tu voudrais un peu de thé ?","[@]Tu dici?[D] Hrm.
+[W@]Sei un bravo bambino.[D] Vuoi del tè?
+
+",[@]わかいときゃ　かわいかったんだ。[W@]そうさ[DELAY:5]　いいところもあるんだよ。[BR][W@]ま[DELAY:5]　おちゃでものんでくかい？,[@]그런가?[D] 음.[W@]넌 꽤 괜찮은 애구나.[D] 차 한잔할래?,"[@]¿Ah, sí?[D] Mmm.
+[W@]Eres un buen muchacho después de todo.[D] ¿Te gustaría un poco de té?
+","[@]¿Ah, sí? Mmm.
+[W@]Pues mira, pareces un buen chico.[D] Oye, ¿te apetece un poco de té?","[@]Ah, é?[D] Hum.
+[W@]Você é um bom menino.[D] Aceita um chá?
+","[@]Naprawdę?[D] Hmm.
+[W@]Dobry z ciebie dzieciak.[D] Chciałbyś może herbatki?",[@]Ist das so?[D] Hmm.[W@]Du bist ein gutes Kind.[D] Willst du etwas Tee?,"[@]Думаешь?[D] Гм-м.
+[W@]А ты хороший пацан.[D] Чай будешь?","[@]Та невже?[D] Гм-м.
+[W@]А ти хлопчисько непоганий.[D] Чай будеш?",[@]是这样吗？[D]嗯…[W@]你倒是个不错的孩子，[D]想来杯茶吗？
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_JANITOR_7-OPT_0,Yes,Oui,Sì,はい,네,Sí,Sí,Sim,Tak,Ja,Да,Так,是
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_JANITOR_7-OPT_1,No,Non,No,いいえ,아니오,No,No,Não,Nie,Nein,Нет,Ні,否
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_JANITOR_8,[@](What a polite scamp!),"[@](En voila, un garnement poli !)","[@](Che monello educato!)
+",[@](はなしのわかるこどもだなぁ。),[@](참 예의 바른 꼬마군!),[@](¡Pero que niño tan atento!),[@](¡Qué chaval tan educado!),[@](Mas que pestinha educado!),[@](Jaki z niego grzeczny urwis!),[@](Was ein höflicher Spitzbub!),"[@](Вежлив, паршивец!)",[@](Який вічливий шибеник!),[@]（真是个懂礼貌的小鬼头。）
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_JANITOR_9,"[@]How rude!
+[W@]When you're old, you'll wish that young brats would respect you!","[@]Quelle impolitesse ! [W@]Tu verras bien à quel point l'irrespect de la jeunesse fait mal, quand tu auras mon âge !","[@]Che maleducato!
+[W@]Quando sarai grande, vorrai essere rispettato dai giovinastri!
+",[@]ことわるとでも　いうのか。[W@]としよりを　だいじにしないと[BR]おとなになって　なきをみるぞ。,[@]버릇없긴![W@]네가 이 나이 먹고 봐라! 어린 놈들이 존중이 없어... 존중이.,"[@]¡Pero qué malcriado!
+[W@]¡Cuando seas viejo, vas a desear que los mocosos malcriados te respeten!
+","[@]¡Qué mala educación!
+[W@]¡Cuando seas viejo, ya querrás que los mocosos te tengan un respeto!","[@]Que grosseria!
+[W@]Quando você for mais velho, vai querer que as crianças te respeitem!
+","[@]Co za brak wychowania!
+[W@]Jak już się zestarzejesz, będziesz mógł jedynie pomarzyć o szacunku ze strony małych smarków!","[@]Wie unhöflich![W@]Wenn du mal alt bist, würdest du dir wünschen, dass junge Bälger dich respektieren würden!","[@]Как грубо![W@]Вот постареешь и тоже захочешь, чтобы мелочь тебя уважала!","[@]Як грубо![W@]Ось постарієш і бажатимеш, щоб молодь тебе поважала!",[@]真没礼貌！[W@]等你老了，你也会盼着年轻的小鬼们能尊重你一下！
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_JANITOR_SPEAKER,Janitor,Concierge,Bidello,ようむいん,수위,Conserje,Conserje,Zelador,Woźny,Hausmeister,Уборщик,Прибиральник,校工
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_JANITOR_10,"[@]Please, please have some tea!","[@]Allez, prends un peu de thé !","[@]Prego, prendi un po' di tè!
+",[@]ま　おちゃを　のみなって。なッ。,"[@]자, 차라도 한잔해!","[@]Por favor, toma un poco de té, te invito.","[@]Por favor, toma un poco de té, te invito.","[@]Vamos, beba um pouco de chá!","[@]Ależ proszę, napij się herbatki!","[@]Ach bitte, nimm etwas Tee!","[@]Прошу, попей чайку!","[@]Будь ласка, спробуй чаю!",[@]来来来，快喝杯茶！
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_WEIRDTEACHER_0,[@]I am the Mysterious Teacher.[W@]Nobody knows who I am...,[@]Je suis le professeur mystérieux.[W@]Personne ne sait qui je suis...,[@]Sono il Professor Mistero.[W@]Nessuno sa chi sono veramente...,[@]わたしは　なぞのせんせい。[@]しょうたいは　だれにもわかるまい・・・,[@]난 수수께끼의 선생.[W@]아무도 내 정체를 모르지...,"[@]Soy el Profesor misterioso.
+[W@]Nadie sabe quién soy...","[@]Soy el Profesor enigmático.
+[W@]Nadie sabe quién soy...",[@]Eu sou o Prof. Misterioso.[W@]Ninguém conhece a minha identidade...,[@]Jestem Tajemniczym Nauczycielem.[W@]Nikt nie wie kim jestem...,"[@]Ich bin der geheimnisvolle Lehrer. [W@]Niemand weiß, wer ich bin ...","[@]Я загадочный учитель.[W@]Никто не знает, кто я такой...","[@]Я загадковий вчитель.[W@]Ніхто не знає, хто я...",[@]我是神秘老师。[W@]没人知道我是谁…
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_WEIRDTEACHER_1,"[@]Oh, hello, Mr. Wimstein.[D:6] How are you?","[@]Oh, bonjour professeur Wimstein.[D:6] Comment allez-vous ?","[@]Oh, buongiorno, Signor Wimstein.[D:6] Come sta?",[@]あ　かわりものの　せんせい！[BR]おひさしぶりです！,"[@]오, 안녕하세요, 윔스타인 씨.[D:6] 잘 지내십니까?","[@]Oh, saludos, señor Wimstein.[D:6] ¿Cómo le va?","[@]Vaya, buenas, señor Wimstein.[D:6] ¿Cómo se encuentra?
+","[@]Olá, Prof. Wimstein.[D:6] Como vai o senhor?","[@]O, dzień dobry, panie Wimstein.[D:6] Jak się pan miewa?","[@]Oh, hallo Herr Wimstein.[D:6] Wie geht es Ihnen?","[@]О, здравствуйте, мистер Уимштейн.[D:6] Как поживаете?","[@]О, добрий день, містер Вімштейн.[D] Як ваші справи?",[@]噢，你好呀，温斯坦先生！[DELAY]你还好吗？
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_WEIRDTEACHER_2,"[@]Sigh...[D] hello, [LLOYD]. [D]I see that you're not alone this time.","[@]Ah...[D] Bonjour, [LLOYD]. [D]Je vois que tu es accompagné, cette fois.","[@]Sigh...[D] ciao, [LLOYD]. [D]Vedo che stavolta non sei da solo.",[@]はぁ・・・[D][Lloyd]かい。[D][BR]こんかいは　ひとりじゃない　みたいだね。,"[@]후우...[D] 안녕, [LLOYD]. [D]! 오늘은 혼자가 아닌 모양이네!","[@]Ay...[D] hola, [LLOYD]. [D]Veo que no vienes solo esta vez.","[@]Ains...[D] hola, [LLOYD]. [D]Veo que hoy no vienes solo.","[@]Aff...[D] olá, [LLOYD]. [D]Vejo que não está sozinho dessa vez.","[@]Ach...[D] Cześć, [LLOYD]. [D]Widzę, że tym razem nie jesteś sam.","[@]Seufz ...[D] Hallo, [LLOYD]. [D]Ich sehe, du bist diesmal nicht allein.","[@]Ох...[D] здравствуй, [LLOYD]. [D]Вижу, в этот раз ты не один пришёл.","[@]Ех...[D] Добрий день, [LLOYD]. [D]Бачу, цього разу ти не один.",[@]唉…[D]你好，[LLOYD]。[D][@]看来这次你不是一个人来了。
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_WEIRDTEACHER_3,"[@]Don’t tell anyone, but I live here, actually.[W@]My last research grant didn’t come through, and rent is getting high...[W@]So I need money, pronto.[D] Care to buy an invention?","[@]Ne le dis à personne, mais je vis ici.[W@]Je n'ai pas encore reçu ma dernière subvention, et le loyer commençait à trop peser...[W@]Donc j'ai besoin d'argent, et vite.[D] Ça te dirait d'acheter une invention ?","[@]Non dirlo a nessuno, ma in realtà vivo qui.[W@]Non ho ricevuto finanziamenti per la mia ricerca, e l'affitto costa...[W@]Quindi sono al verde.[D] Acquisteresti un'invenzione?
+",[@]わしは　じぶんでもわかっておるが[BR]このがっこうに　かくれすんでいる[BR]かわりもののせんせいだ。[W@]そっちょくにいうが　けんきゅうひが　ほしい。[D][BR]わしの はつめいを　かってくれんか？,"[@]나 사실 여기서 살고 있거든, 아무한테도 말하면 안 돼.[W@]지난번 연구 지원금 신청에 떨어지고, 집세는 또 오르고...[W@]그래서 이 돈이 문제야.[D] 그래서 그러는데, 내 발명품 좀 사주겠니?","[@]No le digas a nadie, pero en realidad vivo aquí.
+[WAIT@]No me dieron el último fondo para mi investigación y el alquiler está por las nubes...
+[W@]Así que necesito dinero, y rápido.[D] ¿Te animas a comprarme un invento?","[@]Que esto quede entre nosotros, pero en realidad vivo aquí.
+[W@]No me concedieron la beca de investigación y el alquiler está por las nubes...
+[W@]Así que necesito dinero, y rápido.[D:3] ¿Te interesarían algunos de mis inventos?","[@]Não conta para ninguém, mas é que eu moro aqui.[W@]A verba da minha última pesquisa não saiu, e o aluguel tá ficando caro...[W@]Então eu preciso de dinheiro pra ontem.[D] Quer comprar uma invenção?","[@]Nie mów nikomu, ale tak właściwie, to tutaj mieszkam.[W@]Nie doszły do mnie ostatnio dotacje na badania, a czynsz coraz droższy...[W@]Więc potrzebuję kasy od zaraz.[D] Nie zechciałbyś zakupić jakiegoś wynalazku?","[@]Sag das niemandem, aber in Wahrheit wohne ich hier.[W@]Mein letztes Forschungs-Stipendium klappte nicht und die Mietpreise hier sind so hoch ...[W@]Also brauche ich dringend Geld.[D] Hast du vielleicht Interesse an einer meiner Erfindungen?","[@]Только никому не говорите, что я здесь живу.[W@]Мне так и не пришёл последний грант на исследование, а цены за аренду стремительно растут...[W@]Мне срочно нужны деньги.[D] Может, купите изобретение?","[@]Прошу, не кажіть нікому, що я тут взагалі живу.[W@]Мені так і не прийшов останній грант на дослідження,[D] а ціна за оренду стрімко зростає...[W@]Мені терміново потрібні гроші.[DELAY:4] Може, купите винахід?",[@]别跟别人说啊，其实我就住在这儿。[W@]上一笔研究经费没批下来，房租又越来越贵…[W@]所以现在我着急用钱呢，[D]要不要买个发明支持一下？
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_WEIRDTEACHER_4,"[@]Of course, of course...[W@]We all know that buying candy is more important than funding the future...","[@]Bien sûr, bien sûr... [W@]C’est sûr qu’acheter des friandises est plus important que financer l’avenir...","[@]Certo, ovviamente...[W@]Sanno tutti che comprare le caramelle è più importante di investire nel futuro...
+",[@]だろうな。[W@]さきがみえない　みらいよりも[BR]めのまえにある　アメだまのほうが　ほしいだろう？[DELAY][BR]そういうものさ。,"[@]물론이지, 물론...[W@]미래에 투자하는 것보다는 지금 당장의 사탕이 더 달콤하겠지...[W@]그럼... 이해하지.","[@]Claro, claro...
+[W@]Todos sabemos que comprar dulces es mucho más importante que financiar el futuro...","[@]Claro, claro...
+[W@]Es mejor gastarse el dinero en chuches que en el progreso científico...","[@]Ah, sim, claro...[W@]Todo mundo sabe que gastar com balas e doces é mais importante do que investir no futuro da ciência...","[@]No jasne, oczywiście...[W@]Wszyscy wiemy, że kupowanie słodyczy jest ważniejsze od fundowania przyszłości...","[@]Natürlich, natürlich ... [W@]Wir wissen doch alle, dass es wichtiger ist,  in Süßigkeiten zu investieren als in die Zukunft ...","[@]Ну да, ну да...[W@]Все мы знаем, что покупка конфет важнее вклада в будущее...","[@]Ну так, ну так...[W@]Усі ми знаємо,[DELAY:4] що купити цукерки важливіше,[DELAY:4] ніж інвестувати в майбутнє...",[@]当然了，当然了…[W@]我们都知道，买糖果可比资助未来重要多了…
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_WEIRDTEACHER_5,"[@]Please, drop in anytime.[W@]I'm always working on a new invention.",[@]N'hésite pas à repasser.[W@]Je travaille toujours sur de nouvelles inventions.,"[@]Torna quando vuoi.[W@]Sono sempre all'opera su nuove invenzioni.
+",[@]また　いつでも　きてくれ。[W@]いいものをつくっておくからな。　,[@]언제든 들러 줘.[W@]나의 발명을 향한 사랑은 멈추지 않으니까.,"[@]Por favor, visítame cuando quieras.
+[W@]Siempre estoy trabajando en algún invento nuevo.","[@]Pásate cuando quieras.
+[W@]Siempre estoy trabajando en algún invento nuevo.",[@]Volte quando quiser.[W@]Estou sempre trabalhando em novas invenções.,"[@]Proszę, wpadaj kiedy zechcesz.[W@]Zawsze pracuję nad jakimś nowym wynalazkiem.",[@]Komm gerne wieder vorbei.[W@]Ich arbeite ständig an neuen Erfindungen.,[@]Заглядывайте ко мне в любой момент.[W@]Я всегда работаю над новыми изобретениями.,"[@]Будь ласка, заглядайте до мене, як забажаєте.[W@]Я завжди працюю над новими винаходами.
+",[@]欢迎随时来串门。[W@]我会一直捣鼓新发明的。
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_WEIRDTEACHER_6,[@]I haven't made much progress since your last visit.[W@]Would you like to look at the old list?,[@]Je n'ai pas trop avancé depuis ta dernière visite.[W@]Est-ce que tu veux jeter un coup d'œil à la vieille liste ?,"[@]Non ho fatto molti progressi dall'ultima volta.[W@]Vuoi dare un'occhiata alla vecchia lista?
+",[@]あれから　はつめいが　すすんどらんのだよ。[W@]むかしの メニューをみるか？,"[@]그때 이후로는 별 진전이 없었어.[W@]자, 바뀐 거 하나 없는 카탈로그.","[@]No he hecho mucho progreso desde tu última visita.
+[W@]¿Te gustaría revisar la lista anterior?","[@]No he progresado mucho desde la última vez.
+[W@]¿Quieres echarle un vistazo a la lista anterior?",[@]Ainda não tive muito progresso desde a última vez.[W@]Quer dar uma olhada na lista antiga?,[@]Nie doszło tu do żadnego przełomu od czasu twojej ostatniej wizyty.[W@]Chciałbyś spojrzeć na starą listę?,[@]Seit unserer letzten Begegnung ist nicht viel passiert.[W@]Wie wäre ein Blick auf meine alte Liste?,"[@]За это время я, если честно, не сильно продвинулся.[W@]Может, присмотрите чего-то из старых изобретений?","[@]Я так нічого і не зробив з моменту нашої останньої зустрічі.
+[W@]Може, глянете на старі винаходи?",[@]自从你上次来之后，我就没什么进展。[W@]要不要再看看之前的旧清单？
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_WEIRDTEACHER_SPEAKER,Mysterious Teacher,Professeur mystérieux ,Professor Mistero,かわりものの　せんせい,수수께끼의 선생,Profesor misterioso,Profesor enigmático,Professor Misterioso,Dziwny Nauczyciel,Geheimnisvoller Lehrer,Загадочный учитель,Загадковий вчитель,神秘老师
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_WEIRDTEACHERTIMEMACHINE_0,"[@]Ahh, the Time Machine, right? [D]Thank you, thank you![W@]Using state of the art technology, I can bring this room back to its past state...[W@]Here, let me show you how. [D]Just take this switch and... [D]oh no![W@]I accidentally pushed it in!","[@]Ah, ma machine à remonter le temps t'intrigue ? [D]Merci, tu dois être un vrai connaisseur ![W@]Tu sais, en utilisant de la technologie de pointe, je peux restaurer cette salle à son état passé...[W@]Attends, laisse-moi te montrer. [D]Il faut juste actionner ce levier et... [D]Oh, c'est pas vrai ![W@]J'ai bien peur de l'avoir actionné par accident...","[@]Aaah, la Macchina del Tempo, giusto? [D]Grazie, grazie![W@]Grazie a tecnologia all'avanguardia, posso far tornare questa stanza a uno stato passato...[W@]E adesso [if party:plural]vi[else]ti[/if] farò vedere come. [D]Basta usare questo interruttore e... [D]oh no![W@]L'ho premuto per sbaglio!",[@]タイムマシンだね。[D][BR]ありがとう　たすかるよ。[W@]これをつかえば　さいしんぎじゅつで[BR]へやを　まえの　じょうたいに　もどせる。[W@]つかいかたを　せつめいするから　よくみておくんだよ。[BR]いいか　このスイッチを・・・[W@]あっ　しまった　つよくおしすぎちゃった。,"[@]아아, 타임머신?[D] 고마워, 고마워![W@]이 첨단 기술이라면, 이 방을 과거의 상태로 되돌릴 수 있을 거야... 여기, 내가 어떻게 하는지 보여주마.[D] 간단히 이 스위치를...[D] 아니, 안 돼![W@]실수로 눌러버렸어!","[@]Aah, la Máquina de tiempo, ¿verdad? [D]¡Gracias, muchas gracias![W@]Usando tecnología de punta, puedo devolver esta sala a su estado anterior...[W@]Mira, déjame mostrarte cómo. [D]Solo toma este interruptor y... [D]¡oh, no![W@]¡Lo presioné por accidente!","[@]Aah, ¿la Máquina del tiempo? [D]¡Gracias, hombre!
+[W@]Gracias a la tecnología de vanguardia, puedo devolver esta sala a su estado anterior...
+[W@]Toma, deja que te enseñe cómo. [D]Tienes que coger este interruptor y... [D]¡ay, no!
+[W@]¡Lo he pulsado por accidente!","[@]Ahh, a Máquina do tempo, não é? [D]Obrigado, obrigado![W@]Usando tecnologia de ponta, eu posso trazer esta sala para o seu estado anterior...[W@]Aqui, permita-me demonstar. [D]É só puxar esse botão, e... [D]Oh não![W@]Eu apertei ele por acidente!","[@]Ach, a więc Wechikuł Czasu? [D]Dziękuję, dziękuję![W@]Używając nowoczesnej technologii, mogę przywrócić ten pokój do jego poprzedniego stanu...[W@]Proszę, już pokazuję. [D]Wystarczy złapać za dźwignię... [D]o nie![W@]Nie chciałem pociągnąć tak mocno!","[@]Ach, die Zeitmaschine, richtig? [D]Danke, danke![W@]Mit modernster Technologie kann ich diesen Raum wieder in seinen Ursprungszustand versetzen ...[W@]Hier, ich zeig, wie das geht. [D]Nimm einfach den Schalter und ... [D]Oh nein, oh je![W@]Ich hab ihn aus Versehen umgelegt!","[@]А-а-а, машина времени? [D]Спасибо, спасибо![W@]Используя это передовое устройство, я могу вернуть эту комнату в её предыдущий вид...[W@]Вот, давай покажу, как она работает. [D]Просто нажми на этот выключатель, и... [D]Ой-ёй![W@]Я её случайно включил!","[@]А-а-а, машина часу? [D]Дякую, дякую![W@]Використовуючи цей передовий пристрій, я можу повернути цю кімнату в її попередній вигляд...[W@]Ось, давай покажу, як вона працює. [D]Просто натисніть на цей вимикач, і... [D]Ой![W@]Я випадково включив її!",[@]啊——时光机，对吧？[D]谢了，谢了！[W@]用这台最尖端的科技，\n我就能让这个房间回到它过去的状态…[W@]来，我演示给你看。\n[D]你拿好这个开关，然后…[D]糟了！[W@]我不小心把它摁下去了！
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_WEIRDTEACHERREALROCKET_0,"[@]Oh, the Real Rocket? [D]Thanks a million![W@]I helped develop this during my time at Duncan's Factory.[W@]This rocket ship is the real deal, I tell you![W@]It's got the power to send you into space![W@]Why, it could even help you get to this game's final boss![W@]Here, let me show you how to use it. [W@]Just take this remote... [D]press this button... [D]and...","[@]Ah, la Vraie fusée ? [D]Merci mille fois ![W@]J'ai aidé à développer ce bijou quand je travaillais encore à l'usine de Duncan.[W@]Je t'assure qu'il n'existe pas mieux que cette fusée, ça oui ![W@]Elle peut t'envoyer dans l'espace illico presto ![W@]Soyons fous, elle peut même t'emmener pour un aller simple vers le boss final du jeu ![W@]Regarde, je vais te montrer comment on l'utilise. [W@]Prends cette télécommande... [D]Appuie sur ce bouton... [D]Et...","[@]Oh, il Razzo vero? [D]Grazie un milione![W@]Ho partecipato al suo sviluppo mentre lavoravo alla Fabbrica di Duncan.[W@]Questo razzo è autentico, posso garantirlo![W@]È abbastanza potente da mandar[if party:plural]vi[else]ti[/if] nello spazio![W@]Potrebbe persino aiutar[if party:plural]vi[else]ti[/if] a raggiungere il boss finale di questo gioco![W@]Ora [if party:plural]vi[else]ti[/if] faccio vedere come si usa. [W@]Basta questo telecomando... [D]prem[if party:plural]ete[else]i[/if] questo pulsante... [D]e...",[@]ロケット（ほんもの）だね。[D][BR]ありがとう　たすかるよ。[W@]ダンカンこうじょうで　はたらいてたときに　かいはつした　ロケットだ。[W@]ほんもののブツだ　きをつけろよ。[W@]なんたって　きみを　うちゅうへと　つれていくような　しろものだ！[W@]これをつかえば　このゲームの　ラスボスに[BR]たどりつくことだって　できるだろう！[W@]ほら　かしてみ。[W@]いいか[D]　このボタンを・・・[D]おして・・・！,"[@]오, 진짜 로켓? [D]백만 번 고마워![W@]한창 던컨 공장에서 일할 때, 개발에 참여했었지.[W@]이 로켓이 진짜야![W@]저 우주 너머까지 날아갈 수 있을 정도로 강력하지![W@]어쩌면 이 게임의 최종 보스에게 가는 데에도 도움이 될지 모르지![W@]여기, 내가 어떻게 하는지 보여주마.[W@]간단히 이 원격장치를 들어서...[D] 이 버튼을 누르고... [D]그리고...","[@]Oh, ¿el Cohete real? [D]¡Mil gracias![W@]Yo ayudé a crear esto durante mi tiempo en la Fábrica de Duncan.[W@]Este cohete es de lo más auténtico, ¡te lo aseguro![W@]¡Tiene el poder de mandarte directo al espacio![W@]¡Incluso quizá hasta te ayude a llegar al jefe final del juego![W@]Deja mostrarte como se usa. [W@]Solo tomas este control... [D]presionas este botón... [D]y....","[@]Oh, ¿el Cohete de verdad? [D]¡Un millón de gracias!
+[W@]Colaboré en su desarrollo cuando trabajaba en la Fábrica Duncan.
+[W@]¡Este cohete es auténtico, te lo digo yo!
+[W@]¡Tiene potencia suficiente para enviarte al espacio!
+[W@]¡Es más, incluso podría ayudarte a llegar al jefe final de este juego!
+[W@]Deja que te enseñe cómo usarlo.
+[W@]Tú solo coge este mando... [D]pulsa este botón... [D]y...","[@]Oh, o Foguete Real? [D]Muitíssimo obrigado![W@]Eu ajudei a desenvolvê-lo durante a minha estadia na Fábrica Duncan.[W@]Esse foguete é de alto escalão![W@]Tem força suficiente para te mandar pro espaço![W@]Ora, pode até mesmo te ajudar a chegar no chefe final do jogo![W@]Aqui, deixa eu te mostrar como usa. [W@]É só puxar esse interruptor... [D]apertar esse botão... [D]e...","[@]Co, Prawdziwa Rakieta? [D]Dzięki wielkie![W@]Pomogłem ją stworzyć kiedy jescze pracowałem w Zakładach Duncana.[W@]Z tej rakiety jest porządny wahadłowiec, zapewniam![W@]Ma w sobie dość mocy, by zabrać was w kosmos![W@]A na upartego, mogłaby nawet zawieźć was do finałowego bossa![W@]Proszę, już pokazuję jak to działa. [W@]Po prostu bierzesz pilot... [D]wciskasz guzik... [D]i...","[@]Oh, die Echte Rakete? [D]Tausend Dank![W@]Während meiner Zeit in Duncans Fabrik hab ich bei der Entwicklung mitgeholfen.[W@]Diese Rakete ist ein echter Kracher, sag ich dir![W@]Sie ist kräftig genug, dich in All zu schießen![W@]Sie kann sogar dabei helfen, den Endboss vom Spiel zu besiegen![W@]Hier, ich zeige dir, wie man sie nutzt. [W@]Einfach die Fernsteuerung nehmen ... [D]den Knopf drücken ... [D]und ...","[@]А, настоящая ракета? [D]Огромнейшее спасибо![W@]Я помогал разрабатывать её, пока работал на заводе Дункана.[W@] Это самая настоящая космическая ракета, серьёзно![W@]Она может отправить тебя в космос![W@]Да что там в космос, она может довести тебя до финального босса этой игры![W@]Давай покажу, как её использовать. [W@]Итак, возьми этот пульт... [D]нажми на эту кнопку... [D]и...","[@]А-а, справжня ракета? [D]Дуже дякую!
+[W@]Я допомагав розробляти її, поки працював на заводі Дункана.
+[W@]Це справжнісінька космічна ракета, я серйозно!
+[W@]Вона може відправити тебе в космос!
+[W@]Та що там у космос — до фінального боса цієї гри!
+[W@]Давай покажу, як її використовувати.
+[W@]Візьми цей пульт... [D]натисни на цю кнопку... [D]і...",[@]噢，标准火箭？[D]万分感谢！[W@]我在邓肯工厂的时候参与过它的研发。[W@]我告诉你，这艘火箭飞船可是货真价实的！[W@]它有足够的力量把你送上太空！[W@]甚至能送你直达这个游戏的最终Boss那里！[W@]来，我给你演示一下怎么用。[W@]你拿好这个遥控器…[D]按下这个按钮…[D]然后…
+DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_WEIRDTEACHERREALROCKET_1,"[@]Oh... [D]I forgot it was still in my old backyard. [W@]Well, at least it was a success. [D]Sort of.","[@]Ah... [D]J'avais complètement oublié que j'avais laissé ça dans mon vieux jardin. [W@]Bon, je peux au moins me dire que c'était un succès... [D]Je crois.","[@]Oh... [D]Mi ero dimenticato che fosse nel giardino della mia vecchia casa. [W@]Be', almeno ha funzionato. [D]Più o meno.",[@]あっ　しまった。[D][BR]にわに　おきっぱなしだったんだ。[W@]だが　じじつとして　ロケットは[BR]うちゅうくうかんへと　とびさった。[D][BR]あるいみでは　だいせいこうだ。,"[@]아... [D]이게 내 옛날 뒷마당에 있다는 걸 깜빡하고 있었네.[W@]뭐, 적어도 성공이니까. [D]어느 정도는.","[@]Ay... [D]Olvidé que todavía sigue en el patio trasero de mi antigua casa.
+[W@]Bueno, al menos ha funcionado. [D]Más o menos.","[@]Ay... [D]Olvidé que todavía sigue en el patio trasero de mi antigua casa.
+[W@]Bueno, al menos ha funcionado. [D]Más o menos.","[@]Ah... [D]Esqueci que ele ainda estava no meu quintal antigo. [W@]Bem, pelo menos foi um sucesso. [D]Mais ou menos.","[@]Ta... [D]Zapomniałem, że zostawiłem ją w garażu. [W@]No cóż, przynajmniej zadziałała jak trzeba. [D]Jakby nie patrzeć.","[@]Oh ... [D]Ich vergaß, dass sie immer noch in meinem alten Garten ist. [W@]Na ja, man kann es immerhin als Erfolg verzeichnen. [D]Im weitesten Sinne zumindest.","[@]Н-да... [D]Я забыл, что она всё ещё во дворе у моего старого дома. [W@]Ну, хотя бы это был успех. [D]Вроде бы.","[@]Ах... [D]Я забув, що вона була у дворі біля мого старого будинку. [W@]Ну, хоча б це був успіх. [D]Начебто.",[@]呃…[D]我忘了它还在我老家的后院呢。[W@]不过，至少算是成功了。[D]应该吧。

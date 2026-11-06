@@ -1,67 +1,66 @@
 extends Area2D
 
-export (String) var dialog
-export (Array, PoolStringArray) var event_dialog
-export var appear_flag = ""
-export var disappear_flag = ""
-var player_turn = { 
+export (String) var dialog: String
+export (Array, PoolStringArray) var _all_dialog: Array
+export var appear_flag := ""
+export var disappear_flag := ""
+var player_turn := { 
 	"y": true, #Make "x" true if you want the player to turn left/right to face npc
 	"x": false #Make "y" true if you want the player to turn up/down to face npc
 }
 
 func _ready():
+	if dialog and (_all_dialog.empty() or _all_dialog[0][0] != ""):
+		_all_dialog.push_front(["", dialog])
 	set_process(false)
 
-func _process(delta):
-	if !global.cutscene and !global.inBattle and !uiManager.commandsMenuActive:
-		if check_flags():
-			start_cutscene()
-			set_process(false)
-		else:
-			set_process(false)
+func _process(_delta):
+	if uiManager.is_in_cutscene() or uiManager.is_in_battle() or uiManager.is_pause_menu_active():
+		return
+	if _check_flags():
+		_start_cutscene()
+		set_process(false)
+	else:
+		set_process(false)
 
-func set_dialog():
-	for flags in event_dialog:
-		var flag = flags[0]
-		var newdialog = flags[1]
-		if flag != "":
-			if globaldata.flags.has(flag):
-				if globaldata.flags[flag]:
-					dialog = newdialog
+# Similar in npc.gd
+func _get_right_dialog(mark_as_seen := false) -> String:
+	var ret := ""
+	var last_dialog_hash := ""
+	for i in _all_dialog.size():
+		var flag: String = _all_dialog[i][0]
+		if flag == "" or globaldata.flags.get(flag, false):
+			for j in range(1, _all_dialog[i].size()):
+				var cur_dialog: String = _all_dialog[i][j]
+				var dialog_hash := "%s:%s:%s:%s" % [get_path(), flag, j, cur_dialog]
+				if !globaldata.seen_dialogue_flags.get(dialog_hash, false) or j == _all_dialog[i].size() - 1:
+					ret = cur_dialog
+					last_dialog_hash = dialog_hash
+					break
+	if mark_as_seen and last_dialog_hash:
+		globaldata.seen_dialogue_flags[last_dialog_hash] = true
+	return ret
 
-func check_flags():
-	var flagOn = true
-	if appear_flag != "":
-		if globaldata.flags.has(appear_flag):
-			if globaldata.flags[appear_flag] == true:
-				flagOn = true
-			else:
-				flagOn = false
-	if disappear_flag != "":
-		if globaldata.flags.has(disappear_flag):
-			if globaldata.flags[disappear_flag] == true:
-				flagOn = false
-	return flagOn
+func _check_flags():
+	return globaldata.check_appear_disappear_flags(appear_flag, disappear_flag)
 
-func start_cutscene():
-	set_dialog()
-	global.persistPlayer.turn_to(self, true)
-	global.persistPlayer.pause()
-	global.cutscene = true
+func _start_cutscene():
+	global.get_player().try_to_turn(self)
+	global.get_player().pause()
+	uiManager.set_cutscene(true)
 	uiManager.toggle_black_bars(true)
 	$AudioStreamPlayer.play()
 	yield(get_tree().create_timer(1),"timeout")
-	global.set_dialog(dialog) 
-	uiManager.open_dialogue_box()
-	global.cutscene = false
+	uiManager.open_dialogue_box_and_unpause(_get_right_dialog(true))
+	uiManager.set_cutscene(false)
 
 func _on_Door_NPC_body_entered(body):
-	if body == global.persistPlayer:
-		if dialog != "":
-			if check_flags():
-				#if !global.cutscene and !global.inBattle:
-				print("yippie")
-				set_process(true)
-			else:
-				#start checking when player becomes unpaused again
-				set_process(true)
+	if body != global.get_player():
+		return
+	if _get_right_dialog() != "":
+		if _check_flags(): # Isn't this check useless now???
+			#if !uiManager.is_in_cutscene() and !uiManager.is_in_battle():
+			set_process(true)
+		else:
+			#start checking when player becomes unpaused again
+			set_process(true)

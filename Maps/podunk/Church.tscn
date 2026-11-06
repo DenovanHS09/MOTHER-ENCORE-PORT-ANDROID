@@ -1,10 +1,10 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://Graphics/Rooms/Podunk/Podunk_Church.png" type="Texture" id=1]
 [ext_resource path="res://Graphics/Tilesets/TilPodunkChurch.png" type="Texture" id=2]
 [ext_resource path="res://Nodes/Overworld/camarea.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Nodes/Overworld/Door.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Tilesets/PodunkInterior.tres" type="TileSet" id=5]
+[ext_resource path="res://Tilesets/Interior.tres" type="TileSet" id=5]
 [ext_resource path="res://Graphics/Objects/Doors/Church_Door.png" type="Texture" id=6]
 [ext_resource path="res://Nodes/Reusables/npc.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Graphics/Rooms/Podunk/Podunk_Church_Backroom_Top.png" type="Texture" id=8]
@@ -14,9 +14,10 @@
 [ext_resource path="res://Nodes/Reusables/flag landmarks.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Nodes/Reusables/CutsceneArea.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Nodes/Overworld/MusicChanger.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Scripts/Main/room.gd" type="Script" id=15]
+[ext_resource path="res://Scripts/Main/RoomTypes/AreaRoom.gd" type="Script" id=15]
 [ext_resource path="res://Audio/Sound effects/shrekblast.mp3" type="AudioStream" id=16]
 [ext_resource path="res://Nodes/Reusables/stepping sounds.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Graphics/Tilesets/TilTrainStation.png" type="Texture" id=18]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 8, 16, 56, 16, 56, 32, 8, 32 )
@@ -57,8 +58,8 @@ points = PoolVector2Array( 32, 32, 12, 32, 12, 10, 32, 10 )
 0/tile_mode = 0
 0/occluder_offset = Vector2( 0, 0 )
 0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, -16 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 0/shape = SubResource( 1 )
 0/shape_one_way = false
 0/shape_one_way_margin = 1.0
@@ -67,7 +68,7 @@ points = PoolVector2Array( 32, 32, 12, 32, 12, 10, 32, 10 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 0/z_index = 0
 1/name = "Chair MiddleLeft"
@@ -78,8 +79,8 @@ points = PoolVector2Array( 32, 32, 12, 32, 12, 10, 32, 10 )
 1/tile_mode = 0
 1/occluder_offset = Vector2( 0, 0 )
 1/navigation_offset = Vector2( 0, 0 )
-1/shape_offset = Vector2( 0, -16 )
-1/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 1/shape = SubResource( 2 )
 1/shape_one_way = false
 1/shape_one_way_margin = 1.0
@@ -88,7 +89,7 @@ points = PoolVector2Array( 32, 32, 12, 32, 12, 10, 32, 10 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 2 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 1/z_index = 0
 2/name = "Chair BottomLeft"
@@ -99,8 +100,8 @@ points = PoolVector2Array( 32, 32, 12, 32, 12, 10, 32, 10 )
 2/tile_mode = 0
 2/occluder_offset = Vector2( 0, 0 )
 2/navigation_offset = Vector2( 0, 0 )
-2/shape_offset = Vector2( 0, -16 )
-2/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 2/shape = SubResource( 3 )
 2/shape_one_way = false
 2/shape_one_way_margin = 1.0
@@ -109,7 +110,7 @@ points = PoolVector2Array( 32, 32, 12, 32, 12, 10, 32, 10 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 3 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 2/z_index = 0
 3/name = "Chair TopRight"
@@ -120,8 +121,8 @@ points = PoolVector2Array( 32, 32, 12, 32, 12, 10, 32, 10 )
 3/tile_mode = 0
 3/occluder_offset = Vector2( 0, 0 )
 3/navigation_offset = Vector2( 0, 0 )
-3/shape_offset = Vector2( 0, -16 )
-3/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+3/shape_offset = Vector2( 0, 0 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 3/shape = SubResource( 4 )
 3/shape_one_way = false
 3/shape_one_way_margin = 1.0
@@ -130,7 +131,7 @@ points = PoolVector2Array( 32, 32, 12, 32, 12, 10, 32, 10 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 4 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 3/z_index = 0
 4/name = "Chair MiddleRight"
@@ -141,8 +142,8 @@ points = PoolVector2Array( 32, 32, 12, 32, 12, 10, 32, 10 )
 4/tile_mode = 0
 4/occluder_offset = Vector2( 0, 0 )
 4/navigation_offset = Vector2( 0, 0 )
-4/shape_offset = Vector2( 0, -16 )
-4/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+4/shape_offset = Vector2( 0, 0 )
+4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 4/shape = SubResource( 5 )
 4/shape_one_way = false
 4/shape_one_way_margin = 1.0
@@ -151,7 +152,7 @@ points = PoolVector2Array( 32, 32, 12, 32, 12, 10, 32, 10 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 5 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 4/z_index = 0
 5/name = "Chair BottomRight"
@@ -162,8 +163,8 @@ points = PoolVector2Array( 32, 32, 12, 32, 12, 10, 32, 10 )
 5/tile_mode = 0
 5/occluder_offset = Vector2( 0, 0 )
 5/navigation_offset = Vector2( 0, 0 )
-5/shape_offset = Vector2( 0, -16 )
-5/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+5/shape_offset = Vector2( 0, 0 )
+5/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 5/shape = SubResource( 6 )
 5/shape_one_way = false
 5/shape_one_way_margin = 1.0
@@ -172,7 +173,7 @@ points = PoolVector2Array( 32, 32, 12, 32, 12, 10, 32, 10 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 6 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 5/z_index = 0
 6/name = "Stand"
@@ -183,8 +184,8 @@ points = PoolVector2Array( 32, 32, 12, 32, 12, 10, 32, 10 )
 6/tile_mode = 0
 6/occluder_offset = Vector2( 0, 0 )
 6/navigation_offset = Vector2( 0, 0 )
-6/shape_offset = Vector2( 0, -16 )
-6/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+6/shape_offset = Vector2( 0, 0 )
+6/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 6/shape = SubResource( 7 )
 6/shape_one_way = false
 6/shape_one_way_margin = 1.0
@@ -193,7 +194,7 @@ points = PoolVector2Array( 32, 32, 12, 32, 12, 10, 32, 10 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 7 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 6/z_index = 0
 7/name = "Crate1"
@@ -204,8 +205,8 @@ points = PoolVector2Array( 32, 32, 12, 32, 12, 10, 32, 10 )
 7/tile_mode = 0
 7/occluder_offset = Vector2( 0, 0 )
 7/navigation_offset = Vector2( 0, 0 )
-7/shape_offset = Vector2( 0, -16 )
-7/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+7/shape_offset = Vector2( 0, 0 )
+7/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 7/shape = SubResource( 10 )
 7/shape_one_way = false
 7/shape_one_way_margin = 1.0
@@ -214,7 +215,7 @@ points = PoolVector2Array( 32, 32, 12, 32, 12, 10, 32, 10 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 10 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 7/z_index = 0
 8/name = "Crate2"
@@ -225,8 +226,8 @@ points = PoolVector2Array( 32, 32, 12, 32, 12, 10, 32, 10 )
 8/tile_mode = 0
 8/occluder_offset = Vector2( 0, 0 )
 8/navigation_offset = Vector2( 0, 0 )
-8/shape_offset = Vector2( 0, -16 )
-8/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+8/shape_offset = Vector2( 0, 0 )
+8/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 8/shape = SubResource( 11 )
 8/shape_one_way = false
 8/shape_one_way_margin = 1.0
@@ -235,7 +236,7 @@ points = PoolVector2Array( 32, 32, 12, 32, 12, 10, 32, 10 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 11 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 8/z_index = 0
 9/name = "Crate3"
@@ -246,8 +247,8 @@ points = PoolVector2Array( 32, 32, 12, 32, 12, 10, 32, 10 )
 9/tile_mode = 0
 9/occluder_offset = Vector2( 0, 0 )
 9/navigation_offset = Vector2( 0, 0 )
-9/shape_offset = Vector2( 0, -16 )
-9/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+9/shape_offset = Vector2( 0, 0 )
+9/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 9/shape = SubResource( 12 )
 9/shape_one_way = false
 9/shape_one_way_margin = 1.0
@@ -256,7 +257,7 @@ points = PoolVector2Array( 32, 32, 12, 32, 12, 10, 32, 10 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 12 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 9/z_index = 0
 
@@ -323,12 +324,297 @@ extents = Vector2( 56, 48 )
 [sub_resource type="RectangleShape2D" id=19]
 extents = Vector2( 16, 41 )
 
+[sub_resource type="ConvexPolygonShape2D" id=20]
+points = PoolVector2Array( 0, 7.162, 19.0275, 7.162, 19.0275, 16, 0, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=21]
+points = PoolVector2Array( 32, 16, 14.6738, 16, 14.6738, 7.34669, 32, 7.34669 )
+
+[sub_resource type="ConvexPolygonShape2D" id=27]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=28]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=29]
+points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=30]
+points = PoolVector2Array( 42.2667, 47.8513, 4.82324, 47.8513, 4.82324, 37.8509, 42.2667, 37.8509 )
+
+[sub_resource type="ConvexPolygonShape2D" id=24]
+points = PoolVector2Array( 3.94748, 21.3967, 18.0132, 21.3967, 18.0132, 30.7738, 3.94748, 30.7738 )
+
+[sub_resource type="ConvexPolygonShape2D" id=25]
+points = PoolVector2Array( 32, 80, 13.0338, 80, 3.99161, 10.8804, 32, 10.8804 )
+
+[sub_resource type="TileSet" id=26]
+1/name = "Sign"
+1/texture = ExtResource( 18 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 128, 32, 32, 32 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
+2/name = "Kiosk"
+2/texture = ExtResource( 18 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 160, 64, 64, 64 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape_one_way = false
+2/shape_one_way_margin = 0.0
+2/shapes = [  ]
+2/z_index = 0
+3/name = "Doors"
+3/texture = ExtResource( 18 )
+3/tex_offset = Vector2( 0, 0 )
+3/modulate = Color( 1, 1, 1, 1 )
+3/region = Rect2( 160, 0, 48, 48 )
+3/tile_mode = 0
+3/occluder_offset = Vector2( 0, 0 )
+3/navigation_offset = Vector2( 0, 0 )
+3/shape_offset = Vector2( 0, 0 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+3/shape = SubResource( 30 )
+3/shape_one_way = false
+3/shape_one_way_margin = 1.0
+3/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 30 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+3/z_index = 0
+4/name = "Carpet"
+4/texture = ExtResource( 18 )
+4/tex_offset = Vector2( 0, 0 )
+4/modulate = Color( 1, 1, 1, 1 )
+4/region = Rect2( 128, 0, 32, 32 )
+4/tile_mode = 0
+4/occluder_offset = Vector2( 0, 0 )
+4/navigation_offset = Vector2( 0, 0 )
+4/shape_offset = Vector2( 0, 0 )
+4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+4/shape_one_way = false
+4/shape_one_way_margin = 0.0
+4/shapes = [  ]
+4/z_index = 0
+5/name = "Clock"
+5/texture = ExtResource( 18 )
+5/tex_offset = Vector2( 0, 0 )
+5/modulate = Color( 1, 1, 1, 1 )
+5/region = Rect2( 96, 0, 32, 32 )
+5/tile_mode = 0
+5/occluder_offset = Vector2( 0, 0 )
+5/navigation_offset = Vector2( 0, 0 )
+5/shape_offset = Vector2( 0, 0 )
+5/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+5/shape_one_way = false
+5/shape_one_way_margin = 0.0
+5/shapes = [  ]
+5/z_index = 0
+6/name = "Trash Bin"
+6/texture = ExtResource( 18 )
+6/tex_offset = Vector2( 0, 0 )
+6/modulate = Color( 1, 1, 1, 1 )
+6/region = Rect2( 64, 0, 32, 32 )
+6/tile_mode = 0
+6/occluder_offset = Vector2( 0, 0 )
+6/navigation_offset = Vector2( 0, 0 )
+6/shape_offset = Vector2( 0, 0 )
+6/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+6/shape = SubResource( 24 )
+6/shape_one_way = false
+6/shape_one_way_margin = 1.0
+6/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 24 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+6/z_index = 0
+7/name = "Seats"
+7/texture = ExtResource( 18 )
+7/tex_offset = Vector2( 0, 0 )
+7/modulate = Color( 1, 1, 1, 1 )
+7/region = Rect2( 64, 64, 32, 80 )
+7/tile_mode = 0
+7/occluder_offset = Vector2( 0, 0 )
+7/navigation_offset = Vector2( 0, 0 )
+7/shape_offset = Vector2( 0, 0 )
+7/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+7/shape = SubResource( 25 )
+7/shape_one_way = false
+7/shape_one_way_margin = 1.0
+7/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 25 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+7/z_index = 0
+8/name = "Air Conditioner"
+8/texture = ExtResource( 18 )
+8/tex_offset = Vector2( 0, 0 )
+8/modulate = Color( 1, 1, 1, 1 )
+8/region = Rect2( 224, 96, 32, 48 )
+8/tile_mode = 0
+8/occluder_offset = Vector2( 0, 0 )
+8/navigation_offset = Vector2( 0, 0 )
+8/shape_offset = Vector2( 0, 0 )
+8/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+8/shape_one_way = false
+8/shape_one_way_margin = 0.0
+8/shapes = [  ]
+8/z_index = 0
+10/name = "Stanchion1"
+10/texture = ExtResource( 18 )
+10/tex_offset = Vector2( 0, 0 )
+10/modulate = Color( 1, 1, 1, 1 )
+10/region = Rect2( 128, 128, 32, 16 )
+10/tile_mode = 0
+10/occluder_offset = Vector2( 0, 0 )
+10/navigation_offset = Vector2( 0, 0 )
+10/shape_offset = Vector2( 0, 0 )
+10/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+10/shape = SubResource( 20 )
+10/shape_one_way = false
+10/shape_one_way_margin = 1.0
+10/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 20 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+10/z_index = 0
+11/name = "Stanchion2"
+11/texture = ExtResource( 18 )
+11/tex_offset = Vector2( 0, 0 )
+11/modulate = Color( 1, 1, 1, 1 )
+11/region = Rect2( 128, 96, 32, 16 )
+11/tile_mode = 0
+11/occluder_offset = Vector2( 0, 0 )
+11/navigation_offset = Vector2( 0, 0 )
+11/shape_offset = Vector2( 0, 0 )
+11/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+11/shape = SubResource( 21 )
+11/shape_one_way = false
+11/shape_one_way_margin = 1.0
+11/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 21 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+11/z_index = 0
+16/name = "Front Walls"
+16/texture = ExtResource( 18 )
+16/tex_offset = Vector2( 0, 0 )
+16/modulate = Color( 1, 1, 1, 1 )
+16/region = Rect2( 224, 0, 32, 96 )
+16/tile_mode = 2
+16/autotile/icon_coordinate = Vector2( 0, 0 )
+16/autotile/tile_size = Vector2( 16, 16 )
+16/autotile/spacing = 0
+16/autotile/occluder_map = [  ]
+16/autotile/navpoly_map = [  ]
+16/autotile/priority_map = [  ]
+16/autotile/z_index_map = [  ]
+16/occluder_offset = Vector2( 0, 0 )
+16/navigation_offset = Vector2( 0, 0 )
+16/shape_offset = Vector2( 0, 0 )
+16/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+16/shape = SubResource( 27 )
+16/shape_one_way = false
+16/shape_one_way_margin = 1.0
+16/shapes = [ {
+"autotile_coord": Vector2( 0, 2 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 27 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 5 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 28 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 1, 5 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 29 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+16/z_index = 0
+18/name = "TilTrainStation.png 18"
+18/texture = ExtResource( 18 )
+18/tex_offset = Vector2( 0, 0 )
+18/modulate = Color( 1, 1, 1, 1 )
+18/region = Rect2( 64, 32, 32, 32 )
+18/tile_mode = 2
+18/autotile/icon_coordinate = Vector2( 0, 0 )
+18/autotile/tile_size = Vector2( 16, 16 )
+18/autotile/spacing = 0
+18/autotile/occluder_map = [  ]
+18/autotile/navpoly_map = [  ]
+18/autotile/priority_map = [  ]
+18/autotile/z_index_map = [  ]
+18/occluder_offset = Vector2( 0, 0 )
+18/navigation_offset = Vector2( 0, 0 )
+18/shape_offset = Vector2( 0, 0 )
+18/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+18/shape_one_way = false
+18/shape_one_way_margin = 0.0
+18/shapes = [  ]
+18/z_index = 0
+19/name = "Walls Side"
+19/texture = ExtResource( 18 )
+19/tex_offset = Vector2( 0, 0 )
+19/modulate = Color( 1, 1, 1, 1 )
+19/region = Rect2( 0, 0, 64, 144 )
+19/tile_mode = 1
+19/autotile/bitmask_mode = 0
+19/autotile/bitmask_flags = [  ]
+19/autotile/icon_coordinate = Vector2( 0, 0 )
+19/autotile/tile_size = Vector2( 16, 16 )
+19/autotile/spacing = 0
+19/autotile/occluder_map = [  ]
+19/autotile/navpoly_map = [  ]
+19/autotile/priority_map = [  ]
+19/autotile/z_index_map = [  ]
+19/autotile/fallback_mode = 0
+19/occluder_offset = Vector2( 0, 0 )
+19/navigation_offset = Vector2( 0, 0 )
+19/shape_offset = Vector2( 0, 0 )
+19/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+19/shape_one_way = false
+19/shape_one_way_margin = 0.0
+19/shapes = [  ]
+19/z_index = 0
+
 [node name="Podunk Church" type="Node2D"]
 script = ExtResource( 15 )
-player_map_offset = Vector2( 103, 408 )
-region_name = "Podunk"
-map_item = "MapPodunk"
-is_sub_area = true
+_player_map_offset = Vector2( 103, 408 )
+_region_name = "Podunk"
+_is_sub_area = true
 
 [node name="PodunkChurchBackroomBottom" type="Sprite" parent="."]
 position = Vector2( -8, -400 )
@@ -343,6 +629,9 @@ tile_set = SubResource( 8 )
 cell_size = Vector2( 16, 16 )
 cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
 cell_y_sort = true
+show_collision = true
+collision_layer = 573
+collision_mask = 0
 format = 1
 tile_data = PoolIntArray( -1441794, 9, 0, -1507328, 7, 0, -1376260, 8, 0, -458753, 6, 0, -327685, 0, 0, -393215, 3, 0, -196613, 1, 0, -262143, 4, 0, -65542, 2, 0, -131070, 5, 0 )
 
@@ -350,11 +639,7 @@ tile_data = PoolIntArray( -1441794, 9, 0, -1507328, 7, 0, -1376260, 8, 0, -45875
 position = Vector2( 40, -136 )
 sprite = "Npcs/4dir/priest"
 dialog = "Podunk/pierre"
-event_dialog = [ PoolStringArray( "church_door_opened", "Podunk/pierre_2" ), PoolStringArray( "church_exited", "Podunk/pierre" ) ]
-player_turn = {
-"x": true,
-"y": true
-}
+_all_dialog = [ PoolStringArray( "church_door_opened", "Podunk/pierre_2" ), PoolStringArray( "church_exited", "Podunk/pierre" ) ]
 staring = true
 
 [node name="Flag Landmark" parent="Objects" instance=ExtResource( 12 )]
@@ -380,6 +665,8 @@ anims/Open = SubResource( 14 )
 anims/RESET = SubResource( 15 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Objects/Flag Landmark/Position2D/Door"]
+collision_layer = 1597
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/Flag Landmark/Position2D/Door/StaticBody2D"]
 position = Vector2( 0, 28 )
@@ -443,6 +730,8 @@ dir = Vector2( 0, -1 )
 position = Vector2( 2, -144 )
 
 [node name="Collisions" type="StaticBody2D" parent="."]
+collision_layer = 1597
+collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collisions"]
 polygon = PoolVector2Array( 16, 32, -16, 32, -16, 16, -104, 16, -64, -144, -16, -144, -16, -184, 16, -184, 16, -144, 64, -144, 104, 16, 16, 16, 16, 40, 112, 40, 112, -200, -112, -200, -112, 40, 16, 40 )
@@ -503,6 +792,11 @@ exiting_sound = "wood"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stepping Sounds/Carpet"]
 position = Vector2( 0, 31 )
 shape = SubResource( 19 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource( 26 )
+cell_size = Vector2( 16, 16 )
+format = 1
 
 [editable path="Doors/Door3"]
 [editable path="Doors/Door4"]

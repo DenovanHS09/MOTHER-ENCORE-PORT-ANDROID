@@ -6,6 +6,7 @@ code = "shader_type canvas_item;
 render_mode blend_mix;
 
 uniform float opacity = 1.0;
+uniform int blending = 0;
 uniform vec2 screen_size = vec2(320, 180);
 
 // SCROLL
@@ -54,6 +55,42 @@ vec2 distort(vec2 p) {
 	r *= effect_scale;
 	float phi = atan(p.y, p.x);
 	return vec2(r*cos(phi)+.5,r*sin(phi)+.5);
+}
+
+
+vec4 apply_blending(vec4 base, vec4 blend, int type){
+	if (type == 1) { // SCREEN
+		return 1.0 - (1.0 - base) * (1.0 - blend);
+	} else if (type == 2) { // MULTIPLY
+		return 1.0 - (1.0 - base) * (1.0 - blend);
+	} else if (type == 3) { // DARKEN
+		return min(base, blend);
+	} else if (type == 4) { // LIGHTEN
+		return max(base, blend);
+	} else if (type == 5) { // DIFFERENCE
+		return abs(vec4(base.rgb,0) - vec4(blend.rgb,0)) + vec4(0,0,0,blend.a);
+	} else if (type == 6) { // EXCLUSION
+		return (base + blend - 2.0 * base * blend) + vec4(0,0,0,blend.a);
+	} else if (type == 7) { // OVERLAY
+		vec4 limit = step(0.5, base);
+		return mix(2.0 * base * blend, 1.0 - 2.0 * (1.0 - base) * (1.0 - blend), limit);
+	} else if (type == 8) { // HARD LIGHT
+		vec4 limit = step(0.5, blend);
+		return mix(2.0 * base * blend, 1.0 - 2.0 * (1.0 - base) * (1.0 - blend), limit);
+	} else if (type == 9) { // SOFT LIGHT
+		vec4 limit = step(0.5, blend);
+		return mix(2.0 * base * blend + base * base * (1.0 - 2.0 * blend), sqrt(base) * (2.0 * blend - 1.0) + (2.0 * base) * (1.0 - blend), limit);
+	} else if (type == 10) { // COLOR DODGE
+		return base / (1.0 - blend);
+	} else if (type == 11) { // LINEAR DODGE
+		return base + blend;
+	} else if (type == 12) { // COLOR BURN
+		return 1.0 - (1.0 - base) / blend;
+	} else if (type == 13) { // LINEAR BURN
+		return base + blend - 1.0;
+	} else {
+		return 1.0 - (1.0 - base) * (1.0 - blend);
+	}
 }
 
  void fragment(){
@@ -145,14 +182,39 @@ vec2 distort(vec2 p) {
 		}
 	}
 	
+	
 	// Apply all distortions!
 	COLOR = (textureLod(TEXTURE, vec2(newuv.x + diff_x, newuv.y + diff_y), 0));
 	
+	
 	// PALETTE SHIFTING
-	if (palette_shifting) {
-		COLOR = vec4(texture(palette, vec2(COLOR.r, mod(-TIME * palette_shifting_speed * 1.0 / float(palette_anim_frame_count), 1.0))).rgb, COLOR.a);
+	
+	
+	if (blending <= 0) {
+		if (palette_shifting) {
+			COLOR = vec4(texture(palette, vec2(COLOR.r, mod(-TIME * palette_shifting_speed * 1.0 / float(palette_anim_frame_count), 1.0))).rgb, COLOR.a);
+		}
+	} else if (blending > 0) {
+		//Assuming the paper sprite is on the 'texture' of your Sprite2D or TetureRect
+		vec4 blend = texture(TEXTURE, newuv + vec2(diff_x,diff_y));
+		//Gets the colour of the screen at the same pixel for the base.
+		vec4 base = texture(SCREEN_TEXTURE, SCREEN_UV);
+
+		// To preview how it looks like.
+		vec4 final_color = apply_blending(base, blend, blending);
+		//final_color = (textureLod(TEXTURE, vec2(newuv.x + diff_x, newuv.y + diff_y), 0));
+		if (palette_shifting) {
+			COLOR = final_color + vec4(texture(palette, vec2(COLOR.r, mod(-TIME * palette_shifting_speed * 1.0 / float(palette_anim_frame_count), 1.0))).rgb, COLOR.a);
+		} else {
+			COLOR = final_color;
+		}
+		
+
 	}
+	
 	
 	// OPACITY
 	COLOR.a *= opacity;
+	
+	
 }"

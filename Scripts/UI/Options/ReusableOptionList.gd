@@ -1,7 +1,5 @@
 extends PanelContainer
-
-signal selected (cursor_index)
-signal cancel
+class_name ReusableOptionList
 
 export var max_visible_items: int = 10
 export var scrolling_threshold: int = 2
@@ -9,7 +7,8 @@ export var scrolling_threshold: int = 2
 var _items_count: int
 var _scroll_position: int = 0
 
-var _items_list
+var _items_list: Array
+var _back_callback: FuncRef
 
 export (bool) var hide_on_select = true
 export (bool) var can_cancel = true
@@ -26,12 +25,14 @@ func _ready():
 	if content:
 		open(content)
 
-func open(items_list, cur_value = "", naming_func: FuncRef = null, enabled_func: FuncRef = null):
+func open(items_list: Array, back_cb: FuncRef = null, cur_value := "", naming_func: FuncRef = null, enabled_func: FuncRef = null):
 	self.show()
 
 	_items_list = items_list
 
 	_items_count = items_list.size()
+
+	_back_callback = back_cb
 
 	for i in list.get_child_count():
 		var cur_label = list.get_child(i)
@@ -52,10 +53,10 @@ func open(items_list, cur_value = "", naming_func: FuncRef = null, enabled_func:
 				cur_label.text = str(items_list[i])
 			
 			if enabled_func and not enabled_func.call_funcv([items_list[i]]):
-				cur_label.add_color_override("font_color", Color.darkgray)
+				cur_label.add_color_override("font_color", uiManager.get_flavor_color(3))
 			else:
 				cur_label.add_color_override("font_color", Color.white)
-
+			
 			if items_list[i] == cur_value:
 				cur_index = i
 
@@ -100,12 +101,14 @@ func _on_arrow_selected(cursor_index):
 	if hide_on_select:
 		_cursor.hide()
 		self.hide()
-	emit_signal("selected", cursor_index, _items_list[cursor_index])
+	if _back_callback:
+		_back_callback.call_func(true, cursor_index, _items_list[cursor_index])
 
 func _on_arrow_cancel():
 	_cursor.on = false
 	if hide_on_select:
 		_cursor.hide()
 		self.hide()
-	emit_signal("cancel")
+	if _back_callback:
+		_back_callback.call_func(false, _cursor.cursor_index, _items_list[_cursor.cursor_index])
 

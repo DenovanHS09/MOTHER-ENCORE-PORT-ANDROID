@@ -94,5 +94,3 @@ stretch_mode = 2
 reset_on_save = false
 anims/Melody = SubResource( 5 )
 anims/RESET = SubResource( 4 )
-
-[node name="Tween" type="Tween" parent="."]

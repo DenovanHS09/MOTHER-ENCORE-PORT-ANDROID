@@ -1,29 +1,24 @@
 name: CURVEBALL_NAME
 description: CURVEBALL_DESC
+description_ext: SKILLS_REQUIRES_BAT
 article: CURVEBALL_ART
-skillType: skill
-actionType: 0
-useCases: 1
-damageType: normal
-targetType: 6
-damage: -10
-variance: 17
+skill_type: skill
+crit_chance: 5
+action_type: 0 # Damage
+use_cases: 1 # Battle only
+damage_type: normal
+target_type: 6 # All enemies
+damage_or_heal: 10
+variance: 5
 priority: 0
-statusEffects: []
-statusHeals: []
-critChance: 0
-failChance: 0
-ppCost: 0
-hpCost: 0
-hitEffect: bash
-preHitEffect: ''
-screenEffect: ''
-userAnim: bat
-userHideAnim: idleBack
-useSound: swing
-hitSound: bash
-required_weapon:
-- BatPlastic
-- BatWooden
-- BatAluminum
-- BatHank
+miss_chance: 0
+pp_cost: 0
+hp_cost: 0
+sp_cost: 3
+hit_effect: bash
+pre_hit_effect: ""
+user_anim: bat
+user_hide_anim: idleBack
+use_sound: curveball
+hit_sound: bash
+required_weapon: bat

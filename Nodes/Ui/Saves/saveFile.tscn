@@ -44,49 +44,49 @@ grow_horizontal = 2
 custom_constants/separation = 5
 
 [node name="Play" type="Label" parent="HBoxContainer"]
-margin_right = 68.0
+margin_right = 60.0
 margin_bottom = 11.0
 custom_fonts/font = ExtResource( 2 )
 text = "SAVE_PLAY"
 
 [node name="Spacer" type="Label" parent="HBoxContainer"]
-margin_left = 73.0
-margin_right = 73.0
+margin_left = 65.0
+margin_right = 65.0
 margin_bottom = 11.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 2 )
 
 [node name="Copy" type="Label" parent="HBoxContainer"]
-margin_left = 78.0
-margin_right = 147.0
+margin_left = 70.0
+margin_right = 131.0
 margin_bottom = 11.0
 custom_fonts/font = ExtResource( 2 )
 text = "SAVE_COPY"
 
 [node name="Spacer2" type="Label" parent="HBoxContainer"]
-margin_left = 152.0
-margin_right = 152.0
+margin_left = 136.0
+margin_right = 136.0
 margin_bottom = 11.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 2 )
 
 [node name="Delete" type="Label" parent="HBoxContainer"]
-margin_left = 157.0
-margin_right = 238.0
+margin_left = 141.0
+margin_right = 212.0
 margin_bottom = 11.0
 custom_fonts/font = ExtResource( 2 )
 text = "SAVE_DELETE"
 
 [node name="Spacer3" type="Label" parent="HBoxContainer"]
-margin_left = 243.0
-margin_right = 243.0
+margin_left = 217.0
+margin_right = 217.0
 margin_bottom = 11.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 2 )
 
 [node name="Options" type="Label" parent="HBoxContainer"]
-margin_left = 248.0
-margin_right = 347.0
+margin_left = 222.0
+margin_right = 309.0
 margin_bottom = 11.0
 custom_fonts/font = ExtResource( 2 )
 text = "SAVE_SETTINGS"
@@ -100,12 +100,16 @@ custom_fonts/font = ExtResource( 1 )
 text = "Player"
 
 [node name="Level" type="Label" parent="."]
-margin_left = 101.0
-margin_top = 14.0
-margin_right = 136.0
-margin_bottom = 28.0
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -159.0
+margin_top = 5.0
+margin_right = -124.0
+margin_bottom = 19.0
+size_flags_horizontal = 8
 custom_fonts/font = ExtResource( 2 )
 text = "LV100"
+align = 2
 
 [node name="Title" type="Label" parent="."]
 anchor_left = 1.0

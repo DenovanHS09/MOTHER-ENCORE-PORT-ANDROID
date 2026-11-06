@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Nodes/Reusables/npc.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Nodes/Overworld/Objects/Openable Door.tscn" type="PackedScene" id=2]
@@ -10,17 +10,6 @@
 [ext_resource path="res://Nodes/Reusables/atm.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Nodes/Reusables/stepping sounds.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Nodes/Overworld/camarea.tscn" type="PackedScene" id=12]
-
-[sub_resource type="Animation" id=48]
-resource_name = "PhoneRing"
-
-[sub_resource type="Animation" id=3]
-length = 0.001
-
-[sub_resource type="Animation" id=1]
-resource_name = "cutscene"
-length = 4.0
-step = 0.0666667
 
 [sub_resource type="RectangleShape2D" id=50]
 extents = Vector2( 476, 440 )
@@ -43,10 +32,9 @@ extents = Vector2( 40, 28 )
 [node name="Podunk Hospital" type="Node2D"]
 position = Vector2( 0, 8 )
 script = ExtResource( 5 )
-player_map_offset = Vector2( 96, 260 )
-region_name = "Podunk"
-map_item = "MapPodunk"
-is_sub_area = true
+_player_map_offset = Vector2( 96, 260 )
+_region_name = "Podunk"
+_is_sub_area = true
 
 [node name="Ground1" type="TileMap" parent="."]
 tile_set = ExtResource( 4 )
@@ -63,151 +51,145 @@ cell_size = Vector2( 16, 16 )
 show_collision = true
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( -3342345, 14, 0, -3342340, 9, 0, -3407868, 9, 0, -3407862, 14, 1, -3407844, 14, 0, -3407840, 9, 0, -3407834, 9, 0, -3407829, 14, 1, -3276809, 14, 65536, -3276807, 170, 0, -3342334, 173, 0, -3342326, 14, 65537, -3342308, 14, 65536, -3342307, 169, 0, -3342296, 23, 0, -3342295, 171, 0, -3342293, 14, 65537, -3211273, 14, 131072, -3211270, 1, 0, -3276800, 1, 0, -3276794, 1, 0, -3276790, 14, 131073, -3276772, 14, 131072, -3276769, 1, 0, -3276762, 1, 0, -3276757, 14, 131073, -3145737, 14, 196608, -3211254, 14, 196609, -3211236, 14, 196608, -3211221, 14, 196609, -3080201, 14, 262144, -3145718, 14, 262145, -3145700, 14, 262144, -3145685, 14, 262145, -3014665, 14, 327680, -3080182, 14, 327681, -3080164, 14, 327680, -3080149, 14, 327681, -2949130, 14, 0, -3014645, 14, 1, -3014629, 14, 0, -3014612, 14, 1, -2883594, 14, 65536, -2949109, 14, 65537, -2949093, 14, 65536, -2949076, 14, 65537, -2818058, 14, 131072, -2883573, 14, 131073, -2883557, 14, 131072, -2883540, 14, 131073, -2752522, 14, 196608, -2818037, 14, 196609, -2818021, 14, 196608, -2818004, 14, 196609, -2686986, 14, 262144, -2752501, 14, 262145, -2752485, 14, 262144, -2752468, 14, 262145, -2686932, 14, 327681, -2031626, 14, 0, -2031625, 171, 0, -2097144, 14, 1, -1966090, 14, 65536, -1966087, 174, 0, -1966085, 11, 0, -1966081, 172, 0, -2031614, 11, 0, -2031611, 169, 0, -2031608, 14, 65537, -1900554, 14, 131072, -1966072, 14, 131073, -1835018, 14, 196608, -1900536, 14, 196609, -1769482, 14, 262144, -1835000, 14, 262145, -1703946, 14, 327680, -1769464, 14, 327681, -1441794, 14, 458753, -1441788, 14, 458753, -786442, 14, 0, -786441, 16, 0, -851963, 14, 1, -720906, 14, 65536, -720899, 170, 0, -786431, 175, 0, -786427, 14, 65537, -655370, 14, 131072, -720891, 14, 131073, -589834, 14, 196608, -655355, 14, 196609, -524298, 14, 262144, -589819, 14, 262145, -458762, 14, 327680, -524283, 14, 327681, -393227, 14, 0, -458746, 14, 1, -327691, 14, 65536, -393210, 14, 65537, -262155, 14, 131072, -327674, 14, 131073, -196619, 14, 196608, -262138, 14, 196609, -131083, 14, 262144, -196602, 14, 262145, -65547, 14, 327680, -65537, 3, 0, -131066, 14, 327681 )
+tile_data = PoolIntArray( -3342345, 14, 0, -3342340, 9, 0, -3407868, 9, 0, -3407862, 14, 1, -3407844, 14, 0, -3407840, 9, 0, -3407834, 9, 0, -3407829, 14, 1, -3276809, 14, 65536, -3276807, 170, 0, -3342334, 173, 0, -3342326, 14, 65537, -3342308, 14, 65536, -3342307, 169, 0, -3342296, 23, 0, -3342295, 171, 0, -3342293, 14, 65537, -3211273, 14, 131072, -3276790, 14, 131073, -3276772, 14, 131072, -3276769, 1, 0, -3276762, 1, 0, -3276757, 14, 131073, -3145737, 14, 196608, -3211254, 14, 196609, -3211236, 14, 196608, -3211221, 14, 196609, -3080201, 14, 262144, -3145718, 14, 262145, -3145700, 14, 262144, -3145685, 14, 262145, -3014665, 14, 327680, -3080182, 14, 327681, -3080164, 14, 327680, -3080149, 14, 327681, -2949130, 14, 0, -3014645, 14, 1, -3014629, 14, 0, -3014612, 14, 1, -2883594, 14, 65536, -2949109, 14, 65537, -2949093, 14, 65536, -2949076, 14, 65537, -2818058, 14, 131072, -2883573, 14, 131073, -2883557, 14, 131072, -2883540, 14, 131073, -2752522, 14, 196608, -2818037, 14, 196609, -2818021, 14, 196608, -2818004, 14, 196609, -2686986, 14, 262144, -2752501, 14, 262145, -2752485, 14, 262144, -2752468, 14, 262145, -2686932, 14, 327681, -2031626, 14, 0, -2031625, 171, 0, -2097144, 14, 1, -1966090, 14, 65536, -1966087, 174, 0, -1966085, 11, 0, -1966081, 172, 0, -2031614, 11, 0, -2031611, 169, 0, -2031608, 14, 65537, -1900554, 14, 131072, -1966072, 14, 131073, -1835018, 14, 196608, -1900536, 14, 196609, -1769482, 14, 262144, -1835000, 14, 262145, -1703946, 14, 327680, -1769464, 14, 327681, -1441794, 14, 458753, -1441788, 14, 458753, -786442, 14, 0, -786441, 16, 0, -851963, 14, 1, -720906, 14, 65536, -720899, 170, 0, -786431, 179, 0, -786427, 14, 65537, -655370, 14, 131072, -720891, 14, 131073, -589834, 14, 196608, -655355, 14, 196609, -524298, 14, 262144, -589819, 14, 262145, -458762, 14, 327680, -524283, 14, 327681, -393227, 14, 0, -458746, 14, 1, -327691, 14, 65536, -393210, 14, 65537, -262155, 14, 131072, -327674, 14, 131073, -196619, 14, 196608, -262138, 14, 196609, -131083, 14, 262144, -196602, 14, 262145, -65547, 14, 327680, -65537, 177, 65536, -131072, 177, 1, -131071, 177, 65537, -131066, 14, 327681 )
 
 [node name="npc" parent="." instance=ExtResource( 1 )]
 position = Vector2( 16, -120 )
 sprite = "Npcs/4dir/nurse"
-dialog = "Podunk/nurse"
-player_turn = {
-"x": true,
-"y": true
-}
+dialog = "Reusable/nurse"
 extended_interact = 1
 
 [node name="Below" type="TileMap" parent="."]
 tile_set = ExtResource( 4 )
 cell_size = Vector2( 16, 16 )
-collision_layer = 5
+collision_layer = 573
+collision_mask = 0
 format = 1
-tile_data = PoolIntArray( -3145736, 6, 0, -3145730, 6, 0, -3211260, 6, 0, -3211235, 6, 0, -3211223, 6, 0, -3080195, 15, 0, -3145725, 15, 0, -3145719, 15, 0, -3145694, 15, 0, -3145691, 15, 0, -1703946, 14, 327682, -1769464, 536870926, 327682, -1638410, 14, 327682, -1703928, 536870926, 327682, -1572874, 14, 327682, -1638392, 536870926, 327682, -655362, 17, 0, -655361, 17, 1, -589826, 17, 65536, -589825, 17, 65537, -524290, 17, 131072, -524289, 17, 131073, -589820, 15, 0, -458754, 17, 196608, -458753, 17, 196609, -524288, 17, 196610, -524287, 17, 196610, -524286, 17, 196610, -524285, 17, 196610, -524284, 17, 196610, -524283, 17, 196611, -393218, 17, 262144, -393217, 17, 262145, -458752, 17, 262146, -458751, 17, 262146, -458750, 17, 262146, -458749, 17, 262146, -458748, 17, 262146, -458747, 17, 262147, -262153, 12, 0, -262150, 12, 0, -327677, 12, 0, -196619, 14, 196610, -262138, 536870926, 196610, 8716225, 30, 0 )
+tile_data = PoolIntArray( -3211270, 1, 0, -3276800, 1, 0, -3276794, 1, 0, -3145736, 6, 0, -3145730, 6, 0, -3211260, 6, 0, -3211235, 6, 0, -3211223, 6, 0, -3080195, 15, 0, -3145725, 15, 0, -3145719, 15, 0, -3145694, 15, 0, -3145691, 15, 0, -1900547, 18, 0, -655362, 17, 0, -655361, 17, 1, -589826, 17, 65536, -589825, 17, 65537, -524290, 17, 131072, -524289, 17, 131073, -589820, 15, 0, -458754, 17, 196608, -458753, 17, 196609, -524288, 17, 196610, -524287, 17, 196610, -524286, 17, 196610, -524285, 17, 196610, -524284, 17, 196610, -524283, 17, 196611, -393218, 17, 262144, -393217, 17, 262145, -458752, 17, 262146, -458751, 17, 262146, -458750, 17, 262146, -458749, 17, 262146, -458748, 17, 262146, -458747, 17, 262147, -262153, 12, 0, -262150, 12, 0, -327677, 12, 0, 8716225, 30, 0 )
 
 [node name="Openable Door" parent="Below" instance=ExtResource( 2 )]
-position = Vector2( -64, -448 )
+position = Vector2( -64, -464 )
 sprite = ExtResource( 7 )
 
 [node name="Openable Door2" parent="Below" instance=ExtResource( 2 )]
-position = Vector2( 48, -448 )
+position = Vector2( 48, -464 )
 sprite = ExtResource( 7 )
+
+[node name="ATM" parent="Below" instance=ExtResource( 8 )]
+position = Vector2( -64, -148 )
 
 [node name="Objects" type="TileMap" parent="."]
 position = Vector2( 0, -16 )
 tile_set = ExtResource( 4 )
 cell_size = Vector2( 16, 16 )
 cell_y_sort = true
+collision_layer = 573
+collision_mask = 0
 format = 1
-tile_data = PoolIntArray( -3080200, 2, 0, -3080199, 2, 65536, -3080193, 2, 65536, -3145724, 2, 1, -3145723, 2, 65538, -3145698, 2, 65538, -3145693, 5, 0, -3145687, 2, 131074, -3014659, 7, 0, -3080189, 7, 0, -3080183, 7, 0, -3080158, 7, 0, -3080155, 536870919, 0, -1835011, 18, 0, -458753, 2, 131073, -524284, 8, 0, -393217, 2, 131072, -458750, 2, 2, -131077, 168, 0 )
+tile_data = PoolIntArray( -3080200, 2, 0, -3080199, 2, 65536, -3080193, 2, 65536, -3145724, 2, 1, -3145723, 2, 65538, -3145698, 2, 65538, -3145693, 5, 0, -3145687, 2, 131074, -3014659, 7, 0, -3080189, 7, 0, -3080183, 7, 0, -3080158, 7, 0, -3080155, 536870919, 0, -458753, 2, 131073, -524284, 8, 0, -393217, 2, 131072, -458750, 2, 2, -131077, 168, 0 )
 
-[node name="YSort" type="YSort" parent="Objects"]
-position = Vector2( 0, 8 )
-
-[node name="npc2" parent="Objects/YSort" instance=ExtResource( 1 )]
-position = Vector2( -112, -64 )
+[node name="npc2" parent="Objects" instance=ExtResource( 1 )]
+position = Vector2( -112, -56 )
 sprite = "Npcs/4dir/fedoraguy"
 dialog = "Podunk/david"
-player_turn = {
-"x": true,
-"y": true
-}
 staring = true
 wander = true
-
-[node name="ATM" parent="Objects" instance=ExtResource( 8 )]
-position = Vector2( -64, -132 )
 
 [node name="Above" type="TileMap" parent="."]
 tile_set = ExtResource( 4 )
 cell_size = Vector2( 16, 16 )
 cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
 show_collision = true
-collision_layer = 5
+collision_layer = 573
+collision_mask = 0
 format = 1
 tile_data = PoolIntArray( -2621452, 14, 2, -2621451, 14, 2, -2621450, 14, 2, -2621449, 14, 2, -2621448, 14, 2, -2621447, 14, 2, -2621446, 14, 2, -2621445, 14, 2, -2621444, 14, 2, -2621443, 14, 2, -2621442, 14, 2, -2621441, 14, 393216, -2686976, 14, 393217, -2686975, 14, 458752, -2686974, 14, 458753, -2686973, 14, 2, -2686972, 14, 2, -2686971, 14, 2, -2686970, 14, 2, -2686969, 14, 2, -2686968, 14, 2, -2686967, 14, 2, -2686966, 14, 2, -2686965, 14, 2, -2686964, 14, 2, -2686963, 14, 2, -2686952, 14, 2, -2686951, 14, 2, -2686950, 14, 2, -2686949, 14, 2, -2686948, 14, 2, -2686947, 14, 2, -2686946, 14, 2, -2686945, 14, 2, -2686944, 14, 2, -2686943, 14, 2, -2686942, 14, 393216, -2686941, 14, 393217, -2686940, 14, 458752, -2686939, 14, 458753, -2686938, 14, 2, -2686937, 14, 2, -2686936, 14, 2, -2686935, 14, 2, -2686934, 14, 2, -2686933, 14, 2, -2686932, 14, 2, -2686931, 14, 2, -2686930, 14, 2, -2686929, 14, 2, -2555916, 14, 2, -2555915, 14, 2, -2555914, 14, 2, -2555913, 14, 2, -2555912, 14, 2, -2555911, 14, 2, -2555910, 14, 2, -2555909, 14, 2, -2555908, 14, 2, -2555907, 14, 2, -2555906, 14, 2, -2555905, 14, 2, -2621440, 14, 2, -2621439, 14, 2, -2621438, 14, 2, -2621437, 14, 2, -2621436, 14, 2, -2621435, 14, 2, -2621434, 14, 2, -2621433, 14, 2, -2621432, 14, 2, -2621431, 14, 2, -2621430, 14, 2, -2621429, 14, 2, -2621428, 14, 2, -2621427, 14, 2, -2621416, 14, 2, -2621415, 14, 2, -2621414, 14, 2, -2621413, 14, 2, -2621412, 14, 2, -2621411, 14, 2, -2621410, 14, 2, -2621409, 14, 2, -2621408, 14, 2, -2621407, 14, 2, -2621406, 14, 2, -2621405, 14, 2, -2621404, 14, 2, -2621403, 14, 2, -2621402, 14, 2, -2621401, 14, 2, -2621400, 14, 2, -2621399, 14, 2, -2621398, 14, 2, -2621397, 14, 2, -2621396, 14, 2, -2621395, 14, 2, -2621394, 14, 2, -2621393, 14, 2, -2490380, 14, 2, -2490379, 14, 2, -2490378, 14, 2, -2490377, 14, 2, -2490376, 14, 2, -2490375, 14, 2, -2490374, 14, 2, -2490373, 14, 2, -2490372, 14, 2, -2490371, 14, 2, -2490370, 14, 2, -2490369, 14, 2, -2555904, 14, 2, -2555903, 14, 2, -2555902, 14, 2, -2555901, 14, 2, -2555900, 14, 2, -2555899, 14, 2, -2555898, 14, 2, -2555897, 14, 2, -2555896, 14, 2, -2555895, 14, 2, -2555894, 14, 2, -2555893, 14, 2, -2555892, 14, 2, -2555891, 14, 2, -2555880, 14, 2, -2555879, 14, 2, -2555878, 14, 2, -2555877, 14, 2, -2555876, 14, 2, -2555875, 14, 2, -2555874, 14, 2, -2555873, 14, 2, -2555872, 14, 2, -2555871, 14, 2, -2555870, 14, 2, -2555869, 14, 2, -2555868, 14, 2, -2555867, 14, 2, -2555866, 14, 2, -2555865, 14, 2, -2555864, 14, 2, -2555863, 14, 2, -2555862, 14, 2, -2555861, 14, 2, -2555860, 14, 2, -2555859, 14, 2, -2555858, 14, 2, -2555857, 14, 2, -1572867, 19, 0, -1507341, 14, 2, -1507340, 14, 2, -1507339, 14, 2, -1507338, 14, 2, -1507337, 14, 393216, -1507336, 14, 393217, -1507335, 14, 458752, -1507334, 14, 458753, -1507333, 14, 2, -1507332, 14, 2, -1507331, 14, 2, -1507330, 14, 2, -1507329, 14, 2, -1572864, 14, 2, -1572863, 14, 2, -1572862, 14, 2, -1572861, 14, 2, -1572860, 14, 2, -1572859, 14, 2, -1572858, 14, 2, -1572857, 14, 2, -1572856, 14, 2, -1572855, 14, 2, -1572854, 14, 2, -1572853, 14, 2, -1572852, 14, 2, -1441805, 14, 2, -1441804, 14, 2, -1441803, 14, 2, -1441802, 14, 2, -1441801, 14, 2, -1441800, 14, 2, -1441799, 14, 2, -1441798, 14, 2, -1441797, 14, 2, -1441796, 14, 2, -1441795, 14, 2, -1441794, 14, 2, -1441793, 14, 2, -1507328, 14, 2, -1507327, 14, 2, -1507326, 14, 2, -1507325, 14, 2, -1507324, 14, 2, -1507323, 14, 2, -1507322, 14, 2, -1507321, 14, 2, -1507320, 14, 2, -1507319, 14, 2, -1507318, 14, 2, -1507317, 14, 2, -1507316, 14, 2, -1376269, 14, 2, -1376268, 14, 2, -1376267, 14, 2, -1376266, 14, 2, -1376265, 14, 2, -1376264, 14, 2, -1376263, 14, 2, -1376262, 14, 2, -1376261, 14, 2, -1376260, 14, 2, -1376259, 14, 2, -1376258, 14, 2, -1376257, 14, 2, -1441792, 14, 2, -1441791, 14, 2, -1441790, 14, 2, -1441789, 14, 2, -1441787, 14, 2, -1441786, 14, 2, -1441785, 14, 2, -1441784, 14, 2, -1441783, 14, 2, -1441782, 14, 2, -1441781, 14, 2, -1441780, 14, 2, -65546, 19, 0, -65542, 19, 0, -13, 14, 2, -12, 14, 2, -11, 14, 2, -10, 14, 2, -9, 14, 2, -8, 14, 2, -7, 14, 2, -6, 14, 2, -5, 14, 2, -4, 14, 2, -3, 14, 2, -2, 14, 393216, -1, 14, 393217, -65535, 14, 458752, -65534, 14, 458753, -65533, 14, 2, -65532, 14, 2, -65531, 14, 2, -65530, 14, 2, -65529, 14, 2, -65528, 14, 2, 65523, 14, 2, 65524, 14, 2, 65525, 14, 2, 65526, 14, 2, 65527, 14, 2, 65528, 14, 2, 65529, 14, 2, 65530, 14, 2, 65531, 14, 2, 65532, 14, 2, 65533, 14, 2, 65534, 14, 2, 65535, 14, 2, 0, 14, 2, 1, 14, 2, 2, 14, 2, 3, 14, 2, 4, 14, 2, 5, 14, 2, 6, 14, 2, 7, 14, 2, 8, 14, 2, 131059, 14, 2, 131060, 14, 2, 131061, 14, 2, 131062, 14, 2, 131063, 14, 2, 131064, 14, 2, 131065, 14, 2, 131066, 14, 2, 131067, 14, 2, 131068, 14, 2, 131069, 14, 2, 131070, 14, 2, 131071, 14, 2, 65536, 14, 2, 65537, 14, 2, 65538, 14, 2, 65539, 14, 2, 65540, 14, 2, 65541, 14, 2, 65542, 14, 2, 65543, 14, 2, 65544, 14, 2 )
 
-[node name="doors" type="TileMap" parent="."]
-collision_mask = 0
-format = 1
+[node name="doors" type="Node2D" parent="."]
 
-[node name="Ninten\'s House" type="YSort" parent="doors"]
-
-[node name="Hospital" type="YSort" parent="doors"]
-
-[node name="Lobby_Hall" parent="doors/Hospital" instance=ExtResource( 6 )]
+[node name="Lobby_Hall" parent="doors" instance=ExtResource( 6 )]
 position = Vector2( -128, -160 )
 scale = Vector2( 4, 1 )
+dir = Vector2( 0, -1 )
 
-[node name="Position2D" parent="doors/Hospital/Lobby_Hall" index="1"]
+[node name="Position2D" parent="doors/Lobby_Hall" index="1"]
 position = Vector2( 4, -208 )
 
-[node name="Lobby_Hall2" parent="doors/Hospital" instance=ExtResource( 6 )]
+[node name="Lobby_Hall2" parent="doors" instance=ExtResource( 6 )]
 position = Vector2( -128, -360 )
 scale = Vector2( 4, 1 )
+dir = Vector2( 0, 1 )
 
-[node name="Position2D" parent="doors/Hospital/Lobby_Hall2" index="1"]
+[node name="Position2D" parent="doors/Lobby_Hall2" index="1"]
 position = Vector2( 4, 216 )
 
-[node name="PartyRoom_Hall" parent="doors/Hospital" instance=ExtResource( 6 )]
+[node name="PartyRoom_Hall" parent="doors" instance=ExtResource( 6 )]
 position = Vector2( 0, -632 )
 scale = Vector2( 4, 1 )
+dir = Vector2( 0, 1 )
+sound = "M3/door_open.wav"
 
-[node name="Position2D" parent="doors/Hospital/PartyRoom_Hall" index="1"]
+[node name="Position2D" parent="doors/PartyRoom_Hall" index="1"]
 position = Vector2( -16, 192 )
 
-[node name="Hall_PartyRoom" parent="doors/Hospital" instance=ExtResource( 6 )]
+[node name="Hall_PartyRoom" parent="doors" instance=ExtResource( 6 )]
 position = Vector2( -80, -457 )
 scale = Vector2( 4, 1 )
+dir = Vector2( 0, -1 )
+end_sound = "Door_Short.mp3"
 
-[node name="Position2D" parent="doors/Hospital/Hall_PartyRoom" index="1"]
+[node name="Position2D" parent="doors/Hall_PartyRoom" index="1"]
 position = Vector2( 24, -183 )
 
-[node name="PaitentRoom_Hall" parent="doors/Hospital" instance=ExtResource( 6 )]
+[node name="PaitentRoom_Hall" parent="doors" instance=ExtResource( 6 )]
 position = Vector2( 560, -632 )
 scale = Vector2( 4, 1 )
+dir = Vector2( 0, 1 )
+sound = "M3/door_open.wav"
 
-[node name="Position2D" parent="doors/Hospital/PaitentRoom_Hall" index="1"]
+[node name="Position2D" parent="doors/PaitentRoom_Hall" index="1"]
 position = Vector2( -128, 192 )
 
-[node name="Hall_PartyRoom2" parent="doors/Hospital" instance=ExtResource( 6 )]
+[node name="Hall_PartyRoom2" parent="doors" instance=ExtResource( 6 )]
 position = Vector2( 32, -457 )
 scale = Vector2( 4, 1 )
+dir = Vector2( 0, -1 )
+end_sound = "Door_Short.mp3"
 
-[node name="Position2D" parent="doors/Hospital/Hall_PartyRoom2" index="1"]
+[node name="Position2D" parent="doors/Hall_PartyRoom2" index="1"]
 position = Vector2( 136, -183 )
 
-[node name="Lobby_Podunk" parent="doors/Hospital" instance=ExtResource( 6 )]
+[node name="Lobby_Podunk" parent="doors" instance=ExtResource( 6 )]
 position = Vector2( -16, 8 )
 scale = Vector2( 6, 1 )
 targetX = -32
 targetY = 2168
+dir = Vector2( 0, 1 )
+sound = "M3/door_open.wav"
 transit_in_anim = "Circle Focus"
 transit_out_anim = "Circle Focus"
 targetScene = "podunk/podunk"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/PhoneRing = SubResource( 48 )
-anims/RESET = SubResource( 3 )
-anims/cutscene = SubResource( 1 )
-
 [node name="Collisions" type="StaticBody2D" parent="."]
-visible = false
-collision_layer = 513
+collision_layer = 1597
+collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collisions"]
 position = Vector2( -928, -1120 )
-polygon = PoolVector2Array( 800, 352, 779, 480, 928, 480, 928, 496, 776, 496, 776, 312, 1112, 312, 1112, 496, 960, 496, 960, 480, 1109, 480, 1088, 352 )
+polygon = PoolVector2Array( 800, 352, 779, 480, 928, 480, 928, 512, 760, 512, 760, 312, 1128, 312, 1128, 512, 928, 512, 928, 496, 960, 496, 960, 480, 1109, 480, 1088, 352 )
 
 [node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Collisions"]
 position = Vector2( -944, -496 )
-polygon = PoolVector2Array( 800, 352, 775, 496, 796, 496, 796, 480, 916, 480, 916, 496, 928, 496, 928, 512, 768, 512, 768, 312, 1064, 312, 1064, 512, 976, 512, 976, 496, 1049, 496, 1024, 352, 848, 352, 848, 336, 816, 336, 816, 352 )
+polygon = PoolVector2Array( 800, 352, 775, 496, 928, 496, 928, 528, 752, 528, 752, 312, 1080, 312, 1080, 528, 928, 528, 928, 512, 976, 512, 976, 496, 1049, 496, 1024, 352, 848, 352, 848, 336, 816, 336, 816, 352 )
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Collisions"]
 position = Vector2( -944, -800 )
-polygon = PoolVector2Array( 800, 352, 787, 432, 816, 432, 816, 448, 776, 448, 776, 312, 1096, 312, 1096, 448, 848, 448, 848, 432, 908, 432, 908, 416, 964, 416, 964, 432, 1085, 432, 1072, 352, 1008, 352, 1008, 344, 976, 344, 976, 352, 896, 352, 896, 344, 864, 344, 864, 352 )
+polygon = PoolVector2Array( 800, 352, 787, 432, 816, 432, 816, 464, 776, 464, 776, 312, 1096, 312, 1096, 464, 816, 464, 816, 448, 848, 448, 848, 432, 1085, 432, 1072, 352, 1008, 352, 1008, 344, 976, 344, 976, 352, 896, 352, 896, 344, 864, 344, 864, 352 )
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Collisions"]
 position = Vector2( -368, -1120 )
 scale = Vector2( 1.00059, 1 )
-polygon = PoolVector2Array( 832, 352, 811, 479, 928, 480, 928, 496, 808, 496, 808, 320, 1080, 320, 1080, 496, 960, 496, 960, 480, 1077, 480, 1056, 352 )
+polygon = PoolVector2Array( 831.509, 352, 807.524, 480, 927.453, 480, 927.453, 512, 783.538, 512, 783.538, 320, 1095.35, 320, 1095.35, 512, 927.453, 512, 927.453, 496, 960, 496, 960, 480, 1071.37, 480, 1055.38, 352 )
 
 [node name="MusicArea2" parent="." instance=ExtResource( 3 )]
 visible = false
@@ -219,10 +201,8 @@ volume_db = -10
 position = Vector2( -44, 0 )
 shape = SubResource( 50 )
 
-[node name="Limits" type="TileMap" parent="."]
-visible = false
+[node name="Limits" type="Node2D" parent="."]
 position = Vector2( -88, -816 )
-format = 1
 
 [node name="camarea2" parent="Limits" instance=ExtResource( 12 )]
 position = Vector2( 664, 104 )
@@ -261,15 +241,13 @@ entering_sound = "stone"
 position = Vector2( 8, 4 )
 shape = SubResource( 434 )
 
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
-
-[editable path="doors/Hospital/Lobby_Hall"]
-[editable path="doors/Hospital/Lobby_Hall2"]
-[editable path="doors/Hospital/PartyRoom_Hall"]
-[editable path="doors/Hospital/Hall_PartyRoom"]
-[editable path="doors/Hospital/PaitentRoom_Hall"]
-[editable path="doors/Hospital/Hall_PartyRoom2"]
-[editable path="doors/Hospital/Lobby_Podunk"]
+[editable path="doors/Lobby_Hall"]
+[editable path="doors/Lobby_Hall2"]
+[editable path="doors/PartyRoom_Hall"]
+[editable path="doors/Hall_PartyRoom"]
+[editable path="doors/PaitentRoom_Hall"]
+[editable path="doors/Hall_PartyRoom2"]
+[editable path="doors/Lobby_Podunk"]
 [editable path="MusicArea2"]
 [editable path="Limits/camarea2"]
 [editable path="Limits/camarea3"]

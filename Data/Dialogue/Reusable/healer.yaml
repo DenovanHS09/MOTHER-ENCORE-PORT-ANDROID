@@ -31,7 +31,7 @@
       status: ''
     hasstatus2:
       character: ninten
-      status: Unconscious
+      status: unconscious
     or: null
   goto: '5'
 '5':
@@ -41,7 +41,7 @@
   givecash: -120
   cure:
     character: ninten
-    status: All
+    status: all
   if:
     partysize:
       size: 1
@@ -55,7 +55,7 @@
       status: ''
     hasstatus2:
       character: lloyd
-      status: Unconscious
+      status: unconscious
     or: null
   goto: '7'
 '7':
@@ -65,7 +65,7 @@
   givecash: -120
   cure:
     character: lloyd
-    status: All
+    status: all
   if:
     partysize:
       size: 1
@@ -79,7 +79,7 @@
       status: ''
     hasstatus2:
       character: ana
-      status: Unconscious
+      status: unconscious
     or: null
   goto: '9'
 '9':
@@ -89,7 +89,7 @@
   givecash: -120
   cure:
     character: ana
-    status: All
+    status: all
   if:
     partysize:
       size: 1
@@ -103,7 +103,7 @@
       status: ''
     hasstatus2:
       character: teddy
-      status: Unconscious
+      status: unconscious
     or: null
   goto: '11'
 '11':
@@ -113,7 +113,7 @@
   givecash: -120
   cure:
     character: teddy
-    status: All
+    status: all
   if:
     partysize:
       size: 1
@@ -127,7 +127,7 @@
       status: ''
     hasstatus2:
       character: pippi
-      status: Unconscious
+      status: unconscious
     or: null
   goto: '13'
 '13':
@@ -137,7 +137,7 @@
   givecash: -120
   cure:
     character: pippi
-    status: All
+    status: all
   if:
     partysize:
       size: 1

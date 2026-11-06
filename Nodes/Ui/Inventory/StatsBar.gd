@@ -1,11 +1,11 @@
 extends NinePatchRect
 
-const character_portrait_path = "res://Graphics/UI/Inventory/characters/"
+const CHARACTER_PORTRAIT_PATH = "res://Graphics/UI/Inventory/characters/%s.png"
 
 const stats_list = [
-	"maxhp",		
-	"maxpp",		
-	"speed",	
+	"maxhp",
+	"maxpp",
+	"speed",
 	"offense",
 	"defense",
 	"iq", 
@@ -13,8 +13,8 @@ const stats_list = [
 ]
 
 onready var stats = {
-	"maxhp": 		$StatsLabels/HPStats,
-	"maxpp":		$StatsLabels/PPStats,
+	"maxhp": 	$StatsLabels/HPStats,
+	"maxpp":	$StatsLabels/PPStats,
 	"speed":	$StatsLabels/SPDStats,
 	"offense":	$StatsLabels/OFEStats,
 	"defense":	$StatsLabels/DEFStats,
@@ -22,32 +22,37 @@ onready var stats = {
 	"guts":		$StatsLabels/GUTStats
 }
 
+var open := false
 
 func _ready():
 	hide()
 
-func show_statsBar(character_stats, modifiersDic):
-	if character_stats == null:
-		return
-
-	$CenterContainer/CharacterPortrait.texture = load(character_portrait_path+character_stats.name+".png")	
+func show_statsBar(character: Character, modifiers: Dictionary):
+	if !character: return
+	
+	$CenterContainer/CharacterPortrait.texture = load(CHARACTER_PORTRAIT_PATH % character.get_name())
 	for stat in stats_list:
-		stats[stat].set_stat_value(character_stats[stat] + character_stats["boosts"][stat])
+		stats[stat].set_stat_value(character.get_stat(stat))
 		stats[stat].hide_modifier_value()
 		stats[stat].set_modifier_icon("")
 	
-	if modifiersDic != {}:
-		for modifier in modifiersDic.keys():
-			stats[modifier].set_modifier_value(modifiersDic[modifier])
-			if int(modifiersDic[modifier]) > int(character_stats[modifier] + character_stats["boosts"][modifier]):
+	if modifiers:
+		for modifier in modifiers.keys():
+			var mod = modifiers[modifier]
+			stats[modifier].set_modifier_value(mod)
+			if int(mod) > int(character.get_stat(modifier)):
 				stats[modifier].set_modifier_icon("up")
-			elif int(modifiersDic[modifier]) < int(character_stats[modifier] + character_stats["boosts"][modifier]):
+			elif int(mod) < int(character.get_stat(modifier)):
 				stats[modifier].set_modifier_icon("down")
-			else:
-				stats[modifier].set_modifier_icon("")
-	if !visible:
+			else: stats[modifier].set_modifier_icon("")
+	
+	if !open: 
+		open = true
+		$AnimationPlayer.stop()
 		$AnimationPlayer.play("Open")
 
 func hide_statsBar():
-	if visible:
+	if open: 
+		open = false
+		$AnimationPlayer.stop()
 		$AnimationPlayer.play("Close")

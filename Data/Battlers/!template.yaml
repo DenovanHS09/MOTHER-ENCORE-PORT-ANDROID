@@ -15,16 +15,17 @@ level: 10
 exp: 100
 cash: 100
 items:
-- chance: 50
-  increaseChance: 0.01
-  item: Bread
-  rare: true
+  - chance: 50
+    increaseChance: 0.01
+    item: Bread
+    rare: true
+eats_stolen_items: false
 skills:
-- skill: bite
-  weight: 10
-- skill: approach
-  weight: 1
-swansong: flameBurst
+  - skill: bite
+    weight: 10
+  - skill: approach
+    weight: 1
+swan_song: flameBurst
 battlescript: podunk/enemyphasesanddialog
 boss: false
 sprite: TEST
@@ -35,8 +36,8 @@ ov:
   sprite: MookOV
   anim: BasicEnemy
   spriteOffset:
-  - 0
-  - 0
+    - 0
+    - 0
   shadow: false
   connections: []
   returning: false

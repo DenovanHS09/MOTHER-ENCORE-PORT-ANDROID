@@ -1,22 +1,21 @@
 name: YOMAMA_NAME
+level: 3
 description: YOMAMA_DESC
 article: YOMAMA_ART
-skillType: psi
-actionType: 0
-useCases: 1
-damageType: 5
-targetType: 6
-damage: 9999
+skill_type: psi
+action_type: 0 # Damage
+use_cases: 1 # Battle only
+psi_category: Offense
+damage_type: normal
+target_type: 6 # All enemies
+damage_or_heal: 9999
 variance: 0
 priority: -1
-statusEffects: []
-statusHeals: []
-critChance: 0
-failChance: 10
-ppCost: 30
-hpCost: 0
-hitEffect: bash
-screenEffect: mom
-userAnim: bash
-useSound: ''
-hitSound: bash
+miss_chance: 10
+pp_cost: 30
+hp_cost: 0
+hit_effect: bash
+screen_effect: mom
+user_anim: bash
+use_sound: ''
+hit_sound: bash

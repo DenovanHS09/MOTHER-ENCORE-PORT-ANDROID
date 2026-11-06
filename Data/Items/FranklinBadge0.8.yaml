@@ -5,17 +5,9 @@ article: FRANKLINBADGE0.8_ART
 keyitem: false
 cost: 0
 value: 0
-usable:
-  ninten: false
-  ana: false
-  lloyd: false
-  teddy: false
-  pippi: false
-action_one: null
-action_two: null
-battle_action: ''
+actions: []
 passive_skills:
-- reflect_beam
+  - reflect_beam
 transform: ''
 slot: ''
 HPrecover: 0

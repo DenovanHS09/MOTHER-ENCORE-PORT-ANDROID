@@ -6,6 +6,7 @@
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )
 shader_param/opacity = 1.0
+shader_param/blending = 0
 shader_param/screen_size = Vector2( 320, 180 )
 shader_param/move = Vector2( 0, -0.1 )
 shader_param/ping_pong_speed = Vector2( 0, 0 )
@@ -26,6 +27,7 @@ shader_param/inter_amp_ping_pong = Vector2( 0, 0 )
 shader_param/inter_trans_ping_pong = Vector2( 0, 0 )
 shader_param/palette_shifting_speed = 0.0
 shader_param/palette_shifting = false
+shader_param/palette_anim_frame_count = null
 shader_param/barrel = false
 shader_param/effect = 1.0
 shader_param/effect_scale = 2.0
@@ -34,6 +36,7 @@ shader_param/barrelxy = Vector2( 1, 1 )
 [sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 1 )
 shader_param/opacity = 1.0
+shader_param/blending = 0
 shader_param/screen_size = Vector2( 320, 180 )
 shader_param/move = Vector2( 0, 0 )
 shader_param/ping_pong_speed = Vector2( 0, 0 )
@@ -54,12 +57,14 @@ shader_param/inter_amp_ping_pong = Vector2( 0, 0 )
 shader_param/inter_trans_ping_pong = Vector2( 0, 0 )
 shader_param/palette_shifting_speed = 0.0
 shader_param/palette_shifting = false
+shader_param/palette_anim_frame_count = null
 shader_param/barrel = false
 shader_param/effect = 1.0
 shader_param/effect_scale = 2.0
 shader_param/barrelxy = Vector2( 1, 1 )
 
 [node name="BattleBG" type="CanvasLayer"]
+layer = 0
 
 [node name="BG2" type="TextureRect" parent="."]
 material = SubResource( 1 )

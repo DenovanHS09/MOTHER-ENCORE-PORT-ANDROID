@@ -17,16 +17,13 @@ custom_fonts/font = ExtResource( 1 )
 custom_styles/normal = SubResource( 4 )
 text = "Label"
 valign = 2
+max_lines_visible = 1
 script = ExtResource( 3 )
 
-[node name="Equiped_spr" type="Sprite" parent="."]
+[node name="Equipped_spr" type="Sprite" parent="."]
 visible = false
 material = ExtResource( 4 )
 position = Vector2( -6, 6 )
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 2, 19, 8, 7 )
-
-[node name="Tween" type="Tween" parent="."]
-repeat = true
-playback/repeat = true

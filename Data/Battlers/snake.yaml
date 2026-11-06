@@ -23,3 +23,7 @@ bg: snake
 ov:
   sprite: SnakeOV
   anim: BasicEnemy
+affinity_multipliers:
+  ice: 2
+  sleeping: 2
+  blinded: 2

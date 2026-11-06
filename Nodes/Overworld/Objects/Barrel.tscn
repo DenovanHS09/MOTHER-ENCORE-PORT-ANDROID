@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/Main/Breakable.gd" type="Script" id=1]
-[ext_resource path="res://Graphics/Objects/Broken Barrel.png" type="Texture" id=2]
+[ext_resource path="res://Graphics/Objects/Catacombs/Broken Barrel.png" type="Texture" id=2]
 [ext_resource path="res://Nodes/Reusables/Overlap/Hurtbox.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Audio/Sound effects/Barrel Coffin Explode.mp3" type="AudioStream" id=4]
+[ext_resource path="res://Nodes/Overworld/Objects/CoinSpawner.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Animation" id=6]
 resource_name = "Break"
@@ -134,6 +135,11 @@ extents = Vector2( 12, 8 )
 
 [node name="Barrel" type="Sprite"]
 script = ExtResource( 1 )
+coins_spawned = 3
+coin_spawner = NodePath("CoinSpawner")
+
+[node name="CoinSpawner" parent="." instance=ExtResource( 5 )]
+position = Vector2( 0, 8 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -8 )
@@ -145,7 +151,7 @@ anims/Break = SubResource( 6 )
 anims/Breakable = SubResource( 7 )
 anims/RESET = SubResource( 8 )
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
 bus = "SFX"
 
@@ -158,13 +164,11 @@ position = Vector2( 0, 8 )
 shape = SubResource( 5 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-collision_layer = 517
+collision_layer = 8709
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( 0, 8 )
 shape = SubResource( 1 )
-
-[node name="Tween" type="Tween" parent="."]
 
 [node name="Position2D" type="Position2D" parent="."]
 position = Vector2( 0, 8 )

@@ -1,4 +1,4 @@
-'0':
+"0":
   actors:
     ninten: leader
     doll: Objects/npcdoll
@@ -18,8 +18,8 @@
   actorsmove:
     doll:
       movement:
-      - x: 64
-        y: 48
+        - x: 64
+          y: 48
       speed: 200
       type: position
   actorsturn:
@@ -39,12 +39,12 @@
   wait: 0.5
   autoadvance: true
   caninput: false
-  goto: '1'
+  goto: "1"
   actorsanim:
     doll:
       anim: Idle
   ovbattlemusic: false
-'1':
+"1":
   actorsjump:
     doll:
       speed: 0.3
@@ -52,21 +52,21 @@
   actorsmove:
     doll:
       movement:
-      - x: 40
-        y: 40
+        - x: 40
+          y: 40
       speed: 100
       type: position
   setflags: pillow_attack
   wait: 0.5
   autoadvance: true
   caninput: false
-  goto: '2'
-'2':
+  goto: "2"
+"2":
   talker: mimmie
   name: DIALOGUE_PODUNK_CUTSCENES_DOLL_DEFEATED_SPEAKER_Mimmie
   sound: Kid
   text: DIALOGUE_PODUNK_CUTSCENES_DOLL_DEFEATED_2
-  emoteactors:
+  actorsemote:
     mimmie: dot
   actorsturn:
     ninten:
@@ -75,20 +75,20 @@
       speed: 0.5
   changecam: mimmie
   returncam: 1
-  goto: '3'
+  goto: "3"
   actorsshake:
     mimmie:
       x: 2
       length: 0.2
-'3':
+"3":
   showbox: false
   actorsmove:
     mimmie:
       movement:
-      - x: -16
-        y: 0
-      - x: 0
-        y: -72
+        - x: -16
+          y: 0
+        - x: 0
+          y: -72
       speed: 64
       animation: Walk
       type: step
@@ -100,8 +100,8 @@
   wait: 1.5
   autoadvance: true
   caninput: false
-  goto: '4'
-'4':
+  goto: "4"
+"4":
   actorsdir:
     mimmie:
       x: -1
@@ -109,8 +109,8 @@
   wait: 0.4
   autoadvance: true
   caninput: false
-  goto: '5'
-'5':
+  goto: "5"
+"5":
   actorsjump:
     mimmie:
       height: 10
@@ -118,8 +118,8 @@
   wait: 0.3
   autoadvance: true
   caninput: false
-  goto: '6'
-'6':
+  goto: "6"
+"6":
   actorsjump:
     mimmie:
       height: 10
@@ -127,8 +127,8 @@
   wait: 0.3
   autoadvance: true
   caninput: false
-  goto: '7'
-'7':
+  goto: "7"
+"7":
   name: DIALOGUE_PODUNK_CUTSCENES_DOLL_DEFEATED_SPEAKER_Mimmie
   sound: Kid
   text: DIALOGUE_PODUNK_CUTSCENES_DOLL_DEFEATED_7

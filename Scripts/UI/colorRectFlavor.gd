@@ -1,14 +1,14 @@
 extends ColorRect
 
-var oldColor
+var old_color
 
 func _ready():
-	oldColor = color
-	uiManager.connect("menuFlavorUpdated", self, "setColor")
-	connect("visibility_changed", self, "setColor")
-	setColor()
+	old_color = color
+	uiManager.connect("menu_flavor_updated", self, "_set_color")
+	connect("visibility_changed", self, "_set_color")
+	_set_color()
 
-func setColor():
-	for i in ["1", "2", "3", "4", "5", "6", "7"]:
-		if oldColor == uiManager.menuFlavorShader.get_shader_param("OLDCOLOR" + i):
-			color = uiManager.menuFlavorShader.get_shader_param("NEWCOLOR" + i)
+func _set_color():
+	for i in 7:
+		if old_color == uiManager.get_flavor_color(i + 1, false):
+			color = uiManager.get_flavor_color(i + 1)

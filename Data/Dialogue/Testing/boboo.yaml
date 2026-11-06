@@ -3,8 +3,8 @@
   sound: Kid
   text: DIALOGUE_TESTING_BOBOO_0
   soundeffect: M3/lifeup_a.wav
-  heal: All
+  heal: all
   cure:
-    character: All
-    status: All
-  restorepp: All
+    character: all
+    status: all
+  restorepp: all

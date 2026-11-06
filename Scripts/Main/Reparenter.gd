@@ -16,17 +16,16 @@ func _ready():
 		objectNodes.append(get_node_or_null(object))
 
 func _on_Reparenter_body_entered(body):
-	if body == global.persistPlayer:
+	if body == global.get_player():
 		reparent()
 
 #reparent the objects
 func reparent():
 	for item in objectNodes:
-		if item != null and newParentNode != null:
-			if item.get_parent() != newParentNode and item.get_parent() != null: #and item.get_parent() == oldParentNode:
-				item.get_parent().remove_child(item)
-				newParentNode.call_deferred("add_child", item)
-				if copy_collisions:
-					item.set_deferred("collision_mask", newParentNode.collision_mask)
-					item.set_deferred("collision_layer", newParentNode.collision_layer)
-		
+		if item == null or newParentNode == null or item.get_parent() == newParentNode or item.get_parent() == null:
+			continue
+		item.get_parent().remove_child(item)
+		newParentNode.call_deferred("add_child", item)
+		if copy_collisions:
+			item.set_deferred("collision_mask", newParentNode.collision_mask)
+			item.set_deferred("collision_layer", newParentNode.collision_layer)

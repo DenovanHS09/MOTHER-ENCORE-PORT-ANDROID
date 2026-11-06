@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Mobile Opponent.mp3-850082b36943ed921da2c99d69141d5c.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Battle Themes/Mobile Opponent.mp3"
+dest_files=[ "res://.import/Mobile Opponent.mp3-850082b36943ed921da2c99d69141d5c.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=8.445

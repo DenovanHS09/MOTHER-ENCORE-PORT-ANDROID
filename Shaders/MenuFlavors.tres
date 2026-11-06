@@ -17,6 +17,8 @@ uniform vec4 OLDCOLOR6 : hint_color;
 uniform vec4 NEWCOLOR6: hint_color;
 uniform vec4 OLDCOLOR7 : hint_color;
 uniform vec4 NEWCOLOR7: hint_color;
+uniform vec4 OLDCOLOR8 : hint_color;
+uniform vec4 NEWCOLOR8: hint_color;
 
 void fragment() {
 	vec4 curr_pixel = texture(TEXTURE, UV);
@@ -41,6 +43,9 @@ void fragment() {
 	else if (distance(curr_pixel, OLDCOLOR7) < 0.01){
 		COLOR = NEWCOLOR7;
 		}
+	else if (distance(curr_pixel, OLDCOLOR8) < 0.01){
+		COLOR = NEWCOLOR8;
+	}
 	else {
 		COLOR = curr_pixel;
 	}
@@ -62,3 +67,5 @@ shader_param/OLDCOLOR6 = Color( 0.839216, 0.807843, 0.87451, 1 )
 shader_param/NEWCOLOR6 = Color( 0.639216, 0.85098, 0.92549, 1 )
 shader_param/OLDCOLOR7 = Color( 0.2, 0.160784, 0.262745, 1 )
 shader_param/NEWCOLOR7 = Color( 0.235294, 0.105882, 0.0784314, 1 )
+shader_param/OLDCOLOR8 = Color( 0.705882, 0.176471, 0.176471, 1 )
+shader_param/NEWCOLOR8 = Color( 0.223529, 0.74902, 0.0117647, 1 )

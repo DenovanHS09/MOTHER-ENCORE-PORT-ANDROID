@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/Main/Poison Geyser Hole.gd" type="Script" id=1]
-[ext_resource path="res://Graphics/Objects/Poison Geyser Hole.png" type="Texture" id=2]
+[ext_resource path="res://Graphics/Objects/Catacombs/Poison Geyser Hole.png" type="Texture" id=2]
 
 [node name="Poison Geyser Hole" type="Sprite"]
 texture = ExtResource( 2 )

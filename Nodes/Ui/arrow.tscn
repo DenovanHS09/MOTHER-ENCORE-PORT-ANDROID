@@ -146,8 +146,6 @@ anims/Point = SubResource( 5 )
 anims/RESET = SubResource( 6 )
 anims/UnPoint = SubResource( 7 )
 
-[node name="Tween" type="Tween" parent="."]
-
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.05
 one_shot = true

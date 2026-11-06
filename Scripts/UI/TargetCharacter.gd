@@ -1,96 +1,70 @@
-extends NinePatchRect
+extends Control
 
 signal back (to_inventory)
 signal show_statsbar (character)
 signal hide_statsbar
 signal next (character)
 
-onready var item_label_template = preload("res://Nodes/Ui/HighlightLabel.tscn")
+onready var ItemLabelTemplate := preload("res://Nodes/Ui/HighlightLabel.tscn")
 
-var _char_list = []
+var _char_list := []
+onready var _arrow := $arrow2
 
-onready var arrow = $arrow2
-var active = false
+var active := false
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	visible = false
-	arrow.connect("selected", self, "_on_select")
-	arrow.connect("cancel", self, "_on_cancel")
-	arrow.connect("moved", self, "_on_move")
-	
+	_arrow.connect("selected", self, "_on_select")
+	_arrow.connect("cancel", self, "_on_cancel")
+	_arrow.connect("moved", self, "_on_move")
 
-#clear the list before filling it again
-func _empty_list():
-	var labels = $MarginContainer/VBoxContainer.get_children()
-	if labels.empty():
-		yield(get_tree(), "idle_frame") # to always return an object
-	else:
-		for label in labels:
-			label.queue_free()
-		for label in labels:
-			yield(label, "tree_exited")
-
-#process data to update the available character list	
+# Process data to update the available character list
 func _refresh_list_view():
-	var nickname_list = []
+	var nickname_list := []
 	for name in _char_list:
 		if name == "all":
 			nickname_list.append("INVENTORY_ACTION_TARGET_ALL")
 		else:
 			for character in global.party:
-				if character["name"] == name:
-					nickname_list.append(character.nickname)
-			
-	yield(_empty_list(), "completed")
+				if character.get_name() == name:
+					nickname_list.append(character.get_nickname())
 	
-	#display the list as several labels
+	var labels := $PanelContainer/VBoxContainer/MarginContainer/VBoxContainer.get_children()
+	for label in labels:
+		label.queue_free()
+	
 	for chara_name in nickname_list:
-		var label = item_label_template.instance()
+		var label := ItemLabelTemplate.instance()
 		label.text = chara_name
-		$MarginContainer/VBoxContainer.add_child(label)
+		$PanelContainer/VBoxContainer/MarginContainer/VBoxContainer.add_child(label)
 	
-	arrow.on = true
-	arrow.set_cursor_from_index(0, false)
+	_arrow.on = true
+	_arrow.set_cursor_from_index(0, false)
 
-	yield($MarginContainer/VBoxContainer, "draw")
-	_bg_resize()
-
-
-#used to make the box appear with the right parameters
+# Used to make the box appear with the right parameters
 func show_target_chara_select(pos, char_list):
 	_char_list = char_list
 	visible = true
 	active = true
-	yield(_refresh_list_view(), "completed")
+	_refresh_list_view()
 	
-	emit_signal("show_statsbar", _char_list[arrow.cursor_index])
-
+	emit_signal("show_statsbar", _char_list[_arrow.cursor_index])
 
 func _on_move(dir):
 	if active:
-		emit_signal("show_statsbar", _char_list[arrow.cursor_index])
+		emit_signal("show_statsbar", _char_list[_arrow.cursor_index])
 
 func _on_cancel():
 	Input.action_release("ui_cancel")
-	arrow.on = false
+	_arrow.on = false
 	visible = false
 	active = false
 	emit_signal("back")
 	return
-		
-func _on_select(idx):
+
+func _on_select(idx: int):
 	Input.action_release("ui_accept")
-	arrow.on = false
+	_arrow.on = false
 	visible = false
 	active = false
 	emit_signal("next", _char_list[idx])
-
-func _on_VBoxContainer_resized():
-	yield(get_tree(), "idle_frame")
-	_bg_resize()
-
-func _bg_resize():
-	$MarginContainer.set_size(Vector2(0, 0))
-	rect_size.x = $MarginContainer.rect_size.x
-	rect_size.y = $MarginContainer.rect_size.y

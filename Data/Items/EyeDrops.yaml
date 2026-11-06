@@ -5,21 +5,13 @@ article: EYEDROPS_ART
 keyitem: false
 cost: 18
 value: 9
-usable:
-  ninten: true
-  ana: true
-  lloyd: true
-  teddy: true
-  pippi: true
-action_one:
-  name: INVENTORY_ACTION_USE
-  function: consume
-action_two: null
-battle_action: ''
+actions:
+  - name: INVENTORY_ACTION_USE
+    function: consume
 transform: ''
 slot: ''
 status_heals:
-- blinded
+  - blinded
 HPrecover: 0
 PPrecover: 0
 boost:

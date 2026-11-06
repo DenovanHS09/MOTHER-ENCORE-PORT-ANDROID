@@ -115,7 +115,7 @@ material = SubResource( 10 )
 position = Vector2( 32, 32 )
 texture = ExtResource( 1 )
 hframes = 10
-vframes = 11
+vframes = 16
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/lookIntoYourSoul = SubResource( 5 )
@@ -124,5 +124,3 @@ anims/psiPrep = SubResource( 8 )
 anims/psiPrep2 = SubResource( 9 )
 next/psi = "idle"
 next/psiPrep = "psiPrep2"
-
-[node name="Tween" type="Tween" parent="."]

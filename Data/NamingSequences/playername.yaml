@@ -13,5 +13,5 @@ scenario:
   longest_name: LONGEST_POSSIBLE_PLAYER_NAME
   prompt: What’s your name?
   sprite: ''
-  target: playerName
+  target: player_name
   type: naming

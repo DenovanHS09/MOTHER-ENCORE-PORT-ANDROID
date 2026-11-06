@@ -1,52 +1,74 @@
 extends CanvasLayer
 
-onready var _hbox = $Control/HBox
-onready var _anim_player = $AnimationPlayer
+signal scroll_done
 
-var _showing = false
+onready var _hbox = $Control/HBox
+onready var _anim_player := $AnimationPlayer
+
+var _showing := false
+var _show_max_num := true
 
 func _ready():
-	update_party_infos()
-	global.connect("party_changed", self, "update_party_infos")
+	_reset_party_infos()
+	global.connect("party_changed", self, "_reset_party_infos")
+	for plate in _hbox.get_children():
+		plate.connect("hp_scroll_done", self, "_on_scroll_done")
+		plate.connect("pp_scroll_done", self, "_on_scroll_done")
 
-func update_party_infos(set=true):
+func _reset_party_infos():
 	for i in _hbox.get_child_count():
 		var plate = _hbox.get_child(i)
 		if i >= global.POSSIBLE_PLAYABLE_MEMBERS.size():
 			plate.hide()
 			continue
-		var chara = globaldata.get(global.POSSIBLE_PLAYABLE_MEMBERS[i])
+		var chara = globaldata.characters.get(global.POSSIBLE_PLAYABLE_MEMBERS[i])
 		plate.visible = chara in global.party
-		plate.pName = TextTools.replace_text(chara.nickname)
-		plate.maxHP = chara.maxhp + chara.boosts.maxhp
-		plate.maxPP = chara.maxpp + chara.boosts.maxpp
-		plate.setHP(chara.hp, set)
-		plate.setPP(chara.pp, set)
-		plate.show_max_num()
+		plate.set_character(chara)
+	_refresh_show_max_num()
 
-func deselect_all():
+func refresh_stats(scroll := false):
 	for plate in _hbox.get_children():
-		plate.deselect()
+		plate.refresh_battle_plate(scroll)
+		plate.refresh_menu_plate()
 
-func select_one(character_name: String):
-	var char_idx = global.POSSIBLE_PLAYABLE_MEMBERS.find(character_name)
+func select_characters(char_names: Array):
 	for i in _hbox.get_child_count():
-		if i == char_idx:
+		var plate_char_name: String = global.POSSIBLE_PLAYABLE_MEMBERS[i]
+		if plate_char_name in char_names:
 			_hbox.get_child(i).select()
 		else:
 			_hbox.get_child(i).deselect()
 
-func select_if(condition: FuncRef):
-	for i in _hbox.get_child_count():
-		var chara = globaldata.get(global.POSSIBLE_PLAYABLE_MEMBERS[i])
-		if condition.call_func(chara):
-			_hbox.get_child(i).select()
+func _refresh_show_max_num():
+	_hbox.add_constant_override("separation", -1 if _show_max_num else 1)
+	for plate in _hbox.get_children():
+		if _show_max_num:
+			plate.show_max_num()
 		else:
-			_hbox.get_child(i).deselect()
+			plate.hide_max_num()
 
-func open():
+func _on_scroll_done():
+	if !is_any_plate_scrolling():
+		emit_signal("scroll_done")
+
+func is_any_plate_scrolling():
+	for plate in _hbox.get_children():
+		if plate.visible and (plate.are_hp_scrolling() or plate.are_pp_scrolling()):
+			return true
+	return false
+
+func open(value := _show_max_num):
 	if !_showing:
+		if value != _show_max_num:
+			_show_max_num = value
+			_refresh_show_max_num()
 		_showing = true
+		_anim_player.play("Open")
+	elif _showing and value != _show_max_num:
+		_anim_player.play("Close")
+		yield(_anim_player, "animation_finished")
+		_show_max_num = value
+		_refresh_show_max_num()
 		_anim_player.play("Open")
 
 func close():

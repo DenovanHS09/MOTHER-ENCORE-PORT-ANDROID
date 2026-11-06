@@ -2,24 +2,26 @@ name: LIFEUP_NAME
 level: 1
 description: LIFEUPB_DESC
 article: LIFEUP_ART
-skillType: psi
-actionType: 1
-useCases: 0
-psiCategory: Recovery
-damageType: none
-targetType: 1
-damage: 130
+skill_type: psi
+action_type: 1 # Healing
+use_cases: 0 # Field & battle
+psi_category: Recovery
+target_type: 1 # Ally
+damage_or_heal: 130
 variance: 10
 priority: 0
-statusEffects: []
-statusHeals: []
-critChance: 0
-failChance: 0
-ppCost: 9
-hpCost: 0
-hitEffect: ''
-preHitEffect: lifeup_beta
-screenEffect: lifeup
-userAnim: psi
-useSound: ''
-hitSound: ''
+miss_chance: 0
+pp_cost: 9
+hp_cost: 0
+hit_effect: ""
+pre_hit_effect: lifeup_beta
+screen_effect: lifeup
+user_anim_colors:
+  - "90FF73"
+  - "00FF6A"
+  - "0C8A62"
+user_anim: psi
+use_sound: ""
+hit_sound: ""
+traits:
+  - target_incapacitated

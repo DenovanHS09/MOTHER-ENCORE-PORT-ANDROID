@@ -1,0 +1,400 @@
+playtime: 0
+bank: 0
+cash: 100000
+earned_cash: 0
+favoritefood: "sexy pizza"
+menuflavor: Plain
+textspeed: 0.02
+buttonprompts: Both
+description: true
+runsound: wood
+keys:
+  Catacombs: 0
+party:
+  - ninten
+key_items:
+  - item_name: Ocarina
+  - item_name: GGFDiary
+  - item_name: MapPodunk
+  - item_name: MapCatacombs
+  - item_name: MapMagicant
+  - item_name: MapMerrysville
+  - item_name: MapSweets
+  - item_name: MapDuncans
+  - item_name: BrokenTrumpet
+  - item_name: CashCard
+  - item_name: BottleRocketWings
+  - item_name: BottleRocketHead
+ninten:
+  nickname: Ninten
+  inventory:
+    - item_name: Berliner
+    - item_name: Berliner
+    - item_name: Berliner
+    - item_name: Berliner
+    - item_name: Berliner
+    - item_name: Berliner
+    - item_name: Crumbs
+    - item_name: Slingshot
+    - item_name: BatWooden
+      equipped: true
+    - item_name: CourageBadge
+    - item_name: Antidote
+    - item_name: EyeDrops
+    - item_name: AsthmaSpray
+    - item_name: BaseballCap
+      equipped: true
+    - item_name: SlingshotMetal
+  status: []
+  learnedSkills:
+    - curveball
+    - strike
+    - ricochet
+    - ballFlame
+    - return
+    - homerun
+    - healingA
+    - healingB
+    - healingG
+    - healingO
+    - lifeUpA
+    - lifeUpB
+    - offenseUpA
+    - speedUpA
+    - shieldA
+    - telepathy
+    - teleportA
+    - teleportO
+  level: 20
+  exp: 0
+  hp: 430
+  pp: 100
+ana:
+  nickname: Ana
+  status: []
+  inventory:
+    - item_name: Bread
+    - item_name: Bread
+    - item_name: Bread
+  learnedSkills:
+    - yomama
+    - approach
+    - attack
+    - bash
+    - bigGrin
+    - bite
+    - blindingThrow
+    - brandishPitchfork
+    - criticalthinking
+    - curveball
+    - defenseUpA
+    - escapeCrumbs
+    - float
+    - getDistracted
+    - healingA
+    - healingB
+    - healingG
+    - healingO
+    - hystericalLaugh
+    - karateChop
+    - lifeUpA
+    - lifeUpB
+    - lifeUpG
+    - lifeUpO
+    - meditate
+    - mightyRoar
+    - mysteriousAction
+    - offenseUpA
+    - peck
+    - pkBeamA
+    - pkBeamB
+    - pkBeamG
+    - pkBeamO
+    - pkFireA
+    - pkFreezeA
+    - poisonBite
+    - punch
+    - rage
+    - scratch
+    - speedUpA
+    - spy
+    - swing
+    - tackle
+    - telepathy
+    - ventOdor
+  level: 1
+  exp: 0
+  hp: 1
+  pp: 730
+lloyd:
+  nickname: Lloyd
+  status: []
+  inventory:
+    - item_name: Bread
+    - item_name: Bread
+    - item_name: Bread
+    - item_name: GunStun
+      equipped: true
+  learnedSkills: []
+  level: 1
+  exp: 0
+  hp: 80
+  pp: 0
+teddy:
+  nickname: Teddy
+  status: []
+  inventory:
+    - item_name: Bread
+    - item_name: Bread
+    - item_name: Bread
+    - item_name: Bread
+    - item_name: Bread
+  learnedSkills: []
+  level: 1
+  exp: 0
+  hp: 80
+  pp: 0
+pippi:
+  nickname: Pippi
+  status: []
+  inventory: []
+  learnedSkills: []
+  level: 1
+  exp: 0
+  hp: 80
+  pp: 0
+canarychick:
+  hp: 1
+  pp: 0
+flyingman:
+  hp: 400
+  pp: 0
+eve:
+  hp: 400
+  pp: 0
+flags:
+  ##################
+  #Melodies
+  ##################
+  doll_melody: true
+  canary_melody: true
+  monkey_melody: true
+  piano_melody: false
+  cactus_melody: true
+  dragon_melody: true
+  eve_melody: false
+  grave_melody: true
+  ##################
+  #Abilities
+  ##################
+  switch_leader: true
+  bat: true
+  energy_beam: true
+  eagle_feather: true
+  ##################
+  #Misc
+  ##################
+  earned_cash: false
+  good_morning: false
+  saved: false
+  ##################
+  #Debug
+  ##################
+  npc_disappear_1: false
+  npc_dialog_1: false
+  npc_dialog_2: false
+  ##################
+  #Ninten's House
+  ##################
+  poltergeist: true
+  mimmie_door_opened: true
+  doll_attack: true
+  pillow_attack: true
+  minnie_leave: true
+  minnie_door: true
+  doll_defeated: true
+  phone_ring: true
+  talked_to_dad: true
+  mimmie_ask_key: true
+  carol_ask_key: true
+  mick_scratch: true
+  mick_telepathy: true
+  ninten_basement_door: true
+  got_juice: true
+  got_diary: true
+  got_dog_treats: true
+  got_asthma_spray: true
+  gave_treats: true
+  ##################
+  #Podunk
+  ##################
+  beat_dog_bridge: true
+  pippis_mom_call: true
+  pippis_mom_help: true
+  ##################
+  #Podunk Cemetery
+  ##################
+  disguised_zombie_defeated: true
+  cem_roots_grown: true
+  got_shovel: true
+  returned_shovel: true
+  ##################
+  #Podunk Catacombs
+  ##################
+  hidden_entrance_opened: true
+  pippi_fought: false
+  pippi_rescued: false
+  courage_badge_received: true
+  church_door_opened: true
+  church_exited: true
+  ##################
+  #Return to podunk
+  ##################
+  #pippi_town_hall: true, # Useless?
+  canary_found: true
+  wally_attack: true
+  wally_defeat: true
+  pippi_reunite: true
+  alfred_song: true
+  leave_canary_village: true
+  pippi_delivered: true
+  #mayor_key_not_received: true, # Useless?
+  #zoo_key_received: true, # Useless
+  ##################
+  #Zoo
+  ##################
+  zoo_key_stolen: true
+  zoo_freed: false
+  monkey_apologize: true
+  guard_moved: true
+  ninten_family_goodbye: true
+  ##################
+  #Magicant
+  ##################
+  got_magic_candy: true
+  got_magic_ribbon: true
+  lent_cash_card: true
+  got_big_bag: true
+  met_happiness_guy: true
+  met_guy_who_talks_about_how_you_cant_part_if_you_havent_met: true
+  got_nicknamed: true
+  slept_at_spoon_guys_place: true
+  guard_riddle_solved: true
+  fountain_scouts_met: true
+  marys_story_learned: false
+  enteredwell: false
+  first_flying_man: false
+  flying_man_in_party: false
+  flying_man_1_joined: false
+  flying_man_2_joined: false
+  flying_man_3_joined: false
+  flying_man_4_joined: false
+  flying_man_5_joined: false
+  forgotten_man_1: false
+  forgotten_man_2: false
+  forgotten_man_3: false
+  forgotten_man_4: false
+  forgotten_man_5: false
+
+  ##################
+  #Merrysville
+  ##################
+  janitor_cutscene_finished: true
+  lloyd_roof_1: true
+  lloyd_roof_2: true
+
+  #Sweet's Little Factory
+  rat_king_1: true
+  rat_king_2: true
+  got_br_wings: true
+  got_br_head: true
+  br_progress_1: true
+  br_progress_1_arrived: true
+  br_wings_attached: true
+  br_progress_2: true
+  br_progress_2_arrived: true
+  br_head_attached: true
+  br_progress_3: true
+  br_progress_3_arrived: true
+  rat_king_attack: true
+  rat_king_defeat: true
+  rat_king_disappear: true
+  bottle_rocket_found: true
+  sweet_factory_exit_open: true
+
+  #Merrysville
+  lloyd_befriended: true
+  lab_destroyed: true
+  missile_explosion: true
+  missile_damage_seen: true
+  weird_teacher_appear: true
+  weird_teacher_alt_dialogue: true
+  got_factory_pass: true
+
+  #Duncan's Factory
+  drdistorto_1: false
+  drdistorto_2: false
+  drdistorto_3: false
+  drdistorto_4: false
+  computer_left_hacked: false
+  computer_right_hacked: false
+  computers_all_hacked: false
+  franklin_badge_found: false
+  drdistorto_attack: false
+  drdistorto_defeat: false
+  rocket_launched: false
+  drdistorto_disappear: false
+  #Merrysville 2
+  lloyd_kitchen: false
+  fixed_merrysville_road_bridge: false
+  lloyd_mom_goodbye: false
+  train_to_reindeer: false
+  ##################
+  #Reindeer
+  ##################
+  magicant_second_visit: false
+  wally2_attack: false
+  wally2_defeat: false
+  anahat_get: false
+  ##################
+  #Snowman
+  ##################
+  nancy_attack: false
+  nancy_defeat: false
+  ##################
+  #Spookane
+  ##################
+  magicant_third_visit: false
+  ##################
+  #Yucca Desert
+  ##################
+  giantrobot1_attack: false
+  giantrobot1_defeat: false
+  magicant_fourth_visit: false
+  ##################
+  #Youngtown
+  ##################
+  ##################
+  #Swamp
+  ##################
+  ##################
+  #Ellay
+  ##################
+  ##################
+  #MtItoi
+  ##################
+  magicant_fifth_visit: false
+  magicant_sixth_visit: false
+  ##################
+  #Exploration
+  ##################
+  visited_podunk: true
+  visited_magicant: false
+  visited_merrysville: false
+  visited_reindeer: false
+  visited_spookane: false
+  visited_snowman: false
+  visited_yucca: false
+  visited_youngtown: false
+  visited_ellay: false
+  visited_mtitoi: false

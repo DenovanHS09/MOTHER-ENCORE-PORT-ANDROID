@@ -2,6 +2,53 @@
   name: DIALOGUE_REUSABLE_DAD_NORMAL_SPEAKER_Dad
   sound: Adult
   text: DIALOGUE_REUSABLE_DAD_NORMAL_0
+  goto: "check_lloyd"
+"check_lloyd":
+  name: DIALOGUE_REUSABLE_DAD_NORMAL_SPEAKER_Dad
+  if:
+    leader: lloyd
+    goto: "lloyd_leader"
+  goto: "check_ana"
+"check_ana":
+  name: DIALOGUE_REUSABLE_DAD_NORMAL_SPEAKER_Dad
+  if:
+    leader: ana
+    goto: "ana_leader"
+  goto: "check_teddy"
+"check_teddy":
+  name: DIALOGUE_REUSABLE_DAD_NORMAL_SPEAKER_Dad
+  if:
+    leader: teddy
+    goto: "teddy_leader"
+  goto: "check_pippi"
+"check_pippi":
+  name: DIALOGUE_REUSABLE_DAD_NORMAL_SPEAKER_Dad
+  if:
+    leader: pippi
+    goto: "pippi_leader"
+  goto: "check_earned_cash"
+"lloyd_leader":
+  name: DIALOGUE_REUSABLE_DAD_NORMAL_SPEAKER_Dad
+  sound: Adult
+  text: DIALOGUE_REUSABLE_DAD_LLOYDLEADER_0
+  goto: "check_earned_cash"
+"ana_leader":
+  name: DIALOGUE_REUSABLE_DAD_NORMAL_SPEAKER_Dad
+  sound: Adult
+  text: DIALOGUE_REUSABLE_DAD_ANALEADER_0
+  goto: "check_earned_cash"
+"teddy_leader":
+  name: DIALOGUE_REUSABLE_DAD_NORMAL_SPEAKER_Dad
+  sound: Adult
+  text: DIALOGUE_REUSABLE_DAD_TEDDYLEADER_0
+  goto: "check_earned_cash"
+"pippi_leader":
+  name: DIALOGUE_REUSABLE_DAD_NORMAL_SPEAKER_Dad
+  sound: Adult
+  text: DIALOGUE_REUSABLE_DAD_PIPPILEADER_0
+  goto: "check_earned_cash"
+"check_earned_cash":
+  name: DIALOGUE_REUSABLE_DAD_NORMAL_SPEAKER_Dad
   if:
     flags:
       earned_cash: true

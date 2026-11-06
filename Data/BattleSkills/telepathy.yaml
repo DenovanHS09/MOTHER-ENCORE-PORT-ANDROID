@@ -1,10 +1,10 @@
 name: TELEPATHY_NAME
 description: TELEPATHY_DESC
 article: TELEPATHY_ART
-skillType: psi
-useCases: -1
-psiCategory: Assist
-targetType: 5
-ppCost: 0
-useSound: ''
-hitSound: ''
+skill_type: psi
+use_cases: -1 # Field only
+psi_category: Assist
+target_type: 5 # Self
+pp_cost: 0
+use_sound: ''
+hit_sound: ''

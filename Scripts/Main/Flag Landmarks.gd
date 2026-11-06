@@ -3,24 +3,15 @@ class_name FlagLandmark
 
 export var appear_flag = ""
 export var disappear_flag = ""
+export var delete_if_hidden = true
 
 func _ready():
-	check_flags()
-	global.connect("cutscene_ended", self, "check_flags")
+	_check_flags()
+	global.connect("flags_updated", self, "_check_flags")
 
-func check_flags():
-	if appear_flag != "":
-		if globaldata.flags.has(appear_flag):
-			if globaldata.flags[appear_flag] == true:
-				show()
-			else:
-				hide()
-		else:
-			hide()
-	if disappear_flag != "":
-		if globaldata.flags.has(disappear_flag):
-			if globaldata.flags[disappear_flag] == true:
-				hide()
-
-	if !visible:
+func _check_flags():
+	var shown = globaldata.check_appear_disappear_flags(appear_flag, disappear_flag)
+	if delete_if_hidden and !shown:
 		queue_free()
+	else:
+		visible = shown

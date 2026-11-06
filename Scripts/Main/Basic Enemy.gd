@@ -1,5 +1,5 @@
 extends KinematicBody2D
-
+class_name OverworldEnemy
 
 signal enemy_erased
 
@@ -9,7 +9,7 @@ export (Array, PoolStringArray) var connections = []
 export var spriteOffset = [0, 0]
 export var shadow = true
 export var returning = true
-export var maxDistance = 100
+export var maxDistance = 128
 export var maxSpeed: int = 64
 export var acceleration: int = 200
 export var friction: int = 200
@@ -17,26 +17,32 @@ export var walk_frequency = 1.0
 
 
 onready var eventRayCaster = $EventDetector
-onready var tween = $Tween
-onready var characterSprite = $CharacterSprite
+onready var character_sprite = $CharacterSprite
 onready var emotes = $CharacterSprite/emotes
+onready var wander_radius = $WanderRadius/CollisionShape2D2
 
-var vectorSpriteOffset = Vector2.ZERO
+const KNOCKBACK := 200
+const KNOCKBACK_DECELERATION := 7
+const MIN_MOVEMENT_LENGTH := 8
+const MIN_DISINTEREST_TIME := 2
+
+var _vector_sprite_offset = Vector2.ZERO
 var sprite = ""
-var enemyData = []
-var seeing = false
-var blind = false
-var underLevel = false
+var _enemy_char: Enemy
+var _seeing = false
+var _blind = false
+var _underlevel = false
 var drafted = false
-var direction = Vector2.ZERO
-var inputVector  = Vector2.ZERO
+var _direction = Vector2.ZERO
+var _input_vector  = Vector2.ZERO
 var velocity = Vector2.ZERO
 var start_pos = Vector2.ZERO
-var knockback = Vector2.ZERO
-var newPos = null
-var onScreenId = null
-var startingHP = 0
+var _knockback = Vector2.ZERO
+var new_pos = null
+var _on_screen_enemy : OnScreenEnemy = null
 var changingParents = false
+var _tween: SceneTreeTween
+var _disinterest_time := 0.0
 
 
 enum {
@@ -48,403 +54,402 @@ enum {
 var state = WANDER
 
 func _ready():
-	if enemy != "Gorilla2OV":
-		enemyData = _load_enemy_data(enemy)
-		if enemyData != null and enemyData.has("ov"):
-			for i in enemyData["ov"]:
-				set(i, enemyData["ov"][i])
-		startingHP = enemyData["hp"]
-		var highestLevel = 0
-		for i in global.party.size():
-			if global.party[i]["level"] > highestLevel:
-				highestLevel = global.party[i]["level"]
-		if highestLevel >= enemyData["level"] + 10:
-			underLevel = true
-		newPos = position
-		characterSprite.animationTree.active = true
-		set_spritesheet()
-		set_physics_process(false)
-		$Shadow.visible = shadow
-		start_pos = position
-		inputVector.x = round(rand_range(-1, 1))
-		inputVector.y = round(rand_range(-1, 1))
-		if walk_frequency != 0:
-			$WanderRadius/Timer.wait_time = rand_range(0.1, walk_frequency)
-			$WanderRadius/Timer.start()
-		state = WANDER
+	_enemy_char = Enemy.new(enemy.replace(" ", ""))
+	var enemy_data = _enemy_char.get_data()
+	if _enemy_char and enemy_data.has("ov"):
+		for i in enemy_data["ov"]:
+			set(i, enemy_data["ov"][i])
+	_set_underlevel()
+	new_pos = position
+	character_sprite.animationTree.active = true
+	set_spritesheet()
+	set_physics_process(false)
+	$Shadow.visible = shadow
+	start_pos = position
+	_input_vector.x = round(rand_range(-1, 1))
+	_input_vector.y = round(rand_range(-1, 1))
+	set_direction(_input_vector)
+	if walk_frequency != 0:
+		$WanderRadius/Timer.wait_time = rand_range(0.1, walk_frequency)
+	state = WANDER
 	
-func _physics_process(delta):	
-	if enemy != "Gorilla2OV":
-		if !global.persistPlayer.paused:
-			characterSprite.animationTree.active = true
-			eventRayCaster.look_at(global.persistPlayer.global_position + global.persistPlayer.get_node("CollisionShape2D").position * 2)
-	#	ADVANTAGE BUG HOTFIX
-			var fuckingdirectionihatethiswhyamidoingthis
-			if rad2deg(atan2(direction.x, direction.y)) in [180.0, 0.0]:
-				fuckingdirectionihatethiswhyamidoingthis = atan2(direction.x, direction.y) - deg2rad(90)
-			elif rad2deg(atan2(direction.x, direction.y)) in [90.0, -90.0]:
-				fuckingdirectionihatethiswhyamidoingthis = atan2(direction.x, direction.y) + deg2rad(90)
-			elif rad2deg(atan2(direction.x, direction.y)) in [45.0, -135.0]:
-				fuckingdirectionihatethiswhyamidoingthis = atan2(direction.x, direction.y) + deg2rad(180)
+func _physics_process(delta: float):
+	if global.get_player().is_paused() or global.entering_door:
+		if global.get_player().is_paused():
+			character_sprite.animationTree.active = false
+		return
+	character_sprite.animationTree.active = true
+	eventRayCaster.look_at(global.get_player().get_ground_position())
+	if is_raycast_on_player() and position.distance_to(start_pos) <= maxDistance:
+		_disinterest_time = 0
+		if !state in [CHASE, STUNNED]:
+			if (_seeing or (global.get_player().is_running() and global.get_player().has_substantial_movement())) and !_blind:
+				start_chase()
+	elif state == CHASE:
+		_disinterest_time += delta
+		if _disinterest_time >= MIN_DISINTEREST_TIME:
+			chase_stop()
+	
+	var old_pos = position
+	var difference = max(ceil(abs(maxSpeed * delta)), 1.0)
+	match state:
+		WANDER:
+			if abs(global_position.x - new_pos.x) > difference or abs(global_position.y - new_pos.y) > difference:
+				_input_vector = position.direction_to(new_pos)
+				velocity = velocity.move_toward(_input_vector * maxSpeed, acceleration * delta)
 			else:
-				fuckingdirectionihatethiswhyamidoingthis = atan2(direction.x, direction.y)
-			$Position2D/BlindSpot/CollisionPolygon2D.set_rotation(fuckingdirectionihatethiswhyamidoingthis)
-			$Position2D/ViewArea/CollisionPolygon2D.set_rotation(fuckingdirectionihatethiswhyamidoingthis)
-			if rad2deg(fuckingdirectionihatethiswhyamidoingthis) > 0:
-				$Position2D/BlindSpot/CollisionPolygon2D.set_position(Vector2(-13, 0))
-				$Position2D/ViewArea/CollisionPolygon2D.set_position(Vector2(-13, 0))
+				velocity = Vector2.ZERO
+		RETURN:
+			if $Timer.time_left == 0:
+				_input_vector = position.direction_to(new_pos)
+				velocity = velocity.move_toward(_input_vector * maxSpeed, acceleration * delta)
+			if abs(global_position.x - new_pos.x) > difference or abs(global_position.y - new_pos.y) > difference:
+				_input_vector = Vector2.ZERO
+				start_wander()
+		CHASE:
+			if _underlevel:
+				_input_vector = global.partyObjects[int(global.partyObjects.size()/2)].global_position.direction_to(global_position)
 			else:
-				$Position2D/BlindSpot/CollisionPolygon2D.set_position(Vector2(9, 0))
-				$Position2D/ViewArea/CollisionPolygon2D.set_position(Vector2(9, 0))
-			if eventRayCaster.get_collider() == global.persistPlayer and position.distance_to(start_pos) <= maxDistance:
-				if state != CHASE and state != STUNNED:
-					if (seeing == true or (global.persistPlayer.running == true and global.persistPlayer.substantialMovement == true)) and state != CHASE and !blind:
-						start_chase()
-				$Timer.wait_time = 2
-				$Timer.start()
-			else: 
-				if $Timer.time_left == 0:
-					if state == CHASE:
-						chase_stop()
-			var oldPos = position
-			match state:
-				WANDER:
-					if newPos != null and position != newPos:
-						inputVector = position.direction_to(newPos)
-						global_position = global_position.move_toward(newPos, delta * maxSpeed)
-						characterSprite.travel("Walk")
-					else:
-						characterSprite.travel("Idle")
-				RETURN:
-					if $Timer.time_left == 0:
-						inputVector = position.direction_to(newPos)
-						position = position.move_toward(newPos, maxSpeed * delta)
-						characterSprite.travel("Walk")
-					if (position == newPos):
-						inputVector = Vector2.ZERO
-						state = WANDER
-						characterSprite.travel("Idle")
-				CHASE:
-					if underLevel:
-						inputVector = global.partyObjects[int(global.partyObjects.size()/2)].global_position.direction_to(global_position)
-					else:
-						inputVector = global_position.direction_to(global.partyObjects[int(global.partyObjects.size()/2)].global_position)
-					if $ChaseTimer.time_left == 0:
-						velocity = velocity.move_toward(inputVector * maxSpeed, acceleration * delta)
-						characterSprite.travel("Walk")
-			
-			inputVector = round_vector(inputVector)
-			
-			velocity = move_and_slide(velocity)
-			knockback = knockback.move_toward(Vector2.ZERO, 200 * delta)
-			knockback = move_and_slide(knockback)
-			
-			position = round_vector(position)
-			
-			var newDirection = position.direction_to(newPos)
-			if oldPos != position and (newDirection.x == 0 or newDirection.x == 0):
-				direction = oldPos.direction_to(position)
-			else:
-				direction = inputVector
-			#if characterSprite.offset.y == spriteOffset[1]:
-			characterSprite.blend_position(direction)
-		else:
-			characterSprite.animationTree.active = false
+				_input_vector = global_position.direction_to(global.partyObjects[int(global.partyObjects.size()/2)].global_position)
+			if $ChaseTimer.time_left == 0:
+				velocity = velocity.move_toward(_input_vector * maxSpeed, acceleration * delta)
+	
+	_input_vector = _input_vector.round()
+	
+	velocity = move_and_slide(velocity)
+	_knockback = _knockback.move_toward(Vector2.ZERO, KNOCKBACK_DECELERATION * delta)
+	_knockback = move_and_slide(_knockback)
+	
+	position = position.round()
+	if velocity != Vector2.ZERO and position != old_pos:
+		_direction = velocity.normalized().round()
+		character_sprite.travel("Walk")
+	else:
+		character_sprite.travel("Idle")
+	
+	$RayCast2D.rotation = _direction.angle() - TAU/4
+	character_sprite.blend_position(_direction)
 
-func move():
-	if enemy != "Gorilla2OV":
-		var oldPos = position
-		
-		var x = position.x
-		var y = position.y
-		
-		if randi()%2 == 1: 
-			x = rand_range(start_pos.x, start_pos.x+$WanderRadius/CollisionShape2D2.shape.radius)
-		else:
-			y = rand_range(start_pos.y, start_pos.y+$WanderRadius/CollisionShape2D2.shape.radius)
-		var travelPos = Vector2(round(x),round(y))
-		$RayCast2D.enabled = true
-		$RayCast2D.set_cast_to(travelPos - position)
-		var ample_distance_x = travelPos.x - oldPos.x
-		var ample_distance_y = travelPos.y - oldPos.y
-		if !$RayCast2D.is_colliding() and (ample_distance_x > 8 or ample_distance_x <-8 or ample_distance_y > 8 or ample_distance_y <-8):
-			newPos = travelPos
-			inputVector = oldPos.direction_to(newPos)
-		else:
-			$RayCast2D.enabled = false
-			move()
+func _choose_movement_direction():
+	var old_pos = position
+	
+	var x = position.x
+	var y = position.y
+	
+	if randi()%2 == 1:
+		x = rand_range(start_pos.x - wander_radius.shape.radius/2, start_pos.x + wander_radius.shape.radius/2)
+	else:
+		y = rand_range(start_pos.y - wander_radius.shape.radius/2, start_pos.y + wander_radius.shape.radius/2)
+	var travel_pos = Vector2(round(x),round(y))
+	$RayCast2D.enabled = true
+	$RayCast2D.set_cast_to(travel_pos - position)
+	var ample_distance_x = abs(travel_pos.x - old_pos.x)
+	var ample_distance_y = abs(travel_pos.y - old_pos.y)
+	if (ample_distance_x > MIN_MOVEMENT_LENGTH or ample_distance_y > MIN_MOVEMENT_LENGTH):
+		if $RayCast2D.get_collider() == null:
+			new_pos = travel_pos
+			_input_vector = old_pos.direction_to(new_pos)
+	else:
+		_choose_movement_direction()
+
+func set_direction_and_input(value: Vector2):
+	_input_vector = value
+	set_direction(value)
+
+func set_direction(value: Vector2):
+	_direction = value
+
+func get_direction() -> Vector2:
+	return _direction
 
 func jump():
-	characterSprite.travel("Walk")
-	tween.interpolate_property(characterSprite, "offset",
-		vectorSpriteOffset, vectorSpriteOffset - Vector2(0, 5), 0.1,
-		Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	tween.interpolate_property(characterSprite, "offset",
-		vectorSpriteOffset - Vector2(0, 5), vectorSpriteOffset, 0.1,
-		Tween.TRANS_LINEAR, Tween.EASE_IN, 0.1)
-	tween.start()
+	character_sprite.travel("Walk")
+	if !_tween or !_tween.is_running(): _tween = get_tree().create_tween()
+	_tween.tween_property(character_sprite, "offset", _vector_sprite_offset - Vector2(0, 5), 0.1) \
+		.from(_vector_sprite_offset).set_ease(Tween.EASE_OUT)
+	_tween.tween_property(character_sprite, "offset", _vector_sprite_offset, 0.1) \
+		.set_ease(Tween.EASE_IN)
 
 func start_chase():
-	if (state == WANDER or state == RETURN) and !emotes.animaPlayer.is_playing() and !global.persistPlayer.paused:
+	if (state == WANDER or state == RETURN) and !emotes.animaPlayer.is_playing() and !global.get_player().is_paused():
 		state = CHASE
+		stop_wander()
 		jump()
-		if underLevel:
-			emotes.animaPlayer.play("blueExclamation")
-		else:
-			emotes.animaPlayer.play("exclamation")
+		emotes.animaPlayer.play("exclamation" if !_underlevel else "blueExclamation")
 		$ChaseTimer.start()
 
 func chase_stop():
 	velocity = velocity.move_toward(Vector2.ZERO, friction)
-	characterSprite.travel("Idle")
-	$Timer.wait_time = 1
+	character_sprite.travel("Idle")
 	$Timer.start()
 	if returning == true:
 		state = RETURN
-		newPos = start_pos
+		new_pos = start_pos
 	else: 
 		state = WANDER
 
-func round_vector(pos):
-	pos.x = round(pos.x)
-	pos.y = round(pos.y)
-	return pos
+func start_wander():
+	_choose_movement_direction()
+	state = WANDER
+	$WanderRadius/Timer.wait_time = rand_range(walk_frequency - 0.5,walk_frequency + 0.5)
+	$WanderRadius/Timer.start()
+
+func stop_wander():
+	$WanderRadius/Timer.stop()
+
+func is_raycast_on_player() -> bool:
+	return eventRayCaster.get_collider() == global.get_player()
 
 func _on_Timer_timeout():
-	if walk_frequency != 0:
-		if state == WANDER and start_pos != null and $VisibilityNotifier2D.is_on_screen():
-			move()
-		$WanderRadius/Timer.wait_time = rand_range(walk_frequency - 0.5,walk_frequency + 0.5)
+	if walk_frequency != 0 and $VisibilityNotifier2D.is_on_screen():
+		if state == WANDER and start_pos != null:
+			_choose_movement_direction()
+			start_wander()
 
-func _on_ViewArea_body_entered(body):
-	if body == global.persistPlayer:
-		seeing = true
+func _on_ViewArea_body_entered(body: KinematicBody2D):
+	if body == global.get_player():
+		_seeing = true
 
-func _on_ViewArea_body_exited(body):
-	if body == global.persistPlayer:
-		seeing = false
+func _on_ViewArea_body_exited(body: KinematicBody2D):
+	if body == global.get_player():
+		_seeing = false
 
-func _on_BlindSpot_body_entered(body):
-	if body == global.persistPlayer:
-		blind = true
+func _on_blindSpot_body_entered(body: KinematicBody2D):
+	if body == global.get_player():
+		_blind = true
 
-func _on_BlindSpot_body_exited(body):
-	if body == global.persistPlayer:
-		blind = false
+func _on_blindSpot_body_exited(body: KinematicBody2D):
+	if body == global.get_player():
+		_blind = false
 
-func _on_interact_body_entered(body):
-	if visible and (body.name == "player" or "PartyFollower" in body.name) and !global.cutscene:
-		if global.persistPlayer.paused:
-			yield(global.persistPlayer, "unpaused")
-		if enemy != "":
-			if underLevel and global.persistPlayer.running and global.persistPlayer.substantialMovement:
-				if state != STUNNED:
-					global.currentCamera.shake_camera(2, 0.2)
-					global.start_joy_vibration(0, 0.5, 0.6, 0.2)
-					$AudioStreamPlayer.play()
-					flash(1, 0.08, 0.6, true)
-					#characterSprite.offset.y = spriteOffset[1]
-					tween.stop_all()
-					tween.interpolate_property(characterSprite, "position",
-						characterSprite.position, Vector2(0, characterSprite.position.y - 64), 0.2,
-						Tween.TRANS_SINE,Tween.EASE_OUT)
-					tween.interpolate_property(characterSprite, "position",
-						Vector2(0, characterSprite.position.y - 64), characterSprite.position, 0.3,
-						Tween.TRANS_SINE,Tween.EASE_IN, 0.3)
-					tween.start() 
-					state = STUNNED
-					characterSprite.animationTree.active = false
-					velocity = Vector2.ZERO
-			elif $DamageAnimation.current_animation != "Flash":
-				$interact/CollisionShape2D.set_deferred("disabled", true)
-				chase_stop()
-				var playerSeeing = false
-				for object in global.persistPlayer.viewArea.get_overlapping_bodies():
-					if object == self:
-						playerSeeing = true
-				drafted = true
-				if playerSeeing:
-					push_to_front_battle()
-					if seeing:
-						uiManager.start_battle(0)
-					else:
-						uiManager.start_battle(1)
-				else:
-					push_to_front_battle()
-					uiManager.start_battle(2)
+func _on_interact_body_entered(body: KinematicBody2D):
+	if !(visible and body is PartyObject and !uiManager.is_in_cutscene() and !uiManager.is_battle_queued() and !global.entering_door and global.can_pause):
+		return
 
+	if global.get_player().is_paused():
+		yield(global.get_player(), "unpaused")
 
-func _on_Hurtbox_area_entered(area):
-	# not during cutscenes, or if battle already started!!
-	if !global.persistPlayer.paused and !global.cutscene:
-		if area.get_collision_layer_bit(1) == true or area.get_collision_layer_bit(3) == true or area.get_collision_layer_bit(7) == true:
-			drafted = true
-			#first strikes
-			$AudioStreamPlayer.play()
-			global.start_joy_vibration(0, 0.6, 0.6, 0.2)
-			global.currentCamera.shake_camera(3, 0.1, global.persistPlayer.position.direction_to(position))
-			var bash = load_skill_json("bash")
-			var mod = global.party[0]["offense"] + global.party[0]["boosts"]["offense"]
-			var defense = enemyData["defense"]
-			var val = 0
-			val = max(1, bash.damage + mod - (defense/2.0))
-			# apply variance
-			val = floor(val + (randf() * bash.variance) - bash.variance/2.0)
-			val = int(round(val))
-			if StatusManager.is_unconscious(global.party[0]):
-				val = int(round(val/4))
-			startingHP -= val
-			uiManager.create_flying_num(val, global_position)
-			knockback = global.persistPlayer.direction * 120
-			$DamageAnimation.play("Flash")
-			yield($DamageAnimation,"animation_finished")
-			$interact/CollisionShape2D.set_deferred("disabled", true)
-			if startingHP <= 0:
-				die(false)
-			elif !global.cutscene:
-				push_to_front_battle()
-				uiManager.start_battle(0)
-		elif area.get_collision_layer_bit(2) == true:
-			#lloyd stun gun
-			area.get_parent().create_spark("Explosion")
-			area.get_parent().disappear()
-			stun()
+	if !enemy: return
+	if _underlevel and global.get_player().is_running() and global.get_player().has_substantial_movement():
+		_handle_underlevel()
+		return
 
+	if $DamageAnimation.current_animation == "Flash":
+		return
+	$interact/CollisionShape2D.set_deferred("disabled", true)
+	chase_stop()
+	_start_battle()
 
-func _on_DamageAnimation_animation_finished(anim_name):
+func _handle_underlevel():
+	if state == STUNNED:
+		return
+	global.currentCamera.shake_camera(2, 0.2)
+	global.start_joy_vibration(0, 0.5, 0.6, 0.2)
+	$AudioStreamPlayer.play()
+	flash(1, 0.08, 0.6, true)
+	if _tween: _tween.kill()
+	_tween = create_tween().set_ease(Tween.TRANS_SINE)
+	_tween.tween_property(character_sprite, "position", Vector2(0, character_sprite.position.y - 64), 0.2) \
+		.set_ease(Tween.EASE_OUT)
+	_tween.tween_property(character_sprite, "position", character_sprite.position, 0.3) \
+		.set_ease(Tween.EASE_IN).set_delay(0.1)
+	state = STUNNED
+	stop_wander()
+	character_sprite.animationTree.active = false
+	velocity = Vector2.ZERO
+
+func _start_battle():
+	push_to_front_battle()
+	if global.get_player().can_see(self):
+		uiManager.start_battle(BattleSystem.Advantage.NEUTRAL if _seeing else BattleSystem.Advantage.PLAYER)
+	else:
+		uiManager.start_battle(BattleSystem.Advantage.ENEMY)
+
+func _on_Hurtbox_area_entered(area: Area2D):
+	if !_can_receive_damage():
+		return
+
+	if area.get_collision_layer_bit(7): # Explosions
+		_do_damage(300 + randi() % 7, false)
+	elif (area.get_collision_layer_bit(1) and $EventDetector.get_collider() == global.get_player()) or area.get_collision_layer_bit(3): # Bat and Fire
+		_do_damage(0)
+	elif area.get_collision_layer_bit(2):
+		# Lloyd stun gun
+		area.get_parent().create_spark("Explosion")
+		area.get_parent().disappear()
+		stun()
+
+func _can_receive_damage() -> bool:
+	return !global.get_player().is_paused() and !uiManager.is_in_cutscene() and !drafted
+
+func _do_damage(val: int, player_hit := true):
+	uiManager.set_battle_queued(true)
+	# First strikes
+	$AudioStreamPlayer.play()
+	global.start_joy_vibration(0, 0.6, 0.6, 0.2)
+	global.currentCamera.shake_camera(8, 0.15, Vector2.ZERO, 0.01)
+	
+	Shaker.new(character_sprite, "offset")\
+		.set_shake_magnitude(8)\
+		.set_shake_direction(Vector2.ZERO)\
+		.set_shake_length(0.4)\
+		.set_shake_interval(0.02).start()
+	
+	if player_hit:
+		val = _calculate_damage(val)
+	
+	_enemy_char.set_hp(_enemy_char.get_hp() - val)
+	uiManager.create_flying_num(val, global_position)
+	_knockback = global.get_player().get_direction() * KNOCKBACK
+	$DamageAnimation.stop()
+	$DamageAnimation.play("Flash")
+	$interact/CollisionShape2D.set_deferred("disabled", true)
+	print("startflash")
+	yield($DamageAnimation,"animation_finished")
+	print("done")
+	uiManager.set_battle_queued(false)
+	if _enemy_char.get_hp() <= 0:
+		die(false)
+		global.party_give_exp(_enemy_char.get_exp())
+		uiManager.give_cash_to_bank(_enemy_char.get_cash())
+		
+	elif !uiManager.is_in_cutscene():
+		push_to_front_battle()
+		uiManager.start_battle(BattleSystem.Advantage.NEUTRAL)
+	
+	_knockback = Vector2.ZERO
+	$interact/CollisionShape2D.set_deferred("disabled", false)
+
+func _calculate_damage(val: int) -> int:
+	var bash = globaldata.get_battle_skill(globaldata.SKILL_BASH)
+	var mod = global.party[0].get_stat(Character.OFFENSE)
+	var defense = _enemy_char.get_stat(Character.DEFENSE)
+	val += int(max(1, bash.damage_or_heal + mod - (defense/2.0)))
+	# Apply variance
+	val = val + (randf() * bash.variance) - bash.variance/2.0
+	val = int(round(val))
+	if global.party[0].is_incapacitated():
+		val = int(round(val/4))
+	return val
+
+func _on_DamageAnimation_animation_finished(anim_name: String):
 	if anim_name == "Stun":
-		state = WANDER
-		if eventRayCaster.get_collider() == global.persistPlayer:
+		start_wander()
+		if is_raycast_on_player():
 			start_chase()
-		characterSprite.animationTree.active = true
+		character_sprite.animationTree.active = true
 
 func stun():
+	$DamageAnimation.stop()
 	$DamageAnimation.play("Stun")
+	Shaker.new(character_sprite, "offset")\
+	.set_shake_magnitude(3)\
+	.set_shake_direction(Vector2.RIGHT)\
+	.set_shake_length(1)\
+	.set_shake_interval(0.04).start()\
+	.set_shake_diminish(false)
+	
 	state = STUNNED
-	characterSprite.animationTree.active = false
+	stop_wander()
+	character_sprite.animationTree.active = false
 	velocity = Vector2.ZERO
 
 func flash(length = 1, interval = 0.08, delay = 0, stun = false):
 	if stun:
 		set_physics_process(false)
 		state = STUNNED
-		characterSprite.animationTree.active = false
+		stop_wander()
+		character_sprite.animationTree.active = false
 		velocity = Vector2.ZERO
 		$interact/CollisionShape2D.set_deferred("disabled", true)
 	yield(get_tree().create_timer(delay),"timeout")
-	for i in length / (interval * 2) :
-		characterSprite.hide()
+	for i in length / (interval * 2):
+		character_sprite.hide()
 		yield(get_tree().create_timer(interval),"timeout")
-		characterSprite.show()
+		character_sprite.show()
 		yield(get_tree().create_timer(interval),"timeout")
 	if stun:
-		state = WANDER
+		start_wander()
 		set_physics_process(true)
 		$interact/CollisionShape2D.set_deferred("disabled", false)
-		if eventRayCaster.get_collider() == global.persistPlayer:
+		if is_raycast_on_player():
 			start_chase()
-		characterSprite.animationTree.active = true
+		character_sprite.animationTree.active = true
 
-func die(inBattle = true):
-	if global.inBattle == inBattle:
-		remove_battle()
+func die(in_battle := true):
+	if uiManager.is_in_battle() == in_battle:
 		queue_free()
 		emit_signal("enemy_erased")
 
 func duplicate_sprite():
-	return characterSprite.duplicate()
+	return character_sprite.duplicate()
 
 func set_spritesheet():
 	var path = "res://Graphics/Character Sprites/Enemies/" + sprite + ".png"
-	characterSprite.set_sprite(path)
+	character_sprite.set_sprite(path)
 	if anim == "":
 		anim = "BasicEnemy"
 	var animPath = "res://Data/Animations/%s.yaml" % anim
-	characterSprite.set_animation(animPath, connections)
+	character_sprite.set_animation(animPath, connections)
 	
-	characterSprite.set_spritesheet()
-	characterSprite.set_sprite_offset(Vector2(spriteOffset[0], spriteOffset[1]))
-	vectorSpriteOffset = characterSprite.offset
-#	if sprite != "" or not ResourceLoader.exists(path):
-#		characterSprite.texture =  ResourceLoader.load(path)
-#		if characterSprite.texture != null:
-#
-#			spriteOffset[1] = -characterSprite.texture.get_height()/ (characterSprite.vframes * 2) + offset
-#			characterSprite.offset.y = spriteOffset[1]
-#			emotes.position.y = -characterSprite.texture.get_height()/characterSprite.vframes - characterSprite.position.y
-#	else:
-#		characterSprite.texture = null
+	character_sprite.set_spritesheet()
+	character_sprite.set_sprite_offset(Vector2(spriteOffset[0], spriteOffset[1]))
+	_vector_sprite_offset = character_sprite.offset
 
-func _load_enemy_data(enemy_name):
-	var path = "res://Data/Battlers/"+(enemy_name.replace(" ", ""))+".yaml"
-	return globaldata.get_json_data(path)
+func _set_underlevel():
+	var highestLevel = 0
+	for i in global.party.size():
+		if global.party[i].get_level() > highestLevel:
+			highestLevel = global.party[i].get_level()
+	if highestLevel >= _enemy_char.get_level() + 10:
+		_underlevel = true
 
-func load_skill_json(skillName: String) -> Dictionary:
-	#var file := File.new()
-	#var json := "res://Data/BattleSkills/" + skillName + ".yaml"
-	var skillData : Dictionary
-	if skillName in globaldata.skills:
-		skillData = globaldata.skills[skillName]
-	else:
-		skillData = globaldata.skills["bash"]
-#	if file.file_exists(json):
-#		file.open(json, File.READ)
-#		if validate_json(file.get_as_text()) == "": # validate_json() returns empty string if valid.
-#			skillData = globaldata.parse_yaml(file.get_as_text())
-#			file.close()
-#		else:
-#			file.close()
-#			file.open("res://Data/BleSkills/yomama.yaml", File.READ)
-#			skillData = globaldata.parse_yaml(file.get_as_text())
-#			file.close()
-#			push_warning("SKILL \"" + skillName + "\" IS FORMATTED INCORRECTLY. ERRORS MAY OCCUR")
-#	else:
-#		file.open("res://Data/BattleSkills/yomama.yaml", File.READ)
-#		skillData = globaldata.parse_yaml(file.get_as_text())
-#		file.close()
-#		push_warning("SKILL \"" + skillName + "\" COULD NOT BE LOADED. ERRORS MAY OCCUR")
-	return skillData
+func _check_screen_entered():
+	if $VisibilityNotifier2D.is_on_screen():
+		start_wander()
+		set_physics_process(true)
+		add_battle()
 
 func _on_screen_entered():
+	print("Enemy entered on screen")
+	$interact/CollisionShape2D.set_deferred("disabled", false)
+	start_wander()
 	set_physics_process(true)
 	add_battle()
 
 func _on_screen_exited():
-	remove_battle()
+	print("Enemy exited screen")
+	stop_wander()
 	set_physics_process(false)
+	remove_battle()
 
 func add_battle():
-	if onScreenId == null:
-		onScreenId = uiManager.onScreenEnemies.size()
-		uiManager.onScreenEnemies.append([enemy, self])
+	_on_screen_enemy = uiManager.add_on_screen_enemy(_enemy_char, self)
 
 func remove_battle():
-	if onScreenId != null:
-		if uiManager.onScreenEnemies.size() >= onScreenId + 1:
-			uiManager.onScreenEnemies.remove(onScreenId)
-		uiManager.update_enemy_ids()
-		onScreenId = null
+	uiManager.erase_on_screen_enemy(_on_screen_enemy)
+	_on_screen_enemy = null
 
 func push_to_front_battle():
-	add_battle()
-	if onScreenId != null:
-		uiManager.onScreenEnemies.remove(onScreenId)
-		uiManager.onScreenEnemies.push_front([enemy, self])
-		onScreenId = 0
-		
+	drafted = true
+	if _on_screen_enemy:
+		if uiManager.has_on_screen_enemy(_on_screen_enemy):
+			uiManager.move_on_screen_enemy_to_front(_on_screen_enemy)
+	else:
+		_on_screen_enemy = uiManager.add_on_screen_enemy_to_front(_enemy_char, self)
 
 func activate():
 	set_physics_process(true)
+	drafted = false
 	show()
 	emotes.show()
-	startingHP = enemyData["hp"]
 	velocity = Vector2.ZERO
-	
-
-func updateId(id):
-	onScreenId = id
+	_knockback = Vector2.ZERO
+	$interact/CollisionShape2D.set_deferred("disabled", false)
+	_enemy_char.set_hp(_enemy_char.get_stat("maxhp"))
+	_enemy_char.set_pp(_enemy_char.get_stat("maxpp"))
 
 func _on_Enemy_tree_exiting():
 	if !changingParents:
 		die(false)
-		
+

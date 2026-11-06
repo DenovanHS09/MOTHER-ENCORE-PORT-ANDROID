@@ -65,7 +65,7 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
-"method": "apply_damage"
+"method": "_apply_damage"
 } ]
 }
 
@@ -113,7 +113,7 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
-"method": "apply_damage"
+"method": "_apply_damage"
 } ]
 }
 
@@ -380,7 +380,7 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
-"method": "apply_damage"
+"method": "_apply_damage"
 } ]
 }
 
@@ -424,7 +424,7 @@ margin_top = -16.0
 margin_right = 64.0
 margin_bottom = 48.0
 script = ExtResource( 2 )
-hits = 3
+_hits = 3
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 24 )
@@ -456,9 +456,6 @@ anims/slingshotPrep = SubResource( 26 )
 anims/victory = SubResource( 7 )
 next/bash = "idle"
 next/bat = "idle"
-next/item = "itemReturn"
 next/itemPrep = "itemLoop"
 next/itemReturn = "idle"
 next/slingshot = "idle"
-
-[node name="Tween" type="Tween" parent="."]

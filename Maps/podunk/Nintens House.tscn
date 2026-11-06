@@ -1,6 +1,7 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://Nodes/Reusables/stepping sounds.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/debug/DebugStartPos.gd" type="Script" id=2]
 [ext_resource path="res://Nodes/Overworld/Ladder.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Nodes/Ui/effects/melodyBG.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Nodes/Overworld/camarea.tscn" type="PackedScene" id=8]
@@ -14,13 +15,13 @@
 [ext_resource path="res://Nodes/Overworld/MusicChanger.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Nodes/Reusables/flag landmarks.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Nodes/Overworld/Objects/Present.tscn" type="PackedScene" id=18]
-[ext_resource path="res://Tilesets/PodunkInterior.tres" type="TileSet" id=19]
+[ext_resource path="res://Tilesets/Interior.tres" type="TileSet" id=19]
 [ext_resource path="res://Maps/podunk/Ninten_s room.gd" type="Script" id=20]
 [ext_resource path="res://Graphics/Objects/Doors/Door_Dark.png" type="Texture" id=21]
 [ext_resource path="res://Graphics/Rooms/Podunk/Ninten's House.png" type="Texture" id=22]
 [ext_resource path="res://Nodes/Reusables/door_npc.tscn" type="PackedScene" id=23]
 [ext_resource path="res://Graphics/Objects/Doors/Door_Dark_Locked.png" type="Texture" id=24]
-[ext_resource path="res://Graphics/Objects/Briefcase.png" type="Texture" id=25]
+[ext_resource path="res://Graphics/Objects/Common/Briefcase.png" type="Texture" id=25]
 [ext_resource path="res://Scripts/misc/Anim_start.gd" type="Script" id=26]
 [ext_resource path="res://Graphics/Tilesets/TilNintensHouse.png" type="Texture" id=27]
 
@@ -256,7 +257,7 @@ extents = Vector2( 208, 104 )
 extents = Vector2( 184, 112 )
 
 [sub_resource type="RectangleShape2D" id=61]
-extents = Vector2( 172, 96 )
+extents = Vector2( 168, 96 )
 
 [sub_resource type="RectangleShape2D" id=63]
 extents = Vector2( 200, 132 )
@@ -356,10 +357,14 @@ extents = Vector2( 24, 12.625 )
 
 [node name="Ninten\'s House" type="Node2D"]
 script = ExtResource( 20 )
-player_map_offset = Vector2( 99, 127 )
-region_name = "Podunk"
-map_item = "MapPodunk"
-is_sub_area = true
+_player_map_offset = Vector2( 99, 127 )
+_region_name = "Podunk"
+_is_sub_area = true
+
+[node name="DebugStartPos" type="Position2D" parent="."]
+position = Vector2( 456, 409 )
+z_index = 1
+script = ExtResource( 2 )
 
 [node name="Ninten\'s House" type="Sprite" parent="."]
 position = Vector2( 312, 552 )
@@ -383,23 +388,23 @@ position = Vector2( -0.5, -10.5 )
 shape = SubResource( 88 )
 
 [node name="Openable Door" parent="Below" instance=ExtResource( 12 )]
-position = Vector2( 176, 368 )
+position = Vector2( 176, 352 )
 sprite = ExtResource( 21 )
 
 [node name="Openable Door2" parent="Below" instance=ExtResource( 12 )]
-position = Vector2( 64, 368 )
+position = Vector2( 64, 352 )
 sprite = ExtResource( 21 )
 blocked = true
 flag = "mimmie_door_opened"
 
 [node name="Openable Door3" parent="Below" instance=ExtResource( 12 )]
-position = Vector2( 96, 704 )
+position = Vector2( 96, 688 )
 sprite = ExtResource( 24 )
 key = "KeyBasement"
 flag = "ninten_basement_door"
 
 [node name="Openable Door4" parent="Below" instance=ExtResource( 12 )]
-position = Vector2( 88, 976 )
+position = Vector2( 88, 960 )
 sprite = ExtResource( 21 )
 
 [node name="Objects" type="TileMap" parent="."]
@@ -413,59 +418,43 @@ tile_data = PoolIntArray( 589834, 1, 0, 589849, 0, 0, 655360, 2, 0, 655395, 3, 0
 position = Vector2( 192, 704 )
 sprite = "Npcs/4dir/carol"
 dialog = "Podunk/carol_panic"
-event_dialog = [ PoolStringArray( "doll_melody", "Podunk/carol_call" ), PoolStringArray( "phone_ring", "Podunk/carol_phone" ), PoolStringArray( "talked_to_dad", "Podunk/carol_key" ), PoolStringArray( "carol_ask_key", "Podunk/carol_key_again" ), PoolStringArray( "mick_telepathy", "Podunk/carol_got_key" ), PoolStringArray( "got_diary", "Podunk/carol_food" ), PoolStringArray( "good_morning", "Podunk/carol_rested" ) ]
-player_turn = {
-"x": true,
-"y": true
-}
+_all_dialog = [ PoolStringArray( "doll_melody", "Podunk/carol_call" ), PoolStringArray( "phone_ring", "Podunk/carol_phone" ), PoolStringArray( "talked_to_dad", "Podunk/carol_key" ), PoolStringArray( "carol_ask_key", "Podunk/carol_key_again" ), PoolStringArray( "mick_telepathy", "Podunk/carol_got_key" ), PoolStringArray( "got_diary", "Podunk/carol_food" ), PoolStringArray( "good_morning", "Podunk/carol_rested" ) ]
 staring = true
 
 [node name="npc2" parent="Objects" instance=ExtResource( 11 )]
 position = Vector2( 120, 88 )
 sprite = "Npcs/4dir/mimmie"
 dialog = "Podunk/mimmie_doll_defeated"
-event_dialog = [ PoolStringArray( "doll_melody", "Podunk/mimmie_dead_doll" ), PoolStringArray( "talked_to_dad", "Podunk/mimmie_key" ), PoolStringArray( "mimmie_ask_key", "Podunk/mimmie_key_again" ), PoolStringArray( "mick_telepathy", "Podunk/mimmie_got_key" ), PoolStringArray( "ninten_basement_door", "Podunk/mimmie_open_basement" ), PoolStringArray( "got_juice", "Podunk/mimmie_juice" ) ]
-player_turn = {
-"x": true,
-"y": true
-}
+_all_dialog = [ PoolStringArray( "doll_melody", "Podunk/mimmie_dead_doll" ), PoolStringArray( "talked_to_dad", "Podunk/mimmie_key" ), PoolStringArray( "mimmie_ask_key", "Podunk/mimmie_key_again" ), PoolStringArray( "mick_telepathy", "Podunk/mimmie_got_key" ), PoolStringArray( "ninten_basement_door", "Podunk/mimmie_open_basement" ), PoolStringArray( "got_juice", "Podunk/mimmie_juice" ) ]
 staring = true
 
 [node name="npc3" parent="Objects" instance=ExtResource( 11 )]
 position = Vector2( 472, 88 )
 sprite = "Npcs/4dir/minnie"
 dialog = "Podunk/minnie_run_tutorial"
-event_dialog = [ PoolStringArray( "mimmie_door_opened", "Podunk/minnie_door_open" ), PoolStringArray( "doll_melody", "Podunk/minnie_storage" ) ]
+_all_dialog = [ PoolStringArray( "mimmie_door_opened", "Podunk/minnie_door_open" ), PoolStringArray( "doll_melody", "Podunk/minnie_storage" ) ]
 event_positions = [ PoolStringArray( "minnie_leave", "32", "368" ), PoolStringArray( "doll_defeated", "464", "80" ) ]
-player_turn = {
-"x": true,
-"y": true
-}
 staring = true
 
 [node name="pillow" parent="Objects" instance=ExtResource( 11 )]
 position = Vector2( 825, 25 )
 sprite = "Npcs/1dir/pillow"
 yaml = "res://Data/Animations/Floater.yaml"
-player_turn = {
-"x": true,
-"y": true
-}
 no_shadow = true
 
 [node name="Phone" parent="Objects" instance=ExtResource( 15 )]
 position = Vector2( 148, 677 )
 dialog = "Reusable/phonenoanswer"
-event_dialog = [ PoolStringArray( "phone_ring", "Podunk/dad_poltergeist" ), PoolStringArray( "talked_to_dad", "Reusable/dad_normal" ) ]
+_all_dialog = [ PoolStringArray( "phone_ring", "Podunk/dad_poltergeist" ), PoolStringArray( "talked_to_dad", "Reusable/dad_normal" ) ]
 
 [node name="interact_dialog" parent="Objects" instance=ExtResource( 14 )]
-position = Vector2( 503, 352 )
+position = Vector2( 503, 349 )
 scale = Vector2( 5, 2 )
 dialog = "Podunk/non-person text/Ninten's house/Pinboard"
-event_dialog = [ PoolStringArray( "poltergeist", "Reusable/nottime" ), PoolStringArray( "doll_defeated", "Podunk/non-person text/Ninten\'s house/Pinboard" ) ]
+_all_dialog = [ PoolStringArray( "poltergeist", "Reusable/nottime" ), PoolStringArray( "doll_defeated", "Podunk/non-person text/Ninten\'s house/Pinboard" ) ]
 player_turn = {
 "x": false,
-"y": false
+"y": true
 }
 button_offset = Vector2( 2, -40 )
 
@@ -473,21 +462,17 @@ button_offset = Vector2( 2, -40 )
 position = Vector2( 584, 456 )
 scale = Vector2( 5, 3 )
 dialog = "Podunk/non-person text/Ninten's house/Old Photos"
-event_dialog = [ PoolStringArray( "poltergeist", "Reusable/nottime" ), PoolStringArray( "doll_defeated", "Podunk/non-person text/Ninten\'s house/Old Photos" ) ]
-player_turn = {
-"x": false,
-"y": false
-}
+_all_dialog = [ PoolStringArray( "poltergeist", "Reusable/nottime" ), PoolStringArray( "doll_defeated", "Podunk/non-person text/Ninten\'s house/Old Photos" ) ]
 button_offset = Vector2( 0, -10 )
 
 [node name="interact_dialog7" parent="Objects" instance=ExtResource( 14 )]
 position = Vector2( 531, 353 )
 scale = Vector2( 2, 3 )
 dialog = "Podunk/non-person text/Ninten's house/Electric Guitar"
-event_dialog = [ PoolStringArray( "poltergeist", "Reusable/nottime" ), PoolStringArray( "doll_defeated", "Podunk/non-person text/Ninten\'s house/Electric Guitar" ) ]
+_all_dialog = [ PoolStringArray( "poltergeist", "Reusable/nottime" ), PoolStringArray( "doll_defeated", "Podunk/non-person text/Ninten\'s house/Electric Guitar" ) ]
 player_turn = {
 "x": false,
-"y": false
+"y": true
 }
 button_offset = Vector2( 0, -32 )
 
@@ -495,18 +480,14 @@ button_offset = Vector2( 0, -32 )
 position = Vector2( 545, 454 )
 scale = Vector2( 2.678, 2.62 )
 dialog = "Podunk/non-person text/Ninten's house/NES"
-event_dialog = [ PoolStringArray( "poltergeist", "Reusable/nottime" ), PoolStringArray( "doll_defeated", "Podunk/non-person text/Ninten\'s house/NES" ) ]
-player_turn = {
-"x": false,
-"y": false
-}
+_all_dialog = [ PoolStringArray( "poltergeist", "Reusable/nottime" ), PoolStringArray( "doll_defeated", "Podunk/non-person text/Ninten\'s house/NES" ) ]
 button_offset = Vector2( -2, -10 )
 
 [node name="interact_dialog6" parent="Objects" instance=ExtResource( 14 )]
 position = Vector2( 416, 456 )
 scale = Vector2( 3, 3 )
 dialog = "Podunk/non-person text/Ninten's house/Bedside Drawer"
-event_dialog = [ PoolStringArray( "poltergeist", "Reusable/nottime" ), PoolStringArray( "doll_defeated", "Podunk/non-person text/Ninten\'s house/Bedside Drawer" ) ]
+_all_dialog = [ PoolStringArray( "poltergeist", "Reusable/nottime" ), PoolStringArray( "doll_defeated", "Podunk/non-person text/Ninten\'s house/Bedside Drawer" ) ]
 player_turn = {
 "x": false,
 "y": false
@@ -517,43 +498,28 @@ button_offset = Vector2( -2, -10 )
 position = Vector2( 518, 456 )
 scale = Vector2( 4.046, 3.834 )
 dialog = "Podunk/non-person text/Ninten's house/TV"
-event_dialog = [ PoolStringArray( "poltergeist", "Reusable/nottime" ), PoolStringArray( "doll_defeated", "Podunk/non-person text/Ninten\'s house/TV" ) ]
-player_turn = {
-"x": false,
-"y": false
-}
+_all_dialog = [ PoolStringArray( "poltergeist", "Reusable/nottime" ), PoolStringArray( "doll_defeated", "Podunk/non-person text/Ninten\'s house/TV" ) ]
 button_offset = Vector2( 2, -12 )
 
 [node name="interact_dialog8" parent="Objects" instance=ExtResource( 14 )]
 position = Vector2( 204, 778 )
 scale = Vector2( 8.82842, 5.40837 )
 dialog = "Podunk/non-person text/Ninten's house/Downstairs TV"
-event_dialog = [ PoolStringArray( "poltergeist", "Reusable/nottime" ), PoolStringArray( "doll_defeated", "Podunk/non-person text/Ninten\'s house/Downstairs TV" ) ]
-player_turn = {
-"x": false,
-"y": false
-}
+_all_dialog = [ PoolStringArray( "poltergeist", "Reusable/nottime" ), PoolStringArray( "doll_defeated", "Podunk/non-person text/Ninten\'s house/Downstairs TV" ) ]
 button_offset = Vector2( 3, -20 )
 
 [node name="interact_dialog5" parent="Objects" instance=ExtResource( 14 )]
 position = Vector2( 116, 72 )
 scale = Vector2( 5, 3 )
 dialog = "Podunk/non-person text/Ninten's house/Mimmie Toybox"
-player_turn = {
-"x": false,
-"y": false
-}
 button_offset = Vector2( 5, -18 )
 
 [node name="lamp" parent="Objects" instance=ExtResource( 11 )]
 position = Vector2( 496, 390 )
 sprite = "Npcs/1dir/lamp"
+dialog = "Podunk/non-person text/Ninten's house/lamp"
 yaml = "res://Data/Animations/Lamp.yaml"
 connections = [  ]
-player_turn = {
-"x": true,
-"y": true
-}
 no_shadow = true
 
 [node name="npcdoll" parent="Objects" instance=ExtResource( 11 )]
@@ -561,11 +527,7 @@ position = Vector2( 40, 40 )
 sprite = "Npcs/1dir/doll"
 dialog = "Podunk/dollmelody"
 yaml = "res://Data/Animations/Floater.yaml"
-event_dialog = [ PoolStringArray( "doll_melody", "Podunk/doll" ) ]
-player_turn = {
-"x": true,
-"y": true
-}
+_all_dialog = [ PoolStringArray( "doll_melody", "Podunk/doll" ) ]
 no_problem_thoughts = true
 no_shadow = true
 
@@ -578,9 +540,6 @@ type = "briefcase"
 
 [node name="Sprite" parent="Objects/Present1" index="0"]
 texture = ExtResource( 25 )
-
-[node name="Sparkles" parent="Objects/Present1" index="1"]
-frame = 30
 
 [node name="interact" parent="Objects/Present1" index="3"]
 scale = Vector2( 1.5, 1.5 )
@@ -596,7 +555,7 @@ scale = Vector2( 0.666667, 0.666667 )
 [node name="Present2" parent="Objects" instance=ExtResource( 18 )]
 position = Vector2( 160, 1072 )
 item = "BatPlastic"
-dialog = "ItemDescriptions/firstbat"
+dialog = "ItemDialogue/firstbat"
 
 [node name="Present4" parent="Objects" instance=ExtResource( 18 )]
 position = Vector2( 184, 1032 )
@@ -728,7 +687,7 @@ flag_set = "good_morning"
 set_flag_state = false
 
 [node name="Collisions" type="StaticBody2D" parent="."]
-collision_layer = 573
+collision_layer = 1597
 collision_mask = 0
 
 [node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="Collisions"]
@@ -760,6 +719,7 @@ position = Vector2( 0, -1 )
 polygon = PoolVector2Array( 533, 385, 533, 395, 528, 401, 512, 401, 507, 395, 507, 385 )
 
 [node name="Limits" type="Node2D" parent="."]
+visible = false
 
 [node name="camarea" parent="Limits" instance=ExtResource( 8 )]
 position = Vector2( 500, 397 )
@@ -786,11 +746,10 @@ shape = SubResource( 60 )
 position = Vector2( 96, 400 )
 
 [node name="CollisionShape2D" parent="Limits/camarea4" index="0"]
-position = Vector2( 20, -16 )
+position = Vector2( 24, -16 )
 shape = SubResource( 61 )
 
 [node name="camarea5" parent="Limits" instance=ExtResource( 8 )]
-visible = false
 position = Vector2( 96, 688 )
 
 [node name="CollisionShape2D" parent="Limits/camarea5" index="0"]
@@ -830,6 +789,7 @@ position = Vector2( -17.3183, 85.745 )
 shape = SubResource( 49 )
 
 [node name="MusicArea2" parent="." instance=ExtResource( 16 )]
+visible = false
 position = Vector2( 304, 1256 )
 loop = "House.mp3"
 appear_flag = "doll_melody"

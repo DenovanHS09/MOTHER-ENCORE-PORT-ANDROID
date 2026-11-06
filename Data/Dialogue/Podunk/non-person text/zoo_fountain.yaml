@@ -8,5 +8,6 @@
   text: DIALOGUE_PODUNK_NON-PERSON_TEXT_ZOO_FOUNTAIN_1
   givestatus:
     ninten: poisoned
+  soundeffect: EB/ailment.wav
 '2':
   text: DIALOGUE_PODUNK_NON-PERSON_TEXT_ZOO_FOUNTAIN_2

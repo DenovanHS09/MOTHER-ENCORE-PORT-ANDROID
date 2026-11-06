@@ -5,17 +5,9 @@ article: LIFEUPCREAM_ART
 keyitem: false
 cost: 200
 value: 100
-usable:
-  ninten: true
-  ana: true
-  lloyd: true
-  teddy: true
-  pippi: true
-action_one:
-  name: INVENTORY_ACTION_USE
-  function: consume
-action_two: null
-battle_action: ''
+actions:
+  - name: INVENTORY_ACTION_USE
+    function: consume
 transform: ''
 slot: ''
 HPrecover: 200

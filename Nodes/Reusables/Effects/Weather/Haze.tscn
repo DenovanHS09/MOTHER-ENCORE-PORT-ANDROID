@@ -16,6 +16,7 @@ void fragment()
 }"
 
 [sub_resource type="ShaderMaterial" id=8]
+resource_local_to_scene = true
 shader = SubResource( 9 )
 shader_param/color = Color( 1, 1, 1, 1 )
 shader_param/multiplier = 0.5
@@ -27,8 +28,7 @@ fog_depth_enabled = false
 fog_height_min = 2441.4
 fog_height_max = 2117.6
 fog_height_curve = 0.812252
-dof_blur_near_enabled = true
-dof_blur_near_distance = 1.0
+dof_blur_near_distance = 15.0
 dof_blur_near_transition = 65.0
 dof_blur_near_amount = 0.25
 dof_blur_near_quality = 2
@@ -40,7 +40,7 @@ adjustment_enabled = true
 [sub_resource type="Animation" id=2]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Haze/WorldEnvironment:environment:dof_blur_near_distance")
+tracks/0/path = NodePath("Haze/WorldEnvironment:environment:adjustment_brightness")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -52,7 +52,7 @@ tracks/0/keys = {
 "values": [ 1.0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Haze/WorldEnvironment:environment:adjustment_brightness")
+tracks/1/path = NodePath("Haze/ColorRect:material:shader_param/multiplier")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -61,10 +61,10 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 1.0 ]
+"values": [ 0.5 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Haze/ColorRect:material:shader_param/multiplier")
+tracks/2/path = NodePath("Haze/ColorRect:material:shader_param/softness")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -73,7 +73,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0.5 ]
+"values": [ 1.0 ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -81,7 +81,7 @@ resource_name = "Scroll"
 length = 4.0
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Haze/WorldEnvironment:environment:dof_blur_near_distance")
+tracks/0/path = NodePath("Haze/WorldEnvironment:environment:adjustment_brightness")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -90,10 +90,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 15.0, 25.0 ]
+"values": [ 1.0, 1.05 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Haze/WorldEnvironment:environment:adjustment_brightness")
+tracks/1/path = NodePath("Haze/ColorRect:material:shader_param/multiplier")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -102,19 +102,19 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 1.0, 1.05 ]
+"values": [ 0.5, 0.45 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Haze/ColorRect:material:shader_param/multiplier")
+tracks/2/path = NodePath("Haze/ColorRect:material:shader_param/softness")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0.5, 0.45 ]
+"values": [ 1.0 ]
 }
 
 [node name="Haze" type="CanvasLayer"]

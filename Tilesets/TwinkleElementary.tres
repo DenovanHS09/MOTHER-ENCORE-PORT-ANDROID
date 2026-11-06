@@ -60,7 +60,7 @@ points = PoolVector2Array( 24, 32, 8, 32, 8, 16, 24, 16 )
 points = PoolVector2Array( 32, 24, 8, 24, 8, 8, 32, 8 )
 
 [sub_resource type="ConvexPolygonShape2D" id=31]
-points = PoolVector2Array( 0, 32, 32, 16, 44, 28, 52, 28, 52, 40, 40, 40, 40, 48, 16, 48 )
+points = PoolVector2Array( 0, 32, 28, 16, 40, 28, 52, 28, 52, 40, 40, 40, 40, 48, 16, 48 )
 
 [sub_resource type="ConvexPolygonShape2D" id=32]
 points = PoolVector2Array( 24, 48, 8, 48, 8, 16, 24, 16 )
@@ -101,8 +101,8 @@ points = PoolVector2Array( 16, 28, 0, 28, 0, 12, 16, 12 )
 0/tile_mode = 0
 0/occluder_offset = Vector2( 0, 0 )
 0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( -16, -16 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, -16, -16 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 0/shape = SubResource( 4 )
 0/shape_one_way = false
 0/shape_one_way_margin = 1.0
@@ -111,7 +111,7 @@ points = PoolVector2Array( 16, 28, 0, 28, 0, 12, 16, 12 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 4 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, -16, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 0/z_index = 0
 1/name = "ChairWood"
@@ -122,8 +122,8 @@ points = PoolVector2Array( 16, 28, 0, 28, 0, 12, 16, 12 )
 1/tile_mode = 0
 1/occluder_offset = Vector2( 0, 0 )
 1/navigation_offset = Vector2( 0, 0 )
-1/shape_offset = Vector2( -16, -16 )
-1/shape_transform = Transform2D( 1, 0, 0, 1, -16, -16 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 1/shape = SubResource( 5 )
 1/shape_one_way = false
 1/shape_one_way_margin = 1.0
@@ -132,7 +132,7 @@ points = PoolVector2Array( 16, 28, 0, 28, 0, 12, 16, 12 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 5 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, -16, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 1/z_index = 0
 2/name = "DeskSideSmall"
@@ -143,8 +143,8 @@ points = PoolVector2Array( 16, 28, 0, 28, 0, 12, 16, 12 )
 2/tile_mode = 0
 2/occluder_offset = Vector2( 0, 0 )
 2/navigation_offset = Vector2( 0, 0 )
-2/shape_offset = Vector2( 0, -16 )
-2/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 2/shape = SubResource( 6 )
 2/shape_one_way = false
 2/shape_one_way_margin = 1.0
@@ -153,7 +153,7 @@ points = PoolVector2Array( 16, 28, 0, 28, 0, 12, 16, 12 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 6 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 2/z_index = 0
 3/name = "TrashCan"
@@ -185,8 +185,8 @@ points = PoolVector2Array( 16, 28, 0, 28, 0, 12, 16, 12 )
 5/tile_mode = 0
 5/occluder_offset = Vector2( 0, 0 )
 5/navigation_offset = Vector2( 0, 0 )
-5/shape_offset = Vector2( 0, -16 )
-5/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+5/shape_offset = Vector2( 0, 0 )
+5/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 5/shape = SubResource( 9 )
 5/shape_one_way = false
 5/shape_one_way_margin = 1.0
@@ -195,7 +195,7 @@ points = PoolVector2Array( 16, 28, 0, 28, 0, 12, 16, 12 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 9 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 5/z_index = 0
 6/name = "DeskTeacherFront"
@@ -206,8 +206,8 @@ points = PoolVector2Array( 16, 28, 0, 28, 0, 12, 16, 12 )
 6/tile_mode = 0
 6/occluder_offset = Vector2( 0, 0 )
 6/navigation_offset = Vector2( 0, 0 )
-6/shape_offset = Vector2( 0, -16 )
-6/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+6/shape_offset = Vector2( 8, 0 )
+6/shape_transform = Transform2D( 1, 0, 0, 1, 8, 0 )
 6/shape = SubResource( 10 )
 6/shape_one_way = false
 6/shape_one_way_margin = 1.0
@@ -216,7 +216,7 @@ points = PoolVector2Array( 16, 28, 0, 28, 0, 12, 16, 12 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 10 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 8, 0 )
 } ]
 6/z_index = 0
 7/name = "DeskLongSide"
@@ -227,8 +227,8 @@ points = PoolVector2Array( 16, 28, 0, 28, 0, 12, 16, 12 )
 7/tile_mode = 0
 7/occluder_offset = Vector2( 0, 0 )
 7/navigation_offset = Vector2( 0, 0 )
-7/shape_offset = Vector2( 0, -32 )
-7/shape_transform = Transform2D( 1, 0, 0, 1, 0, -32 )
+7/shape_offset = Vector2( 0, 0 )
+7/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 7/shape = SubResource( 11 )
 7/shape_one_way = false
 7/shape_one_way_margin = 1.0
@@ -237,7 +237,7 @@ points = PoolVector2Array( 16, 28, 0, 28, 0, 12, 16, 12 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 11 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -32 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 7/z_index = 0
 8/name = "Brass"
@@ -248,8 +248,8 @@ points = PoolVector2Array( 16, 28, 0, 28, 0, 12, 16, 12 )
 8/tile_mode = 0
 8/occluder_offset = Vector2( 0, 0 )
 8/navigation_offset = Vector2( 0, 0 )
-8/shape_offset = Vector2( 0, -16 )
-8/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+8/shape_offset = Vector2( 0, 0 )
+8/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 8/shape = SubResource( 12 )
 8/shape_one_way = false
 8/shape_one_way_margin = 1.0
@@ -258,7 +258,7 @@ points = PoolVector2Array( 16, 28, 0, 28, 0, 12, 16, 12 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 12 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 8/z_index = 0
 9/name = "ChairBack"
@@ -269,8 +269,8 @@ points = PoolVector2Array( 16, 28, 0, 28, 0, 12, 16, 12 )
 9/tile_mode = 0
 9/occluder_offset = Vector2( 0, 0 )
 9/navigation_offset = Vector2( 0, 0 )
-9/shape_offset = Vector2( -8, -16 )
-9/shape_transform = Transform2D( 1, 0, 0, 1, -8, -16 )
+9/shape_offset = Vector2( 0, 0 )
+9/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 9/shape = SubResource( 16 )
 9/shape_one_way = false
 9/shape_one_way_margin = 1.0
@@ -279,7 +279,7 @@ points = PoolVector2Array( 16, 28, 0, 28, 0, 12, 16, 12 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 16 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, -8, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 9/z_index = 0
 10/name = "ChairFront"
@@ -290,8 +290,8 @@ points = PoolVector2Array( 16, 28, 0, 28, 0, 12, 16, 12 )
 10/tile_mode = 0
 10/occluder_offset = Vector2( 0, 0 )
 10/navigation_offset = Vector2( 0, 0 )
-10/shape_offset = Vector2( -8, -16 )
-10/shape_transform = Transform2D( 1, 0, 0, 1, -8, -16 )
+10/shape_offset = Vector2( 0, 0 )
+10/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 10/shape = SubResource( 14 )
 10/shape_one_way = false
 10/shape_one_way_margin = 1.0
@@ -300,7 +300,7 @@ points = PoolVector2Array( 16, 28, 0, 28, 0, 12, 16, 12 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 14 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, -8, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 10/z_index = 0
 11/name = "Desk Front"
@@ -311,8 +311,8 @@ points = PoolVector2Array( 16, 28, 0, 28, 0, 12, 16, 12 )
 11/tile_mode = 0
 11/occluder_offset = Vector2( 0, 0 )
 11/navigation_offset = Vector2( 0, 0 )
-11/shape_offset = Vector2( 0, -16 )
-11/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+11/shape_offset = Vector2( 0, 0 )
+11/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 11/shape = SubResource( 15 )
 11/shape_one_way = false
 11/shape_one_way_margin = 1.0
@@ -321,7 +321,7 @@ points = PoolVector2Array( 16, 28, 0, 28, 0, 12, 16, 12 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 15 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 11/z_index = 0
 12/name = "Desk Props"
@@ -353,8 +353,8 @@ points = PoolVector2Array( 16, 28, 0, 28, 0, 12, 16, 12 )
 13/tile_mode = 0
 13/occluder_offset = Vector2( 0, 0 )
 13/navigation_offset = Vector2( 0, 0 )
-13/shape_offset = Vector2( 0, -32 )
-13/shape_transform = Transform2D( 1, 0, 0, 1, 0, -32 )
+13/shape_offset = Vector2( 0, 0 )
+13/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 13/shape = SubResource( 17 )
 13/shape_one_way = false
 13/shape_one_way_margin = 1.0
@@ -363,7 +363,7 @@ points = PoolVector2Array( 16, 28, 0, 28, 0, 12, 16, 12 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 17 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -32 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 13/z_index = 0
 14/name = "LabCabinetLeft"
@@ -402,8 +402,8 @@ points = PoolVector2Array( 16, 28, 0, 28, 0, 12, 16, 12 )
 15/autotile/z_index_map = [  ]
 15/occluder_offset = Vector2( 0, 0 )
 15/navigation_offset = Vector2( 0, 0 )
-15/shape_offset = Vector2( 0, -32 )
-15/shape_transform = Transform2D( 1, 0, 0, 1, 0, -32 )
+15/shape_offset = Vector2( 0, 0 )
+15/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 15/shape = SubResource( 18 )
 15/shape_one_way = false
 15/shape_one_way_margin = 1.0
@@ -412,13 +412,13 @@ points = PoolVector2Array( 16, 28, 0, 28, 0, 12, 16, 12 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 18 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -32 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 1, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 19 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -32 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 15/z_index = 0
 19/name = "LabTeacherDesk"
@@ -429,8 +429,8 @@ points = PoolVector2Array( 16, 28, 0, 28, 0, 12, 16, 12 )
 19/tile_mode = 0
 19/occluder_offset = Vector2( 0, 0 )
 19/navigation_offset = Vector2( 0, 0 )
-19/shape_offset = Vector2( 0, -32 )
-19/shape_transform = Transform2D( 1, 0, 0, 1, 0, -32 )
+19/shape_offset = Vector2( 0, 0 )
+19/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 19/shape = SubResource( 20 )
 19/shape_one_way = false
 19/shape_one_way_margin = 1.0
@@ -439,7 +439,7 @@ points = PoolVector2Array( 16, 28, 0, 28, 0, 12, 16, 12 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 20 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -32 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 19/z_index = 0
 22/name = "LabTeacherDeskBroken"
@@ -484,8 +484,8 @@ points = PoolVector2Array( 16, 28, 0, 28, 0, 12, 16, 12 )
 23/autotile/z_index_map = [  ]
 23/occluder_offset = Vector2( 0, 0 )
 23/navigation_offset = Vector2( 0, 0 )
-23/shape_offset = Vector2( 0, -16 )
-23/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+23/shape_offset = Vector2( 0, 0 )
+23/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 23/shape = SubResource( 23 )
 23/shape_one_way = false
 23/shape_one_way_margin = 1.0
@@ -494,37 +494,37 @@ points = PoolVector2Array( 16, 28, 0, 28, 0, 12, 16, 12 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 23 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 0, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 24 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 0, 2 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 25 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 1, 2 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 26 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 1, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 27 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 1, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 28 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 23/z_index = 0
 24/name = "LabKnockedOverChair"
@@ -542,8 +542,8 @@ points = PoolVector2Array( 16, 28, 0, 28, 0, 12, 16, 12 )
 24/autotile/z_index_map = [  ]
 24/occluder_offset = Vector2( 0, 0 )
 24/navigation_offset = Vector2( 0, 0 )
-24/shape_offset = Vector2( 0, -16 )
-24/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+24/shape_offset = Vector2( 0, 0 )
+24/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 24/shape = SubResource( 29 )
 24/shape_one_way = false
 24/shape_one_way_margin = 1.0
@@ -552,13 +552,13 @@ points = PoolVector2Array( 16, 28, 0, 28, 0, 12, 16, 12 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 29 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 0, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 30 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 24/z_index = 0
 26/name = "LabTiltedTable"
@@ -569,8 +569,8 @@ points = PoolVector2Array( 16, 28, 0, 28, 0, 12, 16, 12 )
 26/tile_mode = 0
 26/occluder_offset = Vector2( 0, 0 )
 26/navigation_offset = Vector2( 0, 0 )
-26/shape_offset = Vector2( 0, -32 )
-26/shape_transform = Transform2D( 1, 0, 0, 1, 0, -32 )
+26/shape_offset = Vector2( 0, 0 )
+26/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 26/shape = SubResource( 31 )
 26/shape_one_way = false
 26/shape_one_way_margin = 1.0
@@ -579,7 +579,7 @@ points = PoolVector2Array( 16, 28, 0, 28, 0, 12, 16, 12 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 31 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -32 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 26/z_index = 0
 28/name = "LabShelfRight"
@@ -597,8 +597,8 @@ points = PoolVector2Array( 16, 28, 0, 28, 0, 12, 16, 12 )
 28/autotile/z_index_map = [  ]
 28/occluder_offset = Vector2( 0, 0 )
 28/navigation_offset = Vector2( 0, 0 )
-28/shape_offset = Vector2( 0, -32 )
-28/shape_transform = Transform2D( 1, 0, 0, 1, 0, -32 )
+28/shape_offset = Vector2( 0, 0 )
+28/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 28/shape = SubResource( 32 )
 28/shape_one_way = false
 28/shape_one_way_margin = 1.0
@@ -607,13 +607,13 @@ points = PoolVector2Array( 16, 28, 0, 28, 0, 12, 16, 12 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 32 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -32 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 0, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 33 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -32 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 28/z_index = 0
 29/name = "LabCabinetsRight"
@@ -645,8 +645,8 @@ points = PoolVector2Array( 16, 28, 0, 28, 0, 12, 16, 12 )
 30/tile_mode = 0
 30/occluder_offset = Vector2( 0, 0 )
 30/navigation_offset = Vector2( 0, 0 )
-30/shape_offset = Vector2( 0, -16 )
-30/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+30/shape_offset = Vector2( 0, 0 )
+30/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 30/shape = SubResource( 34 )
 30/shape_one_way = false
 30/shape_one_way_margin = 1.0
@@ -655,7 +655,7 @@ points = PoolVector2Array( 16, 28, 0, 28, 0, 12, 16, 12 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 34 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 30/z_index = 0
 31/name = "NurseShelfLeft"
@@ -666,8 +666,8 @@ points = PoolVector2Array( 16, 28, 0, 28, 0, 12, 16, 12 )
 31/tile_mode = 0
 31/occluder_offset = Vector2( 0, 0 )
 31/navigation_offset = Vector2( 0, 0 )
-31/shape_offset = Vector2( 0, -32 )
-31/shape_transform = Transform2D( 1, 0, 0, 1, 0, -32 )
+31/shape_offset = Vector2( 0, 0 )
+31/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 31/shape = SubResource( 35 )
 31/shape_one_way = false
 31/shape_one_way_margin = 1.0
@@ -676,6 +676,6 @@ points = PoolVector2Array( 16, 28, 0, 28, 0, 12, 16, 12 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 35 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -32 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 31/z_index = 0

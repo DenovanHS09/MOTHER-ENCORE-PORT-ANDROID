@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Honey Shower.mp3-59bfdc12773b8be930c767d6c4ec359b.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/M3/Honey Shower.mp3"
+dest_files=[ "res://.import/Honey Shower.mp3-59bfdc12773b8be930c767d6c4ec359b.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

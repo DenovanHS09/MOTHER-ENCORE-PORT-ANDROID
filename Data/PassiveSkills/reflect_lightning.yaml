@@ -1,10 +1,10 @@
 conditions:
-  damage_type: 4
+  damage_type: [ lightning ]
 priority: 3
-passive_skill_actions:
+actions:
   sound: franklinbadge
   vibrate: 0.5
   damage_multiplier: 0
-  counter_multiplier: 1
-  dialogue: BATTLE_MSG_REFLECT_LIGHTNING
+  return_attack: true
+  dialogue_hit: BATTLE_MSG_REFLECT_LIGHTNING
   context_item: FranklinBadge

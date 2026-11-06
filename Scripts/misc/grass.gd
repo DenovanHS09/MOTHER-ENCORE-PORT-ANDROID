@@ -1,6 +1,5 @@
 extends Area2D
 
-onready var tween = $Tween
 onready var timer = $Timer
 onready var animationPlayer = $AnimationPlayer
 onready var animationTree = $AnimationTree
@@ -40,9 +39,7 @@ func _on_Grass_body_entered(body):
 			animationTree.active = true
 		
 		if timer.time_left == 0:
-			tween.interpolate_property($Sprite, "scale", 
-				Vector2(1, 0.8), Vector2.ONE, 0.1)
-			tween.start()
+			create_tween().tween_property($Sprite, "scale", Vector2.ONE, 0.1).from(Vector2(1, 0.8))
 
 func _on_Grass_body_exited(body):
 	if objects.has(body):
@@ -54,11 +51,7 @@ func _on_Grass_body_exited(body):
 
 func _on_Timer_timeout():
 	animationState.travel("Idle")
-	tween.interpolate_property($Sprite, "scale", 
-		Vector2(1, 0.8), Vector2.ONE, 0.2)
-	tween.start()
-	
-	yield(tween, "tween_all_completed")
+	yield(create_tween().tween_property($Sprite, "scale", Vector2.ONE, 0.2).from(Vector2(1, 0.8)), "finished")
 	
 	animationTree.active = false
 

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Bein Friends.mp3-32fbc7dc38ed3132c713beaf84851feb.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Bein Friends.mp3"
+dest_files=[ "res://.import/Bein Friends.mp3-32fbc7dc38ed3132c713beaf84851feb.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

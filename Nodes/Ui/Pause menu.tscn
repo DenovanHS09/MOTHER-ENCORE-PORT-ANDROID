@@ -1,11 +1,10 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Nodes/Ui/arrow.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/UI/Pausemenu.gd" type="Script" id=2]
 [ext_resource path="res://Nodes/Ui/CashBoxPause.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Graphics/UI/Overworld/flavours/defaultbox_inside.png" type="Texture" id=4]
 [ext_resource path="res://Graphics/UI/Overworld/flavours/defaultempty.png" type="Texture" id=5]
-[ext_resource path="res://Nodes/Ui/MapScreen/MapScreen.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Fonts/EBMain.tres" type="DynamicFont" id=7]
 [ext_resource path="res://Nodes/Ui/Inventory/InventoryUI.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Nodes/Ui/EquipMenu/EquipMenuUI.tscn" type="PackedScene" id=9]
@@ -89,6 +88,7 @@ tracks/0/keys = {
 }
 
 [node name="Pausemenu" type="CanvasLayer"]
+layer = 2
 script = ExtResource( 2 )
 
 [node name="menu" type="Control" parent="."]
@@ -138,7 +138,7 @@ margin_left = 8.0
 margin_top = 8.0
 margin_right = 148.0
 margin_bottom = 50.0
-rect_min_size = Vector2( 78, 0 )
+rect_min_size = Vector2( 64, 0 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_constants/vseparation = 3
@@ -148,7 +148,7 @@ columns = 2
 [node name="Goods" type="Label" parent="menu/Commands/Items"]
 margin_right = 61.0
 margin_bottom = 12.0
-rect_min_size = Vector2( 32, 0 )
+rect_min_size = Vector2( 16, 0 )
 custom_fonts/font = ExtResource( 7 )
 text = "MENU_GOODS"
 
@@ -156,7 +156,7 @@ text = "MENU_GOODS"
 margin_left = 71.0
 margin_right = 140.0
 margin_bottom = 12.0
-rect_min_size = Vector2( 32, 0 )
+rect_min_size = Vector2( 16, 0 )
 custom_fonts/font = ExtResource( 7 )
 text = "MENU_PSI"
 valign = 1
@@ -168,7 +168,7 @@ __meta__ = {
 margin_top = 15.0
 margin_right = 61.0
 margin_bottom = 27.0
-rect_min_size = Vector2( 32, 0 )
+rect_min_size = Vector2( 16, 0 )
 custom_fonts/font = ExtResource( 7 )
 text = "MENU_EQUIP"
 valign = 1
@@ -181,7 +181,7 @@ margin_left = 71.0
 margin_top = 15.0
 margin_right = 140.0
 margin_bottom = 27.0
-rect_min_size = Vector2( 32, 0 )
+rect_min_size = Vector2( 16, 0 )
 custom_fonts/font = ExtResource( 7 )
 text = "MENU_STATUS"
 valign = 1
@@ -190,7 +190,7 @@ valign = 1
 margin_top = 30.0
 margin_right = 61.0
 margin_bottom = 42.0
-rect_min_size = Vector2( 32, 0 )
+rect_min_size = Vector2( 16, 0 )
 custom_fonts/font = ExtResource( 7 )
 text = "MENU_MAP"
 __meta__ = {
@@ -202,7 +202,7 @@ margin_left = 71.0
 margin_top = 30.0
 margin_right = 140.0
 margin_bottom = 42.0
-rect_min_size = Vector2( 32, 0 )
+rect_min_size = Vector2( 16, 0 )
 custom_fonts/font = ExtResource( 7 )
 text = "MENU_OPTIONS"
 valign = 1
@@ -237,6 +237,7 @@ menu_parent_path = NodePath("../Items")
 consume_input_events = true
 loop_around = true
 move_sfx = true
+cancel_on = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Close = SubResource( 3 )
@@ -249,19 +250,18 @@ anims/open = SubResource( 1 )
 
 [node name="EquipMenuUI" parent="." instance=ExtResource( 9 )]
 
-[node name="MapScreen" parent="." instance=ExtResource( 6 )]
-layer = 2
-
 [node name="StatsMenuUI" parent="." instance=ExtResource( 10 )]
 
 [node name="OptionsUI" parent="." instance=ExtResource( 14 )]
+layer = 3
 
+[connection signal="cancel" from="menu/Commands/Arrow" to="." method="_on_Arrow_cancel"]
 [connection signal="selected" from="menu/Commands/Arrow" to="." method="_on_Arrow_selected"]
-[connection signal="back" from="InventoryUI" to="." method="_on_InventoryUI_back"]
-[connection signal="exit" from="InventoryUI" to="." method="_on_InventoryUI_exit"]
-[connection signal="back" from="PSIMenuUI" to="." method="_on_PSIMenuUI_back"]
-[connection signal="back" from="EquipMenuUI" to="." method="_on_EquipMenuUI_back"]
-[connection signal="back" from="MapScreen" to="." method="_on_MapScreen_back"]
-[connection signal="back" from="StatsMenuUI" to="." method="_on_StatsMenuUI_back"]
-[connection signal="back" from="OptionsUI" to="." method="_on_OptionsUI_back"]
+[connection signal="back" from="InventoryUI" to="." method="_on_submenu_back"]
+[connection signal="exit_with_dialog" from="InventoryUI" to="." method="_on_InventoryUI_exit_with_dialog"]
+[connection signal="exit_with_item" from="InventoryUI" to="." method="_on_InventoryUI_exit_with_item"]
+[connection signal="back" from="PSIMenuUI" to="." method="_on_submenu_back"]
+[connection signal="back" from="EquipMenuUI" to="." method="_on_submenu_back"]
+[connection signal="back" from="StatsMenuUI" to="." method="_on_submenu_back"]
+[connection signal="back" from="OptionsUI" to="." method="_on_submenu_back"]
 [connection signal="close_to_title" from="OptionsUI" to="." method="_on_close_to_title"]

@@ -6,47 +6,40 @@ export var disappear_flag = ""
 
 func _ready():
 	set_process(false)
+	uiManager.connect("battle_to_ov", self, "_stop_process")
 
-func _process(delta):
-	if !global.cutscene and !global.inBattle and !uiManager.commandsMenuActive:
-		if check_flags():
-			start_cutscene()
-			set_process(false)
-		else:
-			set_process(false)
+func _stop_process():
+	set_process(false)
+
+func _process(_delta):
+	if uiManager.is_in_cutscene() or uiManager.is_in_battle() or uiManager.is_pause_menu_active():
+		return
+	if _check_flags():
+		_start_cutscene()
+		set_process(false)
+	else:
+		set_process(false)
 
 func _on_Cutscene_Area_body_entered(body):
-	if body == global.persistPlayer:
+	if body == global.get_player():
 		check_start()
 
 func _on_Cutscene_Area_body_exited(body):
-	if body == global.persistPlayer and !global.inBattle:
+	if body == global.get_player() and !uiManager.is_in_battle():
 		set_process(false)
 
 func check_start():
 	if dialog != "":
-		if check_flags():
-			print("yippie")
+		if _check_flags(): # Isn't this check useless???
 			set_process(true)
 		else:
 			#start checking when player becomes unpaused again
 			set_process(true)
 
-func start_cutscene():
-	global.persistPlayer.pause()
-	global.set_dialog(dialog) 
-	uiManager.open_dialogue_box()
+func _start_cutscene():
+	uiManager.close_commands_menu(true, false)
+	global.get_player().pause()
+	uiManager.open_dialogue_box_and_unpause(dialog)
 
-func check_flags():
-	var flagOn = true
-	if appear_flag != "":
-		if globaldata.flags.has(appear_flag):
-			if globaldata.flags[appear_flag] == true:
-				flagOn = true
-			else:
-				flagOn = false
-	if disappear_flag != "":
-		if globaldata.flags.has(disappear_flag):
-			if globaldata.flags[disappear_flag] == true:
-				flagOn = false
-	return flagOn
+func _check_flags():
+	return globaldata.check_appear_disappear_flags(appear_flag, disappear_flag)

@@ -7,13 +7,10 @@ onready var poison = preload("res://Nodes/Overworld/poison geyser.tscn")
 onready var timer = $Timer
 
 func _ready():
-	if delay != 0.0:
-		timer.wait_time = delay
-	else:
-		timer.wait_time = interval
+	timer.wait_time = delay if delay != 0.0 else interval
 	timer.start()
-	global.persistPlayer.connect("paused", self, "pause")
-	global.persistPlayer.connect("unpaused", self, "unpause")
+	global.get_player().connect("paused", self, "pause")
+	global.get_player().connect("unpaused", self, "unpause")
 
 func pause():
 	timer.paused = true

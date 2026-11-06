@@ -8,7 +8,7 @@
 [ext_resource path="res://Nodes/Reusables/door_npc.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Nodes/Overworld/MusicChanger.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Nodes/Reusables/stepping sounds.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scripts/Main/room.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/Main/RoomTypes/AreaRoom.gd" type="Script" id=9]
 
 [sub_resource type="ConvexPolygonShape2D" id=15]
 points = PoolVector2Array( 58, 32, 7, 32, 7, 16, 58, 16 )
@@ -28,8 +28,8 @@ points = PoolVector2Array( 0, 24, 88, 24, 88, 32, 0, 32 )
 0/tile_mode = 0
 0/occluder_offset = Vector2( 0, 0 )
 0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, -16 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 0/shape = SubResource( 15 )
 0/shape_one_way = false
 0/shape_one_way_margin = 1.0
@@ -38,7 +38,7 @@ points = PoolVector2Array( 0, 24, 88, 24, 88, 32, 0, 32 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 15 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 0/z_index = 0
 1/name = "Counter"
@@ -56,8 +56,8 @@ points = PoolVector2Array( 0, 24, 88, 24, 88, 32, 0, 32 )
 1/autotile/z_index_map = [  ]
 1/occluder_offset = Vector2( 0, 0 )
 1/navigation_offset = Vector2( 0, 0 )
-1/shape_offset = Vector2( 0, -16 )
-1/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 1/shape = SubResource( 16 )
 1/shape_one_way = false
 1/shape_one_way_margin = 1.0
@@ -66,37 +66,37 @@ points = PoolVector2Array( 0, 24, 88, 24, 88, 32, 0, 32 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 16 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 2, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 16 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 1, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 16 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 16 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 4, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 16 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 }, {
 "autotile_coord": Vector2( 5, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 16 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 1/z_index = 0
 2/name = "TilPodunkBurgerShop.png 2"
@@ -107,8 +107,8 @@ points = PoolVector2Array( 0, 24, 88, 24, 88, 32, 0, 32 )
 2/tile_mode = 0
 2/occluder_offset = Vector2( 0, 0 )
 2/navigation_offset = Vector2( 0, 0 )
-2/shape_offset = Vector2( 0, -32 )
-2/shape_transform = Transform2D( 1, 0, 0, 1, 0, -32 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 2/shape = SubResource( 17 )
 2/shape_one_way = false
 2/shape_one_way_margin = 1.0
@@ -117,7 +117,7 @@ points = PoolVector2Array( 0, 24, 88, 24, 88, 32, 0, 32 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 17 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -32 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 2/z_index = 0
 3/name = "Wall Blacks"
@@ -153,10 +153,9 @@ extents = Vector2( 48, 36 )
 
 [node name="Burger Shop" type="Node2D"]
 script = ExtResource( 9 )
-player_map_offset = Vector2( 93, 243 )
-region_name = "Podunk"
-map_item = "MapPodunk"
-is_sub_area = true
+_player_map_offset = Vector2( 93, 243 )
+_region_name = "Podunk"
+_is_sub_area = true
 
 [node name="PodunkBurgerShop" type="Sprite" parent="."]
 position = Vector2( 0, -72 )
@@ -180,20 +179,12 @@ tile_data = PoolIntArray( -262151, 1, 0, -262150, 1, 2, -262149, 1, 3, -262148, 
 position = Vector2( -21, -84 )
 sprite = "Npcs/4dir/fastfoodgirl"
 dialog = "Podunk/podunk_burger_shop"
-player_turn = {
-"x": true,
-"y": true
-}
 extended_interact = 1
 
 [node name="npc2" parent="Objects" instance=ExtResource( 4 )]
 position = Vector2( 46, -40 )
 sprite = "Npcs/4dir/fedoradude"
 dialog = "Podunk/jonathan"
-player_turn = {
-"x": true,
-"y": true
-}
 
 [node name="Door NPC" parent="Objects" instance=ExtResource( 6 )]
 position = Vector2( 68, -105 )

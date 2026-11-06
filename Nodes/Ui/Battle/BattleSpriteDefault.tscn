@@ -370,5 +370,3 @@ next/bash = "idle"
 next/bat = "idle"
 next/special = "idle"
 next/specialPrep = "specialPrep2"
-
-[node name="Tween" type="Tween" parent="."]

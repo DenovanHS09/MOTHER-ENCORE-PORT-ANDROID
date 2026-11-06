@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Smoke Attack.mp3-f7a358250499b897204175045d38ca7e.mp3str"
+
+[deps]
+
+source_file="res://Audio/Sound effects/M3/Smoke Attack.mp3"
+dest_files=[ "res://.import/Smoke Attack.mp3-f7a358250499b897204175045d38ca7e.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

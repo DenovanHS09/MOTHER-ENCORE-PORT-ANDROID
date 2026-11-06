@@ -1,0 +1,198 @@
+"0":
+  actors:
+    mary: Objects/queenmary
+    retainer: Objects/npc17
+    leader: leader
+  talker: mary
+  name: DIALOGUE_MAGICANT_CASTLE_QUEENMARY_SPEAKER_QueenMary
+  sound: Female
+  text: DIALOGUE_MAGICANT_CASTLE_QUEENMARY_1_0
+  options:
+    DIALOGUE_MAGICANT_CASTLE_QUEENMARY_1-OPT_0: "fadein_0"
+    DIALOGUE_MAGICANT_CASTLE_QUEENMARY_1-OPT_1: "3"
+    cancel: "3"
+"fadein_0":
+  talker: null
+  musicvolume: -10
+  fadein:
+    speed: 0.5
+    anim: Fade
+    color: "000000"
+  showbox: false
+  autowait: 2
+  goto: "fadeout_0"
+"fadeout_0":
+  fadeout:
+    speed: 0.5
+    anim: Fade
+    color: "000000"
+  teleportparty:
+    x: 384
+    y: -584
+    disappear: true
+  movecam:
+    x: 384
+    y: -584
+    length: 0.1
+  autowait: 1
+  goto: "monologue_0"
+"monologue_0":
+  movecam:
+    x: 720
+    trans: linear
+    length: 7
+  name: DIALOGUE_MAGICANT_CASTLE_QUEENMARY_SPEAKER_QueenMary
+  sound: Female
+  text: DIALOGUE_MAGICANT_CASTLE_QUEENMARY_1_MONOLOGUE_0
+  goto: "fadein_1"
+"fadein_1":
+  fadein:
+    speed: 0.5
+    anim: Fade
+    color: "000000"
+  showbox: false
+  autowait: 2
+  goto: "fadeout_1"
+"fadeout_1":
+  fadeout:
+    speed: 0.5
+    anim: Fade
+    color: "000000"
+  teleportparty:
+    x: 160
+    y: 792
+  movecam:
+    x: 160
+    y: 792
+    length: 0.1
+  autowait: 1
+  goto: "monologue_1"
+"monologue_1":
+  movecam:
+    x: -160
+    trans: linear
+    length: 7
+  name: DIALOGUE_MAGICANT_CASTLE_QUEENMARY_SPEAKER_QueenMary
+  sound: Female
+  text: DIALOGUE_MAGICANT_CASTLE_QUEENMARY_1_MONOLOGUE_1
+  goto: "fadein_2"
+"fadein_2":
+  fadein:
+    speed: 0.5
+    anim: Fade
+    color: "000000"
+  showbox: false
+  autowait: 1
+  goto: "fadeout_2"
+"fadeout_2":
+  fadeout:
+    speed: 0.5
+    anim: Fade
+    color: "000000"
+  teleportparty:
+    x: 0
+    y: 0
+  movecam:
+    x: 0
+    y: 0
+    length: 0.1
+  autowait: 1
+  goto: "monologue_2"
+"monologue_2":
+  movecam:
+    y: -256
+    trans: linear
+    length: 7
+  name: DIALOGUE_MAGICANT_CASTLE_QUEENMARY_SPEAKER_QueenMary
+  sound: Female
+  text: DIALOGUE_MAGICANT_CASTLE_QUEENMARY_1_MONOLOGUE_2
+  goto: "fadein_3"
+"fadein_3":
+  fadein:
+    speed: 0.5
+    anim: Fade
+    color: "000000"
+  showbox: false
+  autowait: 2
+  goto: "fadeout_3"
+"fadeout_3":
+  objectsfunction:
+    CanvasLayer/QueenMaryMelodiesExposition: play_anim
+  fadeout:
+    speed: 0.5
+    anim: Fade
+    color: "000000"
+  teleportparty:
+    x: -656
+    y: -1272
+  movecam:
+    x: -656
+    y: -1272
+    length: 0.1
+  autowait: 1
+  goto: "monologue_3"
+"monologue_3":
+  talker: mary
+  fadeout:
+    speed: 0.5
+    anim: Fade
+    color: "000000"
+  name: DIALOGUE_MAGICANT_CASTLE_QUEENMARY_SPEAKER_QueenMary
+  sound: Female
+  text: DIALOGUE_MAGICANT_CASTLE_QUEENMARY_1_MONOLOGUE_3
+  goto: "fadein_4"
+"fadein_4":
+  fadein:
+    speed: 0.5
+    anim: Fade
+    color: "000000"
+  showbox: false
+  autowait: 2
+  goto: "monologue_4"
+"monologue_4":
+  objectsfunction:
+    CanvasLayer/QueenMaryMelodiesExposition: hide
+  fadeout:
+    speed: 0.5
+    anim: Fade
+    color: "000000"
+  name: DIALOGUE_MAGICANT_CASTLE_QUEENMARY_SPEAKER_QueenMary
+  sound: Female
+  text: DIALOGUE_MAGICANT_CASTLE_QUEENMARY_1_MONOLOGUE_4
+  goto: "get_ocarina"
+"get_ocarina":
+  talker: null
+  musicvolume: -70
+  text: DIALOGUE_MAGICANT_CASTLE_QUEENMARY_1_OCARINA
+  item: Ocarina
+  soundeffect: Fanfare.mp3
+  wait: 6
+  goto: "2"
+"2":
+  talker: mary
+  name: DIALOGUE_MAGICANT_CASTLE_QUEENMARY_SPEAKER_QueenMary
+  sound: Female
+  text: DIALOGUE_MAGICANT_CASTLE_QUEENMARY_1_2
+  setflags: marys_story_learned
+  goto: "resetmusic"
+"3":
+  name: DIALOGUE_MAGICANT_CASTLE_QUEENMARY_SPEAKER_QueenMary
+  sound: Female
+  text: DIALOGUE_MAGICANT_CASTLE_QUEENMARY_1_3
+  musicvolume: 0
+"resetmusic":
+  movecam:
+    x: -608
+  actorsmove:
+    retainer:
+      movement:
+        - jump:
+            times: 2
+        - wait: 0.5
+        - x: 0
+          y: 8
+      speed: 16
+      type: step
+      animation: Walk
+  autowait: 2
+  musicvolume: 0

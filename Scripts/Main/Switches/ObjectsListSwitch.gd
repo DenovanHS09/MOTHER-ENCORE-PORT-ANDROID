@@ -4,7 +4,7 @@ extends AbstractSwitch
 
 export (bool) var _pause_when_changed := false
 export (bool) var _focus_objects_when_changed := false
-export (float) var _camera_delay := 1
+export (float) var _camera_delay := 1.0
 export (Array, NodePath) var _controlled_objects: Array
 
 func _enter_tree():
@@ -17,8 +17,8 @@ func _do_switch_action():
 
 func _update_controlled_objects():
 	if _pause_when_changed:
-		global.persistPlayer.pause()
-		global.cutscene = true
+		global.get_player().pause()
+		uiManager.set_cutscene(true)
 
 	_controlled_objects.sort_custom(self, "_sort_controlled_objects")
 	var cur_order: int = _controlled_objects[0].get_update_order() if _controlled_objects else 0
@@ -44,11 +44,11 @@ func _update_controlled_objects():
 
 	if _focus_objects_when_changed:
 		yield(get_tree(), "idle_frame")
-		yield(global.persistPlayer.camera.return_camera(_camera_delay), "completed")
+		yield(global.get_player().camera.return_camera(_camera_delay), "completed")
 	
 	if _pause_when_changed:
-		global.persistPlayer.unpause()
-		global.cutscene = false
+		global.get_player().unpause()
+		uiManager.set_cutscene(false)
 
 
 # Overridden
@@ -64,7 +64,7 @@ func _wait_and_move_camera(objects_to_focus: Array, actions_to_wait: Array):
 		for obj_to_focus in objects_to_focus:
 			camera_pos += obj_to_focus.get_move_cam_position()
 		camera_pos /= objects_to_focus.size()
-		yield(global.persistPlayer.camera.move_camera(camera_pos, _camera_delay), "completed")
+		yield(global.get_player().camera.move_camera(camera_pos, _camera_delay), "completed")
 	for in_progress in actions_to_wait:
 		if in_progress.is_valid():
 			yield(in_progress, "completed")

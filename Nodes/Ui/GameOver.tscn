@@ -10,7 +10,7 @@
 
 [sub_resource type="Animation" id=4]
 resource_name = "RESET"
-length = 3.0
+length = 0.001
 step = 0.0625
 tracks/0/type = "value"
 tracks/0/path = NodePath("GameOverLayer/TheLight:frame")
@@ -316,28 +316,44 @@ tracks/10/keys = {
 "times": PoolRealArray( 0.35, 1.26 )
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath("AudioStreamPlayer:playing")
+tracks/11/path = NodePath("GameOverLayer/WorldEnvironment:environment:glow_enabled")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
 tracks/11/enabled = true
 tracks/11/keys = {
-"times": PoolRealArray( 0.95 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
 }
-tracks/12/type = "value"
-tracks/12/path = NodePath("GameOverLayer/WorldEnvironment:environment:glow_enabled")
+tracks/12/type = "audio"
+tracks/12/path = NodePath("AudioStreamPlayer")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/imported = false
 tracks/12/enabled = true
 tracks/12/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 6 )
+} ],
+"times": PoolRealArray( 0.95 )
+}
+tracks/13/type = "method"
+tracks/13/path = NodePath(".")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
+"values": [ {
+"args": [  ],
+"method": "_remove_fade_cut"
+} ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -483,6 +499,7 @@ glow_blend_mode = 0
 glow_high_quality = true
 
 [node name="GameOver" type="CanvasLayer"]
+layer = 2
 script = ExtResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

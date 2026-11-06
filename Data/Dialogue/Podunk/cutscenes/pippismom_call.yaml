@@ -3,7 +3,7 @@
     ninten: leader
     lindgren: Objects/NPCS/npc20
   name: DIALOGUE_PODUNK_CUTSCENES_PIPPISMOM_CALL_SPEAKER_Mrs._Lindgren
-  sound: Sexy
+  sound: Female
   text: DIALOGUE_PODUNK_CUTSCENES_PIPPISMOM_CALL_0
   actorsturn:
     ninten:
@@ -14,7 +14,7 @@
   goto: '1'
 '1':
   name: DIALOGUE_PODUNK_CUTSCENES_PIPPISMOM_CALL_SPEAKER_Mrs._Lindgren
-  sound: Sexy
+  sound: Female
   text: DIALOGUE_PODUNK_CUTSCENES_PIPPISMOM_CALL_1
   actorsmove:
     lindgren:
@@ -32,7 +32,7 @@
   goto: '2'
 '2':
   name: DIALOGUE_PODUNK_CUTSCENES_PIPPISMOM_CALL_SPEAKER_Mrs._Lindgren
-  sound: Sexy
+  sound: Female
   text: DIALOGUE_PODUNK_CUTSCENES_PIPPISMOM_CALL_2
   actorsmove:
     lindgren:
@@ -46,7 +46,7 @@
   goto: '3'
 '3':
   name: DIALOGUE_PODUNK_CUTSCENES_PIPPISMOM_CALL_SPEAKER_Mrs._Lindgren
-  sound: Sexy
+  sound: Female
   text: DIALOGUE_PODUNK_CUTSCENES_PIPPISMOM_CALL_3
   actorsmove:
     lindgren:
@@ -60,7 +60,7 @@
   goto: '4'
 '4':
   name: DIALOGUE_PODUNK_CUTSCENES_PIPPISMOM_CALL_SPEAKER_Mrs._Lindgren
-  sound: Sexy
+  sound: Female
   text: DIALOGUE_PODUNK_CUTSCENES_PIPPISMOM_CALL_4
   actorsmove:
     lindgren:

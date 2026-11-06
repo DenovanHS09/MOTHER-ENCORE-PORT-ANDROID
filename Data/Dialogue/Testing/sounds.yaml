@@ -35,7 +35,7 @@
   font: EBZ
 '5':
   name: DIALOGUE_TESTING_SOUNDS_SPEAKER_Ben
-  sound: Sexy
+  sound: Female
   text: DIALOGUE_TESTING_SOUNDS_5
   type: normal
   font: EBZ

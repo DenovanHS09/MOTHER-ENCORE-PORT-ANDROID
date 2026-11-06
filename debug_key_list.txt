@@ -1,0 +1,35 @@
+LIST OF DEBUG KEYS
+==================
+- Overworld
+Number keys 1-8: Add party member
+Q: Walk through walls
+W: Toggle invisibility
+E: Walk faster
+F1: Play special cutscene animation
+F2/F3: Start debug battles
+F6: Open storage
+F7: Open god storage to give yourself any item
+F8: Close game
+F9: Open save select
+F10: Load most recent save
+F11: Start game at Ninten's Room
+F12: Go to Debug World
+
+- Battle
+Number keys 1-8: Apply 100 damage to party member
+`: Show enemy stats
+Q: Halves all enemies' current HP
+W: Sets all enemies' HP to 1
+E: Add 20 SP
+R: Restore HP and PP to party
+END: Win battle instantly
+ENTER: Game over instantly
+
+- Everywhere
+Alt + Number: Change language
+T: Cycle language
+G: x2 Game Speed
+H: x4 Game Speed
+J: x0.2 Game Speed
+M: Mute music
+

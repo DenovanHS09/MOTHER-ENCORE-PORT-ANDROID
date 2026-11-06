@@ -2,7 +2,6 @@ extends PanelContainer
 
 const Indicator = preload("res://Scripts/UI/Indicator.gd")
 const DialogWindow = preload("res://Scripts/UI/Options/DialogWindow.gd")
-const OptionsSwitch = preload("res://Scripts/UI/Options/OptionsSwitch.gd")
 
 onready var tab_images = [
 	preload("res://Graphics/UI/Options/controls_kbd.png"),
@@ -29,17 +28,6 @@ export (NodePath) onready var alert_dialog = get_node(alert_dialog) as DialogWin
 export (NodePath) onready var cursor_div = get_node(cursor_div) as Container
 export (NodePath) onready var cursor = get_node(cursor) as Cursor
 
-var soundEffects = {
-	"back": load("res://Audio/Sound effects/M3/curshoriz.wav"),
-	"swap": load("res://Audio/Sound effects/M3/menu_open.wav"),
-	"cursor1": load("res://Audio/Sound effects/Cursor 1.mp3"),
-	"cursor2": load("res://Audio/Sound effects/Cursor 2.mp3"),
-	"restricted": load("res://Audio/Sound effects/M3/bump.wav"),
-	"applied": load("res://Audio/Sound effects/M3/equip.wav"),
-	"timeout": load("res://Audio/Sound effects/EB/dodge.wav"),
-	"clear": load("res://Audio/Sound effects/EB/close.wav")
-}
-
 const SCROLL_MARGIN = 18
 const NB_ALT_INPUTS = 2
 const CAPTURE_DURATION = 2.5
@@ -47,13 +35,13 @@ const CAPTURE_DURATION = 2.5
 # First item is for keyboard, second subarray for gamepad
 #const INPUT_TYPES = [["InputEventKey"], ["InputEventJoypadButton", "InputEventJoypadMotion"]]
 const INPUT_TYPES = [["InputEventKey"], ["InputEventJoypadButton"]]
-const REMAPPABLE_ACTIONS = [["ui_up", "ui_down", "ui_left", "ui_right", "ui_accept", "ui_cancel", "ui_toggle", "ui_scope", "ui_focus_prev", "ui_focus_next", "ui_select", "ui_fullscreen", "ui_winsize"], ["ui_up", "ui_down", "ui_left", "ui_right", "ui_accept", "ui_cancel", "ui_toggle", "ui_scope", "ui_focus_prev", "ui_focus_next", "ui_select"]]
+const REMAPPABLE_ACTIONS = [["ui_up", "ui_down", "ui_left", "ui_right", "ui_accept", "ui_cancel", "ui_toggle", "ui_scope", "ui_focus_prev", "ui_focus_next", "ui_select", "ui_map", "ui_fullscreen", "ui_winsize"], ["ui_up", "ui_down", "ui_left", "ui_right", "ui_accept", "ui_cancel", "ui_toggle", "ui_scope", "ui_focus_prev", "ui_focus_next", "ui_select", "ui_map"]]
 const CLONE_ACTIONS = [{"ui_up": ["ui_key_up"], "ui_down": ["ui_key_down"], "ui_left": ["ui_key_left"], "ui_right": ["ui_key_right"]}, {"ui_up": ["ui_dpad_up"], "ui_down": ["ui_dpad_down"], "ui_left": ["ui_dpad_left"], "ui_right": ["ui_kdpadright"]}]
 
 
 signal exited()
 
-var _current_tab = global.device
+var _current_tab = globaldata.device
 var _is_active = false
 var _play_nav_sound = true
 
@@ -85,12 +73,12 @@ func _input(event):
 			_is_active = false
 			self.hide()
 			emit_signal("exited")
-			audioManager.play_sfx(soundEffects["back"], "cursor")
+			audioManager.play_sfx_by_name("back", "cursor")
 		elif event.is_action_pressed("ui_accept"):
 			get_tree().set_input_as_handled()
 			var pos = _get_focused_input_pos()
 			if pos != null:
-				audioManager.play_sfx(soundEffects["cursor2"], "cursor")
+				audioManager.play_sfx_by_name("cursor2", "cursor")
 				if pos.y < REMAPPABLE_ACTIONS[_current_tab].size():
 					_is_active = false
 					capture_box.start_with_timer(CAPTURE_DURATION, true)
@@ -105,11 +93,11 @@ func _input(event):
 						_toggle_options(focused)
 		elif event.is_action_pressed("ui_focus_prev"):
 			get_tree().set_input_as_handled()
-			audioManager.play_sfx(soundEffects["swap"], "menu")
+			audioManager.play_sfx_by_name("menu_open", "menu")
 			_set_current_tab(posmod(_current_tab - 1, INPUT_TYPES.size()))
 		elif event.is_action_pressed("ui_focus_next"):
 			get_tree().set_input_as_handled()
-			audioManager.play_sfx(soundEffects["swap"], "menu")
+			audioManager.play_sfx_by_name("menu_open", "menu")
 			_set_current_tab(posmod(_current_tab + 1, INPUT_TYPES.size()))
 
 func _physics_process(_delta):
@@ -118,7 +106,7 @@ func _physics_process(_delta):
 		if input != Vector2.ZERO:
 			var pos = _get_focused_input_pos()
 			if input.y == 0 and pos.y >= REMAPPABLE_ACTIONS[_current_tab].size():
-				audioManager.play_sfx(soundEffects["cursor2"], "cursor")
+				audioManager.play_sfx_by_name("cursor2", "cursor")
 				_toggle_options(get_focus_owner(), sign(input.x))
 			else:
 				_move_focus_by(input.x, input.y)
@@ -129,7 +117,7 @@ func _toggle_options(option_view, direction = 1):
 			globaldata.rumble = !globaldata.rumble
 			global.start_joy_vibration(0, 0.4, 0.3, 0.3)
 		button_style_view:
-			globaldata.buttonsStyle = posmod(globaldata.buttonsStyle + direction, globaldata.BtnStyles.size())
+			globaldata.buttons_style = posmod(globaldata.buttons_style + direction, globaldata.BtnStyles.size())
 			global.emit_signal("inputs_changed")
 	_update_labels()
 
@@ -154,7 +142,7 @@ func _update_labels():
 				var event = events[event_index]
 				label.text = TextTools.get_key_name_from_event(event)
 	rumble_switch.text = "OPTIONS_ON" if globaldata.rumble else "OPTIONS_OFF"
-	button_style_switch.text = "CONTROLS_BUTTON_STYLE_" + globaldata.BtnStyles.keys()[globaldata.buttonsStyle].to_upper()
+	button_style_switch.text = "CONTROLS_BUTTON_STYLE_" + globaldata.BtnStyles.keys()[globaldata.buttons_style].to_upper()
 
 func _set_current_tab(value):
 	_current_tab = value
@@ -171,11 +159,11 @@ func _set_current_tab(value):
 func _init_tab_content():
 	var divs_to_show; var divs_to_hide
 	match _current_tab:
-		global.KEYBOARD:
+		globaldata.KEYBOARD:
 			capture_box.text = "CONTROLS_PRESS_KEY"
 			divs_to_show = keyboard_only_divs
 			divs_to_hide = gamepad_only_divs
-		global.GAMEPAD:
+		globaldata.GAMEPAD:
 			capture_box.text = "CONTROLS_PRESS_BUTTON"
 			divs_to_show = gamepad_only_divs
 			divs_to_hide = keyboard_only_divs
@@ -231,7 +219,7 @@ func _get_focused_input_pos():
 func _on_focus_changed(control):
 	if _is_active:
 		if _play_nav_sound:
-			audioManager.play_sfx(soundEffects["cursor1"], "cursor")
+			audioManager.play_sfx_by_name("cursor1", "cursor")
 		_scroll_into_view(control)
 		_update_cursor(true)
 		rumble_switch.highlighted = (control == rumble_view)
@@ -316,18 +304,18 @@ func _back_from_capture(input_event = null):
 		
 		if !result:
 			_is_active = false
-			audioManager.play_sfx(soundEffects["restricted"], "cursor")
-			alert_dialog.start("CONTROLS_PRESS_DUPLICATE_KEY" if _current_tab == global.KEYBOARD else "CONTROLS_PRESS_DUPLICATE_BUTTON")
+			audioManager.play_sfx_by_name("restricted", "cursor")
+			alert_dialog.start("CONTROLS_PRESS_DUPLICATE_KEY" if _current_tab == globaldata.KEYBOARD else "CONTROLS_PRESS_DUPLICATE_BUTTON")
 		else:
 			cursor.playing = true
-			audioManager.play_sfx(soundEffects["applied"], "cursor")
+			audioManager.play_sfx_by_name("equip", "cursor")
 	elif input_event == null:
-		audioManager.play_sfx(soundEffects["timeout"], "cursor")
+		audioManager.play_sfx_by_name("timeout", "cursor")
 		if _get_focused_input_pos().x > 0:
 			_reassign_listed_input(null, _get_focused_input_pos())
 
 func _back_from_error_msg(useless_input = null):
-	audioManager.play_sfx(soundEffects["cursor1"], "cursor")
+	audioManager.play_sfx_by_name("cursor1", "cursor")
 	_is_active = true
 	cursor.playing = true
 
@@ -335,7 +323,7 @@ func _back_from_confirm_reset(answer):
 	_is_active = true
 	cursor.playing = true
 	if answer:
-		audioManager.play_sfx(soundEffects["clear"], "cursor")
+		audioManager.play_sfx_by_name("clear", "cursor")
 		InputMap.load_from_globals()
 		global.emit_signal("inputs_changed")
 		_update_labels()

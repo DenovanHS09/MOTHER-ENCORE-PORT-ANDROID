@@ -1,0 +1,16 @@
+define enemy
+
+start:
+  enemy = get_script_bp()
+  if !get_battle_var(_used_encore):
+    yield enemy.get_current_hp() < 680
+    enemy.set_scripted_skill(forgetfulnessFlashGuaranteed)
+    enemy.start_cooldown(forgetfulnessFlash)
+    goto(encore)
+
+encore:
+  yield enemy.get_current_hp() < 600
+  if !get_battle_var(_used_encore):
+    enemy.set_scripted_text("fishtext")
+    enemy.set_scripted_skill(do_nothing)
+    toggle_flag(encore_tutorial)

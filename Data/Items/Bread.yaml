@@ -5,19 +5,12 @@ article: BREAD_ART
 keyitem: false
 cost: 20
 value: 10
-usable:
-  ninten: true
-  ana: true
-  lloyd: true
-  teddy: true
-  pippi: true
-action_one:
-  name: BREAD_ACT1_NAME
-  function: consume
-action_two:
-  name: BREAD_ACT2_NAME
-  function: transform
-battle_action: ''
+actions:
+  - name: BREAD_ACT1
+    function: consume
+  - name: BREAD_ACT2
+    function: transform
+is_food: true
 transform: Crumbs
 slot: ''
 HPrecover: 15

@@ -23,8 +23,8 @@
 [ext_resource path="res://Scripts/UI/colorRectFlavor.gd" type="Script" id=22]
 [ext_resource path="res://Nodes/Ui/HighlightLabel.tscn" type="PackedScene" id=23]
 [ext_resource path="res://Scripts/UI/NamingScreen/TextSpeed.gd" type="Script" id=24]
-[ext_resource path="res://Graphics/Objects/Present Box.png" type="Texture" id=25]
-[ext_resource path="res://Graphics/Character Sprites/Npcs/4dir/woman/main.png" type="Texture" id=26]
+[ext_resource path="res://Graphics/Objects/Common/Present Box.png" type="Texture" id=25]
+[ext_resource path="res://Graphics/Character Sprites/Npcs/4dir/woman.png" type="Texture" id=26]
 [ext_resource path="res://Nodes/Ui/ButtonPrompt.tscn" type="PackedScene" id=27]
 [ext_resource path="res://Scripts/UI/NamingScreen/ButtonPrompts.gd" type="Script" id=28]
 [ext_resource path="res://Scripts/UI/NamingScreen/Flavors.gd" type="Script" id=29]
@@ -756,14 +756,14 @@ position = Vector2( 64, 40 )
 
 [node name="ActorsSequence" type="YSort" parent="Objects/Actors"]
 
-[node name="Door" parent="Objects" instance=ExtResource( 7 )]
+[node name="DoorToTitle" parent="Objects" instance=ExtResource( 7 )]
 position = Vector2( 344, 5 )
 monitoring = false
 dir = Vector2( 0, 1 )
 targetScene = "Title screen"
 unpause_player = false
 
-[node name="Door2" parent="Objects" instance=ExtResource( 7 )]
+[node name="DoorToIntro" parent="Objects" instance=ExtResource( 7 )]
 position = Vector2( 344, 5 )
 monitoring = false
 targetX = 520
@@ -778,6 +778,7 @@ position = Vector2( 64, -10 )
 texture = ExtResource( 20 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
 margin_left = 11.0
@@ -788,40 +789,40 @@ custom_constants/separation = 10
 alignment = 2
 
 [node name="PressButton1" type="HBoxContainer" parent="CanvasLayer/HBoxContainer"]
-margin_left = 109.0
-margin_right = 193.0
+margin_left = 127.0
+margin_right = 203.0
 margin_bottom = 11.0
 alignment = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/HBoxContainer/PressButton1"]
-margin_right = 72.0
+margin_right = 64.0
 margin_bottom = 11.0
 custom_fonts/font = ExtResource( 5 )
 text = "MENU_BACK"
 align = 2
 
 [node name="Button" parent="CanvasLayer/HBoxContainer/PressButton1" instance=ExtResource( 6 )]
-margin_left = 76.0
-margin_right = 84.0
+margin_left = 68.0
+margin_right = 76.0
 align = 2
 key = "ui_cancel"
 
 [node name="PressButton2" type="HBoxContainer" parent="CanvasLayer/HBoxContainer"]
-margin_left = 203.0
+margin_left = 213.0
 margin_right = 299.0
 margin_bottom = 11.0
 alignment = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/HBoxContainer/PressButton2"]
-margin_right = 84.0
+margin_right = 74.0
 margin_bottom = 11.0
 custom_fonts/font = ExtResource( 5 )
 text = "MENU_SELECT"
 align = 2
 
 [node name="Button" parent="CanvasLayer/HBoxContainer/PressButton2" instance=ExtResource( 6 )]
-margin_left = 88.0
-margin_right = 96.0
+margin_left = 78.0
+margin_right = 86.0
 align = 2
 key = "ui_accept"
 
@@ -2096,14 +2097,14 @@ margin_right = 141.0
 margin_bottom = 114.0
 
 [node name="Label" type="Label" parent="CanvasLayer/NamingBox/PressButton"]
-margin_right = 133.0
+margin_right = 117.0
 margin_bottom = 11.0
 custom_fonts/font = ExtResource( 5 )
 text = "MENU_CAPITALSMALL"
 
 [node name="Button" parent="CanvasLayer/NamingBox/PressButton" instance=ExtResource( 6 )]
-margin_left = 137.0
-margin_right = 145.0
+margin_left = 121.0
+margin_right = 129.0
 key = "ui_scope"
 
 [node name="Settings" type="NinePatchRect" parent="CanvasLayer"]
@@ -2697,6 +2698,17 @@ move_sfx = true
 cancel_sfx = true
 cancel_on = true
 
+[node name="Pinyin" type="Label" parent="CanvasLayer"]
+margin_left = 14.0
+margin_top = 52.0
+margin_right = 21.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 7, 0 )
+custom_colors/font_color = Color( 0.65098, 0.627451, 0.67451, 1 )
+custom_fonts/font = ExtResource( 3 )
+align = 1
+valign = 1
+
 [node name="Toolbox" type="Control" parent="."]
 visible = false
 
@@ -2779,8 +2791,6 @@ anims/ConfirmationOpen = SubResource( 11 )
 anims/RESET = SubResource( 10 )
 anims/SettingsClose = SubResource( 18 )
 anims/SettingsOpen = SubResource( 9 )
-
-[node name="Tween" type="Tween" parent="."]
 
 [node name="BlockName" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )

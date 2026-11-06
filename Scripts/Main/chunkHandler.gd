@@ -17,7 +17,7 @@ var chunk_beacon_radius = 64
 func _ready():
 	for i in tilemap_paths:
 		tilemaps.append(get_node(i))
-	chunk_beacon = global.persistPlayer
+	chunk_beacon = global.get_player()
 	grid_draw = get_node(grid_draw_path)
 	grid_draw.grid_size = chunk_size * tilemaps[0].cell_size.x
 	save_all()
@@ -49,9 +49,9 @@ func save_all():
 				t.save_chunk(x, y)
 		t.clear()
 
-func _process(_delta):
-	grid_draw.beacon_position = global.persistPlayer.global_position
-	if Input.is_action_just_pressed("ui_test") and OS.is_debug_build():
+func _input(event: InputEvent):
+	grid_draw.beacon_position = global.get_player().global_position
+	if event.is_action_pressed("ui_test") and OS.is_debug_build():
 		var t = Thread.new()
 		update_chunks()
 
@@ -62,7 +62,7 @@ func update_chunks():
 	if tilemaps.empty():
 		return
 	
-	var t0 := tilemaps[0] as BigTileMap
+	var t0 = tilemaps[0] #as BigTileMap
 	var chunk_position_x = int(chunk_beacon.position.x / (tilemaps[0].chunk_size*tilemaps[0].cell_size.x))
 	var chunk_position_y = int(chunk_beacon.position.y / (tilemaps[0].chunk_size*tilemaps[0].cell_size.x))
 	

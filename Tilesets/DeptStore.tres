@@ -1,14 +1,8 @@
-[gd_resource type="TileSet" load_steps=21 format=2]
+[gd_resource type="TileSet" load_steps=20 format=2]
 
 [ext_resource path="res://Graphics/Tilesets/TilDeptStore.png" type="Texture" id=1]
-[ext_resource path="res://Translations/TranslatedTiles/Podunk_DeptStore_Mat.png" type="Texture" id=2]
-[ext_resource path="res://Translations/TranslatedTiles/Podunk_DeptStore_Food.png" type="Texture" id=3]
-[ext_resource path="res://Translations/TranslatedTiles/Podunk_DeptStore_Drugs.png" type="Texture" id=4]
-[ext_resource path="res://Translations/TranslatedTiles/Podunk_DeptStore_Wall.png" type="Texture" id=5]
-[ext_resource path="res://Translations/TranslatedTiles/Podunk_FoodShop_Sign.png" type="Texture" id=6]
-[ext_resource path="res://Translations/TranslatedTiles/Podunk_DrugStore_Sign.png" type="Texture" id=7]
-[ext_resource path="res://Translations/TranslatedTiles/Podunk_DeptStore_Pets.png" type="Texture" id=8]
-[ext_resource path="res://Translations/TranslatedTiles/Podunk_DeptStore_Sports.png" type="Texture" id=9]
+[ext_resource path="res://Translations/TranslatedTilesets/TilPodunkDeptStore_translate.png" type="Texture" id=12]
+[ext_resource path="res://Translations/TranslatedTilesets/TilMerrysvilleDeptStore_translate.png" type="Texture" id=13]
 
 [sub_resource type="ConvexPolygonShape2D" id=29]
 points = PoolVector2Array( 64, 48, 0, 48, 0, 32, 64, 32 )
@@ -43,6 +37,21 @@ points = PoolVector2Array( 28, 64, 4, 64, 4, 28, 28, 28 )
 [sub_resource type="ConvexPolygonShape2D" id=39]
 points = PoolVector2Array( 28, 64, 4, 64, 4, 28, 28, 28 )
 
+[sub_resource type="ConvexPolygonShape2D" id=40]
+points = PoolVector2Array( 0, 30, 62, 30, 62, 48, 0, 48 )
+
+[sub_resource type="ConvexPolygonShape2D" id=41]
+points = PoolVector2Array( 72, 32, 0, 32, 0, 8, 72, 8 )
+
+[sub_resource type="ConvexPolygonShape2D" id=42]
+points = PoolVector2Array( 72, 40, 0, 40, 0, 16, 72, 16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=43]
+points = PoolVector2Array( 80, 56, 0, 56, 0, 0, 80, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=44]
+points = PoolVector2Array( 80, 56, 0, 56, 0, 0, 80, 0 )
+
 [resource]
 32/name = "StoreShelf"
 32/texture = ExtResource( 1 )
@@ -52,8 +61,8 @@ points = PoolVector2Array( 28, 64, 4, 64, 4, 28, 28, 28 )
 32/tile_mode = 0
 32/occluder_offset = Vector2( 0, 0 )
 32/navigation_offset = Vector2( 0, 0 )
-32/shape_offset = Vector2( 0, -32 )
-32/shape_transform = Transform2D( 1, 0, 0, 1, 0, -32 )
+32/shape_offset = Vector2( 0, 0 )
+32/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 32/shape = SubResource( 29 )
 32/shape_one_way = false
 32/shape_one_way_margin = 1.0
@@ -62,7 +71,7 @@ points = PoolVector2Array( 28, 64, 4, 64, 4, 28, 28, 28 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 29 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -32 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 32/z_index = 0
 33/name = "StoreShelf2"
@@ -73,8 +82,8 @@ points = PoolVector2Array( 28, 64, 4, 64, 4, 28, 28, 28 )
 33/tile_mode = 0
 33/occluder_offset = Vector2( 0, 0 )
 33/navigation_offset = Vector2( 0, 0 )
-33/shape_offset = Vector2( 0, -32 )
-33/shape_transform = Transform2D( 1, 0, 0, 1, 0, -32 )
+33/shape_offset = Vector2( 0, 0 )
+33/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 33/shape = SubResource( 30 )
 33/shape_one_way = false
 33/shape_one_way_margin = 1.0
@@ -83,7 +92,7 @@ points = PoolVector2Array( 28, 64, 4, 64, 4, 28, 28, 28 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 30 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -32 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 33/z_index = 0
 34/name = "Food Shelf Bread"
@@ -94,8 +103,8 @@ points = PoolVector2Array( 28, 64, 4, 64, 4, 28, 28, 28 )
 34/tile_mode = 0
 34/occluder_offset = Vector2( 0, 0 )
 34/navigation_offset = Vector2( 0, 0 )
-34/shape_offset = Vector2( 0, -32 )
-34/shape_transform = Transform2D( 1, 0, 0, 1, 0, -32 )
+34/shape_offset = Vector2( 0, 0 )
+34/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 34/shape = SubResource( 31 )
 34/shape_one_way = false
 34/shape_one_way_margin = 1.0
@@ -104,7 +113,7 @@ points = PoolVector2Array( 28, 64, 4, 64, 4, 28, 28, 28 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 31 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -32 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 34/z_index = 0
 35/name = "Food Shelf Milk"
@@ -115,8 +124,8 @@ points = PoolVector2Array( 28, 64, 4, 64, 4, 28, 28, 28 )
 35/tile_mode = 0
 35/occluder_offset = Vector2( 0, 0 )
 35/navigation_offset = Vector2( 0, 0 )
-35/shape_offset = Vector2( 0, -32 )
-35/shape_transform = Transform2D( 1, 0, 0, 1, 0, -32 )
+35/shape_offset = Vector2( 0, 0 )
+35/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 35/shape = SubResource( 32 )
 35/shape_one_way = false
 35/shape_one_way_margin = 1.0
@@ -125,7 +134,7 @@ points = PoolVector2Array( 28, 64, 4, 64, 4, 28, 28, 28 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 32 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -32 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 35/z_index = 0
 36/name = "Food Desk"
@@ -136,8 +145,8 @@ points = PoolVector2Array( 28, 64, 4, 64, 4, 28, 28, 28 )
 36/tile_mode = 0
 36/occluder_offset = Vector2( 0, 0 )
 36/navigation_offset = Vector2( 0, 0 )
-36/shape_offset = Vector2( 0, -16 )
-36/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+36/shape_offset = Vector2( 0, 0 )
+36/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 36/shape = SubResource( 33 )
 36/shape_one_way = false
 36/shape_one_way_margin = 1.0
@@ -146,7 +155,7 @@ points = PoolVector2Array( 28, 64, 4, 64, 4, 28, 28, 28 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 33 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 36/z_index = 0
 37/name = "Sports Shelf Bats"
@@ -157,8 +166,8 @@ points = PoolVector2Array( 28, 64, 4, 64, 4, 28, 28, 28 )
 37/tile_mode = 0
 37/occluder_offset = Vector2( 0, 0 )
 37/navigation_offset = Vector2( 0, 0 )
-37/shape_offset = Vector2( 0, -16 )
-37/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+37/shape_offset = Vector2( 0, 0 )
+37/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 37/shape = SubResource( 34 )
 37/shape_one_way = false
 37/shape_one_way_margin = 1.0
@@ -167,7 +176,7 @@ points = PoolVector2Array( 28, 64, 4, 64, 4, 28, 28, 28 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 34 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 37/z_index = 0
 38/name = "Sports Balls"
@@ -178,8 +187,8 @@ points = PoolVector2Array( 28, 64, 4, 64, 4, 28, 28, 28 )
 38/tile_mode = 0
 38/occluder_offset = Vector2( 0, 0 )
 38/navigation_offset = Vector2( 0, 0 )
-38/shape_offset = Vector2( 0, -16 )
-38/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+38/shape_offset = Vector2( 0, 0 )
+38/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 38/shape = SubResource( 35 )
 38/shape_one_way = false
 38/shape_one_way_margin = 1.0
@@ -188,7 +197,7 @@ points = PoolVector2Array( 28, 64, 4, 64, 4, 28, 28, 28 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 35 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 38/z_index = 0
 39/name = "Sports Shelf Rackets"
@@ -199,8 +208,8 @@ points = PoolVector2Array( 28, 64, 4, 64, 4, 28, 28, 28 )
 39/tile_mode = 0
 39/occluder_offset = Vector2( 0, 0 )
 39/navigation_offset = Vector2( 0, 0 )
-39/shape_offset = Vector2( 0, -16 )
-39/shape_transform = Transform2D( 1, 0, 0, 1, 0, -16 )
+39/shape_offset = Vector2( 0, 0 )
+39/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 39/shape = SubResource( 36 )
 39/shape_one_way = false
 39/shape_one_way_margin = 1.0
@@ -209,7 +218,7 @@ points = PoolVector2Array( 28, 64, 4, 64, 4, 28, 28, 28 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 36 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -16 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 39/z_index = 0
 40/name = "Drug Shelf 1"
@@ -220,8 +229,8 @@ points = PoolVector2Array( 28, 64, 4, 64, 4, 28, 28, 28 )
 40/tile_mode = 0
 40/occluder_offset = Vector2( 0, 0 )
 40/navigation_offset = Vector2( 0, 0 )
-40/shape_offset = Vector2( 0, -32 )
-40/shape_transform = Transform2D( 1, 0, 0, 1, 0, -32 )
+40/shape_offset = Vector2( 0, 0 )
+40/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 40/shape = SubResource( 37 )
 40/shape_one_way = false
 40/shape_one_way_margin = 1.0
@@ -230,7 +239,7 @@ points = PoolVector2Array( 28, 64, 4, 64, 4, 28, 28, 28 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 37 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -32 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 40/z_index = 0
 41/name = "Drug Shelf 2"
@@ -241,8 +250,8 @@ points = PoolVector2Array( 28, 64, 4, 64, 4, 28, 28, 28 )
 41/tile_mode = 0
 41/occluder_offset = Vector2( 0, 0 )
 41/navigation_offset = Vector2( 0, 0 )
-41/shape_offset = Vector2( 0, -32 )
-41/shape_transform = Transform2D( 1, 0, 0, 1, 0, -32 )
+41/shape_offset = Vector2( 0, 0 )
+41/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 41/shape = SubResource( 38 )
 41/shape_one_way = false
 41/shape_one_way_margin = 1.0
@@ -251,7 +260,7 @@ points = PoolVector2Array( 28, 64, 4, 64, 4, 28, 28, 28 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 38 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -32 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 41/z_index = 0
 42/name = "Drug Shelf 3"
@@ -262,8 +271,8 @@ points = PoolVector2Array( 28, 64, 4, 64, 4, 28, 28, 28 )
 42/tile_mode = 0
 42/occluder_offset = Vector2( 0, 0 )
 42/navigation_offset = Vector2( 0, 0 )
-42/shape_offset = Vector2( 0, -32 )
-42/shape_transform = Transform2D( 1, 0, 0, 1, 0, -32 )
+42/shape_offset = Vector2( 0, 0 )
+42/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 42/shape = SubResource( 39 )
 42/shape_one_way = false
 42/shape_one_way_margin = 1.0
@@ -272,118 +281,251 @@ points = PoolVector2Array( 28, 64, 4, 64, 4, 28, 28, 28 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 39 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -32 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 42/z_index = 0
-43/name = "StoreWallTRANSLATED"
-43/texture = ExtResource( 5 )
-43/tex_offset = Vector2( -5, -6 )
-43/modulate = Color( 1, 1, 1, 1 )
-43/region = Rect2( 0, 0, 96, 8 )
-43/tile_mode = 0
-43/occluder_offset = Vector2( 0, 0 )
-43/navigation_offset = Vector2( 0, 0 )
-43/shape_offset = Vector2( 0, 0 )
-43/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-43/shape_one_way = false
-43/shape_one_way_margin = 0.0
-43/shapes = [  ]
-43/z_index = 0
-44/name = "StoreDrugsSignTRANSLATED"
-44/texture = ExtResource( 4 )
-44/tex_offset = Vector2( 3, 4 )
-44/modulate = Color( 1, 1, 1, 1 )
-44/region = Rect2( 0, 0, 80, 64 )
-44/tile_mode = 0
-44/occluder_offset = Vector2( 0, 0 )
-44/navigation_offset = Vector2( 0, 0 )
-44/shape_offset = Vector2( 0, 0 )
-44/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-44/shape_one_way = false
-44/shape_one_way_margin = 0.0
-44/shapes = [  ]
-44/z_index = 0
-45/name = "StoreFoodsSignTRANSLATED"
-45/texture = ExtResource( 3 )
-45/tex_offset = Vector2( -3, 4 )
-45/modulate = Color( 1, 1, 1, 1 )
-45/region = Rect2( 0, 0, 80, 64 )
-45/tile_mode = 0
-45/occluder_offset = Vector2( 0, 0 )
-45/navigation_offset = Vector2( 0, 0 )
-45/shape_offset = Vector2( 0, 0 )
-45/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-45/shape_one_way = false
-45/shape_one_way_margin = 0.0
-45/shapes = [  ]
-45/z_index = 0
-46/name = "StoreMatTRANSLATED"
-46/texture = ExtResource( 2 )
-46/tex_offset = Vector2( -8, 16 )
-46/modulate = Color( 1, 1, 1, 1 )
-46/region = Rect2( 0, 1, 48, 23 )
-46/tile_mode = 0
-46/occluder_offset = Vector2( 0, 0 )
-46/navigation_offset = Vector2( 0, 0 )
-46/shape_offset = Vector2( 0, 0 )
-46/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-46/shape_one_way = false
-46/shape_one_way_margin = 0.0
-46/shapes = [  ]
-46/z_index = 0
-47/name = "FoodShopSignTRANSLATED"
-47/texture = ExtResource( 6 )
-47/tex_offset = Vector2( -4, -7 )
-47/modulate = Color( 1, 1, 1, 1 )
-47/region = Rect2( 0, 0, 38, 24 )
-47/tile_mode = 0
-47/occluder_offset = Vector2( 0, 0 )
-47/navigation_offset = Vector2( 0, 0 )
-47/shape_offset = Vector2( 0, 0 )
-47/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-47/shape_one_way = false
-47/shape_one_way_margin = 0.0
-47/shapes = [  ]
-47/z_index = 0
-48/name = "DrugStoreSignTRANSLATED"
-48/texture = ExtResource( 7 )
-48/tex_offset = Vector2( 4, 0 )
-48/modulate = Color( 1, 1, 1, 1 )
-48/region = Rect2( 0, 0, 104, 32 )
-48/tile_mode = 0
-48/occluder_offset = Vector2( 0, 0 )
-48/navigation_offset = Vector2( 0, 0 )
-48/shape_offset = Vector2( 0, 0 )
-48/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-48/shape_one_way = false
-48/shape_one_way_margin = 0.0
-48/shapes = [  ]
-48/z_index = 0
-49/name = "StorePetsSignTRANSLATED"
-49/texture = ExtResource( 8 )
-49/tex_offset = Vector2( -2, -4 )
-49/modulate = Color( 1, 1, 1, 1 )
-49/region = Rect2( 0, 0, 64, 48 )
-49/tile_mode = 0
-49/occluder_offset = Vector2( 0, 0 )
-49/navigation_offset = Vector2( 0, 0 )
-49/shape_offset = Vector2( 0, 0 )
-49/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-49/shape_one_way = false
-49/shape_one_way_margin = 0.0
-49/shapes = [  ]
-49/z_index = 0
-50/name = "StoreSportsSignTRANSLATED"
-50/texture = ExtResource( 9 )
-50/tex_offset = Vector2( 3, -4 )
-50/modulate = Color( 1, 1, 1, 1 )
-50/region = Rect2( 0, 0, 64, 48 )
-50/tile_mode = 0
-50/occluder_offset = Vector2( 0, 0 )
-50/navigation_offset = Vector2( 0, 0 )
-50/shape_offset = Vector2( 0, 0 )
-50/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-50/shape_one_way = false
-50/shape_one_way_margin = 0.0
-50/shapes = [  ]
-50/z_index = 0
+51/name = "Sports Shelf Cutout"
+51/texture = ExtResource( 1 )
+51/tex_offset = Vector2( 0, -32 )
+51/modulate = Color( 1, 1, 1, 1 )
+51/region = Rect2( 128, 0, 68, 48 )
+51/tile_mode = 0
+51/occluder_offset = Vector2( 0, 0 )
+51/navigation_offset = Vector2( 0, 0 )
+51/shape_offset = Vector2( 0, 0 )
+51/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+51/shape = SubResource( 40 )
+51/shape_one_way = false
+51/shape_one_way_margin = 1.0
+51/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 40 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+51/z_index = 0
+52/name = "Variety Shelf 1"
+52/texture = ExtResource( 1 )
+52/tex_offset = Vector2( 0, -16 )
+52/modulate = Color( 1, 1, 1, 1 )
+52/region = Rect2( 196, 0, 72, 32 )
+52/tile_mode = 0
+52/occluder_offset = Vector2( 0, 0 )
+52/navigation_offset = Vector2( 0, 0 )
+52/shape_offset = Vector2( 0, 0 )
+52/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+52/shape = SubResource( 41 )
+52/shape_one_way = false
+52/shape_one_way_margin = 1.0
+52/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 41 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+52/z_index = 0
+53/name = "Variety Shelf 2"
+53/texture = ExtResource( 1 )
+53/tex_offset = Vector2( 0, -16 )
+53/modulate = Color( 1, 1, 1, 1 )
+53/region = Rect2( 196, 40, 72, 40 )
+53/tile_mode = 0
+53/occluder_offset = Vector2( 0, 0 )
+53/navigation_offset = Vector2( 0, 0 )
+53/shape_offset = Vector2( 0, 0 )
+53/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+53/shape = SubResource( 42 )
+53/shape_one_way = false
+53/shape_one_way_margin = 1.0
+53/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 42 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+53/z_index = 0
+54/name = "Variety Desk"
+54/texture = ExtResource( 1 )
+54/tex_offset = Vector2( 0, -16 )
+54/modulate = Color( 1, 1, 1, 1 )
+54/region = Rect2( 192, 88, 80, 56 )
+54/tile_mode = 0
+54/occluder_offset = Vector2( 0, 0 )
+54/navigation_offset = Vector2( 0, 0 )
+54/shape_offset = Vector2( 0, 0 )
+54/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+54/shape = SubResource( 43 )
+54/shape_one_way = false
+54/shape_one_way_margin = 1.0
+54/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 43 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+54/z_index = 0
+55/name = "Sports Desk"
+55/texture = ExtResource( 1 )
+55/tex_offset = Vector2( 0, -16 )
+55/modulate = Color( 1, 1, 1, 1 )
+55/region = Rect2( 192, 152, 80, 56 )
+55/tile_mode = 0
+55/occluder_offset = Vector2( 0, 0 )
+55/navigation_offset = Vector2( 0, 0 )
+55/shape_offset = Vector2( 0, 0 )
+55/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+55/shape = SubResource( 44 )
+55/shape_one_way = false
+55/shape_one_way_margin = 1.0
+55/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 44 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+55/z_index = 0
+58/name = "DrugStoreSignTRANSLATED"
+58/texture = ExtResource( 12 )
+58/tex_offset = Vector2( 4, 0 )
+58/modulate = Color( 1, 1, 1, 1 )
+58/region = Rect2( 8, 8, 104, 32 )
+58/tile_mode = 0
+58/occluder_offset = Vector2( 0, 0 )
+58/navigation_offset = Vector2( 0, 0 )
+58/shape_offset = Vector2( 0, 0 )
+58/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+58/shape_one_way = false
+58/shape_one_way_margin = 0.0
+58/shapes = [  ]
+58/z_index = 0
+59/name = "StoreDrugsSignTRANSLATED"
+59/texture = ExtResource( 12 )
+59/tex_offset = Vector2( 3, 4 )
+59/modulate = Color( 1, 1, 1, 1 )
+59/region = Rect2( 128, 8, 80, 64 )
+59/tile_mode = 0
+59/occluder_offset = Vector2( 0, 0 )
+59/navigation_offset = Vector2( 0, 0 )
+59/shape_offset = Vector2( 0, 0 )
+59/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+59/shape_one_way = false
+59/shape_one_way_margin = 0.0
+59/shapes = [  ]
+59/z_index = 0
+60/name = "StoreFoodsSignTRANSLATED"
+60/texture = ExtResource( 12 )
+60/tex_offset = Vector2( -3, 4 )
+60/modulate = Color( 1, 1, 1, 1 )
+60/region = Rect2( 248, 8, 80, 64 )
+60/tile_mode = 0
+60/occluder_offset = Vector2( 0, 0 )
+60/navigation_offset = Vector2( 0, 0 )
+60/shape_offset = Vector2( 0, 0 )
+60/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+60/shape_one_way = false
+60/shape_one_way_margin = 0.0
+60/shapes = [  ]
+60/z_index = 0
+61/name = "FoodShopSignTRANSLATED"
+61/texture = ExtResource( 12 )
+61/tex_offset = Vector2( -4, -7 )
+61/modulate = Color( 1, 1, 1, 1 )
+61/region = Rect2( 8, 88, 38, 24 )
+61/tile_mode = 0
+61/occluder_offset = Vector2( 0, 0 )
+61/navigation_offset = Vector2( 0, 0 )
+61/shape_offset = Vector2( 0, 0 )
+61/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+61/shape_one_way = false
+61/shape_one_way_margin = 0.0
+61/shapes = [  ]
+61/z_index = 0
+62/name = "StoreMatTRANSLATED"
+62/texture = ExtResource( 12 )
+62/tex_offset = Vector2( -8, 16 )
+62/modulate = Color( 1, 1, 1, 1 )
+62/region = Rect2( 128, 88, 48, 24 )
+62/tile_mode = 0
+62/occluder_offset = Vector2( 0, 0 )
+62/navigation_offset = Vector2( 0, 0 )
+62/shape_offset = Vector2( 0, 0 )
+62/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+62/shape_one_way = false
+62/shape_one_way_margin = 0.0
+62/shapes = [  ]
+62/z_index = 0
+63/name = "StorePetsSignTRANSLATED"
+63/texture = ExtResource( 12 )
+63/tex_offset = Vector2( -2, -4 )
+63/modulate = Color( 1, 1, 1, 1 )
+63/region = Rect2( 248, 88, 64, 48 )
+63/tile_mode = 0
+63/occluder_offset = Vector2( 0, 0 )
+63/navigation_offset = Vector2( 0, 0 )
+63/shape_offset = Vector2( 0, 0 )
+63/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+63/shape_one_way = false
+63/shape_one_way_margin = 0.0
+63/shapes = [  ]
+63/z_index = 0
+64/name = "StoreSportsSignTRANSLATED"
+64/texture = ExtResource( 12 )
+64/tex_offset = Vector2( 3, -4 )
+64/modulate = Color( 1, 1, 1, 1 )
+64/region = Rect2( 8, 168, 64, 48 )
+64/tile_mode = 0
+64/occluder_offset = Vector2( 0, 0 )
+64/navigation_offset = Vector2( 0, 0 )
+64/shape_offset = Vector2( 0, 0 )
+64/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+64/shape_one_way = false
+64/shape_one_way_margin = 0.0
+64/shapes = [  ]
+64/z_index = 0
+65/name = "StoreWallTRANSLATED"
+65/texture = ExtResource( 12 )
+65/tex_offset = Vector2( -5, -6 )
+65/modulate = Color( 1, 1, 1, 1 )
+65/region = Rect2( 128, 168, 96, 8 )
+65/tile_mode = 0
+65/occluder_offset = Vector2( 0, 0 )
+65/navigation_offset = Vector2( 0, 0 )
+65/shape_offset = Vector2( 0, 0 )
+65/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+65/shape_one_way = false
+65/shape_one_way_margin = 0.0
+65/shapes = [  ]
+65/z_index = 0
+66/name = "MerrysvilleSportsStoreSignTRANSLATED"
+66/texture = ExtResource( 13 )
+66/tex_offset = Vector2( -4, 0 )
+66/modulate = Color( 1, 1, 1, 1 )
+66/region = Rect2( 8, 8, 64, 24 )
+66/tile_mode = 0
+66/occluder_offset = Vector2( 0, 0 )
+66/navigation_offset = Vector2( 0, 0 )
+66/shape_offset = Vector2( 0, 0 )
+66/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+66/shape_one_way = false
+66/shape_one_way_margin = 0.0
+66/shapes = [  ]
+66/z_index = 0
+67/name = "StoreVarietySignTRANSLATED"
+67/texture = ExtResource( 13 )
+67/tex_offset = Vector2( 1, 2 )
+67/modulate = Color( 1, 1, 1, 1 )
+67/region = Rect2( 120, 8, 96, 42 )
+67/tile_mode = 0
+67/occluder_offset = Vector2( 0, 0 )
+67/navigation_offset = Vector2( 0, 0 )
+67/shape_offset = Vector2( 0, 0 )
+67/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+67/shape_one_way = false
+67/shape_one_way_margin = 0.0
+67/shapes = [  ]
+67/z_index = 0

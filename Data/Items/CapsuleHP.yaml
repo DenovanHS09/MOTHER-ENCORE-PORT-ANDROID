@@ -5,21 +5,14 @@ article: CAPSULEHP_ART
 keyitem: false
 cost: 0
 value: 0
-usable:
-  ninten: true
-  ana: true
-  lloyd: true
-  teddy: false
-  pippi: false
-action_one:
-  name: CAPSULEHP_ACT1_NAME
-  function: consume
-  textfail: ACTION_RESULT_FAIL_CAPSULE
-action_two: null
-battle_action: ''
+can_consume: [ ninten, ana, lloyd ]
+actions:
+  - name: CAPSULEHP_ACT1
+    function: consume
+    textfail: ACTION_RESULT_FAIL_CAPSULE
 transform: ''
 slot: ''
-HPrecover: 3
+HPrecover: 0
 PPrecover: 0
 boost:
   maxhp: 3

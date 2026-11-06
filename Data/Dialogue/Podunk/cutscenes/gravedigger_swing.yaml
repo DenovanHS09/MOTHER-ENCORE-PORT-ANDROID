@@ -136,7 +136,7 @@
       - x: 1432
         y: 4744
       - x: 1432
-        y: 4720
+        y: 4719
       speed: 32
       animation: Walk
       type: position

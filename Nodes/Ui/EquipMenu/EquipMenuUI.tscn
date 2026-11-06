@@ -161,7 +161,7 @@ tracks/0/keys = {
 }
 
 [node name="EquipMenuUI" type="CanvasLayer"]
-layer = 2
+layer = 4
 script = ExtResource( 5 )
 _np_values = {
 "defense": NodePath("EquipMenu/Box/Panels/Stats/Columns/Values/DefenseValue"),

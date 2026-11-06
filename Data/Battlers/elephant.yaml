@@ -1,12 +1,12 @@
 name: ELEPHANT_NAME
 description: ELEPHANT_DESC
 article: ELEPHANT_ART
-maxhp: 130
-hp: 130
+maxhp: 175
+hp: 175
 maxpp: 0
 pp: 0
 offense: 28
-defense: 30
+defense: 33
 speed: 6
 iq: 30
 guts: 0
@@ -14,17 +14,17 @@ level: 10
 exp: 120
 cash: 99
 items:
-- chance: 25
-  item: LifeUpCream
+  - chance: 25
+    item: LifeUpCream
 skills:
-- skill: attack
-  weight: 4
-- skill: blindingThrow
-  weight: 1
-- skill: rage
-  weight: 2
-- skill: mightyRoar
-  weight: 2
+  - skill: attack
+    weight: 4
+  - skill: blindingThrow
+    weight: 1
+  - skill: rage
+    weight: 2
+  - skill: mightyRoar
+    weight: 2
 boss: false
 sprite: elephant
 music: Dangerous Foe.mp3
@@ -33,5 +33,8 @@ ov:
   sprite: ElephantOV
   anim: BasicEnemy
   spriteOffset:
-  - 0
-  - 4
+    - 0
+    - 4
+affinity_multipliers:
+  sleeping: 2
+  blinded: 2

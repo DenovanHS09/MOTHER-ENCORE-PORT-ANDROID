@@ -66,8 +66,12 @@ func _import_scene(path : String, flags : int, bake_fps : int):
 		layer_node.stretch_mode = TextureRect.STRETCH_SCALE
 		layer_node.material = material
 		layer_node.name = layer_section
+		var backbuffer = BackBufferCopy.new()
+		backbuffer.copy_mode = BackBufferCopy.COPY_MODE_VIEWPORT
+		layer_node.add_child(backbuffer)
 		node.add_child(layer_node, true)
 		layer_node.owner = node
+		backbuffer.owner = node
 		
 		if "texture" in keys:
 			var texture_entry = str(file.get_value(layer_section, "texture", "res://icon.png"))
@@ -100,6 +104,9 @@ func _import_scene(path : String, flags : int, bake_fps : int):
 		# Set the values for the uniforms!
 		for key in keys:
 			var uniform_value = file.get_value(layer_section, key, null)
+			
+			if key == "blending":
+				uniform_value = int(uniform_value)
 			
 			if uniform_value is String:
 				if uniform_value.begins_with("[Resource]"):

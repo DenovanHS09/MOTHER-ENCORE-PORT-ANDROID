@@ -110,13 +110,13 @@ script = ExtResource( 2 )
 tabs = [ NodePath("Content/Header/Tabs/Keyboard"), NodePath("Content/Header/Tabs/Gamepad") ]
 scroll_view = NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer")
 scroll_bar_view = NodePath("Content/BodyPanel/MarginContainer/BodyContent/Scrollbar")
-control_node_paths = [ [ NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Movement/MovementBody/Buttons/Primary/Up"), NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Movement/MovementBody/Buttons/Secondary/Up") ], [ NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Movement/MovementBody/Buttons/Primary/Down"), NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Movement/MovementBody/Buttons/Secondary/Down") ], [ NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Movement/MovementBody/Buttons/Primary/Left"), NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Movement/MovementBody/Buttons/Secondary/Left") ], [ NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Movement/MovementBody/Buttons/Primary/Right"), NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Movement/MovementBody/Buttons/Secondary/Right") ], [ NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Buttons/Primary/Interact"), NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Buttons/Secondary/Interact") ], [ NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Buttons/Primary/Skill"), NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Buttons/Secondary/Skill") ], [ NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Buttons/Primary/Run"), NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Buttons/Secondary/Run") ], [ NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Buttons/Primary/Scope"), NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Buttons/Secondary/Scope") ], [ NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Buttons/Primary/Previous"), NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Buttons/Secondary/Previous") ], [ NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Buttons/Primary/Next"), NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Buttons/Secondary/Next") ], [ NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Buttons/Primary/Menu"), NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Buttons/Secondary/Menu") ], [ NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Misc/MiscBody/Buttons/Primary/Fullscreen"), NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Misc/MiscBody/Buttons/Secondary/Fullscreen") ], [ NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Misc/MiscBody/Buttons/Primary/WindowSize"), NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Misc/MiscBody/Buttons/Secondary/WindowSize") ], [ NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/MiscMore/ButtonStyles") ], [ NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/MiscMore/Rumble") ], [ NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/MiscMore/Default") ] ]
+control_node_paths = [ [ NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Movement/MovementBody/Buttons/Primary/Up"), NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Movement/MovementBody/Buttons/Secondary/Up") ], [ NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Movement/MovementBody/Buttons/Primary/Down"), NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Movement/MovementBody/Buttons/Secondary/Down") ], [ NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Movement/MovementBody/Buttons/Primary/Left"), NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Movement/MovementBody/Buttons/Secondary/Left") ], [ NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Movement/MovementBody/Buttons/Primary/Right"), NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Movement/MovementBody/Buttons/Secondary/Right") ], [ NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Buttons/Primary/Interact"), NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Buttons/Secondary/Interact") ], [ NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Buttons/Primary/Skill"), NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Buttons/Secondary/Skill") ], [ NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Buttons/Primary/Run"), NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Buttons/Secondary/Run") ], [ NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Buttons/Primary/Scope"), NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Buttons/Secondary/Scope") ], [ NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Buttons/Primary/Previous"), NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Buttons/Secondary/Previous") ], [ NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Buttons/Primary/Next"), NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Buttons/Secondary/Next") ], [ NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Buttons/Primary/Menu"), NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Buttons/Secondary/Menu") ], [ NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Buttons/Primary/Map"), NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Buttons/Secondary/Map") ], [ NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Misc/MiscBody/Buttons/Primary/Fullscreen"), NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Misc/MiscBody/Buttons/Secondary/Fullscreen") ], [ NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Misc/MiscBody/Buttons/Primary/WindowSize"), NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Misc/MiscBody/Buttons/Secondary/WindowSize") ], [ NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/MiscMore/ButtonStyles") ], [ NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/MiscMore/Rumble") ], [ NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/MiscMore/Default") ] ]
 keyboard_only_divs = [ NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Misc") ]
 gamepad_only_divs = [ NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/MiscMore/Rumble"), NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/MiscMore/ButtonStyles") ]
 rumble_view = NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/MiscMore/Rumble")
-rumble_switch = NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/MiscMore/Rumble/RumbleSwitch")
+rumble_switch = NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/MiscMore/Rumble/CenterContainer/RumbleSwitch")
 button_style_view = NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/MiscMore/ButtonStyles")
-button_style_switch = NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/MiscMore/ButtonStyles/ButtonStylesSwitch")
+button_style_switch = NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/MiscMore/ButtonStyles/CenterContainer/ButtonStylesSwitch")
 reset_default_view = NodePath("Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/MiscMore/Default")
 capture_box = NodePath("Overlay/TimeoutDialog")
 alert_dialog = NodePath("Overlay/AlertDialog")
@@ -222,13 +222,14 @@ custom_constants/separation = 0
 [node name="ScrollContainer" type="ScrollContainer" parent="Content/BodyPanel/MarginContainer/BodyContent"]
 margin_right = 282.0
 margin_bottom = 116.0
+rect_clip_content = false
 size_flags_horizontal = 3
 theme = SubResource( 6 )
 scroll_horizontal_enabled = false
 
 [node name="MarginContainer" type="MarginContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer"]
 margin_right = 282.0
-margin_bottom = 319.0
+margin_bottom = 335.0
 size_flags_horizontal = 3
 custom_constants/margin_right = 9
 custom_constants/margin_left = 10
@@ -236,7 +237,7 @@ custom_constants/margin_left = 10
 [node name="ScrollingContent" type="VBoxContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer"]
 margin_left = 10.0
 margin_right = 273.0
-margin_bottom = 319.0
+margin_bottom = 335.0
 size_flags_horizontal = 3
 
 [node name="Movement" type="VBoxContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent"]
@@ -512,7 +513,7 @@ valign = 1
 [node name="Actions" type="VBoxContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent"]
 margin_top = 84.0
 margin_right = 263.0
-margin_bottom = 212.0
+margin_bottom = 228.0
 
 [node name="ActionsHeader" type="HBoxContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions"]
 margin_right = 263.0
@@ -555,11 +556,11 @@ script = ExtResource( 8 )
 [node name="ActionsBody" type="HBoxContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions"]
 margin_top = 18.0
 margin_right = 263.0
-margin_bottom = 128.0
+margin_bottom = 144.0
 
 [node name="Labels" type="VBoxContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody"]
 margin_right = 109.0
-margin_bottom = 110.0
+margin_bottom = 126.0
 rect_min_size = Vector2( 66, 0 )
 size_flags_horizontal = 3
 custom_constants/separation = 2
@@ -626,10 +627,19 @@ custom_fonts/font = ExtResource( 7 )
 text = "CONTROLS_MENU"
 valign = 1
 
+[node name="Label8" type="Label" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Labels"]
+margin_top = 112.0
+margin_right = 109.0
+margin_bottom = 126.0
+rect_min_size = Vector2( 0, 14 )
+custom_fonts/font = ExtResource( 7 )
+text = "CONTROLS_MAP"
+valign = 1
+
 [node name="Buttons" type="HBoxContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody"]
 margin_left = 113.0
 margin_right = 263.0
-margin_bottom = 110.0
+margin_bottom = 126.0
 rect_min_size = Vector2( 150, 0 )
 size_flags_horizontal = 3
 alignment = 1
@@ -637,7 +647,7 @@ alignment = 1
 [node name="Primary" type="VBoxContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Buttons"]
 margin_left = 14.0
 margin_right = 73.0
-margin_bottom = 110.0
+margin_bottom = 126.0
 
 [node name="Interact" type="Panel" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Buttons/Primary"]
 self_modulate = Color( 0.478431, 0.423529, 0.52549, 1 )
@@ -785,10 +795,31 @@ text = "a"
 align = 1
 valign = 1
 
+[node name="Map" type="Panel" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Buttons/Primary"]
+self_modulate = Color( 0.478431, 0.423529, 0.52549, 1 )
+margin_top = 112.0
+margin_right = 59.0
+margin_bottom = 124.0
+rect_min_size = Vector2( 59, 12 )
+custom_styles/panel = SubResource( 5 )
+script = ExtResource( 12 )
+
+[node name="MapLabel" type="Label" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Buttons/Primary/Map"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = -1.0
+margin_bottom = -1.0
+grow_horizontal = 2
+custom_fonts/font = ExtResource( 9 )
+text = "a"
+align = 1
+valign = 1
+
 [node name="Secondary" type="VBoxContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Buttons"]
 margin_left = 77.0
 margin_right = 136.0
-margin_bottom = 110.0
+margin_bottom = 126.0
 
 [node name="Interact" type="Panel" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Buttons/Secondary"]
 self_modulate = Color( 0.478431, 0.423529, 0.52549, 1 )
@@ -936,10 +967,31 @@ text = "a"
 align = 1
 valign = 1
 
+[node name="Map" type="Panel" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Buttons/Secondary"]
+self_modulate = Color( 0.478431, 0.423529, 0.52549, 1 )
+margin_top = 112.0
+margin_right = 59.0
+margin_bottom = 124.0
+rect_min_size = Vector2( 59, 12 )
+custom_styles/panel = SubResource( 5 )
+script = ExtResource( 12 )
+
+[node name="MapLabel" type="Label" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Actions/ActionsBody/Buttons/Secondary/Map"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = -1.0
+margin_bottom = -1.0
+grow_horizontal = 2
+custom_fonts/font = ExtResource( 9 )
+text = "a"
+align = 1
+valign = 1
+
 [node name="Misc" type="VBoxContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent"]
-margin_top = 216.0
+margin_top = 232.0
 margin_right = 263.0
-margin_bottom = 264.0
+margin_bottom = 280.0
 
 [node name="MiscHeader" type="HBoxContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/Misc"]
 margin_right = 263.0
@@ -1110,18 +1162,19 @@ align = 1
 valign = 1
 
 [node name="Divider" type="ColorRect" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent"]
-margin_top = 268.0
+margin_top = 284.0
 margin_right = 263.0
-margin_bottom = 269.0
+margin_bottom = 285.0
 rect_min_size = Vector2( 94, 1 )
 rect_pivot_offset = Vector2( -82, -3 )
 color = Color( 0.478431, 0.423529, 0.52549, 1 )
 script = ExtResource( 8 )
 
 [node name="MiscMore" type="VBoxContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent"]
-margin_top = 273.0
+margin_top = 289.0
 margin_right = 263.0
-margin_bottom = 319.0
+margin_bottom = 335.0
+size_flags_horizontal = 3
 
 [node name="ButtonStyles" type="HBoxContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/MiscMore"]
 margin_right = 263.0
@@ -1129,7 +1182,7 @@ margin_bottom = 12.0
 focus_mode = 1
 
 [node name="Control" type="Control" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/MiscMore/ButtonStyles"]
-margin_right = 109.0
+margin_right = 129.0
 margin_bottom = 12.0
 size_flags_horizontal = 3
 
@@ -1141,12 +1194,18 @@ size_flags_vertical = 0
 custom_fonts/font = ExtResource( 7 )
 text = "CONTROLS_BUTTON_STYLE"
 
-[node name="ButtonStylesSwitch" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/MiscMore/ButtonStyles" instance=ExtResource( 17 )]
-margin_left = 113.0
-margin_right = 263.0
-rect_min_size = Vector2( 150, 12 )
+[node name="CenterContainer" type="CenterContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/MiscMore/ButtonStyles"]
+margin_left = 133.0
+margin_right = 233.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 2
+
+[node name="ButtonStylesSwitch" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/MiscMore/ButtonStyles/CenterContainer" instance=ExtResource( 17 )]
+margin_left = 36.0
+margin_right = 64.0
+grow_horizontal = 2
 size_flags_horizontal = 6
-alignment = 1
 
 [node name="Rumble" type="HBoxContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/MiscMore"]
 margin_top = 16.0
@@ -1155,7 +1214,7 @@ margin_bottom = 28.0
 focus_mode = 1
 
 [node name="Control" type="Control" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/MiscMore/Rumble"]
-margin_right = 109.0
+margin_right = 129.0
 margin_bottom = 12.0
 size_flags_horizontal = 3
 
@@ -1167,12 +1226,17 @@ size_flags_vertical = 0
 custom_fonts/font = ExtResource( 7 )
 text = "CONTROLS_RUMBLE"
 
-[node name="RumbleSwitch" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/MiscMore/Rumble" instance=ExtResource( 17 )]
-margin_left = 113.0
-margin_right = 263.0
-rect_min_size = Vector2( 150, 12 )
+[node name="CenterContainer" type="CenterContainer" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/MiscMore/Rumble"]
+margin_left = 133.0
+margin_right = 233.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 2
+
+[node name="RumbleSwitch" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/MiscMore/Rumble/CenterContainer" instance=ExtResource( 17 )]
+margin_left = 36.0
+margin_right = 64.0
 size_flags_horizontal = 6
-alignment = 1
 
 [node name="Default" type="Label" parent="Content/BodyPanel/MarginContainer/BodyContent/ScrollContainer/MarginContainer/ScrollingContent/MiscMore"]
 margin_top = 32.0

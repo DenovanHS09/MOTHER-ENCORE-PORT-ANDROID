@@ -5,17 +5,11 @@ article: CAPSULEGUT_ART
 keyitem: false
 cost: 0
 value: 0
-usable:
-  ninten: true
-  ana: true
-  lloyd: false
-  teddy: false
-  pippi: false
-action_one:
-  name: CAPSULEGUT_ACT1_NAME
-  function: consume
-  textfail: ACTION_RESULT_FAIL_CAPSULE
-action_two: null
+can_consume: [ ninten, ana ]
+actions:
+  - name: CAPSULEGUT_ACT1
+    function: consume
+    textfail: ACTION_RESULT_FAIL_CAPSULE
 transform: ''
 slot: ''
 HPrecover: 0

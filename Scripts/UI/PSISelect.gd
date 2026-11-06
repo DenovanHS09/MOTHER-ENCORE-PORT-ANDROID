@@ -2,35 +2,27 @@ extends NinePatchRect
 
 const psiSkillLineTscn = preload("res://Nodes/Ui/PSISkillLine.tscn")
 
-enum TargetType {ENEMY, ALLY, ANY, RANDOM_ENEMY, RANDOM_ALLY, SELF, ALL_ENEMIES, ALL_ALLIES}
-
-var soundEffects = {
-	"back": load("res://Audio/Sound effects/M3/curshoriz.wav"),
-	"cursor1": load("res://Audio/Sound effects/Cursor 1.mp3"),
-	"cursor2": load("res://Audio/Sound effects/Cursor 2.mp3"),
-}
-
-export(int) var linesPerPage = 3 setget _set_lines_per_page
+export(int) var linesPerPage := 3 setget _set_lines_per_page
 enum PSIType {Overworld = -1, Both, Battle}
-export(PSIType) var psiType = 1
+export(PSIType) var _psi_type := 1
 
-onready var _anim_player = $PP/AnimationPlayer
+
 onready var _scroll_bar = $Scrollbar
 
-var skills = []
-var _skills_condensed = []
-var _lines = []
-var _active = false
-var _index = 0
-var page = 0
+var _skills := []
+var _skills_condensed := []
+var _lines := []
+var _active := false
+var _index := 0
+var page := 0
 onready var cursor = $Arrow
-var _cursor_to_0 = false
-var user
+var _cursor_to_0 := false
+var user: Character
 
 signal moved
 signal selected
 signal use
-signal no_pp
+signal using_skill_failed
 
 func _ready():
 	_build_node_list()
@@ -38,7 +30,10 @@ func _ready():
 	cursor.hide()
 	cursor.connect("selected", self, "_cursor_selected")
 	cursor.connect("moved", self, "_cursor_moved_to_skill")
-	global.connect("locale_changed", self, "_cursor_moved_to_skill")
+	global.connect("locale_changed", self, "_cursor_moved_to_skill", [Vector2.ZERO])
+
+func is_empty() -> bool:
+	return _skills.empty()
 
 func _set_lines_per_page(value):
 	if linesPerPage != value:
@@ -64,27 +59,21 @@ func _build_node_list():
 
 func set_active(active, reset = true):
 	_active = active
-	if skills.size() > 0:
+	if _skills.size() > 0:
 		cursor.visible = active
 		cursor.on = active
 
 func is_active():
 	return _active
 
-func set_PP_visible(enabled, animated = true):
-	if animated:
-		if enabled and !$PP/PPCost.visible:
-			_anim_player.play("ShowPP")
-		elif !enabled and $PP/PPCost.visible:
-			_anim_player.play("HidePP")
-	else:
-		$PP/PPCost.visible = enabled
+func set_PP_visible(enabled: bool, animated := true):
+	$CostLabel.set_visible(enabled, animated)
 
 func reset():
 	_set_line_active(0, false)
 	_on_box_sort()
 
-func _set_line_active(i, play_sfx=true):
+func _set_line_active(i: int, play_sfx := true):
 	if i >= 0 and i < linesPerPage and i < _skills_condensed.size(): # no scroll, no loop
 		_index = i
 	else:
@@ -93,7 +82,7 @@ func _set_line_active(i, play_sfx=true):
 			_index = 0
 			_update_page(+1)
 		elif i + page < 0: # loop down
-			i = min(_skills_condensed.size(), linesPerPage) - 1
+			i = int(min(_skills_condensed.size(), linesPerPage) - 1)
 			_index = i
 			_update_page(-1)
 		elif i < 0: # scroll up (no loop)
@@ -105,21 +94,21 @@ func _set_line_active(i, play_sfx=true):
 	cursor.change_parent_same_index(_lines[_index].get_hbox(), play_sfx)
 	_cursor_moved_to_skill(Vector2(i, 0))
 
-func updateSkills(newSkills, new_page = 0):
+func update_skills(new_skills: Array, new_page := 0):
 	#clear out skills and add new skills
-	skills.clear()
-	for skill in newSkills:
-		skill = globaldata.skills[skill]
-		if skill.skillType == "psi":
-			match(psiType):
+	_skills.clear()
+	for skill in new_skills:
+		skill = globaldata.get_battle_skill(skill)
+		if skill and skill.skill_type == "psi":
+			match(_psi_type):
 				PSIType.Overworld:
-					if (skill.useCases <= 0):
-						skills.append(skill)
+					if (skill.use_cases <= 0):
+						_skills.append(skill)
 				PSIType.Battle:
-					if (skill.useCases >= 0):
-						skills.append(skill)
+					if (skill.use_cases >= 0):
+						_skills.append(skill)
 				_:
-					skills.append(skill)
+					_skills.append(skill)
 	_skills_condensed = _condense_skills()
 	page = new_page
 	_update_page(0)
@@ -134,8 +123,8 @@ func updateSkills(newSkills, new_page = 0):
 func refresh_selectable():
 	_update_page(0)
 
-func set_cursor_to_skill(skill):
-	if skill != null:
+func set_cursor_to_skill(skill: Dictionary):
+	if skill:
 		for i in _skills_condensed.size():
 			if skill.name == _skills_condensed[i][0].name:
 				_set_line_active(i - page, false)
@@ -145,14 +134,14 @@ func set_cursor_to_skill(skill):
 						return
 				cursor.set_cursor_from_index(0, false)
 				return
-		_update_pp_cost(skill)
+		
 	_set_line_active(0, false)
 	cursor.set_cursor_from_index(0, false) #(cursor.cursor_index)
 
 
-func _update_page(dir):
+func _update_page(dir: int):
 	page += dir
-
+	
 	var maxPage = _skills_condensed.size() - linesPerPage
 	if maxPage <= 0:
 		page = 0
@@ -168,7 +157,7 @@ func _update_page(dir):
 			line.init(_skills_condensed[i + page][0], cursor)
 			for skill in _skills_condensed[i + page]:
 				if skill.has("level"):
-					line.addLevel(skill.level, _does_it_do_anything(skill))
+					line.add_level(skill.level, _does_it_do_anything(skill))
 	
 	if _scroll_bar:
 		_scroll_bar.nb_rows = _skills_condensed.size()
@@ -178,7 +167,7 @@ func _update_page(dir):
 func _condense_skills():
 	var condensedArray = []
 	# For each new KIND of skill (e.g. Lifeup), put into skillBase
-	for skill in skills:
+	for skill in _skills:
 		var newSkill = true
 		# If this skill is already in, add this other level to the same array
 		for skillBase in condensedArray:
@@ -190,23 +179,22 @@ func _condense_skills():
 	
 	return condensedArray
 
+func _update_pp_cost(skill: Dictionary):
+	$CostLabel.set_cost(skill.get("pp_cost", 0))
 
-func _update_pp_cost(skill):
-	if "ppCost" in skill:
-		$PP/PPCost/Label2.text = str(skill.ppCost)
-	else:
-		$PP/PPCost/Label2.text = "0"
-
-func _cursor_selected(i):
-	for skill in skills:
+func _cursor_selected(i: int):
+	for skill in _skills:
 		if skill.name == _lines[_index].get_skill_name() and (not "level" in skill or skill.level == _lines[_index].get_selected_level()):
 			if !_does_it_do_anything(skill):
-				emit_signal("no_pp", skill)
+				cursor.play_sfx("restricted")
+				emit_signal("using_skill_failed", skill)
 				break
-			if skill.targetType == TargetType.SELF:
-				emit_signal("use", skill)
 			else:
-				emit_signal("selected", skill)
+				cursor.play_sfx("cursor2")
+				if skill.target_type == BattleSystem.TargetType.SELF:
+					emit_signal("use", skill)
+				else:
+					emit_signal("selected", skill)
 			break
 
 func _on_box_sort():
@@ -214,18 +202,20 @@ func _on_box_sort():
 		_cursor_to_0 = false
 		cursor.set_cursor_from_index(0, false)
 
-func _does_it_do_anything(skill):
+func _does_it_do_anything(skill: Dictionary):
+	# check for Forgetful status condition
+	if user and user.has_status("forgetful"):
+		return false
 	# check if we have enough pp
-	if user and skill.ppCost <= user.pp:
+	elif user and skill.get("pp_cost", 0) <= user.get_pp():
 		return true
 	else:
 		return false
 
-
-func _cursor_moved_to_skill(dir = 0):
+func _cursor_moved_to_skill(dir := Vector2.ZERO):
 	var skill_name = _lines[_index].get_skill_name()
 	var skill_level = _lines[_index].get_selected_level()
-	for skill in skills:
+	for skill in _skills:
 		if skill.name == skill_name and\
 		(not "level" in skill or skill.level == skill_level):
 			_update_pp_cost(skill)
@@ -233,7 +223,7 @@ func _cursor_moved_to_skill(dir = 0):
 			break
 
 
-func _on_Arrow_failed_move(dir):
+func _on_Arrow_failed_move(dir: Vector2):
 	if _active:
 		if dir.y > 0:
 			_set_line_active(_index + 1)

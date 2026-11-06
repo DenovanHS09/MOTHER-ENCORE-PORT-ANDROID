@@ -122,8 +122,6 @@ shape = SubResource( 1 )
 "anims/Come out" = SubResource( 2 )
 anims/RESET = SubResource( 3 )
 
-[node name="Tween" type="Tween" parent="."]
-
 [node name="Timer" type="Timer" parent="."]
 wait_time = 30.0
 

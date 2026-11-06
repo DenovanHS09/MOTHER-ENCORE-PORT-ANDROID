@@ -1,0 +1,171 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Fonts/EBMainOutline.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Scripts/UI/Battle/DebugStatInfo.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/UI/Battle/DebugStatLabel.gd" type="Script" id=3]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0, 0, 0.403922 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0, 0, 0, 0.403922 )
+
+[node name="StatInfo" type="PanelContainer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -42.0
+margin_top = -38.0
+margin_right = 42.0
+margin_bottom = 38.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 2 )
+hp_label = NodePath("VBoxContainer/HP")
+pp_label = NodePath("VBoxContainer/PP")
+ofe_label = NodePath("VBoxContainer/Stats1/OFE")
+def_label = NodePath("VBoxContainer/Stats1/DEF")
+spd_label = NodePath("VBoxContainer/Stats2/SPD")
+gut_label = NodePath("VBoxContainer/Stats2/GUT")
+iq_label = NodePath("VBoxContainer/Stats3/IQ")
+lvl_label = NodePath("VBoxContainer/Stats3/LVL")
+exp_label = NodePath("VBoxContainer/Stats4/EXP")
+cash_label = NodePath("VBoxContainer/Stats4/CASH")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 82.0
+margin_bottom = 74.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_constants/separation = 0
+
+[node name="HP" type="Label" parent="VBoxContainer"]
+margin_right = 80.0
+margin_bottom = 12.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+text = "HP: 9000/9000"
+valign = 1
+script = ExtResource( 3 )
+
+[node name="PP" type="Label" parent="VBoxContainer"]
+margin_top = 12.0
+margin_right = 80.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+text = "PP: 9000/9000"
+valign = 1
+script = ExtResource( 3 )
+
+[node name="Stats1" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 24.0
+margin_right = 80.0
+margin_bottom = 36.0
+
+[node name="OFE" type="Label" parent="VBoxContainer/Stats1"]
+margin_right = 38.0
+margin_bottom = 12.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+text = "OFE: 90"
+valign = 1
+script = ExtResource( 3 )
+
+[node name="DEF" type="Label" parent="VBoxContainer/Stats1"]
+margin_left = 42.0
+margin_right = 80.0
+margin_bottom = 12.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+text = "DEF: 90"
+valign = 1
+script = ExtResource( 3 )
+
+[node name="Stats2" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 36.0
+margin_right = 80.0
+margin_bottom = 48.0
+
+[node name="SPD" type="Label" parent="VBoxContainer/Stats2"]
+margin_right = 38.0
+margin_bottom = 12.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+text = "SPD: 90"
+valign = 1
+script = ExtResource( 3 )
+
+[node name="GUT" type="Label" parent="VBoxContainer/Stats2"]
+margin_left = 42.0
+margin_right = 80.0
+margin_bottom = 12.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+text = "GUT: 90"
+valign = 1
+script = ExtResource( 3 )
+
+[node name="Stats3" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 48.0
+margin_right = 80.0
+margin_bottom = 60.0
+
+[node name="IQ" type="Label" parent="VBoxContainer/Stats3"]
+margin_right = 38.0
+margin_bottom = 12.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+text = "IQ: 90"
+valign = 1
+script = ExtResource( 3 )
+
+[node name="LVL" type="Label" parent="VBoxContainer/Stats3"]
+margin_left = 42.0
+margin_right = 80.0
+margin_bottom = 12.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+text = "LVL: 90"
+valign = 1
+script = ExtResource( 3 )
+
+[node name="Stats4" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 60.0
+margin_right = 80.0
+margin_bottom = 72.0
+
+[node name="EXP" type="Label" parent="VBoxContainer/Stats4"]
+margin_right = 34.0
+margin_bottom = 12.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+text = "EXP: 90"
+valign = 1
+script = ExtResource( 3 )
+
+[node name="CASH" type="Label" parent="VBoxContainer/Stats4"]
+margin_left = 38.0
+margin_right = 80.0
+margin_bottom = 12.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+text = "CASH: 90"
+valign = 1
+script = ExtResource( 3 )

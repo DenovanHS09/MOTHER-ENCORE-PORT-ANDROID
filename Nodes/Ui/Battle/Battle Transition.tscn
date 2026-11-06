@@ -43,14 +43,10 @@ tracks/0/keys = {
 }
 
 [node name="BattleTransition" type="Node2D"]
+z_index = 2
 script = ExtResource( 2 )
-
-[node name="ColorRect" type="ColorRect" parent="."]
-margin_left = -80.0
-margin_top = -80.0
-margin_right = 400.0
-margin_bottom = 260.0
-color = Color( 0.109804, 0.109804, 0.109804, 1 )
+animationPlayer = NodePath("AnimationPlayer")
+transition = NodePath("Sprite")
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 3 )

@@ -9,14 +9,18 @@ func set_initially_on(value: bool):
 
 func _ready():
 	if _initially_on:
-		$Sprite.texture = load("res://Graphics/Objects/Block Red.png")
+		$Sprite.texture = load("res://Graphics/Objects/DuncansFactory/Block Red.png")
 	else:
-		$Sprite.texture = load("res://Graphics/Objects/Block Blue.png")
-
+		$Sprite.texture = load("res://Graphics/Objects/DuncansFactory/Block Blue.png")
 
 func _on_Area2D_body_entered(body):
-	pass # Replace with function body.
-
+	if body is PartyObject:
+		var switchController = global.currentScene.get_node_or_null("ColorSwitchController")
+		if switchController:
+			switchController.add_body()
 
 func _on_Area2D_body_exited(body):
-	pass # Replace with function body.
+	if body is PartyObject:
+		var switchController = global.currentScene.get_node_or_null("ColorSwitchController")
+		if switchController:
+			switchController.remove_body()

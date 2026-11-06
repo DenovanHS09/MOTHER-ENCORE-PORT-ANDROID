@@ -1,21 +1,25 @@
 class_name AbstractDialogueBox
-extends Node
+extends CanvasLayer
 
 const SPEED_UP_FROM_PRESS_A := 3
 const SPEED_UP_FROM_PRESS_B := 1000
+
+const NORMAL_SPEED := 1.0
+const FASTER_SPEED := 2.0
+const SLOWER_SPEED := 0.7
 
 onready var _dialogue_box_node: Node
 onready var _dialogue_label: RichTextLabel
 onready var _bullet_label: RichTextLabel
 onready var _cursor_down_sprite: AnimatedSprite
 
-var _speed_multiplier_from_input := 1
-var _speed_multiplier_from_tags := 1
+var _speed_multiplier_from_input := 1.0
+var _speed_multiplier_from_tags := 1.0
 var _bullet_string := "[right]%s[/right]" % tr("SYMBOL_BULLET_MAIN") # Diamond-shaped bullet in Japanese
 
 var _dialog := {}
 var _curr_phrase := {}
-var _phrase_num := 0
+var _phrase_num := "0"
 var _segment_num := 0
 var _stopped := false
 var _finished := true
@@ -24,17 +28,6 @@ var _t := 0.0
 
 func _physics_process(delta):
 	_advance_printing(delta)
-
-# Overridden
-func start_from_scripted_dialog(dialog := {}, is_battle_msg := false):
-	_show_box(true)
-	_bullet_label.visible = !is_battle_msg
-	if dialog:
-		_dialog = dialog
-	
-	_dialogue_label.visible_characters = 0
-	_handle_phrase()
-	yield(self, "done")
 
 # Overridden
 func _show_box(show, sfx = true):
@@ -52,6 +45,7 @@ func _input(event):
 		var btn_next = event.is_action_pressed("ui_accept") or event.is_action_pressed("ui_cancel")
 		var btn_cancel = event.is_action_pressed("ui_cancel")
 		_action_press(btn_next, btn_cancel)
+		get_tree().set_input_as_handled()
 
 # Overridden
 func _action_press(btn_next := false, btn_cancel := false):
@@ -62,7 +56,7 @@ func _action_press(btn_next := false, btn_cancel := false):
 			_speed_multiplier_from_input = SPEED_UP_FROM_PRESS_A
 	elif btn_next:
 		if _finished:
-			next_phrase()
+			_next_phrase()
 		elif _stopped:
 			_stopped = false
 
@@ -72,10 +66,8 @@ func _handle_phrase():
 
 func _print_dialogue_segment(is_first_segment: bool):
 	var with_bullet := false
-	if is_first_segment:
-		_segment_num = 0
-	else:
-		_segment_num += 1
+	_segment_num = 0 if is_first_segment else _segment_num + 1
+	
 	var curr_segment = _curr_phrase["text"].split("\n")[_segment_num]
 	if curr_segment.begins_with(TextTools.CHAR_BULLET):
 		with_bullet = true
@@ -84,9 +76,9 @@ func _print_dialogue_segment(is_first_segment: bool):
 	_update_bullets(curr_segment, with_bullet)
 
 # Overridden
-func next_phrase():
+func _next_phrase():
 	if _curr_phrase.has("goto"):
-		_phrase_num = str2var(_curr_phrase["goto"])
+		_phrase_num = _curr_phrase["goto"]
 		_handle_phrase()
 	else:
 		_end_dialogue()
@@ -110,8 +102,10 @@ func _advance_printing(delta):
 			_t -= _get_text_speed()
 			match last_visible_char:
 				TextTools.CHAR_WAIT: _stop_phrase()
-				TextTools.CHAR_PRINTING_FASTER: _speed_multiplier_from_tags *= 2
-				TextTools.CHAR_PRINTING_NORMAL: _speed_multiplier_from_tags = 1
+				TextTools.CHAR_PRINTING_FASTER: _speed_multiplier_from_tags *= FASTER_SPEED
+				TextTools.CHAR_PRINTING_NORMAL: _speed_multiplier_from_tags = NORMAL_SPEED
+				TextTools.CHAR_PRINTING_SLOWER: _speed_multiplier_from_tags *= SLOWER_SPEED
+				
 	else:
 		_speed_multiplier_from_tags = 1
 
@@ -128,13 +122,16 @@ func _get_last_visible_char() -> String:
 	return spaceless_text[min(_dialogue_label.visible_characters, spaceless_text.length()) - 1]
 
 func _get_text_speed() -> float:
-	return globaldata.textSpeed / _speed_multiplier_from_input / _speed_multiplier_from_tags
+	return globaldata.text_speed / _speed_multiplier_from_input / _speed_multiplier_from_tags
 
 func _stop_phrase():
 	_stopped = true
 	_speed_multiplier_from_input = 1
 	_speed_multiplier_from_tags = 1
 	_cursor_down_sprite.show()
+
+func set_auto_advance(enabled: bool):
+	_auto_advance = enabled
 
 # Overridden
 func _finish_phrase():
@@ -143,6 +140,9 @@ func _finish_phrase():
 # Overridden
 func _end_dialogue():
 	pass
+
+func close_dialogue():
+	_end_dialogue()
 
 func _has_remaining_segments() -> bool:
 	return _curr_phrase.has("text") && _segment_num < _curr_phrase["text"].count("\n")

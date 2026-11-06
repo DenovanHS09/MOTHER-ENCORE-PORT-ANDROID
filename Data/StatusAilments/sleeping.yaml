@@ -1,10 +1,12 @@
 healing:
   passive_heal: true
+  mandatory_turns: 1
+  heal_prob: 25
   by_hit:
     action:
       action_type: 0
       skill_type: any
-    prob: 25
+    prob: 80
 messages:
   afflict_battle: BATTLE_MSG_STATUS_SLEEPING
   heal_battle: BATTLE_MSG_HEAL_STATUS_SLEEPING
@@ -12,7 +14,7 @@ status_bubble: sleeping
 effects_by_char:
   boss:
     stat_mods:
-      offense: 80
+      offense: 0.8
   any:
     turn_skip:
       enable: true

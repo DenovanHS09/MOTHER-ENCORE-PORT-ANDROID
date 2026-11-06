@@ -15,41 +15,28 @@ func _ready():
 func _on_resized():
 	_update()
 
-func _set_text_with_item(text: String, icon_file: String):
+func _set_text_with_item(text: String, item_name: String):
 	_text = text
-	_icon_path = ITEM_ICONS_PATHS % icon_file if icon_file else ""
+	_icon_path = ITEM_ICONS_PATHS % item_name if item_name else ""
 	_update()
 
-func set_item(item_id: String, remaining_doses: int = 0):
-	var text: String
-	if item_id in globaldata.items:
-		var item = globaldata.items[item_id]
+func set_item(item: Item, remaining_doses: int = 0):
+	if item != null:
 		global.item = item
-		text = TextTools.replace_text(item.description)
-		text += TextTools.get_item_doses_phrase(item, remaining_doses)
+		var text := TextTools.replace_text(item.get_data().get("description"))
+		var item_phrase: String = TextTools.get_item_doses_phrase(item)
+		if item_phrase: text %= item_phrase
+		_set_text_with_item(text, item.item_name)
 	else:
-		text = ""
-	
-	_set_text_with_item(text, item_id)
+		_set_text_with_item("", "")
 
-func set_item_from_inv(inv_item: InventoryManager.Item):
-	if inv_item != null:
-		set_item(inv_item.ItemName, inv_item.doses)
-	else:
-		set_item("")
+func set_item_from_inv(inv_item: Item):
+	set_item(inv_item)
 
 func set_text(text):
 	_set_text_with_item(text, "")
 
 func _update():
 	_text_label.bbcode_text = TextTools.add_line_breaks(_text, _text_label)
-
-	if !_icon_path:
-		_sprite_container.hide()
-		_sprite.texture = null
-	else:
-		_sprite_container.show()
-		if ResourceLoader.exists(_icon_path):
-			_sprite.texture = load(_icon_path)
-		else:
-			_sprite.texture = null
+	_sprite_container.visible = !!_icon_path
+	_sprite.texture = load(_icon_path) if ResourceLoader.exists(_icon_path) else null

@@ -6,7 +6,7 @@ var inputVector = Vector2.ZERO
 var speed = 30
 var direction = 1
 var start_pos
-var Return = false
+var _return = false
 
 onready var sprite = $Sprite
 onready var animationPlayer = $AnimationPlayer
@@ -21,18 +21,18 @@ func _ready():
 func _process(_delta):
 	_movement()
 	var old_pos = global_position
-	if Return == true:
+	if _return == true:
 		position = position.move_toward(start_pos, speed * _delta)
 		if old_pos.x < global_position.x:
 			sprite.flip_h = false
 		else:
 			sprite.flip_h = true
 		if global_position == start_pos:
-			Return = false
+			_return = false
 
 func _on_Area_body_entered(body):
-	if body == global.persistPlayer and global.persistPlayer.walk:
-		Return = false
+	if body is PartyMemberPlayer and body.is_walking():
+		_return = false
 		inputVector = -sprite.global_position.direction_to(body.global_position)
 		if body.global_position.x < sprite.global_position.x:
 			sprite.flip_h = false
@@ -40,13 +40,13 @@ func _on_Area_body_entered(body):
 			sprite.flip_h = true
 
 func _on_Area_body_exited(body):
-	if body == global.persistPlayer and global_position != start_pos:
+	if body == global.get_player() and global_position != start_pos:
 		$Timer.start()
 		yield($Timer,"timeout")
 		inputVector = Vector2.ZERO
 		$Timer.start()
 		yield($Timer,"timeout")
-		Return = true
+		_return = true
 
 func _movement():
 	if inputVector != Vector2.ZERO:

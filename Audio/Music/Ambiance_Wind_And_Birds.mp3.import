@@ -11,5 +11,5 @@ dest_files=[ "res://.import/Ambiance_Wind_And_Birds.mp3-176e69fa0f4731db0860813f
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0

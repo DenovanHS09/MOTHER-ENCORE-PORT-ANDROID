@@ -9,7 +9,7 @@
 '1':
   text: ''
   showbox: false
-  openstorage: true
+  open_storage: true
   caninput: false
   goto: '3'
   cleardialog: true

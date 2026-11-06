@@ -1,4 +1,4 @@
-extends Sprite
+extends FlaggableObject
 
 export var contents : NodePath
 export (bool) var Drop_item_if_hidden
@@ -7,23 +7,26 @@ export var New_parent : NodePath
 export var appear_flag = ""
 export var disappear_flag = ""
 export var interact_content = false
+export var pause_on_break := false
+export var coins_spawned := 5
+export var coin_spawner : NodePath
+onready var coinSpawner = get_node_or_null(coin_spawner) as CoinSpawner
 onready var item = get_node_or_null(contents)
 onready var dropOff = get_node_or_null(Drop_where)
 onready var newParent = get_node_or_null(New_parent)
 
 func _ready():
-	check_flags()
+	_check_flags()
 	set_item()
-	#if item != null:
-	#	item.connect("tree_exited", self, "set_item")
 
 func _on_Hurtbox_area_entered(_area):
-	#delays the animation depending on how far the breakable object is to the area
+	# Delays the animation depending on how far the breakable object is to the area
+	if pause_on_break: global.get_player().pause()
+	
 	var distance = global_position.distance_to(_area.global_position)
 	var delay = 0.002 * distance
 	
-	if delay > 0.06:
-		delay = 0.06
+	if delay > 0.06: delay = 0.06
 	
 	yield(get_tree().create_timer(delay), "timeout")
 	
@@ -38,32 +41,25 @@ func _on_Hurtbox_area_entered(_area):
 	set_item()
 	if item != null:
 		_drop()
+	
+	if coinSpawner and coins_spawned > 0 and !_get_flag_status():
+		_set_flag_status(true)
+		coinSpawner.spawn_coins(coins_spawned)
+	
 	yield ($AnimationPlayer,"animation_finished")
 	
-	if get_parent() != newParent:
+	if get_parent() != newParent and newParent:
 		get_parent().remove_child(self)
 		newParent.add_child(self)
-		
 
 func set_item():
-	#yield(get_tree(), "idle_frame")
 	if !is_visible() and Drop_item_if_hidden:
 		item.position = position
 	item = get_node_or_null(contents)
 
-func check_flags():
-	if appear_flag != "":
-		if globaldata.flags.has(appear_flag):
-			if globaldata.flags[appear_flag]:
-				show()
-			else:
-				hide()
-	if disappear_flag != "":
-		if globaldata.flags.has(disappear_flag):
-			if globaldata.flags[disappear_flag]:
-				hide()
-	if !visible:
-		queue_free()
+func _check_flags():
+	visible = globaldata.check_appear_disappear_flags(appear_flag, disappear_flag)
+	if !visible: queue_free()
 
 func _drop():
 	if dropOff == null:
@@ -79,12 +75,12 @@ func _drop():
 	var children = item.get_children()
 	
 	for child in children:
-		if child.get_class() == "Area2D" or child.get_class() == "KinematicBody2D" :
+		if child is Area2D or child is KinematicBody2D:
 			var childrens_children = child.get_children()
 			for childs_child in childrens_children:
-				if childs_child.get_class() == "CollisionShape2D" or childs_child.get_class() == "CollisionPolygon2D":
+				if childs_child is CollisionShape2D or childs_child is CollisionPolygon2D:
 					childs_child.set_deferred("disabled", true)
-		if child.get_class() == "CollisionShape2D" or child.get_class() == "CollisionPolygon2D":
+		if child is CollisionShape2D or child is CollisionPolygon2D:
 			child.set_deferred("disabled", true)
 	item.get_parent().remove_child(item)
 	dropOff.call_deferred("add_child",item)
@@ -93,16 +89,16 @@ func _drop():
 		item.hide()
 	
 	$Timer.start()
-	yield ($Timer,"timeout")
+	yield($Timer,"timeout")
 	
 	item.set_physics_process(false)
 	for child in children:
-		if child.get_class() == "Area2D" or child.get_class() == "KinematicBody2D" :
+		if child is Area2D or child is KinematicBody2D:
 			var childrens_children = child.get_children()
 			for childs_child in childrens_children:
-				if childs_child.get_class() == "CollisionShape2D" or childs_child.get_class() == "CollisionPolygon2D":
+				if childs_child is CollisionShape2D or childs_child is CollisionPolygon2D:
 					childs_child.set_deferred("disabled", false)
-		if child.get_class() == "CollisionShape2D" or child.get_class() == "CollisionPolygon2D":
+		if child is CollisionShape2D or child is CollisionPolygon2D:
 			child.set_deferred("disabled", false)
 	
 	if item.get("changingParents") != null:
@@ -114,21 +110,13 @@ func _drop():
 	
 	if dropOff.name == "Objects":
 		item.show()
-		$Tween.interpolate_property(item, "position", 
-		Vector2(item.position.x, item.position.y), Vector2(item.position.x, item.position.y - 6), 0.1, 
-		Tween.TRANS_CUBIC, Tween.EASE_OUT)
-		$Tween.start()
+		yield(create_tween().tween_property(item, "position", Vector2(item.position.x, item.position.y - 6), 0.1) \
+				.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT), "finished")
 		
-		yield($Tween,"tween_all_completed")
-		
-		
-		$Tween.interpolate_property(item, "position", 
-		Vector2(item.position.x, item.position.y), Vector2(item.position.x, item.position.y + 6), 0.2, 
-		Tween.TRANS_BOUNCE, Tween.EASE_OUT)
-		$Tween.start()
+		create_tween().tween_property(item, "position", Vector2(item.position.x, item.position.y + 6), 0.2) \
+				.set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 	
 	item.set_physics_process(true)
 
 func interact(object):
-	if object.has_method("interact"):
-		object.interact()
+	if object.has_method("interact"): object.interact()

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/Main/Enemy Spawner.gd" type="Script" id=1]
-[ext_resource path="res://Graphics/Character Sprites/Npcs/1dir/doll/main.png" type="Texture" id=2]
+[ext_resource path="res://Graphics/Character Sprites/Npcs/1dir/doll.png" type="Texture" id=2]
 
 [node name="Enemy Spawner" type="Position2D"]
 script = ExtResource( 1 )
@@ -20,7 +20,7 @@ texture = ExtResource( 2 )
 hframes = 4
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 120.0
+wait_time = 300.0
 one_shot = true
 
 [connection signal="tree_exited" from="." to="." method="_on_Enemy_Spawner_tree_exited"]

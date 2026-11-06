@@ -14,15 +14,18 @@ func _ready():
 	_is_ready_to_interact = true
 
 func _try_operate_manually():
-	if !_is_disabled and !global.persistPlayer.paused and _is_ready_to_interact:
+	if !_is_disabled and !global.get_player().is_paused() and _is_ready_to_interact:
 		_operate_manually()
 
 func _operate_manually():
-	if _audio_player: _audio_player.playing = true
-	if _anim_player and _anim_player.has_animation("Hit"):
-		_anim_player.play("Hit")
-	emit_signal("switch_hit")
-	_do_switch_action()
+	if global.currentScene.can_switch:
+		if _audio_player: _audio_player.playing = true
+		if _anim_player and _anim_player.has_animation("Hit"):
+			_anim_player.play("Hit")
+		emit_signal("switch_hit")
+		_do_switch_action()
+	else:
+		audioManager.play_sfx(load("res://Audio/Sound effects/M3/bump.wav"), "switch")
 
 # Overridden
 func _do_switch_action():
@@ -35,5 +38,5 @@ func _on_hit(area):
 	_try_operate_manually()
 
 func _on_player_entered(body):
-	if body == global.persistPlayer:
+	if body == global.get_player():
 		_try_operate_manually()

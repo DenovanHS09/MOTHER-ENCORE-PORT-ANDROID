@@ -3,134 +3,111 @@ extends Node
 onready var intervalTimer = $IntervalTimer #the  interval between input repeats for when you hold down a direction 
 onready var intervalSwitchTimer = $IntervalSwitchTimer #how much time it takes for it to switch between slow and quick interval
 
-const SLOWTIME = 0.3
-const FASTTIME = 0.1
+const SLOWTIME := 0.3
+const FASTTIME := 0.1
 
-func get_just_pressed_up() -> bool:
-	if Input.is_action_just_pressed("ui_up") \
-	or Input.is_action_just_pressed("ui_lstick_up") \
-	or Input.is_action_just_pressed("ui_rstick_up"):
-		return true
-	else:
-		return false
+func was_just_pressed(direction: Vector2) -> bool:
+	match direction:
+		Vector2.UP:
+			return Input.is_action_just_pressed("ui_up") \
+					or Input.is_action_just_pressed("ui_lstick_up") \
+					or Input.is_action_just_pressed("ui_rstick_up")
+		Vector2.DOWN:
+			return Input.is_action_just_pressed("ui_down") \
+					or Input.is_action_just_pressed("ui_lstick_down") \
+					or Input.is_action_just_pressed("ui_rstick_down")
+		Vector2.LEFT:
+			return Input.is_action_just_pressed("ui_left") \
+					or Input.is_action_just_pressed("ui_lstick_left") \
+					or Input.is_action_just_pressed("ui_rstick_left")
+		Vector2.RIGHT:
+			return Input.is_action_just_pressed("ui_right") \
+					or Input.is_action_just_pressed("ui_lstick_right") \
+					or Input.is_action_just_pressed("ui_rstick_right")
+		_:
+			return false
 
-func get_just_pressed_down() -> bool:
-	if Input.is_action_just_pressed("ui_down") \
-	or Input.is_action_just_pressed("ui_lstick_down") \
-	or Input.is_action_just_pressed("ui_rstick_down"):
-		return true
-	else:
-		return false
+func was_just_released(direction: Vector2) -> bool:
+	match direction:
+		Vector2.UP:
+			return Input.is_action_just_released("ui_up") \
+					or Input.is_action_just_released("ui_lstick_up") \
+					or Input.is_action_just_released("ui_rstick_up")
+		Vector2.DOWN:
+			return Input.is_action_just_released("ui_down") \
+					or Input.is_action_just_released("ui_lstick_down") \
+					or Input.is_action_just_released("ui_rstick_down")
+		Vector2.LEFT:
+			return Input.is_action_just_released("ui_left") \
+					or Input.is_action_just_released("ui_lstick_left") \
+					or Input.is_action_just_released("ui_rstick_left")
+		Vector2.RIGHT:
+			return Input.is_action_just_released("ui_right") \
+					or Input.is_action_just_released("ui_lstick_right") \
+					or Input.is_action_just_released("ui_rstick_right")
+		_:
+			return false
 
-func get_just_pressed_left() -> bool:
-	if Input.is_action_just_pressed("ui_left") \
-	or Input.is_action_just_pressed("ui_lstick_left") \
-	or Input.is_action_just_pressed("ui_rstick_left"):
-		return true
-	else:
-		return false
-
-func get_just_pressed_right() -> bool:
-	if Input.is_action_just_pressed("ui_right") \
-	or Input.is_action_just_pressed("ui_lstick_right") \
-	or Input.is_action_just_pressed("ui_rstick_right"):
-		return true
-	else:
-		return false
-
-func get_just_released_up() -> bool:
-	if Input.is_action_just_released("ui_up") \
-	or Input.is_action_just_released("ui_lstick_up") \
-	or Input.is_action_just_released("ui_rstick_up"):
-		return true
-	else:
-		return false
-
-func get_just_released_down() -> bool:
-	if Input.is_action_just_released("ui_down") \
-	or Input.is_action_just_released("ui_lstick_down") \
-	or Input.is_action_just_released("ui_rstick_down"):
-		return true
-	else:
-		return false
-
-func get_just_released_left() -> bool:
-	if Input.is_action_just_released("ui_left") \
-	or Input.is_action_just_released("ui_lstick_left") \
-	or Input.is_action_just_released("ui_rstick_left"):
-		return true
-	else:
-		return false
-
-func get_just_released_right() -> bool:
-	if Input.is_action_just_released("ui_right") \
-	or Input.is_action_just_released("ui_lstick_right") \
-	or Input.is_action_just_released("ui_rstick_right"):
-		return true
-	else:
-		return false
 
 #returns the directional input vector that has just been pressed
 func get_just_pressed_input_vector() -> Vector2:
-	var inputVector = Vector2.ZERO
-	if get_just_pressed_up():
-		inputVector.y -= 1
-	if get_just_pressed_down():
-		inputVector.y += 1
-	if get_just_pressed_left():
-		inputVector.x -= 1
-	if get_just_pressed_right():
-		inputVector.x += 1
-	
-	return inputVector
+	var input_vector = Vector2.ZERO
+	for v in [Vector2.UP, Vector2.DOWN, Vector2.LEFT, Vector2.RIGHT]:
+		if was_just_pressed(v):
+			input_vector += v
 
-#returns the directional input vector that has just been released
+	return input_vector
+
+#returns the directional input vector that has just been pressed
 func get_just_released_input_vector() -> Vector2:
-	var inputVector = Vector2.ZERO
-	if get_just_released_up():
-		inputVector.y -= 1
-	if get_just_released_down():
-		inputVector.y += 1
-	if get_just_released_left():
-		inputVector.x -= 1
-	if get_just_released_right():
-		inputVector.x += 1
-	
-	return inputVector
+	var input_vector = Vector2.ZERO
+	for v in [Vector2.UP, Vector2.DOWN, Vector2.LEFT, Vector2.RIGHT]:
+		if was_just_released(v):
+			input_vector += v
 
-func get_just_pressed_direction() -> bool:
-	return (get_just_pressed_up() or get_just_pressed_down() or get_just_pressed_left() or get_just_pressed_right())
+	return input_vector
 
-func get_just_released_direction() -> bool:
-	return (get_just_released_up() or get_just_released_down() or get_just_released_left() or get_just_released_right())
+func get_just_pressed_directions() -> Array:
+	var ret := []
+	for v in [Vector2.UP, Vector2.DOWN, Vector2.LEFT, Vector2.RIGHT]:
+		if was_just_pressed(v):
+			ret.append(v)
+	return ret
 
-func get_controls_vector(discontinued = false) -> Vector2: #use discontinued for menus
-	var inputVector = Vector2.ZERO
-	var justPressedVector = get_just_pressed_input_vector()
-	var justReleased = get_just_released_direction()
+func get_just_released_directions() -> Array:
+	var ret := []
+	for v in [Vector2.UP, Vector2.DOWN, Vector2.LEFT, Vector2.RIGHT]:
+		if was_just_released(v):
+			ret.append(v)
+	return ret
+
+func get_controls_vector(discontinued := false) -> Vector2: #use discontinued for menus
+	var input_vector := Vector2.ZERO
+	var just_pressed_vector := get_just_pressed_input_vector()
+	var just_released := !get_just_released_directions().empty()
 	#return nothing or the input that has just been pressed if the interval has not been finished
-	if intervalTimer.time_left != 0 and discontinued and justPressedVector == Vector2.ZERO and !justReleased:
-		return inputVector
+	if intervalTimer.time_left != 0 and discontinued and just_pressed_vector == Vector2.ZERO and !just_released:
+		return input_vector
 	
 	#get the direction from all direction input types
-	inputVector = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	inputVector += Input.get_vector("ui_lstick_left", "ui_lstick_right", "ui_lstick_up", "ui_lstick_down")
-	inputVector += Input.get_vector("ui_rstick_left", "ui_rstick_right", "ui_rstick_up", "ui_rstick_down")
+	input_vector = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	input_vector += Input.get_vector("ui_lstick_left", "ui_lstick_right", "ui_lstick_up", "ui_lstick_down")
+	input_vector += Input.get_vector("ui_rstick_left", "ui_rstick_right", "ui_rstick_up", "ui_rstick_down")
 	#reduce to unit vectors
-	inputVector = get_vector_sign(inputVector)
+	input_vector = _get_vector_sign(input_vector)
 	
 	if discontinued:
-		if justPressedVector != Vector2.ZERO or justReleased:
-			inputVector = justPressedVector
+		if just_pressed_vector != Vector2.ZERO or just_released:
+			input_vector = just_pressed_vector
 			intervalTimer.wait_time = SLOWTIME
 			intervalSwitchTimer.start()
 			intervalTimer.start()
-		if inputVector != Vector2.ZERO and intervalTimer.time_left == 0:
+		if input_vector != Vector2.ZERO and intervalTimer.time_left == 0:
 			intervalTimer.start()
 	
-	return inputVector
+	return input_vector
 
-func get_vector_sign(vector2, threshold = 0) -> Vector2:
+func _get_vector_sign(vector2: Vector2, threshold := 0) -> Vector2:
 	var vector = Vector2.ZERO
 	if abs(vector2.x) > threshold:
 		vector.x = sign(round(vector2.x))

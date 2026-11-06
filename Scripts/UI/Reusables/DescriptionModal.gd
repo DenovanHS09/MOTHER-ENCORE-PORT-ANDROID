@@ -12,6 +12,7 @@ signal closed_warning()
 
 func _ready():
 	_timer = Timer.new()
+	_timer.connect("timeout", self, "_on_finished")
 	add_child(_timer)
 
 func _set_text_with_item(text, item_id):
@@ -25,14 +26,13 @@ func _update():
 	if _is_active:
 		_text_label.bbcode_text = TextTools.add_line_breaks(_warning_msg, _text_label)
 
-func warn(text, timeout = 0, callback = null):
+func warn(text: String, timeout := 0, callback: FuncRef = null):
 	_is_active = true
 	_warning_msg = text
 	_callback = callback
 	_update()
 	if timeout > 0:
 		_is_timeout = true
-		_timer.connect("timeout", self, "_on_finished")
 		_timer.start(timeout)
 
 func _get_active():

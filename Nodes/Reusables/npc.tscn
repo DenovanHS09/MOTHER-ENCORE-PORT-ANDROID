@@ -1,6 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
+[ext_resource path="res://Nodes/Reusables/sprite_data_fetcher.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Main/npc.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/misc/character_tint.gd" type="Script" id=3]
 [ext_resource path="res://Graphics/Character Sprites/Shadow.png" type="Texture" id=4]
 [ext_resource path="res://Nodes/Ui/ButtonPrompt.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Nodes/Reusables/character_sprite.tscn" type="PackedScene" id=6]
@@ -35,13 +37,16 @@ shader_param/glow_color = Color( 1, 1, 1, 1 )
 shader_param/flash_modifier = 0.0
 shader_param/glow_modifier = 0.0
 
+[sub_resource type="RectangleShape2D" id=433]
+extents = Vector2( 12.5, 8 )
+
 [sub_resource type="CircleShape2D" id=128]
 radius = 44.0
 
 [node name="npc" type="KinematicBody2D"]
 position = Vector2( 0, -3 )
-collision_layer = 513
-collision_mask = 1537
+collision_layer = 573
+collision_mask = 1597
 script = ExtResource( 2 )
 player_turn = {
 "x": true,
@@ -57,7 +62,9 @@ position = Vector2( 0, 7 )
 texture = ExtResource( 4 )
 
 [node name="CharacterSprite" parent="." instance=ExtResource( 6 )]
+visible = false
 position = Vector2( 0, 9 )
+offset = Vector2( 0, 0 )
 
 [node name="interact" type="Area2D" parent="."]
 position = Vector2( 0, -10 )
@@ -72,6 +79,15 @@ material = SubResource( 431 )
 position = Vector2( 0, -11 )
 type = "NPCs"
 offset = Vector2( 0, -11 )
+
+[node name="NearPlayerArea" type="Area2D" parent="."]
+collision_layer = 4096
+collision_mask = 0
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NearPlayerArea"]
+position = Vector2( -0.5, 6 )
+shape = SubResource( 433 )
 
 [node name="ViewArea" type="Area2D" parent="."]
 visible = false
@@ -99,7 +115,6 @@ shape = SubResource( 128 )
 wait_time = 2.0
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-visible = false
 position = Vector2( 0, 4 )
 enabled = true
 cast_to = Vector2( 0, 25 )
@@ -117,11 +132,19 @@ scale = Vector2( 1.6, 2.4 )
 freeze_bodies = false
 pause_particles = false
 
+[node name="SpriteDataFetcher" parent="." instance=ExtResource( 1 )]
+_sprite_path = NodePath("../CharacterSprite")
+reflect_offset = 3.0
+
+[node name="CharacterTint" type="Node" parent="."]
+script = ExtResource( 3 )
+sprite_paths = [ NodePath("../Shadow"), NodePath("../CharacterSprite"), NodePath("..") ]
+
 [connection signal="tree_exiting" from="." to="." method="_on_npc_tree_exiting"]
+[connection signal="body_entered" from="NearPlayerArea" to="." method="_on_NearPlayerArea_body_entered"]
+[connection signal="body_exited" from="NearPlayerArea" to="." method="_on_NearPlayerArea_body_exited"]
 [connection signal="body_entered" from="ViewArea" to="." method="_on_ViewArea_body_entered"]
 [connection signal="body_exited" from="ViewArea" to="." method="_on_ViewArea_body_exited"]
 [connection signal="timeout" from="WanderRadius/Timer" to="." method="_on_Timer_timeout"]
 [connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
-
-[editable path="CharacterSprite"]

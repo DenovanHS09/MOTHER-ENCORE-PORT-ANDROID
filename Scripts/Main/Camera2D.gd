@@ -1,217 +1,174 @@
 extends Camera2D
 class_name GameCamera
 
-signal stoped_shaking
+signal stopped_shaking
 
-const cam_limit = 50
-var inputVector = Vector2.ZERO
-var current_offset = Vector2.ZERO #used for knowing the normal offset when shaking it
-var camarea_offset = Vector2.ZERO # offset added to the camera when inside of a camarea
-var camareas = 0
-var shaking = false
+# Camera constants
+const CAM_LIMIT := 50
+const BUTTON_PROMPTS_DELAY := 1
+const QUICK_SCOPE_DURATION := 0.3
 
-onready var arrowUp = $ArrowPos/arrowU
-onready var arrowDown = $ArrowPos/arrowD
-onready var arrowLeft = $ArrowPos/arrowL
-onready var arrowRight = $ArrowPos/arrowR
+# Scope constants
+const SCOPE_MOVE_SPEED := 2
+const SCOPE_VERTICAL_LIMIT := 90
+const SCOPE_HORIZONTAL_LIMIT := 160
 
+# Shake constants
+const MIN_SHAKE_MAGNITUDE := 1.0
+const MIN_SHAKE_TIME := 0.2
+const SHAKE_STEP_TIME := 0.02
 
+var _base_offset := Vector2.ZERO # used for knowing the normal offset when shaking it (the camera)
+var _shake_offset := Vector2.ZERO
+var _camarea_offset := Vector2.ZERO # offset added to the camera when inside of a camarea
+var camareas := 0
+var _shaking := false
+var tween: SceneTreeTween
 
+onready var _scope_arrows := $ScopeArrows
 
 func _ready():
-	if get_parent() == global.persistPlayer:
-		global.persistPlayer.connect("paused", self, "arrows_come_out")
+	if get_parent() == global.get_player():
+		uiManager.connect("battle_to_ov", self, "_scoping_stop")
+		global.get_player().connect("paused", self, "_on_player_pause")
 
-func _process(_delta):
-	if $ArrowPos.visible:
-		$ArrowPos.global_position = get_camera_screen_center()
+func _process(_delta: float):
+	
+	
+	if _scope_arrows.visible: _scope_arrows.global_position = get_camera_screen_center()
 
-func _physics_process(_delta):
-	if !global.persistPlayer.damaging and self == global.currentCamera and global.persistPlayer.state == global.persistPlayer.CAMERA:
+func _physics_process(delta: float):
+	if !uiManager.is_in_battle() and global.get_player().get_state() != global.get_player().CAMERA:
+		offset = _base_offset + _shake_offset
+	else:
+		offset = _base_offset
+		
+	if !global.get_player().is_being_damaged() and self == global.currentCamera and global.get_player().get_state() == global.get_player().CAMERA:
 		if Input.is_action_just_pressed("ui_scope", true):
-			global_position = get_camera_screen_center()
-			$ArrowsAnim.play("Come In")
+			_scoping_start()
 		if Input.is_action_just_released("ui_scope"):
-			$ArrowsAnim.play("Come Out")
-			global.persistPlayer.exit_camera()
-			return_offset(0.3)
-		if Input.is_action_pressed("ui_scope", true) and global.persistPlayer.state != global.persistPlayer.ATTACK:
-			global.persistPlayer.state = global.persistPlayer.CAMERA
-			var up = 0
-			var down = 0
-			var left = 0
-			var right = 0
-			var input = controlsManager.get_controls_vector()
-			if offset.y > -cam_limit and get_camera_screen_center().y - 90 > limit_top:
-				if input.y < 0:
-					up = 1
-				if !arrowUp.visible:
-					arrowUp.show()
-			elif arrowUp.visible:
-				arrowUp.hide()
-			if offset.y < cam_limit and get_camera_screen_center().y + 90< limit_bottom:
-				if input.y > 0:
-					down = 1
-				if !arrowDown.visible:
-					arrowDown.show()
-			elif arrowDown.visible:
-				arrowDown.hide()
-			if offset.x > -cam_limit and get_camera_screen_center().x - 160 > limit_left:
-				if input.x < 0:
-					left = 1
-				if !arrowLeft.visible:
-					arrowLeft.show()
-			elif arrowLeft.visible:
-				arrowLeft.hide()
-			if offset.x < cam_limit and get_camera_screen_center().x + 160 < limit_right:
-				if input.x > 0:
-					right = 1
-				if !arrowRight.visible:
-					arrowRight.show()
-			elif arrowRight.visible:
-				arrowRight.hide()
-			
-			inputVector.x = int(right) - int(left)
-			inputVector.y = int(down) - int(up)
-			offset += inputVector * 2
-			current_offset = offset
+			_scoping_stop()
+		if Input.is_action_pressed("ui_scope", true) and global.get_player().get_state() != global.get_player().ATTACK:
+			_scoping_process(delta)
 
-func _input(event):
-	if controlsManager.get_just_pressed_up():
-		arrowUp.get_node("AnimationPlayer").play("Point")
-	if controlsManager.get_just_pressed_down():
-		arrowDown.get_node("AnimationPlayer").play("Point")
-	if controlsManager.get_just_pressed_left():
-		arrowLeft.get_node("AnimationPlayer").play("Point")
-	if controlsManager.get_just_pressed_right():
-		arrowRight.get_node("AnimationPlayer").play("Point")
-	if controlsManager.get_just_released_up():
-		arrowUp.get_node("AnimationPlayer").play("UnPoint")
-	if controlsManager.get_just_released_down():
-		arrowDown.get_node("AnimationPlayer").play("UnPoint")
-	if controlsManager.get_just_released_left():
-		arrowLeft.get_node("AnimationPlayer").play("UnPoint")
-	if controlsManager.get_just_released_right():
-		arrowRight.get_node("AnimationPlayer").play("UnPoint")
+func _scoping_start():
+	uiManager.info_plates_hide()
+	global_position = get_camera_screen_center()
+	$ArrowsAnim.play("Come In")
+	_scope_arrows.show()
 
+func _scoping_stop():
+	_scope_arrows.hide()
+	$ArrowsAnim.play("Come Out")
+	global.get_player().exit_camera()
+	return_offset(0.3)
 
-func arrows_come_out():
-	if arrowDown.position.y != 100:
-		$ArrowsAnim.play("Come Out")
+func _scoping_process(delta: float):
+	var input: Vector2 = controlsManager.get_controls_vector()
+	var screen_center := get_camera_screen_center()
+	var move_direction := Vector2.ZERO
+	
+	# Vertical
+	var can_move_up := _base_offset.y > -CAM_LIMIT and screen_center.y - SCOPE_VERTICAL_LIMIT > limit_top
+	var can_move_down := _base_offset.y < CAM_LIMIT and screen_center.y + SCOPE_VERTICAL_LIMIT < limit_bottom
+	_scope_arrows.set_arrow_visible(Vector2.UP, can_move_up)
+	_scope_arrows.set_arrow_visible(Vector2.DOWN, can_move_down)
+	
+	if input.y < 0 and can_move_up: move_direction.y = -1
+	elif input.y > 0 and can_move_down: move_direction.y = 1
+	
+	# Horizontal
+	var can_move_left := _base_offset.x > -CAM_LIMIT and screen_center.x - SCOPE_HORIZONTAL_LIMIT > limit_left
+	var can_move_right := _base_offset.x < CAM_LIMIT and screen_center.x + SCOPE_HORIZONTAL_LIMIT < limit_right
+	_scope_arrows.set_arrow_visible(Vector2.LEFT, can_move_left)
+	_scope_arrows.set_arrow_visible(Vector2.RIGHT, can_move_right)
+	
+	if input.x < 0 and can_move_left: move_direction.x = -1
+	elif input.x > 0 and can_move_right: move_direction.x = 1
+	
+	_base_offset += move_direction * SCOPE_MOVE_SPEED
 
-func move_camera(position: Vector2, time):
-	$Tween.interpolate_property(self,"global_position",
-		get_camera_screen_center(), position, time,
-		Tween.TRANS_SINE, Tween.EASE_OUT)
-	$Tween.start()
-	yield($Tween,"tween_completed")
+func _input(_event: InputEvent):
+	_scope_arrows.handle_input_events()
 
-func move_offset(offset_x,offset_y, time):
-	var new_pos = global_position + Vector2(offset_x, offset_y)
-	if new_pos.y - 90 < limit_top and offset_y < 0:
-		if global_position.y - 90 > limit_top:
-			offset_y = limit_top - global_position.x - 90
-		else:
-			offset_y = 0
-	if new_pos.y + 90 > limit_bottom and offset_y > 0:
-		if global_position.y + 160 < limit_bottom:
-			offset_y =  limit_bottom - global_position.y - 90
-		else:
-			offset_y = 0
-	if new_pos.x - 160 < limit_left and offset_x < 0:
-		if global_position.x - 160 > limit_left:
-			offset_x = limit_left - global_position.x - 160
-		else:
-			offset_x = 0
-	if new_pos.x + 160 > limit_right and offset_x > 0:
-		if global_position.x + 160 < limit_right:
-			offset_x =  limit_right - global_position.x - 160
-		else:
-			offset_x = 0
-	$Tween.interpolate_property(self,"offset",
-		offset, Vector2(offset_x,offset_y), time,
-		Tween.TRANS_SINE, Tween.EASE_OUT)
-	current_offset = offset
-	$Tween.start()
+func _on_player_pause():
+	_scope_arrows.hide()
 
-func return_camera(time = 1):
-	$Tween.stop_all()
-	$Tween.interpolate_property(self,"position",
-		position, camarea_offset, time,
-		Tween.TRANS_SINE, Tween.EASE_OUT)
-	
-	$Tween.start()
-	
-	yield($Tween,"tween_completed")
-	
-	position = camarea_offset
+func move_camera(pos: Vector2, time: float, trans_type = Tween.TRANS_SINE, ease_type = Tween.EASE_OUT):
+	if tween and tween.is_running(): tween.kill()
+	if time > 0.0:
+		print("screen center: " + str(get_camera_screen_center()))
+		tween = create_tween()
+		yield(tween.tween_property(self, "global_position", pos, time) \
+				.from(get_camera_screen_center()).set_trans(trans_type).set_ease(ease_type), "finished")
+	else:
+		global_position = pos
 
-func return_offset(time = 1):
-	$Tween.stop_all()
-	$Tween.interpolate_property(self,"offset",
-		offset, Vector2.ZERO, time,
-		Tween.TRANS_SINE, Tween.EASE_OUT)
+func move_offset(target_offset: Vector2, time: float):
+	if tween and tween.is_running(): tween.kill()
 	
-	$Tween.start()
+	var camera_pos = get_camera_screen_center()
+	var clamped_offset_x = clamp(target_offset.x, limit_left - camera_pos.x, limit_right - camera_pos.x)
+	var clamped_offset_y = clamp(target_offset.y, limit_top - camera_pos.y, limit_bottom - camera_pos.y)
+	var final_offset = Vector2(clamped_offset_x, clamped_offset_y)
 	
-	$Tween.interpolate_property(self,"position",
-		position, camarea_offset, time,
-		Tween.TRANS_SINE, Tween.EASE_OUT)
+	tween = create_tween()
+	tween.tween_property(self, "_base_offset", final_offset, time) \
+			.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+
+func return_camera(time := 1.0):
+	if tween: tween.kill()
+	tween = create_tween()
+	yield(tween.tween_property(self, "position", _camarea_offset, time) \
+			.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT), "finished")
 	
-	$Tween.start()
+	position = _camarea_offset
+
+func return_offset(time := 1.0):
+	if tween: tween.kill()
+	tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "_base_offset", Vector2.ZERO, time)
+	tween.parallel().tween_property(self, "position", _camarea_offset, time)
+	yield(tween, "finished")
 	
-	yield($Tween,"tween_completed")
-	
-	position = camarea_offset
-	offset = Vector2.ZERO
-	current_offset = get_offset_with_camerea_offset()
+	position = _camarea_offset
+	_base_offset = Vector2.ZERO
 
 func set_camarea_offset(off: Vector2):
-	camarea_offset = off
-	position = camarea_offset
+	_camarea_offset = off
+	position = _camarea_offset
 
-func get_offset_with_camerea_offset():
-	return position + camarea_offset
+func get_offset_with_camerea_offset() -> Vector2:
+	return position + _camarea_offset
 
 func reset():
-	position = Vector2.ZERO
-	offset = Vector2.ZERO
+	for i in [position, _base_offset, _shake_offset]:
+		i = Vector2.ZERO
 
+func shake_camera(magnitude := 1.0, length := 1.0, direction := Vector2.ONE, interval := SHAKE_STEP_TIME, lerp_weight := 0.5, diminish := true):
+	if _scope_arrows.visible: return
+	
+	_shaking = true
+	
+	var shaker = Shaker.new(self, "_shake_offset")\
+	.set_shake_direction(direction)\
+	.set_shake_magnitude(magnitude)\
+	.set_shake_length(length)\
+	.set_shake_interval(interval)\
+	.set_shake_weight(lerp_weight)\
+	.set_shake_diminish(diminish).start()
+	
+	yield(shaker, "finished_shake")
+	
+	var final_tween = create_tween()
+	final_tween.tween_property(self, "_shake_offset", Vector2.ZERO, 0.1)
+	yield(final_tween, "finished")
+	yield(get_tree(), "idle_frame")
+	_shaking = false
+	emit_signal("stopped_shaking")
 
-
-func shake_camera(magnitude = 1.0, time = 1.0, direction = Vector2.ONE):
-	if !$Tween.is_active():
-		var old_offset = current_offset
-		var shake = magnitude
-		shaking = true
-		if shake < 1.0:
-			shake = 1.0
-		if time < 0.2:
-			time = 0.2
-		for i in int(time / .02):
-			if !global.queuedBattle and !global.inBattle and global.persistPlayer.state != global.persistPlayer.CAMERA:
-				var new_offset = Vector2.ZERO
-				if abs(shake) > 1:
-					shake = shake * -1
-					magnitude = magnitude * -1
-				else:
-					if shake < 0.5:
-						shake = 1.0
-					else:
-						shake = 0.0
-				new_offset = Vector2(shake, shake) * direction
-				#offset = new_offset
-				$Tween.interpolate_property(self, "offset",
-					offset, new_offset, 0.02, 
-					Tween.TRANS_QUART, Tween.EASE_OUT)
-				$Tween.start()
-				yield(get_tree().create_timer(.02), "timeout")
-				if abs(shake) > 1:
-					shake -= magnitude / int(time / .02)
-				
-		offset = old_offset
-		shaking = false
-		emit_signal("stoped_shaking")
+func is_shaking() -> bool:
+	return _shaking
 
 func set_current():
 	limit_bottom = global.currentCamera.limit_bottom

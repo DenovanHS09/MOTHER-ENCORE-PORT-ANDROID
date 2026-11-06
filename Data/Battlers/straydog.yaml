@@ -5,7 +5,7 @@ maxhp: 84
 hp: 84
 maxpp: 0
 pp: 0
-offense: 14
+offense: 13
 defense: 20
 speed: 5
 iq: 2
@@ -13,9 +13,14 @@ guts: 0
 level: 5
 exp: 8
 cash: 20
+items:
+  - chance: 40
+    item: FleaBag
 skills:
-- skill: bash
-  weight: 1
+  - skill: bite
+    weight: 2
+  - skill: bash
+    weight: 1
 boss: false
 sprite: stray dog
 music: Flippant Foe.mp3
@@ -27,3 +32,8 @@ ov:
   acceleration: 900
   friction: 900
   walkFrequency: 2
+affinity_multipliers:
+  fire: 2
+  ice: 2
+  sleeping: 2
+  blinded: 2

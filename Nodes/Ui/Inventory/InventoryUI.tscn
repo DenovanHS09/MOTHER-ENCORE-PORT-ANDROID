@@ -366,119 +366,119 @@ custom_constants/hseparation = 25
 columns = 2
 
 [node name="Item1" parent="Inventory/CenterContainer/Items/GridContainer" instance=ExtResource( 3 )]
-margin_right = 98.0
-rect_min_size = Vector2( 98, 12 )
+margin_right = 100.0
+rect_min_size = Vector2( 100, 12 )
 text = "Bread"
 
 [node name="Item2" parent="Inventory/CenterContainer/Items/GridContainer" instance=ExtResource( 3 )]
-margin_left = 123.0
-margin_right = 221.0
-rect_min_size = Vector2( 98, 12 )
+margin_left = 125.0
+margin_right = 225.0
+rect_min_size = Vector2( 100, 12 )
 text = "Bread"
 
 [node name="Item3" parent="Inventory/CenterContainer/Items/GridContainer" instance=ExtResource( 3 )]
 margin_top = 12.0
-margin_right = 98.0
+margin_right = 100.0
 margin_bottom = 24.0
-rect_min_size = Vector2( 98, 12 )
+rect_min_size = Vector2( 100, 12 )
 text = "Bread"
 
 [node name="Item4" parent="Inventory/CenterContainer/Items/GridContainer" instance=ExtResource( 3 )]
-margin_left = 123.0
+margin_left = 125.0
 margin_top = 12.0
-margin_right = 221.0
+margin_right = 225.0
 margin_bottom = 24.0
-rect_min_size = Vector2( 98, 12 )
+rect_min_size = Vector2( 100, 12 )
 text = "Bread"
 
 [node name="Item5" parent="Inventory/CenterContainer/Items/GridContainer" instance=ExtResource( 3 )]
 margin_top = 24.0
-margin_right = 98.0
+margin_right = 100.0
 margin_bottom = 36.0
-rect_min_size = Vector2( 98, 12 )
+rect_min_size = Vector2( 100, 12 )
 text = "Bread"
 
 [node name="Item6" parent="Inventory/CenterContainer/Items/GridContainer" instance=ExtResource( 3 )]
-margin_left = 123.0
+margin_left = 125.0
 margin_top = 24.0
-margin_right = 221.0
+margin_right = 225.0
 margin_bottom = 36.0
-rect_min_size = Vector2( 98, 12 )
+rect_min_size = Vector2( 100, 12 )
 text = "Bread"
 
 [node name="Item7" parent="Inventory/CenterContainer/Items/GridContainer" instance=ExtResource( 3 )]
 margin_top = 36.0
-margin_right = 98.0
+margin_right = 100.0
 margin_bottom = 48.0
-rect_min_size = Vector2( 98, 12 )
+rect_min_size = Vector2( 100, 12 )
 text = "Bread"
 
 [node name="Item8" parent="Inventory/CenterContainer/Items/GridContainer" instance=ExtResource( 3 )]
-margin_left = 123.0
+margin_left = 125.0
 margin_top = 36.0
-margin_right = 221.0
+margin_right = 225.0
 margin_bottom = 48.0
-rect_min_size = Vector2( 98, 12 )
+rect_min_size = Vector2( 100, 12 )
 text = "Bread"
 
 [node name="Item9" parent="Inventory/CenterContainer/Items/GridContainer" instance=ExtResource( 3 )]
 margin_top = 48.0
-margin_right = 98.0
+margin_right = 100.0
 margin_bottom = 60.0
-rect_min_size = Vector2( 98, 12 )
+rect_min_size = Vector2( 100, 12 )
 text = "Bread"
 
 [node name="Item10" parent="Inventory/CenterContainer/Items/GridContainer" instance=ExtResource( 3 )]
-margin_left = 123.0
+margin_left = 125.0
 margin_top = 48.0
-margin_right = 221.0
+margin_right = 225.0
 margin_bottom = 60.0
-rect_min_size = Vector2( 98, 12 )
+rect_min_size = Vector2( 100, 12 )
 text = "Bread"
 
 [node name="Item11" parent="Inventory/CenterContainer/Items/GridContainer" instance=ExtResource( 3 )]
 margin_top = 60.0
-margin_right = 98.0
+margin_right = 100.0
 margin_bottom = 72.0
-rect_min_size = Vector2( 98, 12 )
+rect_min_size = Vector2( 100, 12 )
 text = "Bread"
 
 [node name="Item12" parent="Inventory/CenterContainer/Items/GridContainer" instance=ExtResource( 3 )]
-margin_left = 123.0
+margin_left = 125.0
 margin_top = 60.0
-margin_right = 221.0
+margin_right = 225.0
 margin_bottom = 72.0
-rect_min_size = Vector2( 98, 12 )
+rect_min_size = Vector2( 100, 12 )
 text = "Bread"
 
 [node name="Item13" parent="Inventory/CenterContainer/Items/GridContainer" instance=ExtResource( 3 )]
 margin_top = 72.0
-margin_right = 98.0
+margin_right = 100.0
 margin_bottom = 84.0
-rect_min_size = Vector2( 98, 12 )
+rect_min_size = Vector2( 100, 12 )
 text = "Bread"
 
 [node name="Item14" parent="Inventory/CenterContainer/Items/GridContainer" instance=ExtResource( 3 )]
-margin_left = 123.0
+margin_left = 125.0
 margin_top = 72.0
-margin_right = 221.0
+margin_right = 225.0
 margin_bottom = 84.0
-rect_min_size = Vector2( 98, 12 )
+rect_min_size = Vector2( 100, 12 )
 text = "Bread"
 
 [node name="Item15" parent="Inventory/CenterContainer/Items/GridContainer" instance=ExtResource( 3 )]
 margin_top = 84.0
-margin_right = 98.0
+margin_right = 100.0
 margin_bottom = 96.0
-rect_min_size = Vector2( 98, 12 )
+rect_min_size = Vector2( 100, 12 )
 text = "Bread"
 
 [node name="Item16" parent="Inventory/CenterContainer/Items/GridContainer" instance=ExtResource( 3 )]
-margin_left = 123.0
+margin_left = 125.0
 margin_top = 84.0
-margin_right = 221.0
+margin_right = 225.0
 margin_bottom = 96.0
-rect_min_size = Vector2( 98, 12 )
+rect_min_size = Vector2( 100, 12 )
 text = "Bread"
 
 [node name="Arrow" parent="Inventory" instance=ExtResource( 24 )]
@@ -494,15 +494,6 @@ cancel_on = true
 
 [node name="Position2D" type="Position2D" parent="Inventory/Arrow"]
 position = Vector2( 9, 9 )
-
-[node name="ColorRect" type="ColorRect" parent="Inventory/Arrow"]
-show_behind_parent = true
-margin_left = -4.0
-margin_top = -4.0
-margin_right = 5.0
-margin_bottom = 4.0
-color = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
-script = ExtResource( 11 )
 
 [node name="DescriptionPanel" parent="Inventory" instance=ExtResource( 4 )]
 anchor_right = 1.0
@@ -554,14 +545,14 @@ grow_vertical = 0
 alignment = 2
 
 [node name="Label" type="Label" parent="Inventory/HBoxContainer"]
-margin_right = 159.0
+margin_right = 139.0
 margin_bottom = 11.0
 custom_fonts/font = ExtResource( 8 )
 text = "INVENTORY_DESCRIPTION"
 
 [node name="Button" parent="Inventory/HBoxContainer" instance=ExtResource( 9 )]
-margin_left = 163.0
-margin_right = 171.0
+margin_left = 143.0
+margin_right = 151.0
 key = "ui_scope"
 
 [node name="InventorySelect" parent="." instance=ExtResource( 5 )]
@@ -580,11 +571,11 @@ margin_top = 42.0
 margin_right = 112.0
 margin_bottom = 112.0
 script = ExtResource( 12 )
-drop_label = NodePath("MarginContainer/VBoxContainer/DropLabel")
-give_label = NodePath("MarginContainer/VBoxContainer/GiveLabel")
-sort_label = NodePath("MarginContainer/VBoxContainer/SortLabel")
-action_one_label = NodePath("MarginContainer/VBoxContainer/ActionOneLabel")
-action_two_label = NodePath("MarginContainer/VBoxContainer/ActionTwoLabel")
+_drop_label = NodePath("MarginContainer/VBoxContainer/DropLabel")
+_give_label = NodePath("MarginContainer/VBoxContainer/GiveLabel")
+_sort_label = NodePath("MarginContainer/VBoxContainer/SortLabel")
+_action_one_label = NodePath("MarginContainer/VBoxContainer/ActionOneLabel")
+_action_two_label = NodePath("MarginContainer/VBoxContainer/ActionTwoLabel")
 
 [node name="MarginContainer" type="PanelContainer" parent="ActionSelect"]
 material = ExtResource( 10 )
@@ -653,6 +644,7 @@ highlight = true
 move_sfx = true
 select_sfx = true
 cancel_sfx = true
+cancel_on = true
 reset_on_show = false
 
 [node name="TargetCharaSelect" type="NinePatchRect" parent="ActionSelect"]
@@ -723,6 +715,7 @@ text = "lloyd"
 position = Vector2( 8, 20 )
 menu_parent_path = NodePath("../MarginContainer/VBoxContainer")
 cursor_offset = Vector2( -6, 1 )
+consume_input_events = true
 loop_around = true
 skip_hidden_items = true
 highlight = true
@@ -730,6 +723,7 @@ move_sfx = true
 select_sfx = true
 cancel_sfx = true
 cancel_on = true
+reset_on_show = false
 
 [node name="ConfirmationSelect" type="NinePatchRect" parent="ActionSelect/TargetCharaSelect"]
 visible = false
@@ -792,6 +786,7 @@ text = "MENU_NO"
 position = Vector2( 8, 20 )
 menu_parent_path = NodePath("../MarginContainer/VBoxContainer")
 cursor_offset = Vector2( -6, 1 )
+consume_input_events = true
 loop_around = true
 skip_hidden_items = true
 highlight = true
@@ -799,8 +794,6 @@ move_sfx = true
 select_sfx = true
 cancel_sfx = true
 cancel_on = true
-
-[node name="Tween" type="Tween" parent="ActionSelect/TargetCharaSelect"]
 
 [node name="ConfirmationSelect" type="NinePatchRect" parent="ActionSelect"]
 material = ExtResource( 10 )
@@ -862,6 +855,7 @@ text = "MENU_NO"
 position = Vector2( 8, 20 )
 menu_parent_path = NodePath("../MarginContainer/VBoxContainer")
 cursor_offset = Vector2( -6, 1 )
+consume_input_events = true
 loop_around = true
 skip_hidden_items = true
 highlight = true
@@ -922,6 +916,7 @@ text = "INVENTORY_ACTION_SORT_AUTO"
 position = Vector2( 80, 10 )
 menu_parent_path = NodePath("../MarginContainer/VBoxContainer")
 cursor_offset = Vector2( -6, 1 )
+consume_input_events = true
 loop_around = true
 skip_hidden_items = true
 highlight = true
@@ -929,8 +924,6 @@ move_sfx = true
 select_sfx = true
 cancel_sfx = true
 cancel_on = true
-
-[node name="Tween" type="Tween" parent="ActionSelect"]
 
 [node name="Bottom" type="Control" parent="."]
 anchor_top = 1.0
@@ -963,7 +956,7 @@ custom_fonts/font = ExtResource( 17 )
 text = "Ninten Recovered 30 HP AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 align = 1
 valign = 1
-autowrap = true
+clip_text = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Bottom/DialogBox"]
 anims/Close = SubResource( 9 )
@@ -1011,8 +1004,9 @@ custom_constants/separation = 1
 alignment = 2
 
 [node name="HP" type="Label" parent="Bottom/StatsBar/StatsNameAndDividers"]
+margin_left = 87.0
 margin_top = 3.0
-margin_right = 56.0
+margin_right = 137.0
 margin_bottom = 14.0
 grow_horizontal = 0
 rect_min_size = Vector2( 27, 8 )
@@ -1023,9 +1017,9 @@ text = "MENU_HP"
 align = 2
 
 [node name="Divider1" type="ColorRect" parent="Bottom/StatsBar/StatsNameAndDividers"]
-margin_left = 57.0
+margin_left = 138.0
 margin_top = 6.0
-margin_right = 58.0
+margin_right = 139.0
 margin_bottom = 14.0
 rect_min_size = Vector2( 1, 8 )
 rect_pivot_offset = Vector2( -82, -3 )
@@ -1033,9 +1027,9 @@ size_flags_vertical = 8
 color = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
 
 [node name="PP" type="Label" parent="Bottom/StatsBar/StatsNameAndDividers"]
-margin_left = 59.0
+margin_left = 140.0
 margin_top = 3.0
-margin_right = 115.0
+margin_right = 190.0
 margin_bottom = 14.0
 grow_horizontal = 0
 rect_min_size = Vector2( 27, 8 )
@@ -1046,9 +1040,9 @@ text = "MENU_PP"
 align = 2
 
 [node name="Divider2" type="ColorRect" parent="Bottom/StatsBar/StatsNameAndDividers"]
-margin_left = 116.0
+margin_left = 191.0
 margin_top = 6.0
-margin_right = 117.0
+margin_right = 192.0
 margin_bottom = 14.0
 rect_min_size = Vector2( 1, 8 )
 rect_pivot_offset = Vector2( -82, -3 )
@@ -1056,9 +1050,9 @@ size_flags_vertical = 8
 color = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
 
 [node name="OFE" type="Label" parent="Bottom/StatsBar/StatsNameAndDividers"]
-margin_left = 118.0
+margin_left = 193.0
 margin_top = 3.0
-margin_right = 253.0
+margin_right = 311.0
 margin_bottom = 14.0
 grow_horizontal = 0
 rect_min_size = Vector2( 27, 8 )
@@ -1069,9 +1063,9 @@ text = "STAT_SHORT_OFFENSE"
 align = 2
 
 [node name="Divider3" type="ColorRect" parent="Bottom/StatsBar/StatsNameAndDividers"]
-margin_left = 254.0
+margin_left = 312.0
 margin_top = 6.0
-margin_right = 255.0
+margin_right = 313.0
 margin_bottom = 14.0
 rect_min_size = Vector2( 1, 8 )
 rect_pivot_offset = Vector2( -82, -3 )
@@ -1082,9 +1076,9 @@ __meta__ = {
 }
 
 [node name="DEF" type="Label" parent="Bottom/StatsBar/StatsNameAndDividers"]
-margin_left = 256.0
+margin_left = 314.0
 margin_top = 3.0
-margin_right = 391.0
+margin_right = 432.0
 margin_bottom = 14.0
 grow_horizontal = 0
 rect_min_size = Vector2( 27, 8 )
@@ -1095,9 +1089,9 @@ text = "STAT_SHORT_DEFENSE"
 align = 2
 
 [node name="Divider4" type="ColorRect" parent="Bottom/StatsBar/StatsNameAndDividers"]
-margin_left = 392.0
+margin_left = 433.0
 margin_top = 6.0
-margin_right = 393.0
+margin_right = 434.0
 margin_bottom = 14.0
 rect_min_size = Vector2( 1, 8 )
 rect_pivot_offset = Vector2( -82, -3 )
@@ -1105,9 +1099,9 @@ size_flags_vertical = 8
 color = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
 
 [node name="SPD" type="Label" parent="Bottom/StatsBar/StatsNameAndDividers"]
-margin_left = 394.0
+margin_left = 435.0
 margin_top = 3.0
-margin_right = 515.0
+margin_right = 541.0
 margin_bottom = 14.0
 grow_horizontal = 0
 rect_min_size = Vector2( 27, 8 )
@@ -1118,9 +1112,9 @@ text = "STAT_SHORT_SPEED"
 align = 2
 
 [node name="Divider5" type="ColorRect" parent="Bottom/StatsBar/StatsNameAndDividers"]
-margin_left = 516.0
+margin_left = 542.0
 margin_top = 6.0
-margin_right = 517.0
+margin_right = 543.0
 margin_bottom = 14.0
 rect_min_size = Vector2( 1, 8 )
 rect_pivot_offset = Vector2( -82, -3 )
@@ -1128,9 +1122,9 @@ size_flags_vertical = 8
 color = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
 
 [node name="IQ" type="Label" parent="Bottom/StatsBar/StatsNameAndDividers"]
-margin_left = 518.0
+margin_left = 544.0
 margin_top = 3.0
-margin_right = 617.0
+margin_right = 631.0
 margin_bottom = 14.0
 grow_horizontal = 0
 rect_min_size = Vector2( 27, 8 )
@@ -1141,9 +1135,9 @@ text = "STAT_SHORT_IQ"
 align = 2
 
 [node name="Divider6" type="ColorRect" parent="Bottom/StatsBar/StatsNameAndDividers"]
-margin_left = 618.0
+margin_left = 632.0
 margin_top = 6.0
-margin_right = 619.0
+margin_right = 633.0
 margin_bottom = 14.0
 rect_min_size = Vector2( 1, 8 )
 rect_pivot_offset = Vector2( -82, -3 )
@@ -1152,7 +1146,7 @@ color = Color( 0.0784314, 0.0666667, 0.0901961, 1 )
 script = ExtResource( 11 )
 
 [node name="GUT" type="Label" parent="Bottom/StatsBar/StatsNameAndDividers"]
-margin_left = 620.0
+margin_left = 634.0
 margin_top = 3.0
 margin_right = 735.0
 margin_bottom = 14.0
@@ -1312,26 +1306,39 @@ anims/RESET = SubResource( 5 )
 [connection signal="character_changed" from="InventorySelect" to="." method="_on_InventorySelect_character_changed"]
 [connection signal="action_selected" from="ActionSelect" to="." method="_update_party_infos"]
 [connection signal="back" from="ActionSelect" to="." method="_on_ActionSelect_back"]
-[connection signal="exit" from="ActionSelect" to="." method="_on_ActionSelect_exit"]
+[connection signal="exit_with_dialog" from="ActionSelect" to="." method="_on_ActionSelect_exit_with_dialog"]
+[connection signal="exit_with_item" from="ActionSelect" to="." method="_on_ActionSelect_exit_with_item"]
 [connection signal="hide_statsbar" from="ActionSelect" to="." method="_on_ActionSelect_hide_statsbar"]
 [connection signal="show_dialogbox" from="ActionSelect" to="." method="_on_ActionSelect_show_dialogbox"]
 [connection signal="show_statsbar" from="ActionSelect" to="." method="_on_ActionSelect_show_statsbar"]
 [connection signal="sort_mode_selected" from="ActionSelect" to="." method="_on_ActionSelect_sortmode"]
 [connection signal="swap_mode_selected" from="ActionSelect" to="." method="_on_ActionSelect_swapmode"]
+[connection signal="update_dialogbox" from="ActionSelect" to="." method="_on_ActionSelect_update_dialogbox"]
 [connection signal="visibility_changed" from="ActionSelect" to="ActionSelect" method="_on_ActionSelect_visibility_changed"]
+[connection signal="cancel" from="ActionSelect/arrow" to="ActionSelect" method="_on_arrow_cancel"]
 [connection signal="selected" from="ActionSelect/arrow" to="ActionSelect" method="_on_arrow_selected"]
 [connection signal="back" from="ActionSelect/TargetCharaSelect" to="ActionSelect" method="_on_TargetCharaSelect_back"]
 [connection signal="hide_statsbar" from="ActionSelect/TargetCharaSelect" to="." method="_on_TargetCharaSelect_hide_statsbar"]
 [connection signal="show_dialogbox" from="ActionSelect/TargetCharaSelect" to="." method="_on_ActionSelect_show_dialogbox"]
 [connection signal="show_statsbar" from="ActionSelect/TargetCharaSelect" to="." method="_on_ActionSelect_show_statsbar"]
+[connection signal="update_dialogbox" from="ActionSelect/TargetCharaSelect" to="." method="_on_ActionSelect_update_dialogbox"]
 [connection signal="resized" from="ActionSelect/TargetCharaSelect/MarginContainer/VBoxContainer" to="ActionSelect/TargetCharaSelect" method="_on_VBoxContainer_resized"]
+[connection signal="cancel" from="ActionSelect/TargetCharaSelect/arrow" to="ActionSelect/TargetCharaSelect" method="_on_arrow_cancel"]
+[connection signal="moved" from="ActionSelect/TargetCharaSelect/arrow" to="ActionSelect/TargetCharaSelect" method="_on_arrow_moved"]
+[connection signal="selected" from="ActionSelect/TargetCharaSelect/arrow" to="ActionSelect/TargetCharaSelect" method="_on_arrow_selected"]
 [connection signal="back" from="ActionSelect/TargetCharaSelect/ConfirmationSelect" to="ActionSelect" method="_on_ConfirmationSelect_back"]
 [connection signal="back" from="ActionSelect/TargetCharaSelect/ConfirmationSelect" to="ActionSelect/TargetCharaSelect" method="_on_ConfirmationSelect_back"]
 [connection signal="resized" from="ActionSelect/TargetCharaSelect/ConfirmationSelect/TitleMarginContainer/ConfirmationLabel" to="ActionSelect/TargetCharaSelect/ConfirmationSelect" method="_on_content_resized"]
+[connection signal="cancel" from="ActionSelect/TargetCharaSelect/ConfirmationSelect/arrow" to="ActionSelect/TargetCharaSelect/ConfirmationSelect" method="_on_arrow_cancel"]
+[connection signal="selected" from="ActionSelect/TargetCharaSelect/ConfirmationSelect/arrow" to="ActionSelect/TargetCharaSelect/ConfirmationSelect" method="_on_arrow_selected"]
 [connection signal="back" from="ActionSelect/ConfirmationSelect" to="ActionSelect" method="_on_ConfirmationSelect_back"]
 [connection signal="visibility_changed" from="ActionSelect/ConfirmationSelect" to="ActionSelect" method="_on_ConfirmationSelect_visibility_changed"]
 [connection signal="resized" from="ActionSelect/ConfirmationSelect/TitleMarginContainer/ConfirmationLabel" to="ActionSelect/ConfirmationSelect" method="_on_content_resized"]
+[connection signal="cancel" from="ActionSelect/ConfirmationSelect/arrow" to="ActionSelect/ConfirmationSelect" method="_on_arrow_cancel"]
+[connection signal="selected" from="ActionSelect/ConfirmationSelect/arrow" to="ActionSelect/ConfirmationSelect" method="_on_arrow_selected"]
 [connection signal="back" from="ActionSelect/SortTypeSelect" to="ActionSelect" method="_on_ConfirmationSelect_back"]
 [connection signal="visibility_changed" from="ActionSelect/SortTypeSelect" to="ActionSelect" method="_on_SortTypeSelect_visibility_changed"]
 [connection signal="resized" from="ActionSelect/SortTypeSelect/MarginContainer/VBoxContainer" to="ActionSelect/SortTypeSelect" method="_on_VBoxContainer_resized"]
+[connection signal="cancel" from="ActionSelect/SortTypeSelect/arrow" to="ActionSelect/SortTypeSelect" method="_on_arrow_cancel"]
+[connection signal="selected" from="ActionSelect/SortTypeSelect/arrow" to="ActionSelect/SortTypeSelect" method="_on_arrow_selected"]
 [connection signal="back" from="Bottom/DialogBox" to="." method="_on_DialogBox_back"]

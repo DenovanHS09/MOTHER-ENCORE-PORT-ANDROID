@@ -1,0 +1,141 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Nodes/Ui/OcarinaScreen/MelodyAnim.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Shaders/Distortionator.shader" type="Shader" id=2]
+[ext_resource path="res://Graphics/UI/melody bg.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/Cutscenes/QueenMaryMelodiesExposition.gd" type="Script" id=4]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 2 )
+shader_param/opacity = 1.0
+shader_param/blending = 0
+shader_param/screen_size = Vector2( 320, 180 )
+shader_param/move = Vector2( 0, -1 )
+shader_param/ping_pong_speed = Vector2( 0, 0 )
+shader_param/oscillation_amplitude = Vector2( 0, 0.5 )
+shader_param/oscillation_frequency = Vector2( 0, 2 )
+shader_param/oscillation_speed = Vector2( 0, 2 )
+shader_param/osc_amp_ping_pong = Vector2( 0, 0 )
+shader_param/osc_trans_ping_pong = Vector2( 0, 2 )
+shader_param/compression_amplitude = Vector2( 0, 0 )
+shader_param/compression_frequency = Vector2( 0, 0 )
+shader_param/compression_speed = Vector2( 0, 0 )
+shader_param/comp_amp_ping_pong = Vector2( 0, 0 )
+shader_param/comp_trans_ping_pong = Vector2( 0, 0 )
+shader_param/interlaced_amplitude = Vector2( 0, 0 )
+shader_param/interlaced_frequency = Vector2( 0, 0 )
+shader_param/interlaced_speed = Vector2( 0, 0 )
+shader_param/inter_amp_ping_pong = Vector2( 0, 0 )
+shader_param/inter_trans_ping_pong = Vector2( 0, 0 )
+shader_param/palette_shifting_speed = 1.0
+shader_param/palette_shifting = false
+shader_param/palette_anim_frame_count = null
+shader_param/barrel = false
+shader_param/effect = 1.0
+shader_param/effect_scale = 2.0
+shader_param/barrelxy = Vector2( 1, 1 )
+
+[node name="QueenMaryMelodiesExposition" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+_melodies = [ NodePath("VBoxContainer/HBoxContainer/MelodyAnim"), NodePath("VBoxContainer/HBoxContainer/MelodyAnim2"), NodePath("VBoxContainer/HBoxContainer/MelodyAnim3"), NodePath("VBoxContainer/HBoxContainer/MelodyAnim4"), NodePath("VBoxContainer/HBoxContainer2/MelodyAnim5"), NodePath("VBoxContainer/HBoxContainer2/MelodyAnim6"), NodePath("VBoxContainer/HBoxContainer2/MelodyAnim7"), NodePath("VBoxContainer/HBoxContainer2/MelodyAnim8") ]
+
+[node name="BG" type="TextureRect" parent="."]
+modulate = Color( 0.43791, 0.564971, 0.942638, 1 )
+material = SubResource( 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -44.0
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 24.0
+margin_right = 320.0
+margin_bottom = 66.0
+alignment = 1
+
+[node name="MelodyAnim" parent="VBoxContainer/HBoxContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 68.0
+margin_right = 111.0
+margin_bottom = 42.0
+_melody_number = 1
+_color = Color( 1, 0.266667, 0.556863, 1 )
+
+[node name="MelodyAnim2" parent="VBoxContainer/HBoxContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 115.0
+margin_right = 158.0
+margin_bottom = 42.0
+_melody_number = 2
+_color = Color( 1, 0.847059, 0.156863, 1 )
+
+[node name="MelodyAnim3" parent="VBoxContainer/HBoxContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 162.0
+margin_right = 205.0
+margin_bottom = 42.0
+_melody_number = 3
+_color = Color( 0.556863, 0.168627, 0.372549, 1 )
+
+[node name="MelodyAnim4" parent="VBoxContainer/HBoxContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 209.0
+margin_right = 252.0
+margin_bottom = 42.0
+_melody_number = 4
+_color = Color( 0.435294, 0.266667, 0.760784, 1 )
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 70.0
+margin_right = 320.0
+margin_bottom = 112.0
+alignment = 1
+
+[node name="MelodyAnim5" parent="VBoxContainer/HBoxContainer2" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 68.0
+margin_right = 111.0
+margin_bottom = 42.0
+_melody_number = 5
+_color = Color( 0.160784, 0.588235, 0.2, 1 )
+
+[node name="MelodyAnim6" parent="VBoxContainer/HBoxContainer2" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 115.0
+margin_right = 158.0
+margin_bottom = 42.0
+_melody_number = 6
+_color = Color( 0.933333, 0.313726, 0.0941176, 1 )
+
+[node name="MelodyAnim7" parent="VBoxContainer/HBoxContainer2" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 162.0
+margin_right = 205.0
+margin_bottom = 42.0
+_melody_number = 7
+_color = Color( 0.847059, 0.113725, 0.188235, 1 )
+
+[node name="MelodyAnim8" parent="VBoxContainer/HBoxContainer2" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 209.0
+margin_right = 252.0
+margin_bottom = 42.0
+_melody_number = 8
+_color = Color( 0.0431373, 0.486275, 0.607843, 1 )

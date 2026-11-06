@@ -17,7 +17,7 @@ func init(skill, cursor):
 	name = skill.name
 	_skill_name = skill.name
 	_name_label.text = skill.name
-	_name_label.modulate = Color.darkgray
+	_name_label.modulate = uiManager.get_flavor_color(3)
 	
 	#reset levels
 	for i in _box.get_child_count():
@@ -26,15 +26,15 @@ func init(skill, cursor):
 		node.hide()
 	
 	if !"level" in skill:
-		addLevel(0)
+		add_level(0)
 	else:
-		addLevel(skill.level, false)
+		add_level(skill.level, false)
 
-func addLevel(level: int, selectable: bool = true):
+func add_level(level: int, selectable: bool = true):
 	_levels[level] = selectable
 	_refresh_nodes()
 
-func addLevels(levels: Array):
+func add_levels(levels: Array): # Unused
 	for level in levels:
 		_levels[level] = true
 	_refresh_nodes()
@@ -52,21 +52,18 @@ func _refresh_nodes():
 			node.modulate = Color.white
 			_name_label.modulate = Color.white
 		else:
-			node.modulate = Color.darkgray
-
+			node.modulate = uiManager.get_flavor_color(3)
+	
 	if is_inside_tree():
 		force_update_transform()
 
-func get_hbox():
+func get_hbox() -> HBoxContainer:
 	return _box
 
-func get_skill_name():
+func get_skill_name() -> String:
 	return _skill_name
 
-func get_selected_level():
+func get_selected_level() -> int:
 	var level_values = _levels.keys()
 	level_values.sort()
-	if _cursor and _cursor.cursor_index < _levels.size():
-		return level_values[_cursor.cursor_index]
-	else:
-		return -1
+	return level_values[_cursor.cursor_index] if _cursor and _cursor.cursor_index < _levels.size() else -1

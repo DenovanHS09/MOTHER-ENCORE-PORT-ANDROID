@@ -5,18 +5,9 @@ article: BASEBALLCAP_ART
 keyitem: false
 cost: 60
 value: 30
-usable:
-  ninten: true
-  ana: false
-  lloyd: false
-  teddy: false
-  pippi: false
-action_one:
-  name: INVENTORY_ACTION_EQUIP
-  nametwo: INVENTORY_ACTION_UNEQUIP
-  function: equip
-action_two: null
-battle_action: ''
+can_use: [ ninten ]
+actions:
+  - function: equip
 transform: ''
 slot: other
 HPrecover: 0

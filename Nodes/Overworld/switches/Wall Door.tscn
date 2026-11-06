@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Graphics/Objects/Wall Door.png" type="Texture" id=1]
+[ext_resource path="res://Graphics/Objects/Catacombs/Wall Door.png" type="Texture" id=1]
 [ext_resource path="res://Audio/Sound effects/Stone_move.mp3" type="AudioStream" id=2]
 [ext_resource path="res://Scripts/misc/wall door.gd" type="Script" id=3]
 
@@ -57,10 +57,10 @@ tracks/3/keys = {
 "times": PoolRealArray( 0.498, 1.245 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
-"args": [ 0.4 ],
+"args": [ 0.5 ],
 "method": "_shake"
 }, {
-"args": [ 0.7 ],
+"args": [ 1.0 ],
 "method": "_shake"
 } ]
 }

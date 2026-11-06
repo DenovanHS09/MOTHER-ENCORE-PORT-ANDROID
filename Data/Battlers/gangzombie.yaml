@@ -14,17 +14,17 @@ level: 6
 exp: 20
 cash: 32
 items:
-- chance: 70
-  item: Hamburger
+  - chance: 70
+    item: Hamburger
 skills:
-- skill: punch
-  weight: 4
-- skill: poisonBite
-  weight: 2
-- skill: mysteriousAction
-  weight: 1
-- skill: hystericalLaugh
-  weight: 1
+  - skill: punch
+    weight: 4
+  - skill: poisonBite
+    weight: 2
+  - skill: mysteriousAction
+    weight: 1
+  - skill: hystericalLaugh
+    weight: 1
 boss: false
 sprite: gang zombie
 music: Retro Enemy.mp3
@@ -32,3 +32,8 @@ bg: gangzombie
 ov:
   sprite: GangZombieOV
   anim: BasicEnemy
+affinity_multipliers:
+  fire: 2
+  pkFlash: 5
+  sleeping: 2
+  blinded: 2

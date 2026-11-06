@@ -1,129 +1,149 @@
 extends BattleMenuBox
 
-export (NodePath) var infoBox
+export (NodePath) var _info_box
 
-onready var animationPlayer = $AnimationPlayer
-onready var scrollbar = $Scrollbar
+const ITEM_PAGE_SIZE_X := 2
+const ITEM_PAGE_SIZE_Y := 5
 
-const itemPageSize = Vector2(2, 5)
-var itemPageYOffset = 0
-var itemList = []
+onready var _anim_player: AnimationPlayer = $AnimationPlayer
+onready var _scrollbar: EncoreScrollBar = $Scrollbar
 
+var _item_page_y_offset := 0
+var _item_list := []
+
+var _user: BattleParticipant
 
 func _ready():
-	infoBox = get_node_or_null(infoBox)
+	_info_box = get_node_or_null(_info_box)
 	cursor.connect("failed_move", self, "_box_boundary_moved")
-	scrollbar.nb_visible_rows = itemPageSize.y
+	_scrollbar.nb_visible_rows = ITEM_PAGE_SIZE_Y
 	global.connect("locale_changed", self, "_update_info_box")
 
-func enter(reset = false, _action = null):
+func enter(reset := false, _action = null):
 	.enter(reset, _action)
-	animationPlayer.play("Open")
-	scrollbar.on = true
+	_anim_player.play("Open")
+	_scrollbar.on = true
+	_user = action.user
 	if reset:
-		itemList.clear()
-		itemList.append_array(InventoryManager.getInventory(action.user.stats.name))
+		_item_list.clear()
+		_item_list.append_array(_user.character.inv.get_items())
 		cursor.set_cursor_from_index(0, false)
-		itemPageYOffset = 0
-		scrollbar.position = itemPageYOffset
+		_item_page_y_offset = 0
+		_scrollbar.position = _item_page_y_offset
 		_update_items(0)
 		_update_info_box()
-	if infoBox != null and !itemList.empty():
-		infoBox.activate()
+	if _info_box and !_item_list.empty():
+		_info_box.activate()
 
 func hide():
-	if visible:
-		animationPlayer.play("Close")
+	if visible: _anim_player.play("Close")
 	.hide()
-	scrollbar.on = false
-	if infoBox != null:
-		infoBox.deactivate()
+	_scrollbar.on = false
+	if _info_box: _info_box.deactivate()
 
-func move(dir):
-	if itemList.size() - 1 < cursor.cursor_index + itemPageYOffset * itemPageSize.x:
-		cursor.cursor_index = itemList.size() - itemPageYOffset * itemPageSize.x - 1
+func _move(dir: Vector2):
+	var page_start: int = _item_page_y_offset * ITEM_PAGE_SIZE_X
+	var item_idx: int = page_start + cursor.cursor_index
+	if _item_list.size() - 1 < item_idx:
+		cursor.cursor_index = _item_list.size() - page_start - 1
 		cursor.set_cursor_from_index(cursor.cursor_index)
-	if !itemList.empty() and dir != Vector2.ZERO:
-		var itemIdx = cursor.cursor_index + itemPageYOffset * itemPageSize.x
-		# if we move to skill that doesn't exist, move back
-		if itemIdx > itemList.size() - 1:
-			cursor.set_cursor_from_index((int(itemList.size()) % int(itemPageSize.x)) - 1, false)
+	if !_item_list.empty() and dir != Vector2.ZERO:
+		item_idx = page_start + cursor.cursor_index
+		if item_idx > _item_list.size() - 1:
+			cursor.set_cursor_from_index(max(0, (_item_list.size() - page_start) % ITEM_PAGE_SIZE_X - 1), false)
 		_update_info_box()
 
-func select(idx):
-	var i = idx + itemPageYOffset * itemPageSize.x
-	if !globaldata.items.has(itemList[i].ItemName) or \
-	   !_does_it_do_anything(globaldata.items[itemList[i].ItemName]):
-		cursor.play_sfx("back")
-		return
-	action.item = globaldata.items[itemList[i].ItemName]
-	action.inv_idx = i
-	emit_signal("next")
+func _select(idx: int):
+	var i := idx + _item_page_y_offset * ITEM_PAGE_SIZE_X
+	if !globaldata.does_item_exist(_item_list[i].item_name) or !_can_be_selected(_item_list[i]):
+		cursor.play_sfx("restricted")
+	else:
+		cursor.play_sfx("cursor2")
+		action.item = _item_list[i]
+		action.inv_idx = i
+		emit_signal("next")
 
-func _update_items(yOffset):
-	itemPageYOffset = yOffset
-	var itemsOnPage = itemList.slice(itemPageYOffset * itemPageSize.x, itemPageYOffset * itemPageSize.x + itemPageSize.x * itemPageSize.y)
-	for itemLabel in $GridContainer.get_children():
-		if itemsOnPage.empty():
-			itemLabel.text = ""
-			itemLabel.show_equiped(false)
+func _update_items(y_offset: int):
+	var total_rows := int(ceil(float(_item_list.size()) / float(ITEM_PAGE_SIZE_X)))
+	var max_row_offset := max(0, total_rows - ITEM_PAGE_SIZE_Y)
+	_item_page_y_offset = int(clamp(y_offset, 0, max_row_offset))
+	var page_start := _item_page_y_offset * ITEM_PAGE_SIZE_X
+	var page_end := page_start + ITEM_PAGE_SIZE_X * ITEM_PAGE_SIZE_Y
+	var items_on_page = _item_list.slice(page_start, page_end)
+	for item_label in $GridContainer.get_children():
+		if items_on_page.empty():
+			item_label.text = ""
+			item_label.show_equipped(false)
 		else:
-			var item = itemsOnPage.pop_front()
-			itemLabel.text = globaldata.items[item.ItemName].name
-			if _does_it_do_anything(globaldata.items[item.ItemName]):
-				itemLabel.set_self_modulate(Color.white)
-			else:
-				itemLabel.set_self_modulate(Color("bfb4cd"))
-			itemLabel.show_equiped(item.equiped)
-#	# update max cursor loc
-#	maxCursorLoc = itemPageSize - Vector2(1, 1)
-	move(Vector2.ZERO)
-	scrollbar.nb_rows = ceil(itemList.size() / itemPageSize.x)
+			var item = items_on_page.pop_front()
+			item_label.text = TextTools.replace_text(item.get_data()["name"])
+			item_label.set_self_modulate(Color.white if _can_be_selected(item) else uiManager.get_flavor_color(3))
+			item_label.show_equipped(item.equipped)
+	_move(Vector2.ZERO)
+	_scrollbar.nb_rows = total_rows
 
-func _box_boundary_moved(dir):
+func _box_boundary_moved(dir: Vector2):
+	var total_items: int = _item_list.size()
+	var max_index: int = total_items - 1
+	
+	var total_rows: int = ceil(float(total_items) / float(ITEM_PAGE_SIZE_X)) as int
+	var max_row_offset: int = max(0, total_rows - ITEM_PAGE_SIZE_Y) as int
+	var current_global_index: int = _item_page_y_offset * ITEM_PAGE_SIZE_X + cursor.cursor_index
+	var row: int = current_global_index / ITEM_PAGE_SIZE_X
+	var col: int = current_global_index % ITEM_PAGE_SIZE_X
+	var target_global_index: int = current_global_index
+	
 	if dir.y != 0:
-		if cursor.cursor_index + (dir.y * itemPageSize.x) < 0:
-			cursor.play_sfx("cursor1")
-			if itemPageYOffset > 0:
-				_update_items(itemPageYOffset - 1)
-			else:
-				if itemList.size() > itemPageSize.x * itemPageSize.y:
-					_update_items(ceil(itemList.size() / itemPageSize.x) - itemPageSize.y)
-				var xPos = posmod(cursor.cursor_index, int(itemPageSize.x))
-				var yPos = ceil((itemList.size() - xPos) / itemPageSize.x) - 1
-				cursor.set_cursor_from_index((yPos - itemPageYOffset) * itemPageSize.x + xPos, false)
-		elif cursor.cursor_index + (dir.y * itemPageSize.x) >= min(itemPageSize.x * itemPageSize.y, itemList.size() - itemPageYOffset * itemPageSize.x):
-			cursor.play_sfx("cursor1")
-			if (itemPageYOffset + itemPageSize.y) * itemPageSize.x < itemList.size():
-				_update_items(itemPageYOffset + 1)
-			else:
-				_update_items(0)
-				cursor.set_cursor_from_index(posmod(cursor.cursor_index, int(itemPageSize.x)), false)
-		scrollbar.position = itemPageYOffset
-	if dir.x != 0:
+		row += int(dir.y)
+		if row < 0:
+			row = total_rows - 1
+		elif row >= total_rows:
+			row = 0
+		var last_valid_col: int = min(ITEM_PAGE_SIZE_X - 1, total_items - 1 - (row * ITEM_PAGE_SIZE_X)) as int
+		col = clamp(col, 0, last_valid_col) as int
+		target_global_index = (row * ITEM_PAGE_SIZE_X) + col
+	elif dir.x != 0:
+		col += int(dir.x)
+		if col < 0:
+			col = ITEM_PAGE_SIZE_X - 1
+		elif col >= ITEM_PAGE_SIZE_X:
+			col = 0
+		var row_start: int = row * ITEM_PAGE_SIZE_X
+		var target_item_index: int = row_start + col
+		if total_items % ITEM_PAGE_SIZE_X != 0 and row == total_rows - 1 and current_global_index % ITEM_PAGE_SIZE_X == 0 and target_item_index >= total_items:
+			target_global_index = max(0, max_index - 1) as int
+		else:
+			var last_valid_col: int = min(ITEM_PAGE_SIZE_X - 1, total_items - 1 - row_start) as int
+			col = clamp(col, 0, last_valid_col) as int
+			target_global_index = row_start + col
+	
+	_item_page_y_offset = row if row < _item_page_y_offset else row - (ITEM_PAGE_SIZE_Y - 1) if row > _item_page_y_offset + ITEM_PAGE_SIZE_Y - 1 \
+			else int(clamp(_item_page_y_offset, 0, max_row_offset))
+	
+	var page_start: int = _item_page_y_offset * ITEM_PAGE_SIZE_X
+	var visible_count: int = min(ITEM_PAGE_SIZE_Y * ITEM_PAGE_SIZE_X, total_items - page_start) as int
+	var local_index: int = clamp(target_global_index - page_start, 0, max(0, visible_count - 1)) as int
+	
+	if current_global_index != target_global_index:
 		cursor.play_sfx("cursor1")
-		var xPos = posmod(int(cursor.cursor_index + dir.x), int(itemPageSize.x))
-		var yPos = floor(cursor.cursor_index / itemPageSize.x)
-		cursor.set_cursor_from_index(yPos * itemPageSize.x + xPos, false)
+	cursor.set_cursor_from_index(local_index, false)
+	_update_items(_item_page_y_offset)
+	_scrollbar.position = _item_page_y_offset
 	_update_info_box()
 
 func _update_info_box():
-	if visible and infoBox != null:
-		if cursor.cursor_index in range(itemList.size()):
-			var item = itemList[cursor.cursor_index + itemPageYOffset * 2]
-			if !globaldata.items.has(item.ItemName):
+	if visible and _info_box:
+		var item_idx: int = cursor.cursor_index + _item_page_y_offset * ITEM_PAGE_SIZE_X
+		if item_idx >= 0 and item_idx < _item_list.size():
+			var item = _item_list[item_idx]
+			if !globaldata.does_item_exist(item.item_name):
 				return
-			infoBox.update_item(item)
+			_info_box.update_item(item)
 		else:
-			infoBox.update_item(null)
+			_info_box.update_item(null)
 
-func _does_it_do_anything(itemData):
-	if (itemData.HPrecover != 0 and itemData.boost["maxhp"] == 0) or (itemData.PPrecover != 0 and itemData.boost["maxpp"] == 0) or \
-	   ("status_heals" in itemData and !itemData.status_heals.empty()) or\
-	   ("battle_action" in itemData and itemData.battle_action != ""):
-		return true
-	else:
-		return false
+func _can_be_selected(item: Item) -> bool:
+	return item.is_battle_usable() and _user.character.can_use_item(item)
 
-func _on_Arrow_moved(dir):
+func _on_Arrow_moved(_dir: Vector2):
 	_update_info_box()

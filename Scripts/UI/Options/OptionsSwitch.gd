@@ -1,4 +1,5 @@
 extends Control
+class_name OptionsSwitch
 
 export var highlighted = false setget _set_highlighted
 export var text = "" setget _set_text
@@ -14,26 +15,26 @@ func _set_highlighted(val):
 	_refresh()
 
 func _set_text(val):
-	$Label.text = val
+	$HBox/Label.text = val
 	text = val
 
 func _refresh():
 	if highlighted:
-		if not $ArrowLMargin/ArrowL.playing:
-			$ArrowLMargin/ArrowL.playing = true
-			$ArrowLMargin/ArrowL.frame = 1
-		if not $ArrowRMargin/ArrowR.playing:
-			$ArrowRMargin/ArrowR.playing = true
-			$ArrowRMargin/ArrowR.frame = 1
+		if not $HBox/ArrowLMargin/ArrowL.playing:
+			$HBox/ArrowLMargin/ArrowL.playing = true
+			$HBox/ArrowLMargin/ArrowL.frame = 1
+		if not $HBox/ArrowRMargin/ArrowR.playing:
+			$HBox/ArrowRMargin/ArrowR.playing = true
+			$HBox/ArrowRMargin/ArrowR.frame = 1
 	else:
-		$ArrowLMargin/ArrowL.playing = false
-		$ArrowRMargin/ArrowR.playing = false
-		$ArrowLMargin/ArrowL.frame = 0
-		$ArrowRMargin/ArrowR.frame = 0
+		$HBox/ArrowLMargin/ArrowL.playing = false
+		$HBox/ArrowRMargin/ArrowR.playing = false
+		$HBox/ArrowLMargin/ArrowL.frame = 0
+		$HBox/ArrowRMargin/ArrowR.frame = 0
 
-	if TranslationServer.get_locale() in ["ko", "ja"]:
-		$ArrowLMargin/ArrowL.offset.y = 1
-		$ArrowRMargin/ArrowR.offset.y = 1
+	if tr("LANGUAGE_CODE") in ["ko", "ja", "zh_Hans_CN"]:
+		$HBox/ArrowLMargin/ArrowL.offset.y = 1
+		$HBox/ArrowRMargin/ArrowR.offset.y = 1
 	else:
-		$ArrowLMargin/ArrowL.offset.y = 0
-		$ArrowRMargin/ArrowR.offset.y = 0
+		$HBox/ArrowLMargin/ArrowL.offset.y = 0
+		$HBox/ArrowRMargin/ArrowR.offset.y = 0

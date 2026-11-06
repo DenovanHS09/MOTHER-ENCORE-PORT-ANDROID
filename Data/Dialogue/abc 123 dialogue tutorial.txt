@@ -1,4 +1,4 @@
-this will be updated regularly when we add more stuff to the system, text should be a json file and look smth like this
+this will be updated regularly when we add more stuff to the system, text should be a yaml file and look smth like this
 '0':
 	type: normal
 	text: Hello World!
@@ -15,7 +15,7 @@ Adult
 Kid
 Robot
 Strange
-Sexy
+Female
 Shy
 ============
 
@@ -36,7 +36,7 @@ you can make the screen shake by adding "shake" and then the magnitude being
 'medium'
 'big'
 
-theres "emoteplayer" and "emotenpc", these will summon emote bubble boxes on top of an npc or a player, current reaction list is (the list will be updated too when we add more options):
+theres "playeremote" and "talkeremote", these will summon emote bubble boxes on top of an npc or a player, current reaction list is (the list will be updated too when we add more options):
 ============
 'dot'
 'surprise'
@@ -44,7 +44,7 @@ theres "emoteplayer" and "emotenpc", these will summon emote bubble boxes on top
 'question'
 'heart'
 ============
-thats it folks, also remember to follow json and dictonary rules by having , at the end of things, heres an example of where to put the,
+thats it folks, also remember to follow yaml and dictonary rules 
 ===============
 '0':
 	name: Ben
@@ -59,12 +59,11 @@ thats it folks, also remember to follow json and dictonary rules by having , at 
 	font: EBZ
 	sound: Blip
 	text: "@ Whats your opinion on Dialog boxes?"
-	emotenpc: question
+	talkeremote: question
 	options:
-		Yes:
-			goto: '2'
-		No:
-			goto: '3'
+		Yes: '2'
+		No: '3'
+		cancel: '3'
 '2':
 	name: Ben
 	type: normal
@@ -76,7 +75,7 @@ thats it folks, also remember to follow json and dictonary rules by having , at 
 	type: normal
 	font: EBZ
 	sound: Blip
-	emoteplayer: shock
+	playeremote: shock
 	text: "@ Fuck you go get stuck in an infinite text loop"
 	goto: '0'
 	commands:

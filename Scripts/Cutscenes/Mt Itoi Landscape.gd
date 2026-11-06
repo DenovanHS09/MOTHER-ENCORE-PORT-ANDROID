@@ -1,102 +1,93 @@
 extends Control
 
-var currentText = 0
-var finished = true
-var t = 0
-var textSpeed = 0.08
-# LOCALIZATION Use of csv keys for story text ("The year is 1988. Outside Podunk", etc.)
-var text = [
+var current_text: int = 0
+var finished := true
+var t: float = 0
+var text_speed := 0.08
+var text := [
 	"INTRO_CUTSCENE_NOW_01", 
 	"INTRO_CUTSCENE_NOW_02"
 ]
 
-onready var dialogueLabel = $Text/HBoxContainer/ScrollingText
+onready var dialogue_label = $Text/HBoxContainer/ScrollingText
 
 func _ready():
-	global.persistPlayer.pause()
+	global.get_player().pause()
 	reset_text()
 	$Timer.connect("timeout", self, "set_process", [true])
 	yield (get_tree().create_timer(0.8), "timeout")
 	$AnimationPlayer.play("Introduction")
 	$Blackbars.toggle(true)
 
-func _process(delta):
+func _process(delta: float):
 	if !finished:
-		var spacelessTest = _get_spaceless_text(dialogueLabel.text)
+		var spaceless_test = _get_spaceless_text(dialogue_label.text)
 		t += delta
-		if t > textSpeed:
-			dialogueLabel.visible_characters += 1
+		if t > text_speed:
+			dialogue_label.visible_characters += 1
 			t = 0
 			if $AudioStreamPlayer.stream != null:
 				$AudioStreamPlayer.set_pitch_scale(rand_range(0.85,1.0))
 				$AudioStreamPlayer.play()
-			if _get_last_visible_character(dialogueLabel) in tr("INTRO_CUTSCENE_PUNCTUATION") and dialogueLabel.visible_characters < len(spacelessTest):
+			if _get_last_visible_character(dialogue_label) in tr("INTRO_CUTSCENE_PUNCTUATION") and dialogue_label.visible_characters < len(spaceless_test):
 				$Timer.start()
 				set_process(false)
-		if dialogueLabel.visible_characters >= len(spacelessTest):
+		if dialogue_label.visible_characters >= len(spaceless_test):
 			finished = true
-			dialogueLabel.visible_characters = len(spacelessTest)
+			dialogue_label.visible_characters = len(spaceless_test)
 			t = 0
 			$Timer.start()
 			set_process(false)
-	else:
-		# LOCALIZATION Code added: If the last text has finished appearing, we're calling hide_text
-		# (Not from the animation because text length may vary between languages)
-		if currentText == text.size():
-			hide_text()
+	elif current_text == text.size():
+		hide_text()
 
-
-func _physics_process(delta):
-	if Input.is_action_just_pressed("ui_select") and $AnimationPlayer.is_playing():
+func _input(event: InputEvent):
+	if event.is_action_pressed("ui_select") and $AnimationPlayer.is_playing():
 		$AnimationPlayer.stop()
 		Input.action_release("ui_select")
 		finish_intro()
 
-func _get_last_visible_character(label):
+func _get_last_visible_character(label: Label):
 	var spaceless_text = _get_spaceless_text(label.text)
 	return spaceless_text[min(label.visible_characters, spaceless_text.length()) - 1]
 
-func _get_spaceless_text(string):
+func _get_spaceless_text(string: String):
 	return string.replace(" ", "").replace("\n", "")
 
 func hide_text():
-	$Tween.interpolate_property(dialogueLabel, "rect_position:y",
-		dialogueLabel.rect_position.y, -36, 0.5,
-		Tween.TRANS_LINEAR,Tween.EASE_OUT)
-	$Tween.start()
+	var tween = create_tween()
+	tween.tween_property(dialogue_label, "rect_position:y", -36, 0.5).set_ease(Tween.EASE_OUT)
+	tween.connect("finished", self, "_on_tween_completed", [], CONNECT_ONESHOT)
 
 func reset_text():
-	dialogueLabel.text = ""
-	dialogueLabel.visible_characters = 0
-	dialogueLabel.rect_position.y = 0
+	dialogue_label.text = ""
+	dialogue_label.visible_characters = 0
+	dialogue_label.rect_position.y = 0
 	finished = true
 
 func next_text():
 	reset_text()
 	set_process(true)
-	if dialogueLabel.text != "":
-		dialogueLabel.text += "\n"
-	# LOCALIZATION Code change: Added tr() for direct access to the translated string
-	# (to handle string length and punctuation timing in _process())
-	var currentTextStr = tr(text[currentText])
-	dialogueLabel.text += currentTextStr
+	if dialogue_label.text != "":
+		dialogue_label.text += "\n"
+	
+	var current_text_str = tr(text[current_text])
+	dialogue_label.text += current_text_str
 	finished = false
-	currentText += 1
+	current_text += 1
 
-func play_sound(sound, name):
-	audioManager.play_sfx(load(sound), name)
+func play_sound(sound: String, node_name: String):
+	audioManager.play_sfx(load(sound), node_name)
 
-func stop_sound(name):
-	if audioManager.get_sfx(name) != null:
-		audioManager.get_sfx(name).stop()
+func stop_sound(node_name: String):
+	if audioManager.get_sfx(node_name) != null:
+		audioManager.get_sfx(node_name).stop()
 
 func finish_intro():
 	stop_sound("teleport")
 	$Objects/Door.enter()
 	global.start_playtime()
 
-# LOCALIZATION Code added: The finish is handled differently because text length may vary
-func _on_Tween_tween_completed(object, key):
-	if currentText == text.size(): # If last text
+func _on_tween_completed():
+	if current_text == text.size(): # If last text
 		finish_intro()
-

@@ -5,18 +5,9 @@ article: BATPLASTIC_ART
 keyitem: false
 cost: 100
 value: 50
-usable:
-  ninten: true
-  ana: false
-  lloyd: false
-  teddy: false
-  pippi: true
-action_one:
-  name: INVENTORY_ACTION_EQUIP
-  nametwo: INVENTORY_ACTION_UNEQUIP
-  function: equip
-action_two: null
-battle_action: ''
+can_use: [ ninten, pippi ]
+actions:
+  - function: equip
 basic_skill: attack_bat
 transform: ''
 slot: weapon

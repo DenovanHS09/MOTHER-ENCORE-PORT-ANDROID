@@ -11,5 +11,5 @@ dest_files=[ "res://.import/Dangerous Foe.mp3-6e79bbef8729a725c061e72575928a5e.m
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0

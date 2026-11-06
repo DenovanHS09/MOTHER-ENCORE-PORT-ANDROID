@@ -14,6 +14,7 @@ void fragment()
 }"
 
 [sub_resource type="ShaderMaterial" id=8]
+resource_local_to_scene = true
 shader = SubResource( 7 )
 shader_param/color = Color( 1, 1, 1, 1 )
 shader_param/multiplier = 0.5

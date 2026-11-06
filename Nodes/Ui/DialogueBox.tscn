@@ -110,7 +110,7 @@ tracks/0/keys = {
 
 [node name="Dialogue" type="CanvasLayer"]
 pause_mode = 2
-layer = 3
+layer = 4
 script = ExtResource( 4 )
 
 [node name="Dialoguebox" type="NinePatchRect" parent="."]
@@ -302,8 +302,6 @@ bus = "SFX"
 [node name="InputSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 bus = "SFX"
-
-[node name="Tween" type="Tween" parent="."]
 
 [node name="WaitTimer" type="Timer" parent="."]
 one_shot = true

@@ -2,82 +2,113 @@ tool
 
 extends Node2D
 
-export (String, "Objects", "NPCs") var type = "Objects"
-export (String, "ui_accept") var key = "ui_accept"
-export var offset = Vector2.ZERO
-export var enabled = true
-var hidden = false
+export (String, "Objects", "NPCs") var type := "Objects"
+export (String, "ui_accept") var key := "ui_accept"
+export var offset := Vector2.ZERO
+export var enabled := true
+
+var _force_show := false
+var _force_hide := false
+
+var _player_nearby := false
+var _hidden := false
+
+var _pressing_button := false
 
 func _ready():
-	reset_scale()
+	_reset_scale()
 	if !Engine.is_editor_hint():
 		hide()
-		hidden = true
+		_hidden = true
 		set_process(false)
-		set_key_name()
-		global.persistPlayer.connect("event_detector_entered", self, "check_show")
-		global.persistPlayer.connect("event_detector_exited", self, "check_hide")
-	global.connect("inputs_changed", self, "set_key_name")
-	global.connect("locale_changed", self, "set_key_name")
+		_set_key_name()
+		global.get_player().connect("event_detector_entered", self, "_on_player_nearby", [true])
+		global.get_player().connect("event_detector_exited", self, "_on_player_nearby", [false])
+		
+		global.connect("inputs_changed", self, "_set_key_name")
+		global.connect("locale_changed", self, "_set_key_name")
+		global.get_player().connect("paused", self, "_on_player_toggle_pause")
+		global.get_player().connect("unpaused", self, "_on_player_toggle_pause")
 
-func _process(delta):
+func _process(delta: float):
 	position = offset
 	if get_parent().get("scale") != null:
-		reset_scale()
+		_reset_scale()
 
-func check_show(object):
+func set_enabled(value: bool, quick := false):
+	enabled = value
+	_refresh_visibility(quick)
+
+func force_show(quick := false):
+	_force_show = true
+	_force_hide = false
+	_refresh_visibility(quick)
+
+func force_hide(quick := false):
+	_force_hide = true
+	_force_show = false
+	_refresh_visibility(quick)
+
+func unforce_show_hide(quick := false):
+	_force_show = false
+	_force_hide = false
+	_refresh_visibility(quick)
+
+func _on_player_nearby(object, value: bool):
 	if object == get_parent():
-		show_button()
+		_player_nearby = value
+		_refresh_visibility()
 
-func check_hide(object):
-	if object == get_parent():
-		hide_button()
+func _on_player_toggle_pause():
+	_refresh_visibility(true)
 
-func reset_scale():
+func press_button():
+	if _can_show():
+		_hidden = true
+		_pressing_button = true
+		$AnimationPlayer.play("Press")
+		yield($AnimationPlayer,"animation_finished")
+		_pressing_button = false
+		emit_signal("hide")
+
+func _reset_scale():
 	position = offset
 	position.x = position.x / get_parent().scale.x
 	position.y = position.y / get_parent().scale.y
 	scale.x = 1.0 / get_parent().scale.x
 	scale.y = 1.0 / get_parent().scale.y
 
-func set_key_name():
+func _set_key_name():
 	$HBoxContainer/Label.text = TextTools.get_key_name(key)
 
-func show_button(ignoreConditions = false, quick = false):
-	var canShow = false
+func _can_show() -> bool:
+	return globaldata.button_prompts in [type, "Both"] and enabled
+
+func _refresh_visibility(quick := false):
+	if _pressing_button:
+		return
+
+	var should_show: bool = _can_show() and _player_nearby and !global.get_player().is_paused()
+	should_show = (should_show or _force_show) and !_force_hide
 	
-	if type == globaldata.buttonPrompts or globaldata.buttonPrompts == "Both":
-		canShow = true
-	
-	if hidden and ((enabled and canShow and !global.persistPlayer.paused) or ignoreConditions):
-		hidden = false
-		reset_scale()
-		set_key_name()
+	if _hidden and should_show:
+		_hidden = false
+		_reset_scale()
+		_set_key_name()
 		if !quick:
-			#print("show")
 			$AnimationPlayer.play("Show")
 		else:
 			show()
 			$AnimationPlayer.play("Float")
-
-func hide_button(quick = false):
-	if !hidden:
-		hidden = true
+	
+	elif !_hidden and !should_show:
+		_hidden = true
 		if !quick:
-			#print("hide")
 			$AnimationPlayer.play("Hide")
 		else:
 			$AnimationPlayer.stop()
 			hide()
 
-func press_button():
-	if visible:
-		hidden = true
-		$AnimationPlayer.play("Press")
-		yield($AnimationPlayer,"animation_finished")
-		emit_signal("hide")
-
-
-func _on_AnimationPlayer_animation_finished(anim_name):
+func _on_AnimationPlayer_animation_finished(anim_name: String):
 	if anim_name == "Show" and visible:
 		$AnimationPlayer.play("Float")

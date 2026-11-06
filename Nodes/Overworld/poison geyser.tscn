@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Main/Poison Geyser.gd" type="Script" id=1]
-[ext_resource path="res://Graphics/Objects/Poison Geyser.png" type="Texture" id=2]
+[ext_resource path="res://Graphics/Objects/Catacombs/Poison Geyser.png" type="Texture" id=2]
 [ext_resource path="res://Audio/Sound effects/shreksplash.mp3" type="AudioStream" id=3]
 [ext_resource path="res://Audio/Sound effects/shrekblast.mp3" type="AudioStream" id=4]
 

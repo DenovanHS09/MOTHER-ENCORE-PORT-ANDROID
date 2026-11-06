@@ -11,7 +11,7 @@ speed: 8
 iq: 5
 guts: 0
 level: 4
-exp: 10
+exp: 12
 cash: 14
 items:
 - chance: 10
@@ -30,3 +30,7 @@ bg: batty
 ov:
   sprite: MrBattyOV
   anim: BasicEnemy2F
+affinity_multipliers:
+  confused: 2
+  sleeping: 2
+  blinded: 2

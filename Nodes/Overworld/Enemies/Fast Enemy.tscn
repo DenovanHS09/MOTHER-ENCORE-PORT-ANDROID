@@ -22,7 +22,7 @@ length = 0.5
 loop = true
 step = 0.125
 tracks/0/type = "value"
-tracks/0/path = NodePath("main:frame")
+tracks/0/path = NodePath("CharacterSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -51,7 +51,7 @@ length = 0.5
 loop = true
 step = 0.125
 tracks/0/type = "value"
-tracks/0/path = NodePath("main:frame")
+tracks/0/path = NodePath("CharacterSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -80,7 +80,7 @@ length = 0.5
 loop = true
 step = 0.125
 tracks/0/type = "value"
-tracks/0/path = NodePath("main:frame")
+tracks/0/path = NodePath("CharacterSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -109,7 +109,7 @@ length = 0.5
 loop = true
 step = 0.125
 tracks/0/type = "value"
-tracks/0/path = NodePath("main:frame")
+tracks/0/path = NodePath("CharacterSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -137,7 +137,7 @@ tracks/1/keys = {
 length = 0.8
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("main:frame")
+tracks/0/path = NodePath("CharacterSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -165,7 +165,7 @@ tracks/1/keys = {
 length = 0.8
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("main:frame")
+tracks/0/path = NodePath("CharacterSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -193,7 +193,7 @@ tracks/1/keys = {
 length = 0.8
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("main:frame")
+tracks/0/path = NodePath("CharacterSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -221,7 +221,7 @@ tracks/1/keys = {
 length = 0.8
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("main:frame")
+tracks/0/path = NodePath("CharacterSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -248,7 +248,7 @@ tracks/1/keys = {
 [sub_resource type="Animation" id=145]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("main:visible")
+tracks/0/path = NodePath("CharacterSprite:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -260,7 +260,7 @@ tracks/0/keys = {
 "values": [ true ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("main:frame")
+tracks/1/path = NodePath("CharacterSprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -288,7 +288,7 @@ tracks/2/keys = {
 length = 0.166667
 step = 0.0416667
 tracks/0/type = "value"
-tracks/0/path = NodePath("main:material:shader_param/flash_modifier")
+tracks/0/path = NodePath("CharacterSprite:material:shader_param/flash_modifier")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -300,7 +300,7 @@ tracks/0/keys = {
 "values": [ 1.0, 1.0, 0.0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("main:material:shader_param/flash_color")
+tracks/1/path = NodePath("CharacterSprite:material:shader_param/flash_color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -315,7 +315,7 @@ tracks/1/keys = {
 [sub_resource type="Animation" id=154]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("main:material:shader_param/flash_modifier")
+tracks/0/path = NodePath("CharacterSprite:material:shader_param/flash_modifier")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -327,7 +327,7 @@ tracks/0/keys = {
 "values": [ 0.0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("main:material:shader_param/flash_color")
+tracks/1/path = NodePath("CharacterSprite:material:shader_param/flash_color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -339,7 +339,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("main:position")
+tracks/2/path = NodePath("CharacterSprite:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -351,7 +351,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, -7 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("main:scale")
+tracks/3/path = NodePath("CharacterSprite:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -367,7 +367,7 @@ tracks/3/keys = {
 resource_name = "Stun"
 step = 0.0833333
 tracks/0/type = "value"
-tracks/0/path = NodePath("main:position")
+tracks/0/path = NodePath("CharacterSprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -379,7 +379,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, -7 ), Vector2( 1, -7 ), Vector2( 0, -7 ), Vector2( 1, -7 ), Vector2( 0, -7 ), Vector2( 1, -7 ), Vector2( 0, -7 ), Vector2( 1, -7 ), Vector2( 0, -7 ), Vector2( 1, -7 ), Vector2( 0, -7 ), Vector2( 1, -7 ), Vector2( 0, -7 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("main:material:shader_param/flash_modifier")
+tracks/1/path = NodePath("CharacterSprite:material:shader_param/flash_modifier")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -391,7 +391,7 @@ tracks/1/keys = {
 "values": [ 1.0, 1.0, 0.0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("main:material:shader_param/flash_color")
+tracks/2/path = NodePath("CharacterSprite:material:shader_param/flash_color")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -510,7 +510,7 @@ friction = 900
 position = Vector2( 0, 6 )
 texture = ExtResource( 4 )
 
-[node name="main" type="Sprite" parent="."]
+[node name="CharacterSprite" type="Sprite" parent="."]
 material = ExtResource( 6 )
 position = Vector2( 0, -7 )
 texture = ExtResource( 1 )
@@ -518,7 +518,7 @@ hframes = 3
 vframes = 4
 frame = 1
 
-[node name="emotes" parent="main" instance=ExtResource( 3 )]
+[node name="emotes" parent="CharacterSprite" instance=ExtResource( 3 )]
 position = Vector2( 0, -33 )
 
 [node name="Position2D" type="Position2D" parent="."]

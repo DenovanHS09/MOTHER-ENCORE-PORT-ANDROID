@@ -1,5 +1,6 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=45 format=2]
 
+[ext_resource path="res://Shaders/Flash.tres" type="Material" id=1]
 [ext_resource path="res://Nodes/Reusables/Overlap/Hurtbox.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Graphics/Character Sprites/Shadow.png" type="Texture" id=4]
 [ext_resource path="res://Scripts/Main/Basic Enemy.gd" type="Script" id=5]
@@ -160,9 +161,81 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=153]
 length = 0.166667
 step = 0.0416667
+tracks/0/type = "value"
+tracks/0/path = NodePath("CharacterSprite:material:shader_param/flash_modifier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.126, 0.168 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 1.0, 1.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CharacterSprite:material:shader_param/flash_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.042, 0.084, 0.126 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.12549, 0.12549, 0.12549, 1 ), Color( 0.709804, 0.027451, 0.172549, 1 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=154]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("CharacterSprite:material:shader_param/flash_modifier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CharacterSprite:material:shader_param/flash_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CharacterSprite:material:shader_param/glow_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CharacterSprite:material:shader_param/glow_modifier")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
 
 [sub_resource type="Animation" id=155]
 resource_name = "Stun"
@@ -277,7 +350,6 @@ collision_layer = 516
 collision_mask = 512
 collision/safe_margin = 0.4
 script = ExtResource( 5 )
-Return = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 "anims/Idle Down" = SubResource( 129 )
@@ -308,6 +380,7 @@ position = Vector2( 0, 6 )
 texture = ExtResource( 4 )
 
 [node name="CharacterSprite" parent="." instance=ExtResource( 8 )]
+material = ExtResource( 1 )
 position = Vector2( 0, 8 )
 
 [node name="interact" type="Area2D" parent="."]

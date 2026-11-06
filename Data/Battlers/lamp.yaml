@@ -15,7 +15,7 @@ exp: 3
 cash: 5
 skills:
 - skill: tackle
-  weight: 1000
+  weight: 2
 - skill: float
   weight: 1
 boss: false

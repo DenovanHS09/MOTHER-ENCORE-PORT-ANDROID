@@ -1,108 +1,154 @@
 tool
-
 extends Sprite
 
-export (Texture) var sprite setget set_texture 
-export (Vector2) var door_offset = Vector2(0, -32) setget set_offset
-export var sound = ""
-export var end_sound = ""
-export var key = "" #leave null if there's no need for a key item
-export var blocked = false
-export var remove_key = false
-export var flag = ""
-export var one_way = false
+export (Texture) var sprite setget _set_texture 
+export (Vector2) var door_offset = Vector2(0, -32) setget _set_offset
+export (String, "None", "M3/door_open.wav") var sound := "M3/door_open.wav"
+export (String, "None", "Door_Short.mp3") var end_sound := "Door_Short.mp3"
+export (String) var interact_doorblocked = "Reusable/doorblocked"
+export (String) var interact_lockopened = "Reusable/lockopened"
+export (String) var interact_locklocked = "Reusable/locklocked"
+export (String) var key = "" # Leave null if there's no need for a key item
+export (bool) var blocked = false
+export (bool) var locked = false
+export (bool) var remove_key = false
+export (String) var flag = ""
+export (String) var activates_flag = ""
+export (String) var deactivates_flag = ""
+export (bool) var one_way = false
 
-var unlocked = true
-var touching = 0
+var _unlocked := true
 
-func set_texture(tex):
+func _set_texture(tex: Texture):
 	sprite = tex
 	$Sprite.texture = sprite
 
-func set_offset(off):
+func _set_offset(off: Vector2):
 	door_offset = off
+	if Engine.is_editor_hint():
+		_update_positions()
+
+func _update_positions():
 	$Sprite.position = door_offset
-	$Area2D.position.y = door_offset.y + 32
-	$interact.position.y = door_offset.y + 32
-	$StaticBody2D.position.y = door_offset.y + 32
+	for obj in [$Area2D, $interact, $StaticBody2D, $NonPlayerStaticBody2D]:
+		obj.position.y = door_offset.y + 32
 
 func _ready():
-	if !Engine.is_editor_hint():
-		if key != "" or blocked or one_way:
-			lock()
-		else:
-			unlock()
-		if flag != "":
-			if globaldata.flags.has(flag):
-				unlocked = globaldata.flags[flag]
-				$interact/ButtonPrompt.enabled = !globaldata.flags[flag]
-		$AnimationPlayer.play("Normal")
+	if Engine.is_editor_hint():
+		return
+	_update_positions()
+	_update_door_state()
+	global.connect("flags_updated", self, "_update_door_state")
+	$AnimationPlayer.play("Normal")
+
+func _update_door_state():
+	if key or blocked or one_way or locked:
+		lock()
+	else:
+		unlock()
+	if flag and globaldata.flags.has(flag):
+		_unlocked = globaldata.flags[flag]
+		$interact/ButtonPrompt.enabled = !globaldata.flags[flag]
+		
 
 func _on_Area2D_body_entered(body):
-	if touching == 0 and $Timer.time_left == 0 and unlocked == true and $AnimationPlayer.current_animation == "Normal" and !one_way:
+	# "Locked" property logic
+	if locked and flag and globaldata.flags[flag]: 
+		unlock()
+		locked = false
+	if _is_valid_body_in_area() and $Timer.time_left == 0 and _unlocked \
+			and $AnimationPlayer.current_animation == "Normal" and !one_way:
 		open()
-	if blocked and global.persistPlayer.running and global.persistPlayer.direction.y == -1 and !unlocked:
+	
+	if blocked and global.get_player().is_running() and global.get_player().get_direction().y == -1 and !_unlocked:
 		global.currentCamera.shake_camera(1, 0.2, Vector2(2,0))
 		open()
 		unlock()
 		blocked = false
-		if flag != "":
-			if globaldata.flags.has(flag):
-				globaldata.flags[flag] = true
-	touching += 1
+		if flag and globaldata.flags.has(flag):
+			globaldata.flags[flag] = true
 
 func _on_Area2D_body_exited(body):
-	touching -= 1
-	if global.persistPlayer.paused:
+	if global.get_player().is_paused():
 		$AnimationPlayer.play("Normal")
-	elif touching == 0 and unlocked == true:
+	elif !_is_valid_body_in_area(body) and _unlocked:
 		$Timer.start()
 
 func _on_Timer_timeout():
-	if touching == 0:
-		$AnimationPlayer.play("Normal")
-		if end_sound != "" and !global.persistPlayer.paused:
-			$AudioStreamPlayer.stream = load("Audio/Sound effects/" + end_sound)
-			$AudioStreamPlayer.play()
-		if one_way:
-			lock()
-			$AudioStreamPlayer.stream = load("Audio/Sound effects/" + end_sound)
-			$AudioStreamPlayer.play()
+	if _is_valid_body_in_area():
+		return
+	$AnimationPlayer.play("Normal")
+	if end_sound != "None" and !global.get_player().is_paused():
+		close()
+	if one_way: lock(); close()
 
-func open():
+func close() -> void:
+	$AudioStreamPlayer.stream = load("Audio/Sound effects/" + end_sound)
+	$AudioStreamPlayer.play()
+
+func open() -> void:
 	$AnimationPlayer.play("Action")
 	$interact/ButtonPrompt.hide()
 	$interact/ButtonPrompt.enabled = false
-	if sound != "" and !global.persistPlayer.paused:
-		if blocked and !unlocked:
-			$AudioStreamPlayer.stream = load("res://Audio/Sound effects/bash.mp3")
-		else:
-			$AudioStreamPlayer.stream = load("Audio/Sound effects/" + sound)
+	if sound == "None":
+		return
+	if blocked and !_unlocked:
+		$AudioStreamPlayer.stream = load("res://Audio/Sound effects/bash.mp3")
+	else:
+		$AudioStreamPlayer.stream = load("Audio/Sound effects/" + sound)
+	if !global.entering_door:
 		$AudioStreamPlayer.play()
 
-func unlock():
+func unlock() -> void:
 	$StaticBody2D/CollisionShape2D.set_deferred("disabled", true)
 	$interact/ButtonPrompt.enabled = false
-	unlocked = true
+	_unlocked = true
 
-func lock():
+func lock() -> void:
 	$StaticBody2D/CollisionShape2D.set_deferred("disabled", false)
 	$interact/ButtonPrompt.enabled = true
-	unlocked = false
+	_unlocked = false
 
-func interact():
-	if !unlocked:
-		if blocked:
-			global.set_dialog("Reusable/doorblocked")
-		elif InventoryManager.check_item_for_all(key):
-			globaldata.flags[flag] = true
-			open()
-			unlock()
-			if remove_key:
-				InventoryManager.remove_item(key)
-			global.item = InventoryManager.Load_item_data(key)
-			global.set_dialog("Reusable/lockopened")
-		else:
-			global.set_dialog("Reusable/locklocked")
-		uiManager.open_dialogue_box()
-		global.persistPlayer.pause()
+func _use_key(key_item: Item) -> void:
+	globaldata.flags[flag] = true
+	open(); unlock()
+	if remove_key: Inventory.drop_item_from_party(key_item)
+
+func interact() -> void:
+	if _unlocked:
+		return
+	#"Activates Flag" property logic - on interacting with the door, activate a flag
+	if activates_flag and globaldata.flags.has(activates_flag):
+		globaldata.flags[activates_flag] = true
+		global.emit_signal("flags_updated")
+	#"Deactivates Flag" property logic - on interacting with the door, deactivate a flag
+	if deactivates_flag and globaldata.flags.has(deactivates_flag):
+		globaldata.flags[deactivates_flag] = false
+		global.emit_signal("flags_updated")
+	if blocked:
+		uiManager.open_dialogue_box(interact_doorblocked)
+	else:
+		var key_item := Inventory.find_item_for_all(key)
+		if !key_item:
+			uiManager.open_dialogue_box(interact_locklocked)
+			return
+		_use_key(key_item)
+		global.item = key_item
+		uiManager.open_dialogue_box(interact_lockopened)
+
+func interact_item(item: Item) -> void:
+	if _unlocked:
+		return
+	if !item.item_name == key or blocked:
+		uiManager.open_dialogue_box(interact_doorblocked)
+		return
+	_use_key(item)
+	global.item = item
+	uiManager.open_dialogue_box(interact_lockopened)
+
+func _is_valid_body_in_area(exclude_body = null) -> bool:
+	var bodies = $Area2D.get_overlapping_bodies()
+	for body in bodies:
+		if body != exclude_body and body is PartyObject:
+			return true
+	return false

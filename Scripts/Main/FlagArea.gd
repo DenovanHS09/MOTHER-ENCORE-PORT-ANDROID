@@ -9,6 +9,5 @@ func _ready():
 			queue_free()
 
 func _on_Cutscene_Area_body_entered(body):
-	if body == global.persistPlayer:
-		if globaldata.flags.has(flag):
-			globaldata.flags[flag] = value
+	if body == global.get_player():
+		globaldata.set_flag(flag, value)

@@ -9,20 +9,25 @@ messages:
 transmit:
   action:
     action_type: 0
-    skill_type: [ basic, skill ]
+    skill_type: [basic, skill]
   prob: 10
 status_bubble: cold
 effects_by_char:
+  field_party_member:
+    overworld_damage:
+      value: 2
+      variation: 3
+      steps: 16
   any:
     dealt_mod:
       mod: 0.5
       action:
         action_type: 0
-        skill_type: [ basic, skill ]
+        skill_type: [basic, skill]
         damage_type: normal
     dealt_color:
-      color: '00DED6'
+      color: "00DED6"
       action:
         action_type: 0
-        skill_type: [ basic, skill ]
+        skill_type: [basic, skill]
         damage_type: normal

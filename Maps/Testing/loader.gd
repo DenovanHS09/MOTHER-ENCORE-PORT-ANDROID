@@ -20,7 +20,7 @@ func _on_loader_area_entered(area):
 		return
 		
 	#discard initial contact with other areas
-	if area == global.persistPlayer.get_node("Camera2D").get_node("Area2D"):
+	if area == global.get_player().get_node("Camera2D").get_node("Area2D"):
 		goto_scene(room)
 
 func _on_loader_area_exited(area):
@@ -29,7 +29,7 @@ func _on_loader_area_exited(area):
 		return
 		
 	#discard initial contact with other areas
-	if area == global.persistPlayer.get_node("Camera2D").get_node("Area2D"):
+	if area == global.get_player().get_node("Camera2D").get_node("Area2D"):
 		if map != null:
 			map.queue_free()
 			map = null
@@ -76,9 +76,9 @@ func _process(time):
 		set_process(false)
 		return
 	
-	var t = OS.get_ticks_msec()
+	var t = Time.get_ticks_msec()
 	# Use "time_max" to control for how long we block this thread.
-	while OS.get_ticks_msec() < t + 100:
+	while Time.get_ticks_msec() < t + 100:
 	# Poll your loader.
 		var err = loadedRoom.poll()
 		if err == ERR_FILE_EOF: # Finished loading.

@@ -1,18 +1,19 @@
 class_name ItemListMenu
 extends NinePatchRect
 
-onready var cursor = get_node_or_null("arrow")
-onready var lines = $MarginContainer/VBoxContainer.get_children()
+onready var cursor: Cursor = get_node_or_null("arrow")
+onready var lines := $MarginContainer/VBoxContainer.get_children()
 onready var scrollbar = $Scrollbar
 
 export (bool) var _is_resale_price := false
-export var loop_around := false
+export (bool) var loop_around := false
+export (bool) var _scroll_with_x := false
 
 const LINES_PER_PAGE = 6
 
 var page := 0
 
-var item_list := [] setget _set_item_list	# list of InventoryManager.Item
+var item_list := [] setget _set_item_list	# list of Item
 var restriction_func: FuncRef
 
 signal selected(itemIdx)
@@ -29,12 +30,13 @@ func _ready():
 		cursor.connect("failed_select", self, "_on_cursor_failed_select")
 	scrollbar.nb_visible_rows = LINES_PER_PAGE
 
-func _physics_process(delta):
-	if cursor.on and Input.is_action_pressed("ui_toggle"):
+func _input(_event: InputEvent):
+	if cursor.on:
 		var direction = controlsManager.get_controls_vector(true)
-		var page_delta = direction.y * LINES_PER_PAGE
-		if page_delta != 0:
-			_on_cursor_move_by_page(page_delta)
+		var actual_direction = direction.x if direction.x and _scroll_with_x else \
+				direction.y if Input.is_action_pressed("ui_toggle") else 0
+		var page_delta = actual_direction * LINES_PER_PAGE
+		if page_delta: _on_cursor_move_by_page(page_delta)
 
 func enter(reset=true, idx = -1):
 	if idx != -1:
@@ -85,17 +87,14 @@ func scroll_to(pos):
 		set_highlight(cursor.cursor_index)
 	_update_page()
 
-func get_current_item() -> InventoryManager.Item:
+func get_current_item() -> Item:
 	if !item_list.empty():
 		return item_list[cursor.cursor_index + page]
 	else:
 		return null
 
 func get_current_item_id() -> String:
-	if !item_list.empty():
-		return item_list[cursor.cursor_index + page].ItemName
-	else:
-		return ""
+	return get_current_item().item_name if get_current_item() else ""
 
 func _on_arrow_cancel():
 	if cursor.on or (visible and item_list.empty()):
@@ -108,16 +107,16 @@ func _update_page(dir = 0):
 		if i + page >= item_list.size():
 			line.hide()
 		else:
-			var item_instance: InventoryManager.Item = item_list[i + page]
-			var item_id = item_instance.ItemName
-			if !item_id in globaldata.items:
+			var item_instance: Item = item_list[i + page]
+			var item_id = item_instance.item_name
+			if !globaldata.does_item_exist(item_id):
 				line.hide()
 			else:
-				var item = globaldata.items[item_id]
+				var item = globaldata.get_item_data(item_id)
 				line.show()
-				line.get_node("ItemLabel").text = item["name"]
+				line.get_node("ItemLabel").set_text(TextTools.replace_text(item["name"]))
 				if restriction_func != null and restriction_func.call_funcv([item_instance]) == false:
-					line.get_node("ItemLabel").add_color_override("font_color", Color.darkgray)
+					line.get_node("ItemLabel").add_color_override("font_color", uiManager.get_flavor_color(3))
 				else:
 					line.get_node("ItemLabel").add_color_override("font_color", Color.white)
 				if line.has_node("PriceLabel"):
@@ -125,27 +124,25 @@ func _update_page(dir = 0):
 						line.get_node("PriceLabel").text = str(item.value * item_instance.doses)
 					else:
 						line.get_node("PriceLabel").text = str(item.cost)
-				line.get_node("ItemLabel").show_equiped(item_instance.equiped)
+				line.get_node("ItemLabel").show_equipped(item_instance.equipped)
 	scrollbar.position = page
 
 func set_highlight(idx):
 	for i in lines.size():
 		var line = lines[i]
+		var highlight: bool = line.get_node("ItemLabel").get_color("font_color") == Color.white
 		for child in line.get_children():
-			if i == idx:
-				child.highlight(1)
-			else:
-				child.highlight(0)
+			child.highlight(1 if i == idx and highlight else 0)
 
 func _on_cursor_failed_move(dir: Vector2):
 	if dir.y == 0:
 		return
-
+	
 	if dir.y < 0 and dir.y + page < 0:
 		if loop_around:
 			dir.y = 0
 			page = int(max(0, item_list.size() - LINES_PER_PAGE))
-			cursor.set_cursor_from_index(min(LINES_PER_PAGE - 1, item_list.size() - 1))
+			cursor.set_cursor_from_index(int(min(LINES_PER_PAGE - 1, item_list.size() - 1)))
 		else:
 			return
 	elif dir.y > 0 and dir.y + page + LINES_PER_PAGE > item_list.size():
@@ -170,12 +167,19 @@ func _on_cursor_move(dir: Vector2):
 
 func _on_cursor_move_by_page(delta: int):
 	var new_page := page + delta
-	new_page = int(clamp(new_page, 0, item_list.size() - LINES_PER_PAGE))
+	new_page = int(clamp(new_page, 0, max(0, item_list.size() - LINES_PER_PAGE)))
 	if new_page != page and item_list.size() > LINES_PER_PAGE:
 		page = new_page
 		_update_page()
 		cursor.play_sfx("cursor1")
 		emit_signal("moved", cursor.cursor_index + page)
+	elif new_page == page and not item_list.empty():
+		var target_index = 0 if delta < 0 else int(min(LINES_PER_PAGE, item_list.size() - page) - 1)
+		if cursor.cursor_index != target_index:
+			cursor.set_cursor_from_index(target_index)
+			set_highlight(cursor.cursor_index)
+			cursor.play_sfx("cursor1")
+			emit_signal("moved", cursor.cursor_index + page)
 
 func _on_cursor_select(idx):
 	if !cursor.on:

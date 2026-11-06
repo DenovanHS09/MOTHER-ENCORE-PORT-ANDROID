@@ -50,7 +50,7 @@ scenario:
   longest_name: LONGEST_POSSIBLE_FOOD
   prompt: NAME_BIO5
   sprite: Plate
-  target: favoriteFood
+  target: favorite_food
   type: naming
 - char_anims_enter: []
   char_anims_leave: []

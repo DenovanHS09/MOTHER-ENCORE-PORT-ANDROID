@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Graphics/UI/Overworld/flavours/defaultempty.png" type="Texture" id=1]
 [ext_resource path="res://Nodes/Ui/InventorySelect.tscn" type="PackedScene" id=2]
@@ -10,8 +10,7 @@
 [ext_resource path="res://Scripts/UI/colorRectFlavor.gd" type="Script" id=8]
 [ext_resource path="res://Nodes/Ui/Reusables/Scrollbar.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Nodes/Ui/PSISkillLine.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Fonts/BottleRocket.tres" type="DynamicFont" id=11]
-[ext_resource path="res://Graphics/UI/Overworld/flavours/defaultlabel.png" type="Texture" id=12]
+[ext_resource path="res://Nodes/Ui/CostLabel.tscn" type="PackedScene" id=13]
 
 [sub_resource type="StyleBoxTexture" id=1]
 content_margin_left = 0.0
@@ -45,115 +44,6 @@ margin_bottom = 8.0
 VScrollBar/styles/grabber = SubResource( 3 )
 VScrollBar/styles/scroll = SubResource( 4 )
 
-[sub_resource type="Animation" id=6]
-resource_name = "HidePP"
-length = 0.1
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("PP/PPCost:rect_position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.05, 0.1 ),
-"transitions": PoolRealArray( 0.5, -2, 1 ),
-"update": 0,
-"values": [ Vector2( 207, 157 ), Vector2( 207, 167 ), Vector2( 207, 148 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("PP/PPCost:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("PP:show_behind_parent")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.05 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-
-[sub_resource type="Animation" id=7]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("PP/PPCost:rect_position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, 9 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("PP:show_behind_parent")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-
-[sub_resource type="Animation" id=8]
-resource_name = "ShowPP"
-length = 0.1
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("PP/PPCost:rect_position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.05, 0.1 ),
-"transitions": PoolRealArray( 0.5, -2, 1 ),
-"update": 0,
-"values": [ Vector2( 207, 148 ), Vector2( 207, 167 ), Vector2( 207, 157 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("PP/PPCost:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.05 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("PP:show_behind_parent")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.05 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
-
 [node name="SkillsMenuUI" type="PanelContainer"]
 material = ExtResource( 3 )
 anchor_left = 0.5
@@ -162,7 +52,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -127.0
 margin_top = -76.0
-margin_right = 128.0
+margin_right = 129.0
 margin_bottom = 90.0
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 5 )
@@ -171,22 +61,21 @@ tab_view = NodePath("Content/BodyPanel/BodyContentMargin/BodyContent/Tabs")
 scroll_view = NodePath("Content/BodyPanel/BodyContentMargin/BodyContent/SkillsDivMargin/ScrollContainer")
 scroll_bar_view = NodePath("Content/BodyPanel/BodyContentMargin/BodyContent/SkillsDivMargin/Overlay/Scrollbar")
 grid_view = NodePath("Content/BodyPanel/BodyContentMargin/BodyContent/SkillsDivMargin/ScrollContainer/GridMargin/GridContainer")
-description_label = NodePath("Content/BodyPanel/BodyContentMargin/BodyContent/DescriptionDiv/Description")
-pp_cost_view = NodePath("PP/PPCost")
-pp_cost_label = NodePath("PP/PPCost/Value")
+desc_label = NodePath("Content/BodyPanel/BodyContentMargin/BodyContent/DescriptionDiv/Description")
+cost_label = NodePath("Cost/CostLabel")
 tabs_cursor = NodePath("Content/BodyPanel/BodyContentMargin/BodyContent/TabsCursor")
 grid_cursor = NodePath("Content/BodyPanel/BodyContentMargin/BodyContent/SkillsDivMargin/ScrollContainer/GridMargin/GridCursor")
 skill_template = NodePath("Toolbox/SkillItemTemplate")
 psi_template = NodePath("Toolbox/PSIItemTemplate")
 
 [node name="Content" type="VBoxContainer" parent="."]
-margin_right = 255.0
+margin_right = 256.0
 margin_bottom = 166.0
 custom_constants/separation = -4
 
 [node name="InventorySelect" parent="Content" instance=ExtResource( 2 )]
 margin_left = 0.0
-margin_right = 255.0
+margin_right = 256.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 0, 27 )
 playSfx = false
@@ -195,13 +84,13 @@ menuName = "MENU_SKILLS"
 [node name="BodyPanel" type="PanelContainer" parent="Content"]
 material = ExtResource( 3 )
 margin_top = 23.0
-margin_right = 255.0
+margin_right = 256.0
 margin_bottom = 166.0
 size_flags_vertical = 3
 custom_styles/panel = SubResource( 2 )
 
 [node name="BodyContentMargin" type="MarginContainer" parent="Content/BodyPanel"]
-margin_right = 255.0
+margin_right = 256.0
 margin_bottom = 143.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 7
@@ -211,12 +100,12 @@ custom_constants/margin_bottom = 6
 [node name="BodyContent" type="VBoxContainer" parent="Content/BodyPanel/BodyContentMargin"]
 margin_left = 10.0
 margin_top = 7.0
-margin_right = 245.0
+margin_right = 246.0
 margin_bottom = 137.0
 custom_constants/separation = 0
 
 [node name="Tabs" type="HBoxContainer" parent="Content/BodyPanel/BodyContentMargin/BodyContent"]
-margin_right = 235.0
+margin_right = 236.0
 margin_bottom = 12.0
 size_flags_horizontal = 3
 
@@ -230,8 +119,8 @@ text = "SKILLS_FIELD"
 align = 1
 
 [node name="Battle" type="Label" parent="Content/BodyPanel/BodyContentMargin/BodyContent/Tabs"]
-margin_left = 81.0
-margin_right = 152.0
+margin_left = 82.0
+margin_right = 153.0
 margin_bottom = 12.0
 size_flags_horizontal = 6
 custom_fonts/font = ExtResource( 6 )
@@ -239,8 +128,8 @@ text = "SKILLS_BATTLE"
 align = 1
 
 [node name="PSI" type="Label" parent="Content/BodyPanel/BodyContentMargin/BodyContent/Tabs"]
-margin_left = 172.0
-margin_right = 222.0
+margin_left = 173.0
+margin_right = 223.0
 margin_bottom = 12.0
 size_flags_horizontal = 6
 custom_fonts/font = ExtResource( 6 )
@@ -257,7 +146,7 @@ move_sfx = true
 
 [node name="DividerTop" type="ColorRect" parent="Content/BodyPanel/BodyContentMargin/BodyContent"]
 margin_top = 12.0
-margin_right = 235.0
+margin_right = 236.0
 margin_bottom = 13.0
 rect_min_size = Vector2( 94, 1 )
 rect_pivot_offset = Vector2( -82, -3 )
@@ -266,49 +155,49 @@ script = ExtResource( 8 )
 
 [node name="SkillsDivMargin" type="MarginContainer" parent="Content/BodyPanel/BodyContentMargin/BodyContent"]
 margin_top = 13.0
-margin_right = 235.0
-margin_bottom = 83.0
-custom_constants/margin_right = -3
+margin_right = 236.0
+margin_bottom = 97.0
+custom_constants/margin_right = -4
 custom_constants/margin_top = 1
-custom_constants/margin_left = -3
+custom_constants/margin_left = -4
 custom_constants/margin_bottom = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Content/BodyPanel/BodyContentMargin/BodyContent/SkillsDivMargin"]
-margin_left = -3.0
+margin_left = -4.0
 margin_top = 1.0
-margin_right = 238.0
-margin_bottom = 69.0
-rect_min_size = Vector2( 0, 68 )
+margin_right = 240.0
+margin_bottom = 83.0
+rect_min_size = Vector2( 0, 82 )
 size_flags_horizontal = 3
 theme = SubResource( 5 )
 follow_focus = true
 scroll_horizontal_enabled = false
 
 [node name="GridMargin" type="MarginContainer" parent="Content/BodyPanel/BodyContentMargin/BodyContent/SkillsDivMargin/ScrollContainer"]
-margin_right = 241.0
+margin_right = 244.0
 margin_bottom = 26.0
 size_flags_horizontal = 3
-custom_constants/margin_right = 10
+custom_constants/margin_right = 6
 custom_constants/margin_left = 10
 
 [node name="GridContainer" type="GridContainer" parent="Content/BodyPanel/BodyContentMargin/BodyContent/SkillsDivMargin/ScrollContainer/GridMargin"]
 margin_left = 10.0
-margin_right = 231.0
+margin_right = 238.0
 margin_bottom = 26.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/vseparation = 2
-custom_constants/hseparation = 23
+custom_constants/hseparation = 11
 columns = 2
 
 [node name="PSIItem" parent="Content/BodyPanel/BodyContentMargin/BodyContent/SkillsDivMargin/ScrollContainer/GridMargin/GridContainer" instance=ExtResource( 10 )]
-margin_right = 99.0
+margin_right = 109.0
 
 [node name="SkillItem" type="Label" parent="Content/BodyPanel/BodyContentMargin/BodyContent/SkillsDivMargin/ScrollContainer/GridMargin/GridContainer"]
-margin_left = 122.0
-margin_right = 221.0
+margin_left = 120.0
+margin_right = 228.0
 margin_bottom = 12.0
-rect_min_size = Vector2( 96, 0 )
+rect_min_size = Vector2( 105, 0 )
 rect_pivot_offset = Vector2( -132, 27 )
 focus_mode = 1
 size_flags_horizontal = 3
@@ -317,9 +206,9 @@ text = "Skill1"
 
 [node name="SkillItem2" type="Label" parent="Content/BodyPanel/BodyContentMargin/BodyContent/SkillsDivMargin/ScrollContainer/GridMargin/GridContainer"]
 margin_top = 14.0
-margin_right = 99.0
+margin_right = 109.0
 margin_bottom = 26.0
-rect_min_size = Vector2( 96, 0 )
+rect_min_size = Vector2( 105, 0 )
 rect_pivot_offset = Vector2( -132, 27 )
 focus_mode = 1
 size_flags_horizontal = 3
@@ -337,18 +226,18 @@ cancel_on = true
 reset_on_show = false
 
 [node name="Overlay" type="Control" parent="Content/BodyPanel/BodyContentMargin/BodyContent/SkillsDivMargin"]
-margin_left = -3.0
+margin_left = -4.0
 margin_top = 1.0
-margin_right = 238.0
-margin_bottom = 69.0
+margin_right = 240.0
+margin_bottom = 83.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Divider" type="ColorRect" parent="Content/BodyPanel/BodyContentMargin/BodyContent/SkillsDivMargin/Overlay"]
 anchor_bottom = 1.0
-margin_left = 120.0
+margin_left = 118.0
 margin_top = -2.0
-margin_right = 121.0
+margin_right = 119.0
 margin_bottom = 2.0
 rect_min_size = Vector2( 1, 1 )
 rect_pivot_offset = Vector2( -82, -3 )
@@ -359,20 +248,19 @@ script = ExtResource( 8 )
 anchor_left = 1.0
 anchor_right = 1.0
 margin_bottom = 68.0
-rect_min_size = Vector2( 8, 0 )
 
 [node name="DividerBottom" type="ColorRect" parent="Content/BodyPanel/BodyContentMargin/BodyContent"]
-margin_top = 83.0
-margin_right = 235.0
-margin_bottom = 84.0
+margin_top = 97.0
+margin_right = 236.0
+margin_bottom = 98.0
 rect_min_size = Vector2( 94, 1 )
 rect_pivot_offset = Vector2( -82, -3 )
 color = Color( 0.478431, 0.423529, 0.52549, 1 )
 script = ExtResource( 8 )
 
 [node name="DescriptionDiv" type="Control" parent="Content/BodyPanel/BodyContentMargin/BodyContent"]
-margin_top = 84.0
-margin_right = 235.0
+margin_top = 98.0
+margin_right = 236.0
 margin_bottom = 130.0
 size_flags_vertical = 3
 
@@ -380,71 +268,46 @@ size_flags_vertical = 3
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = 1.0
-margin_right = -1.0
+margin_left = -2.0
+margin_top = -13.0
+margin_right = 1.0
+margin_bottom = 13.0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 custom_fonts/normal_font = ExtResource( 6 )
 bbcode_enabled = true
+bbcode_text = "Oślepia wszystkich wrogów. Może też zdezorientować, odrętwić, jak i natychmiastowo pokonać wroga."
 meta_underlined = false
+text = "Oślepia wszystkich wrogów. Może też zdezorientować, odrętwić, jak i natychmiastowo pokonać wroga."
 fit_content_height = true
 scroll_active = false
 
-[node name="PP" type="Control" parent="."]
-margin_right = 255.0
-margin_bottom = 166.0
-rect_pivot_offset = Vector2( -183, -4 )
+[node name="Cost" type="Control" parent="."]
+margin_right = 256.0
+size_flags_vertical = 0
 
-[node name="PPCost" type="NinePatchRect" parent="PP"]
-visible = false
-material = ExtResource( 3 )
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -255.0
-margin_top = -157.0
-margin_right = -215.0
-margin_bottom = -139.0
-texture = ExtResource( 12 )
-patch_margin_left = 4
-patch_margin_top = 4
-patch_margin_right = 4
-patch_margin_bottom = 4
-
-[node name="Label" type="Label" parent="PP/PPCost"]
-margin_left = 4.0
-margin_top = 2.0
-margin_right = 21.0
-margin_bottom = 16.0
-custom_fonts/font = ExtResource( 11 )
-text = "MENU_PP"
-
-[node name="Value" type="Label" parent="PP/PPCost"]
-margin_left = 23.0
-margin_top = 2.0
-margin_right = 37.0
-margin_bottom = 16.0
-custom_fonts/font = ExtResource( 11 )
-text = "0"
-align = 1
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="PP/PPCost"]
-root_node = NodePath("../../..")
-anims/HidePP = SubResource( 6 )
-anims/RESET = SubResource( 7 )
-anims/ShowPP = SubResource( 8 )
+[node name="CostLabel" parent="Cost" instance=ExtResource( 13 )]
+anchor_top = 0.0
+anchor_bottom = 0.0
+margin_left = -53.0
+margin_top = 147.0
+margin_right = -1.0
+margin_bottom = 191.0
+rect_pivot_offset = Vector2( 41, 27 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+_container = NodePath("..")
 
 [node name="Toolbox" type="Control" parent="."]
 visible = false
 margin_right = 255.0
-margin_bottom = 152.0
+margin_bottom = 166.0
 
 [node name="SkillItemTemplate" type="Label" parent="Toolbox"]
 margin_right = 100.0
 margin_bottom = 12.0
-rect_min_size = Vector2( 96, 0 )
+rect_min_size = Vector2( 108, 0 )
 rect_pivot_offset = Vector2( -132, 27 )
 focus_mode = 1
 size_flags_horizontal = 3
@@ -454,5 +317,5 @@ text = "Skill1"
 [node name="PSIItemTemplate" parent="Toolbox" instance=ExtResource( 10 )]
 margin_right = 255.0
 margin_bottom = 152.0
-rect_min_size = Vector2( 216, 12 )
+rect_min_size = Vector2( 206, 12 )
 size_flags_horizontal = 2

@@ -47,21 +47,20 @@ var thePosition
 
 func _ready():
 	audioManager.stop_all_music()
-	startingHP = 45
 	exitCount = 0
 	firstAppearance = true
 	modulate = Color.transparent
-	thePosition = global.persistPlayer.position - (global.persistPlayer.direction * 10)
+	thePosition = global.get_player().position - (global.get_player().get_direction() * 10)
 	position = thePosition
-	newPos = thePosition
+	new_pos = thePosition
 	start_pos = thePosition
 	sprite = "AoOni"
 	$CharacterSprite.animationTree.active = true
 	set_spritesheet()
 	set_physics_process(true)
 	$Shadow.visible = shadow
-	inputVector.x = round(rand_range(-1, 1))
-	inputVector.y = round(rand_range(-1, 1))
+	_input_vector.x = round(rand_range(-1, 1))
+	_input_vector.y = round(rand_range(-1, 1))
 	if walk_frequency != 0:
 		$WanderRadius/Timer.wait_time = rand_range(0.1, walk_frequency)
 		$WanderRadius/Timer.start()
@@ -69,76 +68,76 @@ func _ready():
 
 func set_spritesheet():
 	var path = "res://Nodes/Overworld/Enemies/AoOni.png"
-	characterSprite.set_sprite(path)
+	character_sprite.set_sprite(path)
 	var animPath = ""
 	if anim == "":
 		animPath = "res://Data/Animations/BasicEnemy.yaml"
 	else:
 		animPath = "res://Data/Animations/" + anim + ".yaml"
-	characterSprite.set_animation(animPath, connections)
+	character_sprite.set_animation(animPath, connections)
 	
-	characterSprite.set_spritesheet()
-	characterSprite.set_sprite_offset(Vector2(spriteOffset[0], spriteOffset[1]))
-	vectorSpriteOffset = characterSprite.offset
+	character_sprite.set_spritesheet()
+	character_sprite.set_sprite_offset(Vector2(spriteOffset[0], spriteOffset[1]))
+	_vector_sprite_offset = character_sprite.offset
 
 func _physics_process(delta):
-	if !global.persistPlayer.paused:
+	if !global.get_player().is_paused():
 		$CharacterSprite.animationTree.active = true
-		eventRayCaster.look_at(global.persistPlayer.global_position + global.persistPlayer.get_node("CollisionShape2D").position * 2)
-		if eventRayCaster.get_collider() == global.persistPlayer and position.distance_to(start_pos) <= maxDistance:
+		eventRayCaster.look_at(global.get_player().global_position + global.get_player().get_node("CollisionShape2D").position * 2)
+		if eventRayCaster.get_collider() == global.get_player() and position.distance_to(start_pos) <= maxDistance:
 			if state != CHASE and state != STUNNED:
-				if (seeing == true or (global.persistPlayer.running == true and global.persistPlayer.substantialMovement == true)) and state != CHASE and !blind and !firstAppearance:
+				if (_seeing == true or (global.get_player().is_running() and global.get_player().has_substantial_movement())) and state != CHASE and !_blind and !firstAppearance:
 					start_chase()
 		var oldPos = position
 		match state:
 			WANDER:
-				if newPos != null and position != newPos:
-					inputVector = position.direction_to(newPos)
-					global_position = global_position.move_toward(newPos, delta * maxSpeed)
+				if new_pos != null and position != new_pos:
+					_input_vector = position.direction_to(new_pos)
+					global_position = global_position.move_toward(new_pos, delta * maxSpeed)
 					$CharacterSprite.travel("Walk")
 				else:
 					$CharacterSprite.travel("Idle")
 			RETURN:
 				if $Timer.time_left == 0:
-					inputVector = position.direction_to(newPos)
-					position = position.move_toward(newPos, maxSpeed * delta)
+					_input_vector = position.direction_to(new_pos)
+					position = position.move_toward(new_pos, maxSpeed * delta)
 					$CharacterSprite.travel("Walk")
-				if (position == newPos):
-					inputVector = Vector2.ZERO
+				if (position == new_pos):
+					_input_vector = Vector2.ZERO
 					state = WANDER
 					$CharacterSprite.travel("Idle")
 			CHASE:
-				if underLevel:
-					inputVector = global.partyObjects[int(global.partyObjects.size()/2)].global_position.direction_to(global_position)
+				if _underlevel:
+					_input_vector = global.partyObjects[int(global.partyObjects.size()/2)].global_position.direction_to(global_position)
 				else:
-					inputVector = global_position.direction_to(global.partyObjects[int(global.partyObjects.size()/2)].global_position)
+					_input_vector = global_position.direction_to(global.partyObjects[int(global.partyObjects.size()/2)].global_position)
 				if $ChaseTimer.time_left == 0:
-					velocity = velocity.move_toward(inputVector * maxSpeed, acceleration * delta)
+					velocity = velocity.move_toward(_input_vector * maxSpeed, acceleration * delta)
 					$CharacterSprite.travel("Walk")
-		inputVector = global_position.direction_to(global.partyObjects[int(global.partyObjects.size()/2)].global_position)
+		_input_vector = global_position.direction_to(global.partyObjects[int(global.partyObjects.size()/2)].global_position)
 		if $ChaseTimer.time_left == 0:
-			velocity = velocity.move_toward(inputVector * maxSpeed, acceleration * delta)
+			velocity = velocity.move_toward(_input_vector * maxSpeed, acceleration * delta)
 			$CharacterSprite.travel("Walk")
 		
-		inputVector = round_vector(inputVector)
+		_input_vector = _input_vector.round()
 		
 		velocity = move_and_slide(velocity)
-		knockback = knockback.move_toward(Vector2.ZERO, 200 * delta)
-		knockback = move_and_slide(knockback)
+		_knockback = _knockback.move_toward(Vector2.ZERO, 200 * delta)
+		_knockback = move_and_slide(_knockback)
 		
-		position = round_vector(position)
+		position = position.round()
 		
-		var newDirection = position.direction_to(newPos)
+		var newDirection = position.direction_to(new_pos)
 		if oldPos != position and (newDirection.x == 0 or newDirection.x == 0):
-			direction = oldPos.direction_to(position)
+			_direction = oldPos.direction_to(position)
 		else:
-			direction = inputVector
-		#if characterSprite.offset.y == spriteOffset[1]:
-		$CharacterSprite.blend_position(direction)
+			_direction = _input_vector
+		#if character_sprite.offset.y == spriteOffset[1]:
+		$CharacterSprite.blend_position(_direction)
 	else:
 		$CharacterSprite.animationTree.active = true
 
-func move():
+func _move():
 	if !firstAppearance:
 		var oldPos = position
 		
@@ -155,71 +154,70 @@ func move():
 		var ample_distance_x = travelPos.x - oldPos.x
 		var ample_distance_y = travelPos.y - oldPos.y
 		if !$RayCast2D.is_colliding() and (ample_distance_x > 8 or ample_distance_x <-8 or ample_distance_y > 8 or ample_distance_y <-8):
-			newPos = travelPos
-			inputVector = oldPos.direction_to(newPos)
+			new_pos = travelPos
+			_input_vector = oldPos.direction_to(new_pos)
 		else:
 			$RayCast2D.enabled = false
-			move()
+			_move()
 
 func jump():
 	$CharacterSprite.travel("Walk")
-	tween.interpolate_property($CharacterSprite, "offset",
-		vectorSpriteOffset, vectorSpriteOffset - Vector2(0, 5), 0.1,
+	_tween.interpolate_property($CharacterSprite, "offset",
+		_vector_sprite_offset, _vector_sprite_offset - Vector2(0, 5), 0.1,
 		Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	tween.interpolate_property($CharacterSprite, "offset",
-		vectorSpriteOffset - Vector2(0, 5), vectorSpriteOffset, 0.1,
+	_tween.interpolate_property($CharacterSprite, "offset",
+		_vector_sprite_offset - Vector2(0, 5), _vector_sprite_offset, 0.1,
 		Tween.TRANS_LINEAR, Tween.EASE_IN, 0.1)
-	tween.start()
+	_tween.start()
 
 func start_chase():
-	if (state == WANDER or state == RETURN) and !emotes.animaPlayer.is_playing() and !global.persistPlayer.paused:
+	if (state == WANDER or state == RETURN) and !emotes.animaPlayer.is_playing() and !global.get_player().is_paused():
 		state = CHASE
-		if underLevel:
+		if _underlevel:
 			emotes.animaPlayer.play("blueExclamation")
 		else:
 			emotes.animaPlayer.play("exclamation")
 		$ChaseTimer.start()
 
 func _on_interact_body_entered(body):
-	if visible and (body.name == "player" or "PartyFollower" in body.name) and !global.cutscene and !firstAppearance:
-		if global.persistPlayer.paused:
-			yield(global.persistPlayer, "unpaused")
+	if visible and (body.name == "player" or "PartyFollower" in body.name) and !uiManager.is_in_cutscene() and !firstAppearance:
+		if global.get_player().is_paused():
+			yield(global.get_player(), "unpaused")
 		if enemy != "":
 			$interact/CollisionShape2D.set_deferred("disabled", true)
 			chase_stop()
-			global.persistPlayer.game_over()
+			global.get_player().game_over()
 			audioManager.stop_all_music()
 			OS.shell_open("https://static.wikia.nocookie.net/rfti/images/6/65/Wega.png/revision/latest?cb=20230213144525")
 
 func _on_Hurtbox_area_entered(area):
-	if !global.persistPlayer.paused and !global.cutscene:
+	if !global.get_player().is_paused() and !uiManager.is_in_cutscene():
 		if area.get_collision_layer_bit(1) == true or area.get_collision_layer_bit(3) == true or area.get_collision_layer_bit(7) == true:
 			drafted = true
 			$AudioStreamPlayer.play()
 			global.start_joy_vibration(0, 0.6, 0.6, 0.2)
-			global.currentCamera.shake_camera(3, 0.1, global.persistPlayer.position.direction_to(position))
-			var bash = load_skill_json("bash")
-			var mod = global.party[0]["offense"] + global.party[0]["boosts"]["offense"]
-			var defense = 50
-			var val = 0
-			val = max(1, bash.damage + mod - (defense/2.0))
+			global.currentCamera.shake_camera(3, 0.1, global.get_player().position.direction_to(position))
+			var bash = globaldata.get_battle_skill(globaldata.SKILL_BASH)
+			var mod = global.party[0].get_stat(Character.OFFENSE)
+			var defense := 50
+			var val := 0
+			val = max(1, bash.damage_or_heal + mod - (defense/2.0))
 			# apply variance
 			val = floor(val + (randf() * bash.variance) - bash.variance/2.0)
 			val = int(round(val))
-			if StatusManager.is_unconscious(global.party[0]):
+			if global.party[0].is_incapacitated():
 				val = int(round(val/4))
-			startingHP -= val
-			tween.interpolate_property(self, "position",
-				position, position - (direction * 30), 0.5,
+			_tween.interpolate_property(self, "position",
+				position, position - (_direction * 30), 0.5,
 				Tween.TRANS_LINEAR, Tween.EASE_OUT)
-			tween.start()
+			_tween.start()
 			uiManager.create_flying_num(val, global_position)
-			knockback = global.persistPlayer.direction * 120
+			_knockback = global.get_player().get_direction() * 120
 			$DamageAnimation.play("Flash")
 			yield($DamageAnimation,"animation_finished")
-			if startingHP <= 0:
-				audioManager.stop_all_music()
-				get_parent().remove_child(self)
+			#if startingHP <= 0:
+			#	audioManager.stop_all_music()
+			#	get_parent().remove_child(self)
 		elif area.get_collision_layer_bit(2) == true:
 			#lloyd stun gun
 			area.get_parent().create_spark("Explosion")
@@ -227,10 +225,10 @@ func _on_Hurtbox_area_entered(area):
 			stun()
 
 func _on_screen_exited():
-	thePosition = global.persistPlayer.position - (global.persistPlayer.direction * 10)
+	thePosition = global.get_player().position - (global.get_player().get_direction() * 10)
 	yield(get_tree().create_timer(.7), "timeout")
 	position = thePosition
-	newPos = thePosition
+	new_pos = thePosition
 	start_pos = thePosition
 	exitCount += 1
 	if exitCount == 5:
@@ -241,7 +239,7 @@ func activate():
 	set_physics_process(true)
 	show()
 	emotes.show()
-	startingHP = 100
+	#startingHP = 100
 	velocity = Vector2.ZERO
 
 func _on_Enemy_tree_exiting():
@@ -251,7 +249,7 @@ func _on_Enemy_tree_exiting():
 		get_parent().remove_child(self)
 
 func _on_SpawnArea_body_exited(body):
-	if body == global.persistPlayer and firstAppearance:
+	if body == global.get_player() and firstAppearance:
 		firstAppearance = false
 		modulate = Color.white
 		audioManager.play_music_on_latest_player("AoOni.mp3", "AoOni.mp3")

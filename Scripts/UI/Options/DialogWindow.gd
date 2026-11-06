@@ -13,8 +13,8 @@ export (NodePath) onready var tween = get_node(tween) as Tween
 export (Array, String) var allowed_input_types = ["InputEventKey", "InputEventJoypadButton", "InputEventJoypadMotion"]
 
 export (String) var text setget _set_text
-export (bool) var show_time_bar = false setget _set_show_time_bar
-export (bool) var show_options = false setget _set_show_options
+export (bool) var show_time_bar := false setget _set_show_time_bar
+export (bool) var show_options := false setget _set_show_options
 
 var _callback: FuncRef
 var _registered_input: InputEvent
@@ -25,16 +25,16 @@ func _ready():
 	global.connect("locale_changed", self, "_on_locale_changed")
 	get_node(time_bar_container_view).visible = show_time_bar
 
-func _set_text(value):
+func _set_text(value: String):
 	text = value
 	get_node(label_view).text = value
 
-func _set_show_time_bar(value):
+func _set_show_time_bar(value: bool):
 	show_time_bar = value
 	if is_instance_valid(get_node(time_bar_container_view)):
 		get_node(time_bar_container_view).visible = value
 
-func _set_show_options(value):
+func _set_show_options(value: bool):
 	show_options = value
 	if is_instance_valid(get_node(options_view)):
 		get_node(options_view).visible = value
@@ -47,20 +47,20 @@ func _on_locale_changed():
 	yield(get_tree(), "idle_frame")
 	cursor.set_cursor_from_index(0, false)
 
-func start(with_text, duration = 0):
+func start(with_text: String, duration := 0):
 	_set_text(with_text)
 	_set_show_time_bar(false)
 	_set_show_options(false)
 	show()
 
-func start_with_options(with_text, callback = null):
+func start_with_options(with_text: String, callback: FuncRef = null):
 	_set_text(with_text)
 	_callback = callback
 	_set_show_time_bar(false)
 	_set_show_options(true)
 	show()
 
-func start_with_timer(duration = 0, with_show_time_bar = show_time_bar, with_text = text):
+func start_with_timer(duration := 0, with_show_time_bar := show_time_bar, with_text := text):
 	_set_text(with_text)
 	_set_show_time_bar(with_show_time_bar)
 	_set_show_options(false)
@@ -90,17 +90,20 @@ func _input(event):
 						_callback.call_funcv([false])
 					finish()
 			else:
-				if event.get_class() in allowed_input_types and event.device == 0 and globaldata.is_key_allowed(event):
+				if event.get_class() in allowed_input_types and event.device == 0 and _is_key_allowed(event):
 					tween.stop_all()
 					_registered_input = event
 					# We need to defer the window closing until the key is released or it will cause problem if we reaffect the action
 					_is_closing = true
 
-func _physics_process(delta):
+func _physics_process(delta: float):
 	if _is_closing and _is_input_released(_registered_input):
 		finish()
 		emit_signal("closed_from_input", _registered_input)
 		_is_closing = false
+
+func _is_key_allowed(event):
+	return TextTools.get_key_name_from_event(event) != null
 
 func _is_input_released(input):
 	if input is InputEventKey:

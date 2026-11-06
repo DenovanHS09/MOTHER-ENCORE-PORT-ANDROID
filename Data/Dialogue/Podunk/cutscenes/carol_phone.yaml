@@ -4,7 +4,7 @@
     carol: Objects/npc
   talker: carol
   name: DIALOGUE_PODUNK_CUTSCENES_CAROL_PHONE_SPEAKER_Carol
-  sound: Sexy
+  sound: Female
   text: DIALOGUE_PODUNK_CUTSCENES_CAROL_PHONE_0
   actorsdir:
     carol:

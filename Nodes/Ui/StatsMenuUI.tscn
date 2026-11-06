@@ -157,7 +157,7 @@ tracks/1/keys = {
 }
 
 [node name="StatsMenuUI" type="CanvasLayer"]
-layer = 2
+layer = 4
 offset = Vector2( 0, -180 )
 transform = Transform2D( 1, 0, 0, 1, 0, -180 )
 script = ExtResource( 3 )

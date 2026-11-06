@@ -5,28 +5,40 @@ name: Bash   # The name of the skill that will appear in the menu and info feed(
 
 description: Perform a basic attack against an enemy.   # Description of the skill.
 
-psiCategory: Offense, # determines how the psi is ordered
+dialog: {n0}{name} attacks!		# The battle message it produces
+								# Leave empty for default message:
+								# - {n0}{name} uses {i1}{item}! (for items)
+								# - {n0}{name} tried {skill}! (for skills)
+								# or won’t display any message if no default
 
-skillType: basic,   # The type of skill used. "basic", "skill", and "psi" are all applicable. 
-						    # Item consumability is referenced by the inventory system.
+psi_category: Offense, # determines how the psi is ordered
 
-useCases: 1   # Determines where the skill can be used. 
+class: pkFlash # A name to encompass a group of moves like pkFlashA and pkFlashO. This is needed if you want affinities to work with specific moves like pkFlash
+
+skill_type: basic,	# The type of skill used. "basic", "skill", and "psi" are all applicable. 
+					# Item consumability is referenced by the inventory system.
+
+use_cases: 1 # Battle only   # Determines where the skill can be used. 
 				  # -1 = Field only, 0 = Field & Battle, 1 = Battle only.
 
-actionType: 0   # Denotes whether or not the skill damages (0), heals (1), or is none (2).
+action_type: 0 # Damage   # Denotes whether or not the skill damages (0), heals (1), affects stats (2), inflicts status ailments (3) or other (4), as its primary action.
 
-damageType: normal		# Determines the type of damage: normal, fire, ice, electric, none
+damage_type: normal		# Determines the type of damage: normal, fire, ice, lightning, explosion, insecticide, or any status ailment (optional, defaults as '')
 
-targetType: 0,   # Which entities can be targetted, and how. 
+target_type: 0,   # Which entities can be targetted, and how. 
 				 # Determined by enumerator:
-				 # {ENEMY = 0, ALLY, ANY, RANDOM_ENEMY, RANDOM_ALLY, SELF, ALL_ENEMIES, ALL_ALLIES = 7}
+				 # {ENEMY = 0, ALLY, ALLY_EXCEPT_SELF, RANDOM_ENEMY, RANDOM_ALLY, SELF, ALL_ENEMIES, ALL_ALLIES, ANY, RANDOM_ENEMIES_2 = 9}
 
-damage: 10,   # Base value used to calculate damage/healing. Currently works as follows (subject to change): 
+damage_or_heal: 10,   # Base value used to calculate damage/healing.
+                 # Is damage or healing depending on action_type.
+                 # Currently works as follows, if value_type is normal: 
                  # if not healing and physical: (damage + offense) - (enemyDefense * 0.5) = finalDamage
                  # if not healing and not item: (damage + int) - (enemyDefense * 0.5) = finalDamage
                  # if healing and psi: (damage + int) = finalHealing
                  # if not healing and item: damage - (enemyDefense * 0.5) = finalDamage
                  # if healing and item: damage = finalHealing
+
+value_type: normal    # Determines how to use damage_or_heal to calculate the actual amount of damage / healing: normal, fixed, percentage, guts_based or reach_full_percent
 
 variance: 10,   # Percentage of the calculated damage value that will be added to to the final damage value.
                    # 10% = anywhere from 5% less damage, to 5% more damage.
@@ -34,47 +46,77 @@ variance: 10,   # Percentage of the calculated damage value that will be added t
 priority: 0,   # Determines the order of actions in combat.
                   # Higher priority actions will always go sooner than lower priority
 
-statusEffects: 
-- name: poisoned
-  chance: 66
-- name: blinded
-  chance: 25
-	 # Status ailments inflicted
+status_effects:
+  poisoned: 66
+  name: 25
+	 # Status ailments inflicted (optional), with the corresponding chance.
 	 # Status effects are also their own json files, denoting how they work. 
 	 # Chance is percentage based. if you want to inflict a status 1 in 3 times, put 33 or 34 in there. 
 	 # These are integer values. Decimals will be rounded if put there.
 	 # The array can simply be left blank if no effects are desired.
 
-statusHeals:
+status_heals:
 - poison
 - burned
 - colded
-	 # Status ailments healed
+	 # Status ailments healed (optional)
 
-statusAmountHealed: 0 #Amount of statuses healed with the move
-				 # -1 = heals all statuses in "statusHeals"
+status_amount_healed: 0 #Amount of statuses healed with the move (optional).
+				 # -1 = heals all statuses in "status_heals"
 
-critChance: 0,   # Percent chance the skill will crit. 
-				 # Defense is ignored during crits
+stat_mods:
+  offense: -1
+  defense: -1
+	# Specifies how the skill will modify the targets’ stats (optional).
 
-failChance: 2,   # Percent chance for the skill to fail.
-				 # Physical skills will say "Missed!" while others will say "Failed!"
+repeat: 3		# Takes effect multiple time for each target (optional).
 
-ppCost: 0,   # PP cost to use skill.
+miss_chance: 50,   # Percent chance for the skill to miss a target.
+				 # Physical skills will say "Missed!"
 
-hpCost: 0,   # HP cost to use skill. (unused in mother encore probably)
+miss_dialog: It didn’t hit the target! # Message that may show when the skill misses a target.
 
-preHitEffect: bash,   # Visual effect to display over the enemy before being hit. Leave blank for none. (e.g. pk_freeze_alpha, pk_thunder_alpha)
+fail_chance: 40    # Percent chance for the skill to fail overall.
 
-hitEffect: bash,   # Visual effect to display over the enemy when hit. Leave blank for none. ((e.g. pk_thunder_alpha_hit))
+fail_action: tripAndFallExplode # Another skill that could be performed if this one fails.
 
-screenEffect: '',   # Visual effect to display on screen when using the skill. Leave blank for none.
+fail_dialog: But it failed! # Message that may show when the skill fails.
 
-userAnim: bash,   # Animation for the character to play when using the skill. 
+success_dialog: It was very effective! # Message that may show when the skill succeeds.
+
+pp_cost: 0,   # PP cost to use skill.
+
+hp_cost: 0,   # HP cost to use skill. (unused in mother encore probably)
+
+pre_hit_effect: bash,   # Visual effect to display over the enemy before being hit, e.g. pk_freeze_alpha, pk_thunder_alpha (optional).
+
+hit_effect: bash,   # Visual effect to display over the enemy when hit. Leave blank for none. ((e.g. pk_thunder_alpha_hit))
+
+screen_effect: '',   # Visual effect to display on screen when using the skill (optional).
+
+enemy_screen_effect: '',   # (optional)
+
+user_anim: bash,   # Animation for the character to play when using the skill (optional).
 					   # If the animation cannot be found idle sprites will be used instead.
 
-useSound: bash,   # Sound to play when using the skill. Leave blank for none.
+use_sound: bash,   # Sound to play when using the skill. Leave blank for none.
 
-hitSound: bash,   # Sound to play when the enemy is hit with the skill. Leave blank for none.
+hit_sound: bash,   # Sound to play when the enemy is hit with the skill. Leave blank for none.
 
-targetUnconscious: false   # Ability to target unconscious characters
+traits:   # Different traits an action may have (optional)
+  
+  - heal_on_revive: # The value of damage_or_heal is used for the HP recovered by the target if the skill revives them
+  
+  - guard		# Makes the user guard
+
+  - flee		# Makes the user away from battle
+
+  - kill_user	# Kills the user after hitting all the targets
+
+  - steal_item	# Makes the target lose an item
+  
+  - target_unconscious   # Ability to target unconscious characters
+  
+  - target_incapacitated   # Ability to target incapacitated characters, i.e. characters afflicted by unconscious or stone status
+  
+  - pp_gained   # If pp is drained from this action, it goes to the user

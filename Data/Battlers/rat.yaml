@@ -18,8 +18,10 @@ items:
   item: Bread
 skills:
 - skill: scratch
-  weight: 1
+  weight: 2
 - skill: bite
+  weight: 2
+- skill: nastyWords
   weight: 1
 boss: false
 sprite: rat
@@ -28,3 +30,5 @@ bg: rat
 ov:
   sprite: RatOV
   anim: BasicEnemy
+affinity_multipliers:
+  fire: 2

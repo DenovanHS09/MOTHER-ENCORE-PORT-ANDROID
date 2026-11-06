@@ -1,0 +1,24 @@
+"0":
+  actors:
+    teacher: Objects/weird_teacher
+  talker: teacher
+  sound: Adult
+  name: DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_WEIRDTEACHER_SPEAKER
+  text: DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_WEIRDTEACHERREALROCKET_0
+  goto: "playSound"
+"playSound":
+  shakecam:
+    x: 0
+    y: 2
+    length: 2
+  musicvolume: -80
+  soundeffect: Real Rocket.mp3
+  autowait: 5
+  goto: "end"
+"end":
+  musicvolume: 0
+  talkeremote: sweat
+  sound: Adult
+  name: DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_WEIRDTEACHER_SPEAKER
+  text: DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_WEIRDTEACHERREALROCKET_1
+  setflags: weird_teacher_real_rocket_launched

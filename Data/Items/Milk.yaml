@@ -5,17 +5,10 @@ article: MILK_ART
 keyitem: false
 cost: 15
 value: 7
-usable:
-  ninten: true
-  ana: true
-  lloyd: true
-  teddy: true
-  pippi: true
-action_one:
-  name: MILK_ACT1_NAME
-  function: consume
-action_two: null
-battle_action: ''
+actions:
+  - name: MILK_ACT1
+    function: consume
+is_food: true
 transform: ''
 slot: ''
 HPrecover: 20

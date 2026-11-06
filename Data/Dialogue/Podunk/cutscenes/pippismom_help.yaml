@@ -1,21 +1,21 @@
-'0':
+"0":
   actors:
     ninten: leader
     lindgren: talker
-  emoteactors:
+  actorsemote:
     lindgren: exclamation
   wait: 1
   autoadvance: true
   caninput: false
-  goto: '1'
-'1':
+  goto: "1"
+"1":
   name: DIALOGUE_PODUNK_CUTSCENES_PIPPISMOM_HELP_SPEAKER_Mrs._Lindgren
-  sound: Sexy
+  sound: Female
   text: DIALOGUE_PODUNK_CUTSCENES_PIPPISMOM_HELP_1
-  goto: '2'
-'2':
+  goto: "2"
+"2":
   showbox: false
-  emoteactors:
+  actorsemote:
     lindgren: dot
   actorsturn:
     lindgren:
@@ -25,8 +25,8 @@
   wait: 0.8
   autoadvance: true
   caninput: false
-  goto: '3'
-'3':
+  goto: "3"
+"3":
   showbox: false
   actorsturn:
     lindgren:
@@ -36,24 +36,24 @@
   wait: 1.5
   autoadvance: true
   caninput: false
-  goto: '4'
-'4':
+  goto: "4"
+"4":
   name: DIALOGUE_PODUNK_CUTSCENES_PIPPISMOM_HELP_SPEAKER_Mrs._Lindgren
-  sound: Sexy
+  sound: Female
   text: DIALOGUE_PODUNK_CUTSCENES_PIPPISMOM_HELP_4
   actorsturn:
     lindgren:
       speed: 0.05
       actor: ninten
-  goto: '7'
-'7':
+  goto: "7"
+"7":
   name: DIALOGUE_PODUNK_CUTSCENES_PIPPISMOM_HELP_SPEAKER_Mrs._Lindgren
-  sound: Sexy
+  sound: Female
   text: DIALOGUE_PODUNK_CUTSCENES_PIPPISMOM_HELP_7
-  emoteactors:
+  actorsemote:
     ninten: sweat
-  goto: '8'
-'8':
+  goto: "8"
+"8":
   showbox: false
   actorsjump:
     ninten:
@@ -63,16 +63,16 @@
   wait: 0.6
   autoadvance: true
   caninput: false
-  goto: '9'
-'9':
+  goto: "9"
+"9":
   name: DIALOGUE_PODUNK_CUTSCENES_PIPPISMOM_HELP_SPEAKER_Mrs._Lindgren
-  sound: Sexy
+  sound: Female
   text: DIALOGUE_PODUNK_CUTSCENES_PIPPISMOM_HELP_9
-  goto: '10'
-'10':
+  goto: "10"
+"10":
   name: DIALOGUE_PODUNK_CUTSCENES_PIPPISMOM_HELP_SPEAKER_Mrs._Lindgren
-  sound: Sexy
+  sound: Female
   text: DIALOGUE_PODUNK_CUTSCENES_PIPPISMOM_HELP_10
-  emoteactors:
+  actorsemote:
     lindgren: heart
   setflags: pippis_mom_help

@@ -1,16 +1,16 @@
-'0':
+"0":
   text: DIALOGUE_PODUNK_NON-PERSON_TEXT_ZOO_SINGING_MONKEY_0
-  objectfunction:
+  objectsfunction:
     Objects/ZooSignSparkle: hide
-  goto: '1'
-'1':
+  goto: "1"
+"1":
   text: DIALOGUE_PODUNK_NON-PERSON_TEXT_ZOO_SINGING_MONKEY_1
   if:
     flags:
       monkey_apologize: true
       monkey_melody: false
-    goto: '2'
-'2':
+    goto: "2"
+"2":
   actors:
     leader: leader
     monkey: AbovePlayer1/npc
@@ -20,30 +20,30 @@
   wait: 1.5
   autoadvance: true
   caninput: false
-  goto: '3'
-'3':
+  goto: "3"
+"3":
   name: DIALOGUE_PODUNK_NON-PERSON_TEXT_ZOO_SINGING_MONKEY_SPEAKER_Monkey
   sound: Strange
   text: DIALOGUE_PODUNK_NON-PERSON_TEXT_ZOO_SINGING_MONKEY_3
-  goto: '4'
-'4':
+  goto: "4"
+"4":
   name: DIALOGUE_PODUNK_NON-PERSON_TEXT_ZOO_SINGING_MONKEY_SPEAKER_Monkey
   text: DIALOGUE_PODUNK_NON-PERSON_TEXT_ZOO_SINGING_MONKEY_4
-  goto: '6'
-'6':
+  goto: "6"
+"6":
   name: Monkey
-  objectfunction:
+  objectsfunction:
     Music/MusicArea11: stop_music_immediately
     melodyBG: appear
   wait: 4
   autoadvance: true
   caninput: false
-  goto: '7'
+  goto: "7"
   music: Melodies/melody3.mp3
-'7':
+"7":
   text: DIALOGUE_PODUNK_NON-PERSON_TEXT_ZOO_SINGING_MONKEY_7
   soundeffect: M3/heal_se.wav
-  objectfunction:
+  objectsfunction:
     Music/MusicArea11: play_music
     melodyBG: disappear
   setflags: monkey_melody

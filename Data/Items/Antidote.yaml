@@ -5,21 +5,13 @@ article: ANTIDOTE_ART
 keyitem: false
 cost: 20
 value: 10
-usable:
-  ninten: true
-  ana: true
-  lloyd: true
-  teddy: true
-  pippi: true
-action_one:
-  name: INVENTORY_ACTION_USE
-  function: consume
-action_two: null
-battle_action: ''
+actions:
+  - name: INVENTORY_ACTION_USE
+    function: consume
 transform: ''
 slot: ''
 status_heals:
-- poisoned
+  - poisoned
 HPrecover: 0
 PPrecover: 0
 boost:

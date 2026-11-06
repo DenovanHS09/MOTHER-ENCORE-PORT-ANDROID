@@ -5,17 +5,12 @@ article: MAPPODUNK_ART
 keyitem: true
 cost: 0
 value: 0
-usable:
-  ninten: false
-  ana: false
-  lloyd: false
-  teddy: false
-  pippi: false
-action_one: null
-action_two: null
-battle_action: ''
-transform: ''
-slot: ''
+map_for: Podunk
+actions:
+  - name: INVENTORY_ACTION_USE
+    function: use
+transform: ""
+slot: ""
 HPrecover: 0
 PPrecover: 0
 boost:

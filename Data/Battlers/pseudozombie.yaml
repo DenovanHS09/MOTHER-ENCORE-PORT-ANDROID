@@ -11,7 +11,7 @@ speed: 8
 iq: 55
 guts: 0
 level: 5
-exp: 13
+exp: 16
 cash: 18
 items:
 - chance: 15
@@ -36,3 +36,7 @@ bg: pseudozombie
 ov:
   sprite: PseudoZombieOV
   anim: BasicEnemy
+affinity_multipliers:
+  fire: 2
+  sleeping: 2
+  blinded: 2

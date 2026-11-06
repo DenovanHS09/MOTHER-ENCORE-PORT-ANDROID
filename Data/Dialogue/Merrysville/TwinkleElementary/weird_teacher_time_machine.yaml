@@ -1,0 +1,57 @@
+"0":
+  actors:
+    party0: party.0
+    party1: party.1
+    party2: party.2
+    teacher: Objects/weird_teacher
+  talker: teacher
+  sound: Adult
+  name: DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_WEIRDTEACHER_SPEAKER
+  text: DIALOGUE_MERRYSVILLE_TWINKLEELEMENTARY_WEIRDTEACHERTIMEMACHINE_0
+  goto: "fadein"
+"fadein":
+  musicvolume: -80
+  objectsfunction:
+    CutscenePlayer: play_anim
+  showbox: false
+  autowait: 5
+  goto: "fadeout"
+"fadeout":
+  teleportparty:
+    x: 960
+    y: -352
+  teleportactors:
+    party0:
+      x: 960
+      y: -352
+    party1:
+      x: 944
+      y: -352
+    party2:
+      x: 976
+      y: -352
+  actorsdir:
+    party0:
+      y: 1
+    party1:
+      y: 1
+    party2:
+      y: 1
+  actorsanim:
+    party0:
+      anim: Soot
+      newidle: true
+    party1:
+      anim: Soot
+      newidle: true
+    party2:
+      anim: Soot
+      newidle: true
+  fadeout:
+    speed: 1
+    anim: Fade
+    color: "000000"
+  autowait: 6
+  goto: "end"
+"end":
+  musicvolume: 0

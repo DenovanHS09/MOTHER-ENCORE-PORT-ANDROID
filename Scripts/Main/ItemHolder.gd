@@ -1,56 +1,62 @@
-extends "res://Scripts/Main/FlaggableObject.gd"
+class_name ItemHolder
+extends FlaggableObject
 
-export (String) var item = ""
-export (String) var dialog = ""
-export (String) var dialog_full = ""
-export (String) var dialog_empty = ""
+export (String) var item := "" setget _set_item
+export (String) var dialog := ""
+export (String) var dialog_full := ""
+export (String) var dialog_empty := ""
 export (NodePath) onready var button_prompt
+export (bool) var can_pickup := true
 
-var player_turn = { 
+var player_turn := { 
 	"y": true,
 	"x": true
 }
 
 func _ready():
 	reset_when_leaving_region = false
+	if !can_pickup:
+		var button_prompt_node = get_node(button_prompt)
+		button_prompt_node.enabled = false
 	if !Engine.is_editor_hint():
 		_update_state()
 		if dialog == "":
-			dialog = "ItemDescriptions/itemcheck"
+			dialog = "ItemDialogue/itemcheck"
 		if dialog_full == "":
-			dialog_full = "ItemDescriptions/itemfull"
+			dialog_full = "ItemDialogue/itemfull"
 
 func interact():
-	if not _get_flag_status():
-		_check_item()
-	else:
-		_warn_empty()
+	if can_pickup:
+		if not _get_flag_status():
+			_check_item()
+		else:
+			_warn_empty()
 
 # Overridden
 func _check_item():
 	_play_interact()
-	global.item = InventoryManager.Load_item_data(item)
-	if item and (InventoryManager.has_inventory_space() or InventoryManager.Load_item_data(item)["keyitem"]):
+	if item and (Inventory.has_inventory_space() or globaldata.get_item_data(item).get("keyitem", false)):
+		global.item = Inventory.add_item_available(item)
 		_play_collect_item()
-		InventoryManager.add_item_available(item)
 		_set_flag_status()
 		_update_state()
-		global.set_dialog(dialog)
-		uiManager.open_dialogue_box()
+		uiManager.open_dialogue_box(dialog)
 	elif !item:
 		_play_revert()
 		_warn_empty()
 	else:
 		_play_revert()
-		global.set_dialog(dialog_full)
-		uiManager.open_dialogue_box()
+		global.item = Item.new(item)
+		uiManager.open_dialogue_box(dialog_full)
 
 func _warn_empty():
 	if (dialog_empty != ""):
-		global.set_dialog("ItemDescriptions/presentempty") 
-		uiManager.open_dialogue_box()
+		uiManager.open_dialogue_box("ItemDialogue/presentempty")
 
 # Overridden
+func _set_item(t_item):
+	item = t_item
+
 func _update_state():
 	pass
 

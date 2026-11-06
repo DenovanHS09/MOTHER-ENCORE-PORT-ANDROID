@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/Main/Breakable.gd" type="Script" id=1]
-[ext_resource path="res://Graphics/Objects/Coffin.png" type="Texture" id=2]
+[ext_resource path="res://Graphics/Objects/Catacombs/Coffin.png" type="Texture" id=2]
 [ext_resource path="res://Nodes/Reusables/Overlap/Hurtbox.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Audio/Sound effects/Barrel Coffin Explode.mp3" type="AudioStream" id=4]
 
@@ -172,8 +172,6 @@ collision_layer = 517
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource( 1 )
-
-[node name="Tween" type="Tween" parent="."]
 
 [node name="Position2D" type="Position2D" parent="."]
 

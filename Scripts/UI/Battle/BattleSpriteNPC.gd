@@ -6,10 +6,10 @@ enum JumpStep {STARTING, STARTED, TOP_APPROACHED, TOP_REACHED, TARGET_APPROACHED
 enum CurveType {LINEAR, SUBQUADRATIC, QUADRATIC, SUBCUBIC, CUBIC, QUARTIC}
 
 # Generic constants for attacks
-const ATTACK_SPEED := 300
+const ATTACK_SPEED := 400
 const ATTACK_START_POS := Vector2(320, 100)
 const ATTACK_ANIM = ["Jump", "JumpLoop"]
-const ATTACK_BOUNCE_SPEED := 150
+const ATTACK_BOUNCE_SPEED := 200
 const ATTACK_BOUNCE_HORIZONTAL_DISTANCE := -80
 const ATTACK_ANIM_AFTER_BOUNCE := ["Recoil", "RecoilLoop"]
 const ATTACK_BOUNCE_HEIGHT := 35
@@ -35,7 +35,7 @@ const ATTACK_2_DELAY_BEFORE_HIT := 0.3
 const ATTACK_2_DELAY_BETWEEN_TWEENS := 0.643
 
 # Generic constants for the protect action
-const PROTECT_SPEED := 300
+const PROTECT_SPEED := 450
 const PROTECT_START_OFFSET := Vector2(150, 70)
 const PROTECT_ANIM := ["Jump", "JumpLoop"]
 const PROTECT_JUMP_HEIGHT := 10
@@ -106,22 +106,22 @@ class TweenMetadata:
 	var start_pos: Vector2
 	var target_pos: Vector2
 	var duration: float
-	var height: int
 	var curve_type: int
 	var x_peak_ratio: float
+	var y_peak: float
 
 	var speed_mod := 1.0
 	var _latest_step := -1
 
-	func _init(start_pos: Vector2, target_pos: Vector2, duration: float, height := 0, curve_type := CurveType.QUADRATIC, x_peak_ratio := 0.5):
+	func _init(start_pos: Vector2, target_pos: Vector2, duration: float, curve_type: int, x_peak_ratio: float, y_peak: float):
 		for step in JumpStep.keys():
 			add_user_signal(step)
 		self.start_pos = start_pos
 		self.target_pos = target_pos
 		self.duration = duration
-		self.height = height
 		self.curve_type = curve_type
 		self.x_peak_ratio = x_peak_ratio
+		self.y_peak = y_peak
 		
 	func send_signal_once(sig: int):
 		if _latest_step < sig:
@@ -157,8 +157,8 @@ func _ready():
 func get_position() -> Vector2:
 	return rect_position + (rect_size / 2) + _sprite.position
 
-func protect_ally(target: BattleParticipant):
-	var start_pos := target.get_position() + PROTECT_START_OFFSET
+func protect_ally(target):
+	var start_pos = target.get_position() + PROTECT_START_OFFSET
 	var target_pos := _get_target_pos(target, PROTECT_TARGET_OFFSET, PROTECT_TARGET_RELATIVE_OFFSET)
 	var params := SeqParams.new(
 		JumpParams.new(PROTECT_SPEED, PROTECT_JUMP_HEIGHT, PROTECT_ANIM),
@@ -168,7 +168,7 @@ func protect_ally(target: BattleParticipant):
 	)
 	yield(_jump_and_bounce(start_pos, target_pos, params), "completed")
 
-func attack_target(target: BattleParticipant):
+func attack_target(target): # target: BattleParticipant
 	var choose_atk := randi() % 2
 	var target_pos := _get_target_pos(target, ATTACKS_TARGET_OFFSET[choose_atk], ATTACKS_TARGET_RELATIVE_OFFSET[choose_atk])
 	var callback := funcref(self, ATTACKS_CALLBACKS[choose_atk])
@@ -180,7 +180,7 @@ func attack_target(target: BattleParticipant):
 	)
 	yield(_jump_and_bounce(ATTACK_START_POS, target_pos, params), "completed")
 
-func _get_target_pos(target: BattleParticipant, offset: Vector2, relative_offset: Vector2) -> Vector2:
+func _get_target_pos(target, offset: Vector2, relative_offset: Vector2) -> Vector2: # target: BattleParticipant
 	return target.get_position() + offset + target.get_size() * relative_offset / 2
 
 # Entire sequence of jump at an enemy/ally (target) and bounce back
@@ -194,8 +194,14 @@ func _jump_and_bounce(start_pos: Vector2, target_pos: Vector2, params: SeqParams
 
 # Just the jump or bounce segment
 func _do_jump_tween(start_pos: Vector2, target_pos: Vector2, params: JumpParams, step_callback: FuncRef, is_bounce: bool):
-	var duration := target_pos.distance_to(start_pos) / params.speed
-	var tween_meta := TweenMetadata.new(start_pos, target_pos, duration, params.height, params.curve_type, params.x_peak_ratio)
+	var peak_pos := Vector2(
+		lerp(start_pos.x, target_pos.x, params.x_peak_ratio),
+		min(start_pos.y, target_pos.y) - params.height
+	)
+	var duration := (start_pos.distance_to(peak_pos) + target_pos.distance_to(peak_pos)) / params.speed
+
+	var y_peak := peak_pos.y - (start_pos.y + target_pos.y) / 2
+	var tween_meta := TweenMetadata.new(start_pos, target_pos, duration, params.curve_type, params.x_peak_ratio, y_peak)
 	_jump_tween.remove_all()
 	_jump_tween.set_meta(JUMP_META, tween_meta)
 	_jump_tween.interpolate_method(self, "_tween_frame",
@@ -234,10 +240,9 @@ func _tween_frame(t: float):
 
 	# Calculate the y position over time (parabola or broken line)
 	var y_linear: float = lerp(start_pos.y, target_pos.y, progress)
-	var peak_y := min(start_pos.y, target_pos.y) - tween_meta.height - (start_pos.y + target_pos.y) / 2
 	var arc_offset := 0.0
 	var exponent: float = CURVE_TYPE_EXPONENTS.get(tween_meta.curve_type, 0)
-	arc_offset = peak_y * (1.0 - pow(2 * abs(progress - 0.5), exponent))
+	arc_offset = tween_meta.y_peak * (1.0 - pow(2 * abs(progress - 0.5), exponent))
 
 	var y := y_linear + arc_offset
 
@@ -260,9 +265,8 @@ func _on_attack_1_anim_step(step: int, tween_meta: TweenMetadata, is_before_hit:
 		match step:
 			JumpStep.TOP_APPROACHED:
 				pass
-				_jump_tween.connect("tween_step", self, "_on_tween_approaching_top")
 			JumpStep.TOP_REACHED:
-				_jump_tween.disconnect("tween_step", self, "_on_tween_approaching_top")
+				_change_tween_speed(ATTACK_1_PRE_DIVE_SLOW_DOWN_FACTOR)
 				_jump_tween.stop_all()
 				yield(get_tree().create_timer(ATTACK_1_PEAK_DELAY - ATTACK_1_PEAK_DELAY_AFTER_ANIM), "timeout")
 				_play_frame_anim(ATTACK_1_PEAK_ANIM)
@@ -275,8 +279,6 @@ func _on_attack_1_anim_step(step: int, tween_meta: TweenMetadata, is_before_hit:
 			JumpStep.STARTING:
 				yield(get_tree().create_timer(ATTACK_1_DELAY_AFTER_HIT), "timeout")
 
-func _on_tween_approaching_top(object, key, elapsed, value):
-	_change_tween_speed(ATTACK_1_PRE_DIVE_SLOW_DOWN_FACTOR)
 
 # Kick attack: When the NPC reaches his target, he starts a kick animation and then slightly moves up
 func _on_attack_2_anim_step(step: int, tween_meta: TweenMetadata, is_before_hit: bool):

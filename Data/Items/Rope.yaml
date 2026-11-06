@@ -5,15 +5,9 @@ article: ROPE_ART
 keyitem: false
 cost: 30
 value: 15
-usable:
-  ninten: false
-  ana: false
-  lloyd: false
-  teddy: false
-  pippi: false
-action_one: null
-action_two: null
-battle_action: rope
+actions: []
+battle_action:
+  skill: rope
 transform: ''
 slot: ''
 HPrecover: 0

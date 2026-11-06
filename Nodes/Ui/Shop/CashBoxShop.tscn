@@ -33,7 +33,7 @@ texture = ExtResource( 5 )
 
 [node name="Amount" type="Label" parent="HBoxContainer"]
 margin_left = 13.0
-margin_right = 55.0
+margin_right = 50.0
 margin_bottom = 12.0
 rect_min_size = Vector2( 0, 12 )
 size_flags_vertical = 0
@@ -42,9 +42,9 @@ text = "000000"
 align = 2
 
 [node name="DollarRight" type="TextureRect" parent="HBoxContainer"]
-margin_left = 56.0
+margin_left = 51.0
 margin_top = 11.0
-margin_right = 57.0
+margin_right = 52.0
 margin_bottom = 12.0
 size_flags_vertical = 8
 texture = ExtResource( 6 )

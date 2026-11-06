@@ -3,10 +3,6 @@ extends TextureRect
 var money : int = 0
 var limit : int = 999_999
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
-
 func set_limit(value: int):
 	limit = value
 	if limit < 0: limit = 0

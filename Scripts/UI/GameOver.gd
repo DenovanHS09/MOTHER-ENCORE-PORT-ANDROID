@@ -1,88 +1,80 @@
 extends CanvasLayer
 
-const gameOverDialog = "GameOver"
+const GAME_OVER_DIALOG = "Reusable/GameOver"
 
-var fade
+var _fade: CanvasLayer
+var _game_over_music: AudioStreamPlayer
 
 signal fade_done
+signal done
 
 func _init():
-	fade = uiManager.fade
-	uiManager.clearOnScreenEnemies()
+	_fade = uiManager.get_fade()
+	uiManager.clear_on_screen_enemies()
 
 func _ready():
-	global.gameover = true
-	uiManager.reset_battle_cutscenes()
 	turn_off_music_changers()
-	global.persistPlayer.set_all_collisions(false)
-	if globaldata.cash == 1:
-		globaldata.cash = 0 # This is not very nice!
-	else:
-		globaldata.cash = int(globaldata.cash/2.0)
-	fade.fade_in("Circle")
-	yield(fade, "fade_in_done")
+	global.get_player().set_collisions(false)
+	global.get_player().set_idle()
+	globaldata.cash /= 2
+	_fade.fade_in("Circle")
+	yield(_fade, "fade_in_done")
 	
 	emit_signal("fade_done")
 	$Timer.start()
+	$GameOverLayer/ColorRect.modulate = Color.black
 	yield($Timer, "timeout")
-	fade.set_cut(1, 0.01)
-	audioManager.stop_all_music()
-	audioManager.add_audio_player()
-	audioManager.play_music_on_latest_player("", "Game_Over.ogg")
 	$AnimationPlayer.play("nintenFall")
+	audioManager.clear_all_music()
+	_game_over_music = audioManager.play_music_on_latest_player("", "Game_Over.ogg")
 	yield($AnimationPlayer, "animation_finished")
 	
-	global.set_dialog(gameOverDialog)
-	var dialogueBox = uiManager.open_dialogue_box()
-	dialogueBox.unpausePlayer = false
-	dialogueBox.connect("end_gameover", self, "end_dialogue")
-	
+	var dialogueBox = uiManager.open_dialogue_box(GAME_OVER_DIALOG, funcref(self, "_end_dialogue"))
 
-func end_dialogue(try_again):
+func _remove_fade_cut():
+	_fade.set_cut(1, 0)
+
+func _end_dialogue(try_again: int):
+	if _game_over_music: audioManager.music_fadeout_obj(_game_over_music, 5)
 	if try_again:
-		audioManager.music_fadeout(audioManager.get_latest_audio_player_index(), 5)
 		$AnimationPlayer.play("nintenGetup")
 		yield($AnimationPlayer, "animation_finished")
-		
+		audioManager.clear_all_music()
 		$AnimationPlayer.play("transitionOut")
-		fade.fade_in("Fade", Color.white, 0.3)
+		_fade.fade_in("Fade", Color.white, 0.3)
 		yield($AnimationPlayer, "animation_finished")
-		
 		revive_party()
 		global.goto_respawn()
+		global.update_party_spritesheets()
+		global.party_call("set_anim_state", "Idle")
 		$GameOverLayer.hide()
-		fade.fade_out("Fade", Color.white)
-		yield(fade, "fade_out_done")
+		_fade.fade_out("Fade", Color.white)
+		yield(_fade, "fade_out_done")
 		
-		global.persistPlayer.set_all_collisions(true)
-		global.persistPlayer.unpause()
-		
-		global.gameover = false
-		uiManager.commandsMenuActive = false
-		uiManager.remove_ui(self)
+		global.get_player().set_collisions(true)
+		global.get_player().unpause()
 	else:
-		audioManager.music_fadeout(audioManager.get_latest_audio_player_index(), 5)
 		$AnimationPlayer.play("transitionOut")
-		fade.fade_in("Fade", Color.black, 0.2)
+		_fade.fade_in("Fade", Color.black, 0.2)
 		yield($AnimationPlayer, "animation_finished")
+		audioManager.clear_all_music()
 		$GameOverLayer.hide()
 		$Door.enter()
-		
 		yield($Door, "done")
-		global.gameover = false
-		uiManager.commandsMenuActive = false
-		uiManager.remove_ui(self)
-
+	_game_over_music = null
+	emit_signal("done")
+		
 func turn_off_music_changers():
 	for musicChanger in audioManager.musicChangers:
 		musicChanger.stop_music_immediately()
 
 func revive_party():
+	global.set_party_leader(PartyMember.NINTEN)
 	for i in global.party:
-		i.status.clear()
+		i.remove_all_statuses()
 		if i == global.party[0]:
-			i.hp = i.maxhp + i.boosts.maxhp
-			i.pp = i.maxpp + i.boosts.maxpp
+			i.set_hp(i.get_stat(Character.MAXHP))
+			i.set_pp(i.get_stat(Character.MAXPP))
 		else:
-			StatusManager.add_status(i, StatusManager.AILMENT_UNCONSCIOUS)
-			i.pp = i.maxpp + i.boosts.maxpp
+			i.add_status(Status.AILMENT_UNCONSCIOUS)
+			i.set_pp(i.get_stat(Character.MAXPP))

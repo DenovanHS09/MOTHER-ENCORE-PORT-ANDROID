@@ -1,55 +1,49 @@
 extends Control
 
-var portraitSprites = {
-	"ninten": preload("res://Graphics/UI/Inventory/characters/ninten.png"),
-	"ana": preload("res://Graphics/UI/Inventory/characters/ana.png"),
-	"lloyd": preload("res://Graphics/UI/Inventory/characters/lloyd.png"),
-	"teddy": preload("res://Graphics/UI/Inventory/characters/teddy.png"),
-	"pippi": preload("res://Graphics/UI/Inventory/characters/pippi.png"),
-	"flyingman": preload("res://Graphics/UI/Inventory/characters/flyingman.png"),
-	"eve": preload("res://Graphics/UI/Inventory/characters/eve.png"),
-	"canarychick": preload("res://Graphics/UI/Inventory/characters/canarychick.png"),
+var _portrait_sprites = {
+	PartyMember.NINTEN: preload("res://Graphics/UI/Inventory/characters/ninten.png"),
+	PartyMember.ANA: preload("res://Graphics/UI/Inventory/characters/ana.png"),
+	PartyMember.LLOYD: preload("res://Graphics/UI/Inventory/characters/lloyd.png"),
+	PartyMember.TEDDY: preload("res://Graphics/UI/Inventory/characters/teddy.png"),
+	PartyMember.PIPPI: preload("res://Graphics/UI/Inventory/characters/pippi.png"),
+	PartyNPC.FLYING_MAN: preload("res://Graphics/UI/Inventory/characters/flyingman.png"),
+	PartyNPC.EVE: preload("res://Graphics/UI/Inventory/characters/eve.png"),
+	PartyNPC.CANARY_CHICK: preload("res://Graphics/UI/Inventory/characters/canarychick.png"),
 }
 
-var hlportraitSprites = {
-	"ninten": preload("res://Graphics/UI/Inventory/characters/ninten_hl.png"),
-	"ana": preload("res://Graphics/UI/Inventory/characters/ana_hl.png"),
-	"lloyd": preload("res://Graphics/UI/Inventory/characters/lloyd_hl.png"),
-	"teddy": preload("res://Graphics/UI/Inventory/characters/teddy_hl.png"),
-	"pippi": preload("res://Graphics/UI/Inventory/characters/pippi_hl.png"),
-	"flyingman": preload("res://Graphics/UI/Inventory/characters/flyingman_hl.png"),
-	"eve": preload("res://Graphics/UI/Inventory/characters/eve_hl.png"),
-	"canarychick": preload("res://Graphics/UI/Inventory/characters/canarychick_hl.png")
+var _hl_portrait_sprites = {
+	PartyMember.NINTEN: preload("res://Graphics/UI/Inventory/characters/ninten_hl.png"),
+	PartyMember.ANA: preload("res://Graphics/UI/Inventory/characters/ana_hl.png"),
+	PartyMember.LLOYD: preload("res://Graphics/UI/Inventory/characters/lloyd_hl.png"),
+	PartyMember.TEDDY: preload("res://Graphics/UI/Inventory/characters/teddy_hl.png"),
+	PartyMember.PIPPI: preload("res://Graphics/UI/Inventory/characters/pippi_hl.png"),
+	PartyNPC.FLYING_MAN: preload("res://Graphics/UI/Inventory/characters/flyingman_hl.png"),
+	PartyNPC.EVE: preload("res://Graphics/UI/Inventory/characters/eve_hl.png"),
+	PartyNPC.CANARY_CHICK: preload("res://Graphics/UI/Inventory/characters/canarychick_hl.png")
 }
-
-const cursorCloseSfx = preload("res://Audio/Sound effects/M3/curshoriz.wav")
-const registerSfx = preload("res://Audio/Sound effects/M3/register.wav")
 
 # Nodes
-onready var descNoDialog = $DescBox/DescriptionPanel
-onready var descDialog = $DescBox/DescriptionDialog
-onready var shopBox = {
-	"header": $ShopBox/Header,
-	"separater": $ShopBox/Separator,
-	"buy": $ShopBox/BuyMenu,
-	"sell": $ShopBox/SellMenu
-}
-onready var buySellCursor = $BuySellDialog/arrow
-onready var characterPortraits = $CharacterSelect/CharacterPortraits
+onready var _desc_no_dialog = $DescBox/DescriptionPanel
+onready var _desc_dialog = $DescBox/DescriptionDialog
+onready var _sell_label = $BuySellDialog/VBoxContainer/NoLabel
+onready var _menu_buy = $ShopBox/BuyMenu
+onready var _menu_sell = $ShopBox/SellMenu
+onready var _main_cursor = $BuySellDialog/arrow
+onready var _portraits_node = $CharacterSelect/CharacterPortraits
 
 # Common
-var _currentCharacter
-var _selectedItem
-var _prevEquip
-var _characterOrder = ["ninten", "lloyd", "ana", "teddy", "pippi", "flyingman", "eve", "canarychick"]
-var _characterIdx = 0
+var _current_character
+var _selected_item: Item
+var _prev_equip: Item
+var _last_purchased: Item
+var _character_order = [PartyMember.NINTEN, PartyMember.LLOYD, PartyMember.ANA, PartyMember.TEDDY, PartyMember.PIPPI, PartyNPC.FLYING_MAN, PartyNPC.EVE, PartyNPC.CANARY_CHICK]
+var _character_idx = 0
 
 # Buy or Sell Menu State
 # Buy state
-var shopYamlName = ""
-var shopList = []
-# Sell state
-var currentInv = []
+var _shop_yaml_name = ""
+var _can_sell = true
+var _callback: FuncRef = null
 # Description Dialog State
 enum DialogState {
 	BUY,
@@ -78,105 +72,102 @@ enum DialogState {
 # 	Yes -> sell state
 # 	No -> sell state
 
-# Called when the node enters the scene tree for the first time.
+func setup(shop_yaml_name: String, can_sell := true, callback: FuncRef = null):
+	_shop_yaml_name = shop_yaml_name
+	_can_sell = can_sell
+	_callback = callback
+
 func _ready():
-	buySellCursor.connect("selected", self, "_on_buysell_select")
-	buySellCursor.connect("cancel", self, "_on_arrow_cancel")
-	shopBox.buy.connect("exited", self, "_on_exit_buy")
-	shopBox.buy.connect("entered", self, "_on_enter_buy")
-	shopBox.buy.connect("moved", self, "_on_buy_cursor_moved")
-	shopBox.buy.connect("selected", self, "_on_buy_item_selected")
-	shopBox.sell.connect("exited", self, "_on_exit_sell")
-	shopBox.sell.connect("entered", self, "_on_enter_sell")
-	shopBox.sell.connect("moved", self, "_on_sell_cursor_moved")
-	shopBox.sell.connect("selected", self, "_on_sell_item_selected")
+	_main_cursor.connect("selected", self, "_on_buysell_select")
+	_main_cursor.connect("cancel", self, "_on_arrow_cancel")
+	_menu_buy.connect("exited", self, "_on_exit_buy")
+	_menu_buy.connect("entered", self, "_on_enter_buy")
+	_menu_buy.connect("moved", self, "_on_buy_cursor_moved")
+	_menu_buy.connect("selected", self, "_on_buy_item_selected")
+	_menu_sell.connect("exited", self, "_on_exit_sell")
+	_menu_sell.connect("entered", self, "_on_enter_sell")
+	_menu_sell.connect("moved", self, "_on_sell_cursor_moved")
+	_menu_sell.connect("selected", self, "_on_sell_item_selected")
 	
 	# set up character order
-	_characterOrder.clear()
-	for partyMem in global.party:
-		_characterOrder.append(partyMem.name)
+	_character_order.clear()
+	for partyMem in global.get_party_in_natural_order():
+		_character_order.append(partyMem.get_name())
 	
 	# init shop
-	if shopYamlName in globaldata.shopLists:
-		shopList = globaldata.shopLists[shopYamlName]
-		shopBox.buy.item_list.clear()
-		shopBox.buy.restriction_func = funcref(self, "_is_purchasable_cb")
-		for item_name in shopList:
-			shopBox.buy.item_list.append(InventoryManager.Item.new(item_name))
+	var shop_list := globaldata.get_shop_data(_shop_yaml_name)
+	_menu_buy.item_list.clear()
+	_menu_buy.restriction_func = funcref(self, "_is_purchasable_cb")
+	for item_name in shop_list:
+		_menu_buy.item_list.append(Item.new(item_name))
 	
-	enter_buysell()
+	_enter_buysell()
 	#set up highlights for buy/sell
 	$BuySellDialog/VBoxContainer/YesLabel.highlight(1)
-	changeCharacter(0)
+	_change_character(0)
 	_update_cash()
 
-func _input(event):
+func _input(event: InputEvent):
 	if event.is_action_pressed("ui_focus_next"):
 		get_tree().set_input_as_handled()
-		if !descDialog.open:
-			changeCharacter(1)
+		if !_desc_dialog.open:
+			_change_character(1)
 	elif event.is_action_pressed("ui_focus_prev"):
 		get_tree().set_input_as_handled()
-		if !descDialog.open:
-			changeCharacter(-1)
+		if !_desc_dialog.open:
+			_change_character(-1)
 
 func close():
-	if uiManager.dialogueBox:
-		uiManager.dialogueBox.call_deferred("next_phrase")
-		queue_free()
+	if _callback and _callback.is_valid():
+		_callback.call_func(_last_purchased.item_name if _last_purchased else "")
+		_callback = null
+	queue_free()
 
 func _update_cash():
 	$ShopBox/Header/CashBox/HBoxContainer/Amount.text = str(globaldata.cash).pad_zeros(6)
 
-func _is_purchasable_cb(item_instance):
-	return !InventoryManager.isInventoryFull(_currentCharacter.name) \
-		and globaldata.items[item_instance.ItemName].cost <= globaldata.cash
+func _is_purchasable_cb(item_instance: Item):
+	return !_current_character.inv.is_full() and item_instance.get_data().cost <= globaldata.cash
 
-func _is_sellable_cb(item_instance):
-	return globaldata.items[item_instance.ItemName].value > 0
+func _is_sellable_cb(item_instance: Item):
+	return item_instance.get_data().value > 0
 
-func enter_buysell():
+func _enter_buysell():
 	# hide non-used menus
-	$DescBox.hide()
-	descDialog.hide()
-	descNoDialog.hide()
-	shopBox.separater.hide()
-	shopBox.buy.hide()
-	shopBox.sell.hide()
-	_selectedItem = ""
-	_prevEquip = ""
-	updatePortraits()
-	buySellCursor.on = true
+	for menu in [$DescBox, _desc_dialog, _desc_no_dialog, _menu_buy, _menu_sell]:
+		menu.hide()
+	_sell_label.visible = _can_sell
+	_selected_item = null
+	_prev_equip = null
+	_update_portraits()
+	_main_cursor.on = true
 
-func enter_buy(reset=true):
+func _enter_buy(reset := true):
 	# some bs to make sure you know what menu ur in lol
-	buySellCursor.set_cursor_from_index(0, false)
-	buySellCursor.on = false
+	_main_cursor.set_cursor_from_index(0, false)
+	_main_cursor.on = false
 	$DescBox.show()
-	descNoDialog.show()
-	shopBox.separater.show()
-	shopBox.buy.show()
-	shopBox.buy.enter(reset)
-	_update_desc_and_portraits(shopBox.buy)
+	_desc_no_dialog.show()
+	_menu_buy.show()
+	_menu_buy.enter(reset)
+	_update_desc_and_portraits(_menu_buy)
 
-func enter_sell(reset=true):
+func _enter_sell(reset := true):
 	# some bs to make sure you know what menu ur in lol
-	buySellCursor.set_cursor_from_index(1, false)
-	buySellCursor.on = false
-	shopBox.sell.restriction_func = funcref(self, "_is_sellable_cb")
-	var inv = InventoryManager.getInventory(_currentCharacter.name)
-	shopBox.sell.item_list = inv
+	_main_cursor.set_cursor_from_index(1, false)
+	_main_cursor.on = false
+	_menu_sell.restriction_func = funcref(self, "_is_sellable_cb")
+	_menu_sell.item_list = _current_character.inv.get_items()
 	$DescBox.show()
-	descNoDialog.show()
-	shopBox.separater.show()
-	shopBox.sell.show()
-	shopBox.sell.enter(reset)
-	_update_desc_and_portraits(shopBox.sell)
+	_desc_no_dialog.show()
+	_menu_sell.show()
+	_menu_sell.enter(reset)
+	_update_desc_and_portraits(_menu_sell)
 
 func _enter_desc_dialog(state: int, selected_index: int):
-	if _selectedItem == "":
-		_selectedItem = "error"
-	var item = _selectedItem
+	if !_selected_item:
+		_selected_item = Item.new("error")
+	var item = _selected_item
 	var question
 	match(state):
 		DialogState.BUY:
@@ -184,228 +175,217 @@ func _enter_desc_dialog(state: int, selected_index: int):
 		DialogState.EQUIP_BOUGHT:
 			question = "SHOP_ASK_EQUIP"
 		DialogState.SELL_OLD_EQUIP:
-			item = _prevEquip
-			descNoDialog.set_item(_prevEquip)
+			item = _prev_equip
+			_desc_no_dialog.set_item(_prev_equip)
 			question = "SHOP_ASK_SELL_OLD"
 		DialogState.SELL:
 			question = "SHOP_ASK_SELL"
 		DialogState.SELL_EQUIP_NO_SPACE:
-			item = _prevEquip
-			descNoDialog.set_item(_prevEquip)
+			item = _prev_equip
+			_desc_no_dialog.set_item(_prev_equip)
 			question = "SHOP_ASK_SELL_FOR_SPACE"
 		DialogState.SELL_FOR_CASH:
 			question = "SHOP_ASK_SELL_FOR_CASH"
 	
-	question = TextTools.format_text_with_context(question, null, globaldata.items[item])
-	descDialog.ask(question, item, funcref(self, "_desc_dialog_answer"), [state, selected_index])
-	
+	question = TextTools.format_text_with_context(question, null, item.get_data())
+	_desc_dialog.ask(question, item.item_name, funcref(self, "_desc_dialog_answer"), [state, selected_index])
 
 func _desc_dialog_answer(state: int, selected_index: int, yes: bool):
-	if _selectedItem == "":
-		_selectedItem = "error"
-	var item = globaldata.items[_selectedItem]
+	if !_selected_item:
+		_selected_item = Item.new("error")
+	var item_data = _selected_item.get_data()
 	match(state):
 		DialogState.BUY:
 			if yes:
-				buy_something()
-				if InventoryManager.is_equippable_by(_currentCharacter.name, _selectedItem):
+				_buy_something()
+				if _current_character.can_equip_item(_selected_item):
 					# next dialog state if equippible
 					_enter_desc_dialog(DialogState.EQUIP_BOUGHT, selected_index)
 					return
 			# else, re enable buy state
-			enter_buy(false)
+			_enter_buy(false)
 		DialogState.EQUIP_BOUGHT:
 			if yes:
-				_prevEquip = _currentCharacter["equipment"][item.slot]
+				_prev_equip = _current_character.get_equipped_item(item_data.slot)
 				# get most recent item (bought item)
-				var recentItem = InventoryManager.getInventory(_currentCharacter.name).back()
-				InventoryManager.equip_item_from_uid(_currentCharacter, recentItem.uid)
-				audioManager.play_sfx(load("res://Audio/Sound effects/M3/equip.wav"), "menu")
-				if _prevEquip != "":
+				var recentItem = _current_character.inv.get_items().back()
+				_current_character.equip_item(recentItem)
+				audioManager.play_sfx_by_name("equip", "menu")
+				if _prev_equip:
 					_enter_desc_dialog(DialogState.SELL_OLD_EQUIP, selected_index)
 					return
-			enter_buy(false)
+			_enter_buy(false)
 		DialogState.SELL_OLD_EQUIP:
 			if yes:
-				sell_something(_prevEquip, selected_index)
-			_prevEquip = ""
-			enter_buy(false)
+				_sell_something(_prev_equip)
+			_prev_equip = null
+			_enter_buy(false)
 		DialogState.SELL:
 			if yes:
-				sell_something(_selectedItem, selected_index)
-			enter_sell(false)
+				_sell_something(_selected_item)
+			_enter_sell(false)
 		DialogState.SELL_EQUIP_NO_SPACE:
 			if yes:
-				sell_something(_prevEquip, selected_index)
+				_sell_something(_prev_equip)
 				_enter_desc_dialog(DialogState.BUY, selected_index)
-				_prevEquip = ""
+				_prev_equip = null
 				return
-			_prevEquip = ""
-			enter_buy(false)
+			_prev_equip = null
+			_enter_buy(false)
 		DialogState.SELL_FOR_CASH:
 			if yes:
-				shopBox.buy.exit()
-				shopBox.buy.hide()
-				enter_sell()
+				_menu_buy.exit()
+				_menu_buy.hide()
+				_enter_sell()
 			else:
-				enter_buy(false)
+				_enter_buy(false)
 
-func buy_something():
-	$AudioStreamPlayer.stream = registerSfx
-	$AudioStreamPlayer.play()
-	var item = globaldata.items[_selectedItem]
-	globaldata.cash -= item.cost
-	var itemIdx = InventoryManager.getInventory(_currentCharacter.name)
-	InventoryManager.addItem(_currentCharacter.name, _selectedItem)
-	# update purchasables(in cash update?)
+func _buy_something():
+	audioManager.play_sfx_by_name("cash", "menu")
+	var item_data := _selected_item.get_data()
+	globaldata.cash -= item_data.get("cost", 0)
 	_update_cash()
-
-func sell_something(item_name, idx: int):
-	$AudioStreamPlayer.stream = registerSfx
-	$AudioStreamPlayer.play()
-	var item_def = globaldata.items[item_name]
-	var item_int = InventoryManager.getInventory(_currentCharacter.name)[idx]
-	globaldata.cash += item_def.value * item_int.doses
-	if item_name == _prevEquip:
-		InventoryManager.dropItem(_currentCharacter.name, InventoryManager.find_item_index(_currentCharacter.name, item_name))
+	_last_purchased = _selected_item
+	if item_data.get("use_at_shop_dialog", false):
+		uiManager.remove_ui(self)
+		uiManager.close_dialogue_box()
+		uiManager.open_dialogue_box(item_data["use_at_shop_dialog"])
 	else:
-		InventoryManager.dropItem(_currentCharacter.name, idx)
+		_current_character.inv.add_item_by_name(_selected_item.item_name)
+	# update purchasables(in cash update?)
+
+func _sell_something(item: Item):
+	audioManager.play_sfx_by_name("cash", "menu")
+	globaldata.cash += _get_resale_price(item)
+	_current_character.inv.drop_item(item)
 	# update sell list
 	_update_cash()
 
-func _get_resale_price(item: InventoryManager.Item) -> int:
-	return globaldata.items[item.ItemName].value * item.doses
+func _get_resale_price(item: Item) -> int:
+	return item.get_data().value * item.doses
 
-func updatePortraits(highlighted_item=null):
+func _update_portraits(highlighted_item: Item = null):
 	for i in 4: # there's 4 portraits!
-		var portraitNode = characterPortraits.get_node(str("Party", i + 1))
-		if i >= _characterOrder.size():
-			portraitNode.texture = null
-		elif i == _characterIdx:
-			portraitNode.texture = hlportraitSprites[_characterOrder[i]]
+		var portrait_node = _portraits_node.get_node(str("Party", i + 1))
+		if i >= _character_order.size():
+			portrait_node.texture = null
+		elif i == _character_idx:
+			portrait_node.texture = _hl_portrait_sprites[_character_order[i]]
 		else:
-			portraitNode.texture = portraitSprites[_characterOrder[i]]
+			portrait_node.texture = _portrait_sprites[_character_order[i]]
 		
 		# equipment information
-		var is_suitable = false
-		var is_equiped = false
-		var is_better = false
-		var is_lower = false
-		if i < _characterOrder.size():
-			if highlighted_item and !InventoryManager.isInventoryFull(_characterOrder[i]):
-				var current_item_data = globaldata.items.get(highlighted_item)
-				var character = _characterOrder[i]
-				if current_item_data and InventoryManager.is_equippable(highlighted_item):
-					is_suitable = current_item_data["usable"][character]
-					var current_item_slot = current_item_data["slot"]
-					#- item is equiped
-					is_equiped = global.party[i]["equipment"][current_item_slot] == highlighted_item
-					
-					#if not equiped, check if stats boost
-					if !is_equiped:
-						var res = InventoryManager.is_the_item_better(global.party[i], highlighted_item)
-						match res:
-							1:
-								is_better = true
-							-1:
-								is_lower = true
-		is_suitable = is_suitable and !is_equiped
-		portraitNode.show_is_item_suitable(is_suitable)
-		portraitNode.show_is_item_equiped(is_equiped)
-		portraitNode.show_is_item_better(is_better)
-		portraitNode.show_is_item_lower(is_lower)
+		var is_suitable := false
+		var is_equipped := false
+		var is_better := false
+		var is_lower := false
+		var is_inventory_full := false
+		if i < _character_order.size():
+			var character = globaldata.characters[_character_order[i]]
+			is_inventory_full = character.inv.is_full() and !_menu_sell.visible # If we're not in the sell menu
+			if highlighted_item and highlighted_item.is_equippable():
+				is_suitable = character.can_equip_item(highlighted_item)
+				is_equipped = character.has_item_equipped_by_name(highlighted_item.item_name)
+				if is_suitable and !is_equipped:
+					var res = character.is_the_item_better(highlighted_item)
+					is_better = res == 1
+					is_lower = res == -1
+				is_suitable = is_suitable and !is_equipped and !is_inventory_full
+		portrait_node.show_is_item_suitable(is_suitable)
+		portrait_node.show_is_item_equipped(is_equipped)
+		portrait_node.show_is_item_better(is_better)
+		portrait_node.show_is_item_lower(is_lower)
+		portrait_node.show_is_inventory_full(is_inventory_full)
 
-func _update_desc_and_portraits(current_menu):
+func _update_desc_and_portraits(current_menu: ItemListMenu):
 	var item = current_menu.get_current_item()
-	updatePortraits(item.ItemName if item else "")
-	descNoDialog.set_item_from_inv(item)
+	_update_portraits(item if item else null)
+	_desc_no_dialog.set_item_from_inv(item)
 
-func changeCharacter(dir):
-	_characterIdx = wrapi(_characterIdx + dir, 0, _characterOrder.size())
-	# change _currentCharacter
-	for partyMem in global.party:
-		if partyMem.name == _characterOrder[_characterIdx]:
-			_currentCharacter = partyMem
+func _change_character(dir: int):
+	_character_idx = wrapi(_character_idx + dir, 0, _character_order.size())
+	# change _current_character
+	for party_mem in global.party:
+		if party_mem.get_name() == _character_order[_character_idx]:
+			_current_character = party_mem
 	#if in "sell" phase, reenter it to refresh items
-	if shopBox.sell.visible:
-		shopBox.sell.exit()
-		shopBox.sell.hide()
-		buySellCursor.on = false
-		enter_sell()
-	elif shopBox.buy.visible:
-		#updatePortraits(shopBox.buy.get_current_item_id())
-		enter_buy(false)
+	if _menu_sell.visible:
+		_menu_sell.exit()
+		_menu_sell.hide()
+		_main_cursor.on = false
+		_enter_sell()
+	elif _menu_buy.visible:
+		#_update_portraits(_menu_buy.get_current_item_id())
+		_enter_buy(false)
 	#Trust me this is helpful
 	else:
-		updatePortraits()
+		_update_portraits()
 
 # SIGNAL CONNECTIONS
 
 
-func _on_buysell_select(idx):
+func _on_buysell_select(idx: int):
 	if idx == 0:
-		enter_buy()
+		_enter_buy()
 	else:
-		enter_sell()
+		_enter_sell()
 
 func _on_exit_buy():
-	enter_buysell()
-	$AudioStreamPlayer.stream = cursorCloseSfx
-	$AudioStreamPlayer.play()
+	_enter_buysell()
+	audioManager.play_sfx_by_name("back", "menu")
 
 func _on_exit_sell():
-	enter_buysell()
-	$AudioStreamPlayer.stream = cursorCloseSfx
-	$AudioStreamPlayer.play()
+	_enter_buysell()
+	audioManager.play_sfx_by_name("back", "menu")
 
-func _on_buy_cursor_moved(item_idx):
-	_update_desc_and_portraits(shopBox.buy)
+func _on_buy_cursor_moved(item_idx: int):
+	_update_desc_and_portraits(_menu_buy)
 
-func _on_buy_item_selected(item_idx):
-	var item_id = shopBox.buy.get_current_item_id()
-	var itemData = globaldata.items[item_id]
-	if InventoryManager.isInventoryFull(_currentCharacter.name):
-		_prevEquip = _currentCharacter.equipment[itemData.slot] if (itemData.slot in _currentCharacter["equipment"]) else ""
+func _on_buy_item_selected(item_idx: int):
+	var item = _menu_buy.get_current_item()
+	var itemData = item.get_data()
+	if _current_character.inv.is_full():
+		_prev_equip = _current_character.get_equipped_item(itemData.slot) if (itemData.slot in _current_character.get_equipment()) else null
 		# For SELL_EQUIP_NO_SPACE: The party member should be able to equip the item,
 		# they should have another equippable item in the same slot, it should be different,
 		# and they should have enough money to buy it after selling the current one
-		if InventoryManager.is_equippable_by(_currentCharacter.name, item_id)\
-				and _prevEquip != "" and _prevEquip != item_id \
-				and itemData.cost - globaldata.items[_prevEquip].value <= globaldata.cash:
-			_selectedItem = item_id
-			shopBox.buy.cursor.on = false
+		if _current_character.can_equip_item(item)\
+				and _prev_equip != null and _prev_equip.item_name != item.item_name \
+				and itemData.cost - _prev_equip.get_data().value <= globaldata.cash:
+			_selected_item = item
+			_menu_buy.cursor.on = false
 			_enter_desc_dialog(DialogState.SELL_EQUIP_NO_SPACE, item_idx)
 		else:
-			descNoDialog.warn(tr("TRANSACTION_FULL"), 1)
+			_desc_no_dialog.warn(tr("TRANSACTION_FULL"), 1)
 	elif itemData.cost > globaldata.cash:
-		_selectedItem = item_id
-		shopBox.buy.cursor.on = false
+		_selected_item = item
+		_menu_buy.cursor.on = false
 		_enter_desc_dialog(DialogState.SELL_FOR_CASH, item_idx)
 	else:
-		_selectedItem = item_id
-		shopBox.buy.cursor.on = false
+		_selected_item = item
+		_menu_buy.cursor.on = false
 		_enter_desc_dialog(DialogState.BUY, item_idx)
 
-func _on_sell_cursor_moved(item_idx):
-	_update_desc_and_portraits(shopBox.sell)
+func _on_sell_cursor_moved(item_idx: int):
+	_update_desc_and_portraits(_menu_sell)
 
-func _on_sell_item_selected(item_idx):
-	var item_id = shopBox.sell.get_current_item_id()
-	var itemData = globaldata.items[item_id]
+func _on_sell_item_selected(item_idx: int):
+	var item = _menu_sell.get_current_item()
+	var itemData = item.get_data()
 	if itemData.value <= 0:
 		return
-	_selectedItem = item_id
-	shopBox.sell.cursor.on = false
+	_selected_item = item
+	_menu_sell.cursor.on = false
 	_enter_desc_dialog(DialogState.SELL, item_idx)
 
 func _on_enter_buy():
-	if shopBox.buy.item_list.empty():
+	if _menu_buy.item_list.empty():
 		$DescBox.hide()
 	else:
 		$DescBox.show()
 
 func _on_enter_sell():
-	if shopBox.sell.item_list.empty():
+	if _menu_sell.item_list.empty():
 		$DescBox.hide()
 	else:
 		$DescBox.show()

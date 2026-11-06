@@ -1,21 +1,17 @@
 extends Label
 
-# move left or right, depending on this vector
+# Move left or right, depending on this vector
 var dir = 1
 signal done()
 
-# sets tween to move number, as if bouncing off of a point
+# Sets tween to move number, as if bouncing off of a point
 func run():
-	if text == "Miss":
-		$Miss.show()
-	$Tween.interpolate_property(self, "rect_position:y", \
-		rect_position.y, rect_position.y - 16, 0.6, \
-		Tween.TRANS_QUAD, Tween.EASE_OUT)
+	if text == "Miss": $Miss.show()
+	create_tween().tween_property(self, "rect_position:y", rect_position.y - 16, 0.6) \
+			.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	$AnimationPlayer.play("start")
-	$AnimationPlayer.connect("animation_finished", self, "finishTimer")
-	
-	$Tween.start()
+	$AnimationPlayer.connect("animation_finished", self, "_finish_timer")
 
-func finishTimer(anim):
+func _finish_timer(_anim):
 	emit_signal("done")
 	queue_free()

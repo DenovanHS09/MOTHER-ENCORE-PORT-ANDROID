@@ -1,3 +1,4 @@
+tool
 extends KinematicBody2D
 
 var velocity = Vector2.ZERO
@@ -9,7 +10,8 @@ var start_pos
 func _ready():
 	_prepare()
 	set_process(false)
-	hide()
+	if !Engine.editor_hint:
+		hide()
 
 func _prepare():
 	$Sprite.texture = load("res://Graphics/Character Sprites/Npcs/misc/birds/" + var2str(randi()%3+0) + ".png")
@@ -30,13 +32,13 @@ func _process(_delta):
 		show()
 
 func _on_Area_body_entered(body):
-	if body == global.persistPlayer and body.position.x <= position.x:
+	if body == global.get_player() and body.position.x <= position.x:
 		$AnimationPlayer.play("Fly")
 		self.z_index = 1
 		inputVector.y = -1
 		$Sprite.flip_h = false
 		inputVector.x = 1
-	elif body == global.persistPlayer and body.position.x > position.x:
+	elif body == global.get_player() and body.position.x > position.x:
 		$AnimationPlayer.play("Fly")
 		self.z_index = 1
 		inputVector.y = -1

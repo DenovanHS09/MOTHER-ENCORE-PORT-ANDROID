@@ -15,7 +15,7 @@ func appear():
 	#	partyMember.position -= position
 	#	partyMember.get_parent().remove_child(partyMember)
 	#	add_child(partyMember)
-	var actors = uiManager.dialogueBox.actors
+	var actors = uiManager.get_dialogue_actors()
 	for i in actors:
 		print(i)
 		var actor = actors[i]
@@ -30,17 +30,12 @@ func appear():
 		global.talker.get_parent().remove_child(global.talker)
 		add_child(global.talker)
 	$AnimationPlayer.play("Melody")
-	$Tween.interpolate_property($BG, "self_modulate",
-		Color8(255, 255, 255, 0), Color8(255, 255, 255, 255), 0.5,
-		Tween.TRANS_LINEAR,Tween.EASE_OUT)
-	$Tween.start()
+	create_tween().tween_property($BG, "self_modulate", Color8(255, 255, 255, 255), 0.5) \
+			.from(Color8(255, 255, 255, 0)).set_ease(Tween.EASE_OUT)
 
 func disappear():
-	$Tween.interpolate_property($BG, "self_modulate",
-		Color8(255, 255, 255, 255), Color8(255, 255, 255, 0), 0.5,
-		Tween.TRANS_LINEAR,Tween.EASE_OUT)
-	$Tween.start()
-	yield($Tween, "tween_completed")
+	yield(create_tween().tween_property($BG, "self_modulate", Color8(255, 255, 255, 0), 0.5) \
+			.set_ease(Tween.EASE_OUT), "finished")
 	$AnimationPlayer.stop()
 	for i in movedObjects:
 		if i[0].get("active") != null:

@@ -1,63 +1,70 @@
 extends Label
 
 
-onready var highlighter = get("custom_styles/normal")
-var oldColor
-var oldModulate
+onready var _highlighter = get("custom_styles/normal")
+var _old_color
+var _old_modulate
+var _tween: SceneTreeTween
 var blinking := false
-var blink_state := 0.5
+var equipped := false
 
-var uid := 0
+var _width: int
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	oldColor = highlighter.bg_color
-	oldModulate = self_modulate
-	uiManager.connect("menuFlavorUpdated", self, "setColor")
-	highlighter = highlighter.duplicate()
-	self.set('custom_styles/normal', highlighter)
-	setColor()
-	highlighter.bg_color.a = 0
+	_width = rect_size.x
+	_old_color = _highlighter.bg_color
+	_old_modulate = self_modulate
+	uiManager.connect("menu_flavor_updated", self, "_set_color")
+	_highlighter = _highlighter.duplicate()
+	self.set('custom_styles/normal', _highlighter)
+	_set_color()
+	highlight(0)
 
-func setColor():
-	var highlightValue = highlighter.bg_color.a
-	for i in ["1", "2", "3", "4", "5"]:
-		if str(oldModulate) == str(uiManager.menuFlavorShader.get_shader_param("OLDCOLOR" + i)):
-			self_modulate = uiManager.menuFlavorShader.get_shader_param("NEWCOLOR" + i)
-		if str(oldColor) == str(uiManager.menuFlavorShader.get_shader_param("OLDCOLOR" + i)):
-			highlighter.bg_color = uiManager.menuFlavorShader.get_shader_param("NEWCOLOR" + i)
-	highlight(highlightValue)
+func set_text(new_text: String): # Special way of setting text that will send an error if a name is too long
+	var size = rect_size.x
+	text = new_text
+	rect_size.x = 0 # Force the size to update
+	if rect_size.x > _width:
+		push_error("Text '%s' for label of name '%s' is too long." % [text, name])
+	rect_size.x = size # Restore the original size
 
-func set_self_modulate(color):
+func _set_color():
+	var highlight_value = _highlighter.bg_color.a
+	for i in 5:
+		if str(_old_modulate) == str(uiManager.get_flavor_color(i + 1, false)):
+			self_modulate = uiManager.get_flavor_color(i + 1)
+		if str(_old_color) == str(uiManager.get_flavor_color(i + 1, false)):
+			_highlighter.bg_color = uiManager.get_flavor_color(i + 1)
+	highlight(highlight_value)
+
+func set_self_modulate(color: Color):
 	self_modulate = color
-	for i in ["1", "2", "3", "4", "5"]:
-		if str(color) == str(uiManager.menuFlavorShader.get_shader_param("OLDCOLOR" + i)):
-			self_modulate = uiManager.menuFlavorShader.get_shader_param("NEWCOLOR" + i)
+	for i in 5:
+		if str(color) == str(uiManager.get_flavor_color(i + 1, false)):
+			self_modulate = uiManager.get_flavor_color(i + 1)
 
-func highlight(val):
-	highlighter.bg_color.a = val
+func highlight(val: float):
+	_highlighter.bg_color.a = val
+	if get_node_or_null("Equipped_spr"):
+		$Equipped_spr.visible = false if val > 0 else equipped
 
-func blink(val):
+func blink(val: bool):
 	blinking = val
-	if val:
-		start_blinking()
+	if val: 
+		_start_blinking()
+		if get_node_or_null("Equipped_spr"):
+			$Equipped_spr.hide()
 	else:
-		$Tween.stop_all()
-		highlighter.bg_color.a = 0
+		if _tween: _tween.kill()
+		highlight(0)
 
-func start_blinking():
-	if blinking and !$Tween.is_active():
-		$Tween.interpolate_property(highlighter, "bg_color:a",
-			0.8, 0.5, 0.3,
-			Tween.TRANS_LINEAR,Tween.EASE_IN_OUT)
-		$Tween.interpolate_property(highlighter, "bg_color:a",
-			0.5, 0.8, 0.3,
-			Tween.TRANS_LINEAR,Tween.EASE_IN_OUT, 0.3)
-		$Tween.start()
+func _start_blinking():
+	if blinking and (!_tween or !_tween.is_running()):
+		_tween = create_tween().set_loops().set_ease(Tween.EASE_IN_OUT)
+		_tween.tween_property(_highlighter, "bg_color:a", 0.5, 0.3).from(0.8)
+		_tween.tween_property(_highlighter, "bg_color:a", 0.8, 0.3)
 
-func show_equiped(val: bool):
-
-	if get_node_or_null("Equiped_spr"):
-		$Equiped_spr.visible = val
-
+func show_equipped(val: bool):
+	if get_node_or_null("Equipped_spr"):
+		equipped = val
+		$Equipped_spr.visible = equipped

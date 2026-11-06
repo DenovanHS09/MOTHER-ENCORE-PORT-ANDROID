@@ -113,7 +113,7 @@ def getTagWidth(tagStr):
 				return getStringWidth(biggestCharNumbers * maxLenInput)
 			if re.fullmatch(r"\[\w+Art\d+\]", tagStr):
 				return getStringWidth(biggestCharText * maxLenArticle)
-			if re.fullmatch(r"\[ko_part:[^\]]+\]", tagStr):
+			if re.fullmatch(r"\[particle:[^\]]+\]", tagStr):
 				return getStringWidth(biggestCharText * maxLenArticle)
 			if re.fullmatch(r"\{member\d?\}", tagStr):
 				return getStringWidth(biggestCharText * maxLenPartyMember)

@@ -5,15 +5,7 @@ article: CANARYCHICK_ART
 keyitem: true
 cost: 0
 value: 0
-usable:
-  ninten: false
-  ana: false
-  lloyd: false
-  teddy: false
-  pippi: false
-action_one: null
-action_two: null
-battle_action: ''
+actions: []
 transform: ''
 slot: ''
 HPrecover: 0

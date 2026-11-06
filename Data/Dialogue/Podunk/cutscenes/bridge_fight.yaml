@@ -1,4 +1,4 @@
-'0':
+"0":
   actors:
     ninten: leader
     dog: Objects/NPCS/npc41
@@ -9,7 +9,7 @@
     dog:
       x: -1
       y: 0
-  emoteactors:
+  actorsemote:
     dog: exclamation
   actorsjump:
     dog:
@@ -20,17 +20,17 @@
   wait: 1
   autoadvance: true
   caninput: false
-  goto: '1'
-'1':
-  emoteactors:
+  goto: "1"
+"1":
+  actorsemote:
     ninten: sweat
     dog: angry
   actorsmove:
     ninten:
       movement:
-      - wait: 0.2
-      - x: -8
-        y: 0
+        - wait: 0.2
+        - x: -8
+          y: 0
       speed: 16
       animation: Walk
       type: step
@@ -39,12 +39,12 @@
   wait: 1.6
   autoadvance: true
   caninput: false
-  goto: '2'
+  goto: "2"
   actorsshake:
     dog:
       x: 1
       length: 0.8
-'2':
+"2":
   actorsjump:
     dog:
       height: 12
@@ -52,14 +52,14 @@
   actorsmove:
     dog:
       movement:
-      - x: -64
-        y: 0
+        - x: -64
+          y: 0
       speed: 112
       type: step
-  battler:
-    actor: dog
-    enemy: straydog
-  batwinflag: beat_dog_bridge
+  startbattle:
+    battlers:
+      - straydog: dog
+    winflag: beat_dog_bridge
   wait: 0.4
   autoadvance: true
   caninput: false

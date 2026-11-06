@@ -5,15 +5,9 @@ article: CRUMBS_ART
 keyitem: false
 cost: 0
 value: 5
-usable:
-  ninten: true
-  ana: true
-  lloyd: true
-  teddy: true
-  pippi: true
-action_one: null
-action_two: null
-battle_action: escapeCrumbs
+actions: []
+battle_action:
+  skill: escapeCrumbs
 transform: ''
 slot: ''
 HPrecover: 0

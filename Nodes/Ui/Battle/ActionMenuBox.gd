@@ -1,38 +1,43 @@
 extends BattleMenuBox
 
-export(NodePath) var nameBox
+export (NodePath) onready var _name_box = get_node_or_null(_name_box)
+export (NodePath) onready var _sp_meter = get_node_or_null(_sp_meter) as SPMeter
 
-const _actions = ["Basic", "Skills", "PSI", "Items", "Defend", "Run"]
-var _active_actions = ["Basic", "", "", "Items", "Defend", ""]
-var _basic_action: Dictionary = globaldata.skills["attack"]
+const ACTION_BASIC := "Basic"
+const ACTION_SKILLS := "Skills"
+const ACTION_PSI := "PSI"
+const ACTION_ITEMS := "Items"
+const ACTION_DEFEND := "Defend"
+const ACTION_RUN := "Run"
+
+const _actions := [ACTION_BASIC, ACTION_SKILLS, ACTION_PSI, ACTION_ITEMS, ACTION_DEFEND, ACTION_RUN]
+var _active_actions := [ACTION_BASIC, "", "", ACTION_ITEMS, ACTION_DEFEND, ""]
+var _basic_action: Dictionary = globaldata.get_battle_skill("attack")
+var _skill_action_name := ""
 onready var _icons = $ActionIcons.get_children()
 
-func _ready():
-	nameBox = get_node_or_null(nameBox)
 
-func enter(reset = false, _action = null):
+func enter(reset := false, _action = null):
 	.enter(reset, _action)
 	if reset:
 		var i = 0
-		for action in _active_actions:
-			if action != "":
-				break
+		for a in _active_actions:
+			if a: break
 			i += 1
 		cursor.set_cursor_from_index(i, false)
-	if nameBox != null:
-		nameBox.show()
+	if _name_box: _name_box.show()
 	_update_name_box()
 
 func hide():
 	.hide()
 	cursor.on = false
-	if nameBox != null:
-		nameBox.hide()
+	if _name_box != null:
+		_name_box.hide()
 
-func move(dir):
+func _move(dir: Vector2):
 	var original = cursor.cursor_index
 	var i = original
-	# try to the right
+	# Try to the right
 	while _active_actions[i] == "":
 		if dir.x > 0:
 			if i == _actions.size() - 1:
@@ -40,7 +45,7 @@ func move(dir):
 				i = 0
 			else:
 				i += 1
-		# try to the left
+		# Try to the left
 		elif dir.x < 0:
 			if i == 0:
 				print("Outta bounds again! wtf")
@@ -50,15 +55,12 @@ func move(dir):
 	
 	if i != original:
 		cursor.set_cursor_from_index(i)
-#		if i < original:
-#			return
-	#	play_sfx("cursor1")
 	_update_name_box()
 
-func select(i):
+func _select(i: int):
 	emit_signal("next", _actions[i])
 
-func add_action(action):
+func _add_action(action: String):
 	var idx = _actions.find(action)
 	if idx > -1:
 		_active_actions[idx] = action
@@ -67,29 +69,56 @@ func add_action(action):
 	else:
 		print("Added Action %s doesn't exist :(" % action)
 
-func reset_actions():
+func _reset_actions():
 	for icon in _icons:
 		icon.hide()
 	for i in range(_active_actions.size()):
 		_active_actions[i] = ""
-	for action in ["Basic", "Defend", "Items"]:
-		add_action(action)
+	for action in [ACTION_BASIC, ACTION_DEFEND, ACTION_ITEMS]:
+		_add_action(action)
 
-func add_unselectable_actions(newActions):
-	for action in newActions:
+func _add_unselectable_actions(new_actions: Array):
+	for action in new_actions:
 		var idx = _actions.find(action)
 		if idx > -1:
 			_active_actions[idx] = ""
-			_icons[idx].modulate = Color.darkgray
+			_icons[idx].modulate = Color.dimgray
 
-func set_basic_action(action_id: String):
-	_basic_action = globaldata.skills[action_id]
+func set_actions_for_user(bp: BattleParticipant, with_run: bool):
+	_reset_actions()
+	
+	if bp:
+		var pm := bp.character
+		_basic_action = globaldata.get_battle_skill(pm.get_basic_skill())
+		_skill_action_name = "BATTLE_ACTION_SKILLS_%s" % pm.get_id().to_upper()
+		
+		if !pm.get_usable_skills("skill").empty():
+			_add_action(ACTION_SKILLS)
+		
+		if !pm.get_usable_skills("psi").empty():
+			_add_action(ACTION_PSI)
+		
+		_add_unselectable_actions(bp.get_combined_status_effect("cant_select").keys())
+		
+		if with_run:
+			_add_action(ACTION_RUN)
+	
+	cursor.set_cursor_from_index(0)
+	
 	_update_name_box()
 
 func _update_name_box():
 	var action_id = _active_actions[cursor.cursor_index]
-	if nameBox != null:
-		if action_id == "Basic":
-			nameBox.get_child(0).text = _basic_action.name
-		else:
-			nameBox.get_child(0).text = "BATTLE_ACTION_" + action_id.to_upper()
+	if _name_box:
+		match action_id:
+			ACTION_BASIC:
+				_name_box.get_child(0).text = _basic_action.name
+			ACTION_SKILLS:
+				_name_box.get_child(0).text = _skill_action_name
+			_:
+				_name_box.get_child(0).text = "BATTLE_ACTION_%s" % action_id.to_upper()
+	
+	if action_id == ACTION_DEFEND:
+		_sp_meter.set_preview_sp(BattleSystem.SP_TYPE.GUARD, true)
+	else:
+		_sp_meter.clear_preview_sp()

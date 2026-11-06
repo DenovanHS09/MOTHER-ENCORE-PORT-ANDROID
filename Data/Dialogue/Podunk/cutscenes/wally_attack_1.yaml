@@ -1,4 +1,4 @@
-'0':
+"0":
   actors:
     ninten: leader
     pippi: pippi
@@ -7,38 +7,38 @@
   name: DIALOGUE_PODUNK_CUTSCENES_WALLY_ATTACK_1_SPEAKER_???
   sound: Adult
   text: DIALOGUE_PODUNK_CUTSCENES_WALLY_ATTACK_1_0
-  goto: '1'
-  music: ''
-'1':
+  goto: "1"
+  music: ""
+"1":
   showbox: false
   actorsmove:
     ninten:
       movement:
-      - x: -434
-        y: 548
+        - x: -434
+          y: 548
       speed: 32
       animation: Walk
       type: position
     pippi:
       movement:
-      - x: -414
-        y: 548
+        - x: -414
+          y: 548
       speed: 32
       animation: Walk
       type: position
     chick:
       movement:
-      - x: -424
-        y: 554
+        - x: -424
+          y: 554
       speed: 32
       animation: Walk
       type: position
     wally:
       movement:
-      - x: -36
-        y: 0
-      - x: 0
-        y: 32
+        - x: -36
+          y: 0
+        - x: 0
+          y: 32
       speed: 32
       animation: Walk
       type: step
@@ -49,10 +49,10 @@
   changecam: null
   wait: 1
   autoadvance: true
-  goto: '2'
-'2':
+  goto: "2"
+"2":
   showbox: false
-  emoteactors:
+  actorsemote:
     pippi: sweat
   actorsturn:
     ninten:
@@ -69,47 +69,47 @@
       speed: 0.1
   wait: 0.5
   autoadvance: true
-  goto: '3'
-'3':
+  goto: "3"
+"3":
   talker: pippi
-  name: '[Pippi]'
+  name: "[Pippi]"
   sound: Kid
   text: DIALOGUE_PODUNK_CUTSCENES_WALLY_ATTACK_1_3
-  emoteactors:
+  actorsemote:
     pippi: sweat
-  goto: '4'
-'4':
+  goto: "4"
+"4":
   talker: wally
   name: DIALOGUE_PODUNK_CUTSCENES_WALLY_ATTACK_1_SPEAKER_Wally
   sound: Adult
   text: DIALOGUE_PODUNK_CUTSCENES_WALLY_ATTACK_1_4
-  emoteactors:
+  actorsemote:
     wally: exclamation
-  goto: '5'
-'5':
+  goto: "5"
+"5":
   name: DIALOGUE_PODUNK_CUTSCENES_WALLY_ATTACK_1_SPEAKER_Wally
   sound: Adult
   text: DIALOGUE_PODUNK_CUTSCENES_WALLY_ATTACK_1_5
-  goto: '6'
-'6':
+  goto: "6"
+"6":
   talker: pippi
-  name: '[Pippi]'
+  name: "[Pippi]"
   sound: Kid
   text: DIALOGUE_PODUNK_CUTSCENES_WALLY_ATTACK_1_6
-  goto: '7'
-'7':
-  name: '[Pippi]'
+  goto: "7"
+"7":
+  name: "[Pippi]"
   sound: Kid
   text: DIALOGUE_PODUNK_CUTSCENES_WALLY_ATTACK_1_7
-  emoteactors:
+  actorsemote:
     ninten: dot
   actorsturn:
     ninten:
       x: 1
       y: 0
       speed: 0.1
-  goto: '8'
-'8':
+  goto: "8"
+"8":
   talker: wally
   name: DIALOGUE_PODUNK_CUTSCENES_WALLY_ATTACK_1_SPEAKER_Wally
   sound: Adult
@@ -123,18 +123,17 @@
       x: 0
       y: -1
       speed: 0.05
-  goto: '9'
+  goto: "9"
   actorsshake:
     wally:
       x: 1
       length: 0.2
-'9':
+"9":
   name: DIALOGUE_PODUNK_CUTSCENES_WALLY_ATTACK_1_SPEAKER_Wally
   sound: Adult
   text: DIALOGUE_PODUNK_CUTSCENES_WALLY_ATTACK_1_9
   setflags: wally_attack
-  battler:
-    actor: wally
-    enemy: wally
-  batwinflag: wally_defeat
-  batrematchflag: wally_rematch
+  startbattle:
+    battlers:
+      - wally: wally
+    winflag: wally_defeat
