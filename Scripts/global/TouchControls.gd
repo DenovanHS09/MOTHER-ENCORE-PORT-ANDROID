@@ -1,6 +1,6 @@
 extends CanvasLayer
-# Controles tactiles v5 para MOTHER: Encore (Godot 3.6)
-# (unifica v3 + v4 y añade mejoras de robustez)
+# Controles tactiles v7 para MOTHER: Encore (Godot 3.6)
+# (v5 + diagnostico de GPU, nube del Monte Itoi, shaders de prueba y rendimiento al tocar)
 # Pon DEBUG = false cuando todo funcione para ocultar los textos de diagnostico.
 # - Los toques se manejan aqui y se emulan como TECLADO real (y como acciones).
 # - La cruceta es una ZONA: puedes deslizar el dedo de una direccion a otra
@@ -39,6 +39,20 @@ const DPAD_DEAD = 7.0
 # Tamaño de la pantalla virtual del juego
 const VIEW_SIZE = Vector2(320, 180)
 
+# Shaders de prueba (solo DEBUG): 8 cuadritos abajo en el centro, de izquierda a derecha.
+# Un cuadrito que CAMBIA DE COLOR = ese shader funciona en el telefono.
+# Uno gris y quieto = ese shader falla.
+const TEST_SHADERS = [
+	"shader_type canvas_item;\nvoid fragment() { COLOR = vec4(fract(TIME * 0.5), 0.0, 0.0, 1.0); }",
+	"shader_type canvas_item;\nvoid fragment() { highp float t = TIME * 0.5; COLOR = vec4(0.0, fract(t), 0.0, 1.0); }",
+	"shader_type canvas_item;\nvoid fragment() { float k = step(1.0, mod(floor(TIME), 2.0)); COLOR = vec4(0.0, 0.0, 0.3 + 0.7 * k, 1.0); }",
+	"shader_type canvas_item;\nvoid fragment() { float k = 0.3; if (int(TIME) % 2 == 0) { k = 1.0; } COLOR = vec4(k, k, 0.0, 1.0); }",
+	"shader_type canvas_item;\nvoid fragment() { vec4 c = textureLod(TEXTURE, UV, 0.0); COLOR = vec4(c.rgb * fract(TIME * 0.5), 1.0); }",
+	"shader_type canvas_item;\nvoid fragment() { vec4 c = texture(TEXTURE, UV); COLOR = vec4(c.rgb * fract(TIME * 0.5), 1.0); }",
+	"shader_type canvas_item;\nuniform bool on = true;\nuniform int n = 2;\nvoid fragment() { float k = 0.3; if (on && n > 1) { k = fract(TIME * 0.5); } COLOR = vec4(k, 0.0, k, 1.0); }",
+	"shader_type canvas_item;\nvoid fragment() { vec4 s = texture(SCREEN_TEXTURE, SCREEN_UV); COLOR = vec4(fract(TIME * 0.5), 0.5 + s.g * 0.0, 0.5, 1.0); }",
+]
+
 var rects = []
 var panels = []
 var pressed = []
@@ -46,7 +60,15 @@ var touches = {}
 var dpad_finger = -1
 var debug_label
 var debug_label2
+var debug_label3
+var debug_label4
+var debug_label5
 var n_events = 0
+var _dbg_timer = 0.0
+var _fps_min = 999
+var _dt_max = 0.0
+var _touch_max = 0
+var _stat_timer = 0.0
 
 
 func _ready():
@@ -80,6 +102,20 @@ func _ready():
 		debug_label2.rect_position = Vector2(2, 14)
 		debug_label2.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		add_child(debug_label2)
+		debug_label3 = Label.new()
+		debug_label3.rect_position = Vector2(2, 26)
+		debug_label3.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		debug_label3.text = OS.get_video_driver_name(OS.get_current_video_driver()) + " | " + VisualServer.get_video_adapter_name() + " | " + VisualServer.get_video_adapter_vendor()
+		add_child(debug_label3)
+		debug_label4 = Label.new()
+		debug_label4.rect_position = Vector2(2, 38)
+		debug_label4.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		add_child(debug_label4)
+		debug_label5 = Label.new()
+		debug_label5.rect_position = Vector2(2, 50)
+		debug_label5.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		add_child(debug_label5)
+		_build_shader_tests()
 	set_process(DEBUG)
 	# Quedarse siempre al final del arbol (asi recibimos los toques primero)
 	get_tree().root.connect("child_entered_tree", self, "_on_root_child")
@@ -98,8 +134,61 @@ func _move_last():
 		root.move_child(self, n - 1)
 
 
-func _process(_delta):
+func _process(delta):
 	debug_label2.text = "paused=" + str(get_tree().paused) + " ev=" + str(n_events) + " dis=" + str(get_viewport().is_input_disabled())
+	_dbg_timer += delta
+	if _dbg_timer > 0.5:
+		_dbg_timer = 0.0
+		_update_cloud_info()
+	# Rendimiento: peor FPS, peor tiempo de frame y peor tiempo del manejo de toques (ultimos 3 s)
+	var fps = Engine.get_frames_per_second()
+	if fps < _fps_min:
+		_fps_min = fps
+	if delta > _dt_max:
+		_dt_max = delta
+	_stat_timer += delta
+	if _stat_timer > 3.0:
+		debug_label5.text = "fps_min=" + str(_fps_min) + " dt_max=" + str(int(_dt_max * 1000)) + "ms touch_max=" + str(_touch_max / 1000) + "ms"
+		_fps_min = 999
+		_dt_max = 0.0
+		_touch_max = 0
+		_stat_timer = 0.0
+
+
+# Cuadritos con shaders de prueba (gris de fondo: si el shader falla, se queda gris)
+func _build_shader_tests():
+	var i = 0
+	for code in TEST_SHADERS:
+		var back = ColorRect.new()
+		back.color = Color(0.5, 0.5, 0.5, 1)
+		back.rect_position = Vector2(90 + i * 16, 163)
+		back.rect_size = Vector2(14, 14)
+		back.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		add_child(back)
+		var t = ColorRect.new()
+		t.rect_position = Vector2(1, 1)
+		t.rect_size = Vector2(12, 12)
+		t.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		var sh = Shader.new()
+		sh.code = code
+		var mat = ShaderMaterial.new()
+		mat.shader = sh
+		t.material = mat
+		back.add_child(t)
+		i += 1
+
+
+# Muestra el estado del Sprite "Cloud" (nube del Monte Itoi) si existe en la escena
+func _update_cloud_info():
+	var sc = get_tree().current_scene
+	var c = null
+	if sc:
+		c = sc.find_node("Cloud", true, false)
+	if c and c is Sprite and c.texture:
+		var ts = c.texture.get_size()
+		debug_label4.text = "cloud tex=" + str(int(ts.x)) + "x" + str(int(ts.y)) + " h=" + str(c.hframes) + " v=" + str(c.vframes) + " f=" + str(c.frame) + " vis=" + str(c.is_visible_in_tree()) + " sc=" + str(c.scale)
+	else:
+		debug_label4.text = ""
 
 
 # Evita botones "pegados" si la app pierde el foco o se minimiza.
@@ -109,6 +198,7 @@ func _notification(what):
 
 
 func _input(event):
+	var t0 = OS.get_ticks_usec()
 	if DEBUG:
 		n_events += 1
 	if event is InputEventScreenTouch:
@@ -122,6 +212,10 @@ func _input(event):
 			_release_finger(event.index)
 	elif event is InputEventScreenDrag:
 		_touch(event.index, _to_virtual(event.position))
+	if DEBUG:
+		var us = OS.get_ticks_usec() - t0
+		if us > _touch_max:
+			_touch_max = us
 
 
 # Si el toque llega en pixeles reales de pantalla (fuera del rango 320x180),
