@@ -1,24 +1,9 @@
 extends Node
 class_name SceneTransition
 
-var _log := []
-
-func dbg(msg: String):
-	_log.append(msg)
-	if _log.size() > 8:
-		_log.pop_front()
-	var root = get_tree().get_root()
-	var cl = root.get_node_or_null("DbgLayer")
-	if cl == null:
-		cl = CanvasLayer.new()
-		cl.name = "DbgLayer"
-		cl.layer = 120
-		var l = Label.new()
-		l.name = "L"
-		l.rect_position = Vector2(2, 20)
-		cl.add_child(l)
-		root.add_child(cl)
-	cl.get_node("L").text = "\n".join(PoolStringArray(_log))
+# Se deja vacia por compatibilidad (antes mostraba texto de diagnostico en pantalla)
+func dbg(_msg: String):
+	pass
 
 func goto_scene(path: String, player_pos := Vector2.ZERO, player_dir := Vector2(0, 0), params := []):
 	call_deferred("_deferred_goto_scene", path, player_pos, player_dir, params)
@@ -62,7 +47,6 @@ func _deferred_goto_scene(path: String, player_pos: Vector2, player_dir: Vector2
 	global.emit_signal("scene_changed")
 
 func start_door_transition(door: Door, player: PartyMemberPlayer):
-	dbg("1 start")
 	var same_scene: bool = !door.targetScene or global.currentScene.get_name() == door.targetScene
 	
 	if !same_scene and door.fadeout_music_on_scene_change:
@@ -76,7 +60,6 @@ func start_door_transition(door: Door, player: PartyMemberPlayer):
 	var fade = uiManager.get_fade()
 	fade.fade_in(door.transit_in_anim, door.transit_in_color, door.fade_in_speed)
 	yield(fade, "fade_in_done")
-	dbg("2 faded")
 	
 	door.emit_signal("entered")
 	
@@ -84,9 +67,7 @@ func start_door_transition(door: Door, player: PartyMemberPlayer):
 		door.goto_player()
 	else:
 		door.change_scene()
-		dbg("3 loading")
 		yield(global, "scene_changed")
-		dbg("4 done")
 	
 	if door.show_player_after_warp:
 		player.camera.current = true
