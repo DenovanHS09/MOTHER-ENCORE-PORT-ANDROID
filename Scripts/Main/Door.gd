@@ -40,50 +40,17 @@ func _on_Door_body_entered(body):
 	enter(body)
 
 func enter(player := global.get_player()):
-	global.scene_transition.dbg("enter busy=" + str(global.entering_door))
 	if global.entering_door:
 		return
-
+	
 	global.entering_door = true
-
-	var ui = get_node_or_null("/root/uiManager")
-	global.scene_transition.dbg("ui=" + str(ui))
-	if ui:
-		global.scene_transition.dbg("script=" + str(ui.get_script()))
-		global.scene_transition.dbg("method=" + str(ui.has_method("is_in_cutscene")))
-	if ui and ui.has_method("is_in_cutscene") and ui.is_in_cutscene():
-		global.scene_transition.dbg("blocked: cutscene")
+	
+	if uiManager.is_in_cutscene():
 		return
-	global.scene_transition.dbg("b cutscene ok")
 	_player = player
 	_set_flag()
-	global.scene_transition.dbg("c calling")
-
+	
 	global.scene_transition.start_door_transition(self, _player)
-	_probe_ui()
-
-func _probe_ui():
-	var queue = ["res://Nodes/Ui/Pause menu.tscn"]
-	var seen = {}
-	var bad = []
-	while queue.size() > 0:
-		var cur = queue.pop_front()
-		if seen.has(cur):
-			continue
-		seen[cur] = true
-		if load(cur) == null:
-			bad.append(cur)
-		for d in ResourceLoader.get_dependencies(cur):
-			var p = str(d)
-			for part in p.split("::"):
-				if part.begins_with("res://"):
-					p = part
-			if not seen.has(p):
-				queue.append(p)
-	global.scene_transition.dbg("seen=" + str(seen.size()) + " bad=" + str(bad.size()))
-	var n = bad.size()
-	for i in range(max(0, n - 4), n):
-		global.scene_transition.dbg(bad[i].get_file())
 
 func change_scene():
 	global.add_persistent(self)
