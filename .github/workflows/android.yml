@@ -9,6 +9,15 @@ jobs:
       - uses: actions/checkout@v4
       - name: Arreglar mayusculas
         run: perl fixcase.pl
+      - name: Dividir hoja de la nube
+        run: |
+          apt-get update -qq && apt-get install -y -qq imagemagick
+          cd "Graphics/Cutscenes/Mt Itoi Landscape"
+          convert Mt_Itoi_Cloud.png -crop 176x48 +repage +adjoin /tmp/cloud_%02d.png
+          montage /tmp/cloud_*.png -tile 4x8 -geometry 176x48+0+0 -background none PNG32:Mt_Itoi_Cloud.png
+          cd ../../..
+          sed -i 's/hframes = 31/hframes = 4\nvframes = 8/' "Nodes/Reusables/Mt Itoi Cloud.tscn"
+          grep -n "frames" "Nodes/Reusables/Mt Itoi Cloud.tscn"
       - name: Plantillas de exportacion
         run: |
           DEST=$HOME/.local/share/godot/templates/3.6.2.stable
