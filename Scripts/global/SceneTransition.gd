@@ -5,7 +5,7 @@ var _log := []
 
 func dbg(msg: String):
 	_log.append(msg)
-	if _log.size() > 5:
+	if _log.size() > 8:
 		_log.pop_front()
 	var root = get_tree().get_root()
 	var cl = root.get_node_or_null("DbgLayer")
@@ -15,7 +15,7 @@ func dbg(msg: String):
 		cl.layer = 120
 		var l = Label.new()
 		l.name = "L"
-		l.rect_position = Vector2(2, 100)
+		l.rect_position = Vector2(2, 20)
 		cl.add_child(l)
 		root.add_child(cl)
 	cl.get_node("L").text = "\n".join(PoolStringArray(_log))
