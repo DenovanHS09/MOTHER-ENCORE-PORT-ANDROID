@@ -63,18 +63,26 @@ func enter(player := global.get_player()):
 	_probe_ui()
 
 func _probe_ui():
-	var scene_path = "res://Nodes/Ui/Pause menu.tscn"
-	var deps = ResourceLoader.get_dependencies(scene_path)
+	var queue = ["res://Nodes/Ui/Pause menu.tscn"]
+	var seen = {}
 	var bad = []
-	for d in deps:
-		var p = str(d)
-		for part in p.split("::"):
-			if part.begins_with("res://"):
-				p = part
-		if load(p) == null:
-			bad.append(p)
-	global.scene_transition.dbg("deps=" + str(deps.size()) + " bad=" + str(bad.size()))
-	for i in range(min(3, bad.size())):
+	while queue.size() > 0:
+		var cur = queue.pop_front()
+		if seen.has(cur):
+			continue
+		seen[cur] = true
+		if load(cur) == null:
+			bad.append(cur)
+		for d in ResourceLoader.get_dependencies(cur):
+			var p = str(d)
+			for part in p.split("::"):
+				if part.begins_with("res://"):
+					p = part
+			if not seen.has(p):
+				queue.append(p)
+	global.scene_transition.dbg("seen=" + str(seen.size()) + " bad=" + str(bad.size()))
+	var n = bad.size()
+	for i in range(max(0, n - 4), n):
 		global.scene_transition.dbg(bad[i].get_file())
 
 func change_scene():
