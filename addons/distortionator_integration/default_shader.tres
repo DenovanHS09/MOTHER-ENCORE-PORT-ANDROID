@@ -95,7 +95,7 @@ vec4 apply_blending(vec4 base, vec4 blend, int type){
 
  void fragment(){
 	//UV variable for distortions
-	vec2 newuv = UV;
+	highp vec2 newuv = UV;
 	
 	//Original modulate
 	vec4 modulate = COLOR;
@@ -109,7 +109,7 @@ vec4 apply_blending(vec4 base, vec4 blend, int type){
 	}
 	
 	// OSCILATION
-	vec2 osc_time = vec2(TIME, TIME);
+	highp vec2 osc_time = vec2(TIME, TIME);
 	if (osc_trans_ping_pong.x != 0.0) {
 		osc_time.x = cos(osc_trans_ping_pong.x * TIME);
 	}
@@ -125,7 +125,7 @@ vec4 apply_blending(vec4 base, vec4 blend, int type){
 	}
 	
 	// COMPRESSION
-	vec2 comp_time = vec2(TIME, TIME);
+	highp vec2 comp_time = vec2(TIME, TIME);
 	if (comp_trans_ping_pong.x != 0.0) {
 		comp_time.x = cos(comp_trans_ping_pong.x * TIME);
 		}
@@ -153,10 +153,10 @@ vec4 apply_blending(vec4 base, vec4 blend, int type){
 	}
 	
 	// INTERLACING
-	float diff_x = 0.0;
-	float diff_y = 0.0;
+	highp float diff_x = 0.0;
+	highp float diff_y = 0.0;
 	
-	vec2 inter_time = vec2(TIME, TIME);
+	highp vec2 inter_time = vec2(TIME, TIME);
 	if (inter_trans_ping_pong.x != 0.0) {
 			inter_time.x = cos(inter_trans_ping_pong.x * TIME);
 		}
@@ -166,7 +166,7 @@ vec4 apply_blending(vec4 base, vec4 blend, int type){
 	
 	// INTERLACING (X)
 	if ((interlaced_frequency.x != 0.0) && (interlaced_amplitude.x != 0.0)) {
-		if ( int(UV.y * screen_size.y / 2.0)  % 2 == 0 ){
+		if ( mod(floor(UV.y * screen_size.y / 2.0), 2.0) < 1.0 ){
 			diff_x += 0.05 * cos((interlaced_frequency.x * UV.y) + (interlaced_speed.x * inter_time.x)) * interlaced_amplitude.x * cos(inter_amp_ping_pong.x * TIME);
 		} else{
 			diff_x -= 0.05 * cos((interlaced_frequency.x * UV.y) + (interlaced_speed.x * inter_time.x)) * interlaced_amplitude.x * cos(inter_amp_ping_pong.x * TIME);
@@ -175,7 +175,7 @@ vec4 apply_blending(vec4 base, vec4 blend, int type){
 	
 	// INTERLACING (Y)
 	if ((interlaced_frequency.y != 0.0) && (interlaced_amplitude.y != 0.0)) {
-		if ( int(UV.x * screen_size.x / 4.0)  % 2 == 0 ){
+		if ( mod(floor(UV.x * screen_size.x / 4.0), 2.0) < 1.0 ){
 			diff_y += 0.05 * cos((interlaced_frequency.y * UV.x) + (interlaced_speed.y * inter_time.y)) * interlaced_amplitude.y * cos(inter_amp_ping_pong.y * TIME);
 		} else{
 			diff_y -= 0.05 * cos((interlaced_frequency.y * UV.x) + (interlaced_speed.y * inter_time.y)) * interlaced_amplitude.y * cos(inter_amp_ping_pong.y * TIME);
@@ -184,7 +184,7 @@ vec4 apply_blending(vec4 base, vec4 blend, int type){
 	
 	
 	// Apply all distortions!
-	COLOR = (textureLod(TEXTURE, vec2(newuv.x + diff_x, newuv.y + diff_y), 0));
+	COLOR = texture(TEXTURE, vec2(newuv.x + diff_x, newuv.y + diff_y));
 	
 	
 	// PALETTE SHIFTING
