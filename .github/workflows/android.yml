@@ -13,12 +13,23 @@ jobs:
         run: |
           apt-get update -qq && apt-get install -y -qq imagemagick
           cd "Graphics/Cutscenes/Mt Itoi Landscape"
-          convert Mt_Itoi_Cloud.png -crop 176x48 +repage +adjoin /tmp/cloud_%02d.png
-          montage /tmp/cloud_*.png -tile 4x8 -geometry 176x48+0+0 -background none PNG32:Mt_Itoi_Cloud.png
+          W=$(identify -format %w Mt_Itoi_Cloud.png)
+          H=$(identify -format %h Mt_Itoi_Cloud.png)
+          FW=$((W / 31))
+          echo "hoja original: ${W}x${H}, cuadro: ${FW}x${H}"
+          rm -f /tmp/cloud_*.png
+          convert Mt_Itoi_Cloud.png -crop ${FW}x${H} +repage +adjoin /tmp/cloud_%02d.png
+          N=$(ls /tmp/cloud_*.png | wc -l)
+          echo "cuadros: $N"
+          [ "$N" = "31" ] || { echo "ERROR: se esperaban 31 cuadros"; exit 1; }
+          montage /tmp/cloud_*.png -tile 4x8 -geometry ${FW}x${H}+0+0 -background none PNG32:/tmp/cloud_grid_out.png
+          mv /tmp/cloud_grid_out.png Mt_Itoi_Cloud.png
           identify Mt_Itoi_Cloud.png
           cd ../../..
           sed -i 's/hframes = 31/hframes = 4\nvframes = 8/' "Nodes/Reusables/Mt Itoi Cloud.tscn"
           grep -n "frames" "Nodes/Reusables/Mt Itoi Cloud.tscn"
+          echo "=== Imagenes con ancho o alto mayor a 4096 ==="
+          find . -type f -iname "*.png" -not -path "./.import/*" -not -path "./.git/*" -print0 | xargs -0 -r identify -format "%w %h %d/%f\n" 2>/dev/null | awk '$1 > 4096 || $2 > 4096' | sort -rn | head -40
       - name: Desactivar mouse emulado desde toque
         run: |
           if grep -q 'emulate_mouse_from_touch' project.godot; then
