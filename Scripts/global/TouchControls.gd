@@ -1,6 +1,6 @@
 extends CanvasLayer
-# Controles tactiles v7 para MOTHER: Encore (Godot 3.6)
-# (v5 + diagnostico de GPU, nube del Monte Itoi, shaders de prueba y rendimiento al tocar)
+# Controles tactiles v8 para MOTHER: Encore (Godot 3.6)
+# (v7 + boton Atras de Android con confirmacion para salir + boton Ct/Ctrl de camara)
 # Pon DEBUG = false cuando todo funcione para ocultar los textos de diagnostico.
 # - Los toques se manejan aqui y se emulan como TECLADO real (y como acciones).
 # - La cruceta es una ZONA: puedes deslizar el dedo de una direccion a otra
@@ -21,6 +21,7 @@ const BUTTONS = [
 	["ui_accept", "Z", KEY_Z, 288, 128, 26, 26],
 	["ui_cancel", "X", KEY_X, 258, 146, 26, 26],
 	["ui_select", "C", KEY_C, 258, 112, 26, 26],
+	["ui_scope", "Ct", KEY_CONTROL, 288, 68, 26, 26],  # Ctrl: modo camara
 	["ui_toggle", "Sh", KEY_SHIFT, 288, 98, 26, 26],
 	["ui_map", "M", KEY_TAB, 292, 4, 24, 16],  # KEY_TAB = 16777218 (el valor que usabas)
 	["ui_focus_prev", "A", KEY_A, 4, 4, 24, 16],
@@ -38,6 +39,10 @@ const DPAD_DEAD = 7.0
 
 # Tamaño de la pantalla virtual del juego
 const VIEW_SIZE = Vector2(320, 180)
+
+# Dialogo de salida (boton Atras de Android)
+const EXIT_YES = Rect2(50, 96, 100, 30)
+const EXIT_NO = Rect2(170, 96, 100, 30)
 
 # Shaders de prueba (solo DEBUG): 8 cuadritos abajo en el centro, de izquierda a derecha.
 # Un cuadrito que CAMBIA DE COLOR = ese shader funciona en el telefono.
@@ -69,6 +74,9 @@ var _fps_min = 999
 var _dt_max = 0.0
 var _touch_max = 0
 var _stat_timer = 0.0
+var _exit_panel
+var _exit_open = false
+var _exit_was_paused = false
 
 
 func _ready():
@@ -116,6 +124,9 @@ func _ready():
 		debug_label5.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		add_child(debug_label5)
 		_build_shader_tests()
+	_build_exit_panel()
+	# El boton Atras de Android ya no cierra el juego: pide confirmacion
+	get_tree().set_quit_on_go_back(false)
 	set_process(DEBUG)
 	# Quedarse siempre al final del arbol (asi recibimos los toques primero)
 	get_tree().root.connect("child_entered_tree", self, "_on_root_child")
@@ -195,12 +206,23 @@ func _update_cloud_info():
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_WM_FOCUS_OUT or what == MainLoop.NOTIFICATION_APP_PAUSED:
 		_release_all()
+	elif what == MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST:
+		_toggle_exit()
 
 
 func _input(event):
 	var t0 = OS.get_ticks_usec()
 	if DEBUG:
 		n_events += 1
+	if _exit_open:
+		if event is InputEventScreenTouch and event.pressed:
+			var ep = _to_virtual(event.position)
+			if EXIT_YES.has_point(ep):
+				get_tree().quit()
+			elif EXIT_NO.has_point(ep):
+				_close_exit()
+		get_tree().set_input_as_handled()
+		return
 	if event is InputEventScreenTouch:
 		var p = _to_virtual(event.position)
 		if event.pressed:
@@ -216,6 +238,61 @@ func _input(event):
 		var us = OS.get_ticks_usec() - t0
 		if us > _touch_max:
 			_touch_max = us
+
+
+# Dialogo "¿Salir del juego?" (se abre con el boton Atras de Android)
+func _build_exit_panel():
+	_exit_panel = ColorRect.new()
+	_exit_panel.color = Color(0, 0, 0, 0.75)
+	_exit_panel.rect_position = Vector2.ZERO
+	_exit_panel.rect_size = VIEW_SIZE
+	_exit_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_exit_panel.visible = false
+	add_child(_exit_panel)
+	var title = Label.new()
+	title.text = "¿Salir del juego?"
+	title.rect_position = Vector2(0, 62)
+	title.rect_size = Vector2(VIEW_SIZE.x, 20)
+	title.align = Label.ALIGN_CENTER
+	title.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_exit_panel.add_child(title)
+	_add_exit_button(EXIT_YES, "Salir")
+	_add_exit_button(EXIT_NO, "Cancelar")
+
+
+func _add_exit_button(r, text):
+	var box = ColorRect.new()
+	box.color = Color(1, 1, 1, 0.3)
+	box.rect_position = r.position
+	box.rect_size = r.size
+	box.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_exit_panel.add_child(box)
+	var lbl = Label.new()
+	lbl.text = text
+	lbl.rect_size = r.size
+	lbl.align = Label.ALIGN_CENTER
+	lbl.valign = Label.VALIGN_CENTER
+	lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	box.add_child(lbl)
+
+
+func _toggle_exit():
+	if _exit_panel == null:
+		return
+	if _exit_open:
+		_close_exit()
+		return
+	_release_all()
+	_exit_open = true
+	_exit_was_paused = get_tree().paused
+	get_tree().paused = true
+	_exit_panel.visible = true
+
+
+func _close_exit():
+	_exit_open = false
+	_exit_panel.visible = false
+	get_tree().paused = _exit_was_paused
 
 
 # Si el toque llega en pixeles reales de pantalla (fuera del rango 320x180),
