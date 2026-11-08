@@ -15,9 +15,20 @@ jobs:
           cd "Graphics/Cutscenes/Mt Itoi Landscape"
           convert Mt_Itoi_Cloud.png -crop 176x48 +repage +adjoin /tmp/cloud_%02d.png
           montage /tmp/cloud_*.png -tile 4x8 -geometry 176x48+0+0 -background none PNG32:Mt_Itoi_Cloud.png
+          identify Mt_Itoi_Cloud.png
           cd ../../..
           sed -i 's/hframes = 31/hframes = 4\nvframes = 8/' "Nodes/Reusables/Mt Itoi Cloud.tscn"
           grep -n "frames" "Nodes/Reusables/Mt Itoi Cloud.tscn"
+      - name: Desactivar mouse emulado desde toque
+        run: |
+          if grep -q 'emulate_mouse_from_touch' project.godot; then
+            sed -i 's|pointing/emulate_mouse_from_touch=.*|pointing/emulate_mouse_from_touch=false|' project.godot
+          elif grep -q '^\[input_devices\]' project.godot; then
+            sed -i 's|^\[input_devices\]|[input_devices]\n\npointing/emulate_mouse_from_touch=false|' project.godot
+          else
+            printf '\n[input_devices]\n\npointing/emulate_mouse_from_touch=false\n' >> project.godot
+          fi
+          grep -n -A3 'input_devices' project.godot
       - name: Plantillas de exportacion
         run: |
           DEST=$HOME/.local/share/godot/templates/3.6.2.stable
@@ -55,4 +66,5 @@ jobs:
         with:
           name: apk
           path: build/mother-encore.apk
+
           
