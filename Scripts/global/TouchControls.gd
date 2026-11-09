@@ -1,6 +1,6 @@
 extends CanvasLayer
-# Controles tactiles v10 para MOTHER: Encore (Godot 3.6)
-# (v9 + los toques y arrastres de pantalla NO se pasan al resto del juego)
+# Controles tactiles v11 para MOTHER: Encore (Godot 3.6)
+# (v10 + boton B corregido + boton N que cuenta nodos y scripts activos)
 # Pon DEBUG = false cuando todo funcione para ocultar los textos de diagnostico.
 # - Los toques se manejan aqui y se emulan como TECLADO real (y como acciones).
 # - La cruceta es una ZONA: puedes deslizar el dedo de una direccion a otra
@@ -31,6 +31,7 @@ const BUTTONS = [
 	["ui_focus_prev", "A", KEY_A, 4, 4, 24, 16],
 	["ui_focus_next", "S", KEY_S, 262, 4, 24, 16],
 	["debug_scan", "B", 0, 150, 4, 24, 16],  # solo DEBUG: inspecciona fondos de combate
+	["debug_nodes", "N", 0, 178, 4, 24, 16],  # solo DEBUG: cuenta nodos y scripts activos
 ]
 
 const DPAD_COUNT = 4
@@ -83,6 +84,9 @@ var _proc_max = 0.0
 var _phys_max = 0.0
 var debug_label6
 var debug_label7
+var debug_label8
+var debug_bg7
+var debug_bg8
 var _exit_panel
 var _exit_open = false
 var _exit_was_paused = false
@@ -140,10 +144,28 @@ func _ready():
 		debug_label6.rect_position = Vector2(2, 62)
 		debug_label6.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		add_child(debug_label6)
+		debug_bg7 = ColorRect.new()
+		debug_bg7.color = Color(0, 0, 0, 0.65)
+		debug_bg7.rect_position = Vector2(0, 72)
+		debug_bg7.rect_size = Vector2(320, 54)
+		debug_bg7.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		debug_bg7.visible = false
+		add_child(debug_bg7)
 		debug_label7 = Label.new()
 		debug_label7.rect_position = Vector2(2, 74)
 		debug_label7.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		add_child(debug_label7)
+		debug_bg8 = ColorRect.new()
+		debug_bg8.color = Color(0, 0, 0, 0.65)
+		debug_bg8.rect_position = Vector2(0, 126)
+		debug_bg8.rect_size = Vector2(320, 38)
+		debug_bg8.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		debug_bg8.visible = false
+		add_child(debug_bg8)
+		debug_label8 = Label.new()
+		debug_label8.rect_position = Vector2(2, 128)
+		debug_label8.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		add_child(debug_label8)
 		_build_shader_tests()
 	_build_exit_panel()
 	# El boton Atras de Android ya no cierra el juego: pide confirmacion
@@ -197,27 +219,84 @@ func _process(delta):
 
 
 # Boton B (solo DEBUG): busca nodos que usan el shader de Distortionator (fondos de combate)
-# y muestra cuantos hay y que parametros tienen distintos del valor por defecto.
+# y muestra hasta 3 con los parametros que difieren del valor por defecto.
 func _scan_bbg():
 	var found = []
 	_collect_shader_nodes(get_tree().root, found)
-	var txt = "bbg: " + str(found.size()) + " nodos"
-	if found.size() > 0:
-		var c = found[0]
+	debug_bg7.visible = true
+	debug_label7.text = "bbg: " + str(found.size()) + " nodos"
+	var has_def = VisualServer.has_method("shader_get_param_default")
+	var lines = []
+	for c in found:
+		if lines.size() >= 3:
+			break
 		var m = c.material
-		txt += " | " + str(c.name) + " vis=" + str(c.is_visible_in_tree())
 		var rid = m.shader.get_rid()
 		var parts = []
-		for u in m.shader.get_shader_uniform_list():
-			var nm = u["name"]
+		for p in m.get_property_list():
+			var pname = str(p["name"])
+			if not pname.begins_with("shader_param/"):
+				continue
+			var nm = pname.substr(13)
 			var v = m.get_shader_param(nm)
 			if v == null or typeof(v) == TYPE_OBJECT:
 				continue
-			var d = VisualServer.shader_get_param_default(rid, nm)
-			if v != d:
+			if has_def:
+				if v != VisualServer.shader_get_param_default(rid, nm):
+					parts.append(nm + "=" + str(v))
+			elif parts.size() < 14:
 				parts.append(nm + "=" + str(v))
-		txt += "\n" + PoolStringArray(parts).join(" ")
-	debug_label7.text = txt
+		var estado = " ON " if c.is_visible_in_tree() else " off "
+		var line = str(c.name) + estado + PoolStringArray(parts).join(" ")
+		lines.append(line.left(110))
+	if lines.size() > 0:
+		debug_label7.text += "\n" + PoolStringArray(lines).join("\n")
+
+
+# Boton N (solo DEBUG): cuenta nodos por clase y scripts que se ejecutan cada frame
+func _scan_nodes():
+	var classes = {}
+	var scripts = {}
+	var st = {"total": 0, "proc": 0, "phys": 0}
+	_count_nodes(get_tree().root, classes, scripts, st)
+	debug_bg8.visible = true
+	debug_label8.text = "nodos=" + str(st["total"]) + " proc=" + str(st["proc"]) + " phys=" + str(st["phys"]) + "\n" + _top(classes, 6) + "\n" + _top(scripts, 4)
+
+
+func _count_nodes(node, classes, scripts, st):
+	st["total"] += 1
+	var cn = node.get_class()
+	classes[cn] = classes.get(cn, 0) + 1
+	var active = false
+	if node.is_processing():
+		st["proc"] += 1
+		active = true
+	if node.is_physics_processing():
+		st["phys"] += 1
+		active = true
+	if active:
+		var key = "(motor)"
+		var sc = node.get_script()
+		if sc != null:
+			key = str(sc.resource_path).get_file()
+		scripts[key] = scripts.get(key, 0) + 1
+	for ch in node.get_children():
+		_count_nodes(ch, classes, scripts, st)
+
+
+func _top(d, n):
+	var arr = []
+	for k in d.keys():
+		arr.append([k, d[k]])
+	arr.sort_custom(self, "_cmp_desc")
+	var out = []
+	for i in range(min(n, arr.size())):
+		out.append(str(arr[i][0]) + "=" + str(arr[i][1]))
+	return PoolStringArray(out).join(" ")
+
+
+func _cmp_desc(a, b):
+	return a[1] > b[1]
 
 
 func _collect_shader_nodes(node, out):
@@ -448,6 +527,10 @@ func _set_pressed(i, down):
 	if b[0] == "debug_scan":
 		if down:
 			_scan_bbg()
+		return
+	if b[0] == "debug_nodes":
+		if down:
+			_scan_nodes()
 		return
 	if down:
 		Input.action_press(b[0])
