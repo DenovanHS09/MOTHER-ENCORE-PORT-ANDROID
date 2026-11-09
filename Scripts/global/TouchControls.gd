@@ -1,6 +1,6 @@
 extends CanvasLayer
-# Controles tactiles v9 para MOTHER: Encore (Godot 3.6)
-# (v8 + diagnostico de rendimiento ampliado y boton B para inspeccionar los fondos de combate)
+# Controles tactiles v10 para MOTHER: Encore (Godot 3.6)
+# (v9 + los toques y arrastres de pantalla NO se pasan al resto del juego)
 # Pon DEBUG = false cuando todo funcione para ocultar los textos de diagnostico.
 # - Los toques se manejan aqui y se emulan como TECLADO real (y como acciones).
 # - La cruceta es una ZONA: puedes deslizar el dedo de una direccion a otra
@@ -10,6 +10,10 @@ extends CanvasLayer
 # - Al perder el foco de la app (o cancelarse un toque) se sueltan todos los botones.
 
 const DEBUG = true
+
+# true = los eventos de toque/arrastre se consumen aqui (el juego no los necesita: usa
+# teclado y botones). Evita que cada arrastre del dedo recorra todo el juego.
+const CONSUME_TOUCH = true
 
 # [accion, texto, tecla, x, y, ancho, alto]  (pantalla virtual 320x180)
 # Los 4 primeros son la cruceta (0 arriba, 1 izquierda, 2 derecha, 3 abajo).
@@ -290,8 +294,12 @@ func _input(event):
 			_touch(event.index, p)
 		else:
 			_release_finger(event.index)
+		if CONSUME_TOUCH:
+			get_tree().set_input_as_handled()
 	elif event is InputEventScreenDrag:
 		_touch(event.index, _to_virtual(event.position))
+		if CONSUME_TOUCH:
+			get_tree().set_input_as_handled()
 	if DEBUG:
 		var us = OS.get_ticks_usec() - t0
 		if us > _touch_max:
