@@ -1,5 +1,10 @@
 name: android-debug
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      release:
+        description: "Compilar en modo RELEASE (escribe true) o DEBUG (false)"
+        default: "false"
 jobs:
   export:
     runs-on: ubuntu-latest
@@ -71,8 +76,17 @@ jobs:
       - name: Exportar APK
         run: |
           mkdir -p build
-          godot -v --export-debug "Android" build/mother-encore.apk 2>&1 | grep -v -e "VisualServer" -e "visual_server_raster" -e "Loading resource" -e "Cannot open file" -e "Failed loading resource" -e "load_interactive" -e "_load (core" | tail -60
+          if [ "${{ github.event.inputs.release }}" = "true" ]; then
+            echo "=== MODO RELEASE ==="
+            sed -i "s|keystore/release=\"\"|keystore/release=\"$HOME/debug.keystore\"|; s|keystore/release_user=\"\"|keystore/release_user=\"androiddebugkey\"|; s|keystore/release_password=\"\"|keystore/release_password=\"android\"|" export_presets.cfg
+            grep -n "keystore/release" export_presets.cfg
+            godot -v --export "Android" build/mother-encore.apk 2>&1 | grep -v -e "VisualServer" -e "visual_server_raster" -e "Loading resource" -e "Cannot open file" -e "Failed loading resource" -e "load_interactive" -e "_load (core" | tail -60
+          else
+            echo "=== MODO DEBUG ==="
+            godot -v --export-debug "Android" build/mother-encore.apk 2>&1 | grep -v -e "VisualServer" -e "visual_server_raster" -e "Loading resource" -e "Cannot open file" -e "Failed loading resource" -e "load_interactive" -e "_load (core" | tail -60
+          fi
           ls -la build
+          [ -f build/mother-encore.apk ] || { echo "ERROR: no se genero el APK"; exit 1; }
       - uses: actions/upload-artifact@v4
         with:
           name: apk
