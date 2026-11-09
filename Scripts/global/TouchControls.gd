@@ -1,6 +1,6 @@
 extends CanvasLayer
-# Controles tactiles v8 para MOTHER: Encore (Godot 3.6)
-# (v7 + boton Atras de Android con confirmacion para salir + boton Ct/Ctrl de camara)
+# Controles tactiles v9 para MOTHER: Encore (Godot 3.6)
+# (v8 + diagnostico de rendimiento ampliado y boton B para inspeccionar los fondos de combate)
 # Pon DEBUG = false cuando todo funcione para ocultar los textos de diagnostico.
 # - Los toques se manejan aqui y se emulan como TECLADO real (y como acciones).
 # - La cruceta es una ZONA: puedes deslizar el dedo de una direccion a otra
@@ -26,6 +26,7 @@ const BUTTONS = [
 	["ui_map", "M", KEY_TAB, 292, 4, 24, 16],  # KEY_TAB = 16777218 (el valor que usabas)
 	["ui_focus_prev", "A", KEY_A, 4, 4, 24, 16],
 	["ui_focus_next", "S", KEY_S, 262, 4, 24, 16],
+	["debug_scan", "B", 0, 150, 4, 24, 16],  # solo DEBUG: inspecciona fondos de combate
 ]
 
 const DPAD_COUNT = 4
@@ -74,6 +75,10 @@ var _fps_min = 999
 var _dt_max = 0.0
 var _touch_max = 0
 var _stat_timer = 0.0
+var _proc_max = 0.0
+var _phys_max = 0.0
+var debug_label6
+var debug_label7
 var _exit_panel
 var _exit_open = false
 var _exit_was_paused = false
@@ -84,6 +89,9 @@ func _ready():
 	pause_mode = PAUSE_MODE_PROCESS
 	for b in BUTTONS:
 		var r = Rect2(b[3], b[4], b[5], b[6])
+		var hidden = (not DEBUG) and str(b[0]).begins_with("debug_")
+		if hidden:
+			r = Rect2(-100, -100, 1, 1)
 		rects.append(r)
 		pressed.append(false)
 		var panel = ColorRect.new()
@@ -91,6 +99,7 @@ func _ready():
 		panel.rect_size = r.size
 		panel.color = COLOR_IDLE
 		panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		panel.visible = not hidden
 		add_child(panel)
 		var lbl = Label.new()
 		lbl.text = b[1]
@@ -123,6 +132,14 @@ func _ready():
 		debug_label5.rect_position = Vector2(2, 50)
 		debug_label5.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		add_child(debug_label5)
+		debug_label6 = Label.new()
+		debug_label6.rect_position = Vector2(2, 62)
+		debug_label6.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		add_child(debug_label6)
+		debug_label7 = Label.new()
+		debug_label7.rect_position = Vector2(2, 74)
+		debug_label7.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		add_child(debug_label7)
 		_build_shader_tests()
 	_build_exit_panel()
 	# El boton Atras de Android ya no cierra el juego: pide confirmacion
@@ -157,13 +174,54 @@ func _process(delta):
 		_fps_min = fps
 	if delta > _dt_max:
 		_dt_max = delta
+	var pt = Performance.get_monitor(Performance.TIME_PROCESS)
+	if pt > _proc_max:
+		_proc_max = pt
+	var ph = Performance.get_monitor(Performance.TIME_PHYSICS_PROCESS)
+	if ph > _phys_max:
+		_phys_max = ph
 	_stat_timer += delta
 	if _stat_timer > 3.0:
 		debug_label5.text = "fps_min=" + str(_fps_min) + " dt_max=" + str(int(_dt_max * 1000)) + "ms touch_max=" + str(_touch_max / 1000) + "ms"
+		debug_label6.text = "proc=" + str(int(_proc_max * 1000)) + "ms phys=" + str(int(_phys_max * 1000)) + "ms nodos=" + str(int(Performance.get_monitor(Performance.OBJECT_NODE_COUNT))) + " vmem=" + str(int(Performance.get_monitor(Performance.RENDER_VIDEO_MEM_USED) / 1048576)) + "MB"
 		_fps_min = 999
 		_dt_max = 0.0
 		_touch_max = 0
+		_proc_max = 0.0
+		_phys_max = 0.0
 		_stat_timer = 0.0
+
+
+# Boton B (solo DEBUG): busca nodos que usan el shader de Distortionator (fondos de combate)
+# y muestra cuantos hay y que parametros tienen distintos del valor por defecto.
+func _scan_bbg():
+	var found = []
+	_collect_shader_nodes(get_tree().root, found)
+	var txt = "bbg: " + str(found.size()) + " nodos"
+	if found.size() > 0:
+		var c = found[0]
+		var m = c.material
+		txt += " | " + str(c.name) + " vis=" + str(c.is_visible_in_tree())
+		var rid = m.shader.get_rid()
+		var parts = []
+		for u in m.shader.get_shader_uniform_list():
+			var nm = u["name"]
+			var v = m.get_shader_param(nm)
+			if v == null or typeof(v) == TYPE_OBJECT:
+				continue
+			var d = VisualServer.shader_get_param_default(rid, nm)
+			if v != d:
+				parts.append(nm + "=" + str(v))
+		txt += "\n" + PoolStringArray(parts).join(" ")
+	debug_label7.text = txt
+
+
+func _collect_shader_nodes(node, out):
+	if node is CanvasItem and node.material is ShaderMaterial and node.material.shader != null:
+		if "ping_pong_speed" in node.material.shader.code:
+			out.append(node)
+	for ch in node.get_children():
+		_collect_shader_nodes(ch, out)
 
 
 # Cuadritos con shaders de prueba (gris de fondo: si el shader falla, se queda gris)
@@ -379,6 +437,10 @@ func _set_pressed(i, down):
 	pressed[i] = down
 	panels[i].color = COLOR_DOWN if down else COLOR_IDLE
 	var b = BUTTONS[i]
+	if b[0] == "debug_scan":
+		if down:
+			_scan_bbg()
+		return
 	if down:
 		Input.action_press(b[0])
 	else:
