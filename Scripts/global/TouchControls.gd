@@ -1,7 +1,9 @@
 extends CanvasLayer
-# Controles tactiles v11 para MOTHER: Encore (Godot 3.6)
-# (v10 + boton B corregido + boton N que cuenta nodos y scripts activos)
-# Pon DEBUG = false cuando todo funcione para ocultar los textos de diagnostico.
+# Controles tactiles v12 para MOTHER: Encore (Godot 3.6)
+# DEBUG = true: muestra 2 lineas de rendimiento arriba a la izquierda y los botones B y N.
+#   B = inspecciona los fondos de combate (parametros del shader; pulsa de nuevo para el siguiente nodo)
+#   N = cuenta nodos por clase y scripts que se ejecutan cada frame
+# DEBUG = false: no se ve ningun texto de diagnostico ni los botones B y N.
 # - Los toques se manejan aqui y se emulan como TECLADO real (y como acciones).
 # - La cruceta es una ZONA: puedes deslizar el dedo de una direccion a otra
 #   sin soltar, y se admiten diagonales.
@@ -50,43 +52,24 @@ const VIEW_SIZE = Vector2(320, 180)
 const EXIT_YES = Rect2(50, 96, 100, 30)
 const EXIT_NO = Rect2(170, 96, 100, 30)
 
-# Shaders de prueba (solo DEBUG): 8 cuadritos abajo en el centro, de izquierda a derecha.
-# Un cuadrito que CAMBIA DE COLOR = ese shader funciona en el telefono.
-# Uno gris y quieto = ese shader falla.
-const TEST_SHADERS = [
-	"shader_type canvas_item;\nvoid fragment() { COLOR = vec4(fract(TIME * 0.5), 0.0, 0.0, 1.0); }",
-	"shader_type canvas_item;\nvoid fragment() { highp float t = TIME * 0.5; COLOR = vec4(0.0, fract(t), 0.0, 1.0); }",
-	"shader_type canvas_item;\nvoid fragment() { float k = step(1.0, mod(floor(TIME), 2.0)); COLOR = vec4(0.0, 0.0, 0.3 + 0.7 * k, 1.0); }",
-	"shader_type canvas_item;\nvoid fragment() { float k = 0.3; if (int(TIME) % 2 == 0) { k = 1.0; } COLOR = vec4(k, k, 0.0, 1.0); }",
-	"shader_type canvas_item;\nvoid fragment() { vec4 c = textureLod(TEXTURE, UV, 0.0); COLOR = vec4(c.rgb * fract(TIME * 0.5), 1.0); }",
-	"shader_type canvas_item;\nvoid fragment() { vec4 c = texture(TEXTURE, UV); COLOR = vec4(c.rgb * fract(TIME * 0.5), 1.0); }",
-	"shader_type canvas_item;\nuniform bool on = true;\nuniform int n = 2;\nvoid fragment() { float k = 0.3; if (on && n > 1) { k = fract(TIME * 0.5); } COLOR = vec4(k, 0.0, k, 1.0); }",
-	"shader_type canvas_item;\nvoid fragment() { vec4 s = texture(SCREEN_TEXTURE, SCREEN_UV); COLOR = vec4(fract(TIME * 0.5), 0.5 + s.g * 0.0, 0.5, 1.0); }",
-]
-
 var rects = []
 var panels = []
 var pressed = []
 var touches = {}
 var dpad_finger = -1
-var debug_label
-var debug_label2
-var debug_label3
-var debug_label4
 var debug_label5
-var n_events = 0
-var _dbg_timer = 0.0
+var debug_label7
+var debug_label8
+var debug_bg0
+var debug_bg7
+var debug_bg8
+var _bbg_index = 0
 var _fps_min = 999
 var _dt_max = 0.0
 var _touch_max = 0
 var _stat_timer = 0.0
 var _proc_max = 0.0
 var _phys_max = 0.0
-var debug_label6
-var debug_label7
-var debug_label8
-var debug_bg7
-var debug_bg8
 var _exit_panel
 var _exit_open = false
 var _exit_was_paused = false
@@ -118,55 +101,38 @@ func _ready():
 		panel.add_child(lbl)
 		panels.append(panel)
 	if DEBUG:
-		debug_label = Label.new()
-		debug_label.rect_position = Vector2(2, 2)
-		debug_label.text = "touch: -"
-		debug_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		add_child(debug_label)
-		debug_label2 = Label.new()
-		debug_label2.rect_position = Vector2(2, 14)
-		debug_label2.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		add_child(debug_label2)
-		debug_label3 = Label.new()
-		debug_label3.rect_position = Vector2(2, 26)
-		debug_label3.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		debug_label3.text = OS.get_video_driver_name(OS.get_current_video_driver()) + " | " + VisualServer.get_video_adapter_name() + " | " + VisualServer.get_video_adapter_vendor()
-		add_child(debug_label3)
-		debug_label4 = Label.new()
-		debug_label4.rect_position = Vector2(2, 38)
-		debug_label4.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		add_child(debug_label4)
+		debug_bg0 = ColorRect.new()
+		debug_bg0.color = Color(0, 0, 0, 0.5)
+		debug_bg0.rect_position = Vector2(0, 0)
+		debug_bg0.rect_size = Vector2(250, 26)
+		debug_bg0.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		add_child(debug_bg0)
 		debug_label5 = Label.new()
-		debug_label5.rect_position = Vector2(2, 50)
+		debug_label5.rect_position = Vector2(2, 1)
 		debug_label5.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		add_child(debug_label5)
-		debug_label6 = Label.new()
-		debug_label6.rect_position = Vector2(2, 62)
-		debug_label6.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		add_child(debug_label6)
 		debug_bg7 = ColorRect.new()
-		debug_bg7.color = Color(0, 0, 0, 0.65)
-		debug_bg7.rect_position = Vector2(0, 72)
-		debug_bg7.rect_size = Vector2(320, 54)
+		debug_bg7.color = Color(0, 0, 0, 0.7)
+		debug_bg7.rect_position = Vector2(0, 28)
+		debug_bg7.rect_size = Vector2(320, 62)
 		debug_bg7.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		debug_bg7.visible = false
 		add_child(debug_bg7)
 		debug_label7 = Label.new()
-		debug_label7.rect_position = Vector2(2, 74)
+		debug_label7.rect_position = Vector2(2, 29)
 		debug_label7.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		add_child(debug_label7)
 		debug_bg8 = ColorRect.new()
-		debug_bg8.color = Color(0, 0, 0, 0.65)
-		debug_bg8.rect_position = Vector2(0, 126)
-		debug_bg8.rect_size = Vector2(320, 38)
+		debug_bg8.color = Color(0, 0, 0, 0.7)
+		debug_bg8.rect_position = Vector2(0, 92)
+		debug_bg8.rect_size = Vector2(320, 62)
 		debug_bg8.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		debug_bg8.visible = false
 		add_child(debug_bg8)
 		debug_label8 = Label.new()
-		debug_label8.rect_position = Vector2(2, 128)
+		debug_label8.rect_position = Vector2(2, 93)
 		debug_label8.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		add_child(debug_label8)
-		_build_shader_tests()
 	_build_exit_panel()
 	# El boton Atras de Android ya no cierra el juego: pide confirmacion
 	get_tree().set_quit_on_go_back(false)
@@ -189,12 +155,7 @@ func _move_last():
 
 
 func _process(delta):
-	debug_label2.text = "paused=" + str(get_tree().paused) + " ev=" + str(n_events) + " dis=" + str(get_viewport().is_input_disabled())
-	_dbg_timer += delta
-	if _dbg_timer > 0.5:
-		_dbg_timer = 0.0
-		_update_cloud_info()
-	# Rendimiento: peor FPS, peor tiempo de frame y peor tiempo del manejo de toques (ultimos 3 s)
+	# Rendimiento: peor FPS, peor tiempo de frame, peor tiempo del manejo de toques (ultimos 3 s)
 	var fps = Engine.get_frames_per_second()
 	if fps < _fps_min:
 		_fps_min = fps
@@ -208,8 +169,7 @@ func _process(delta):
 		_phys_max = ph
 	_stat_timer += delta
 	if _stat_timer > 3.0:
-		debug_label5.text = "fps_min=" + str(_fps_min) + " dt_max=" + str(int(_dt_max * 1000)) + "ms touch_max=" + str(_touch_max / 1000) + "ms"
-		debug_label6.text = "proc=" + str(int(_proc_max * 1000)) + "ms phys=" + str(int(_phys_max * 1000)) + "ms nodos=" + str(int(Performance.get_monitor(Performance.OBJECT_NODE_COUNT))) + " vmem=" + str(int(Performance.get_monitor(Performance.RENDER_VIDEO_MEM_USED) / 1048576)) + "MB"
+		debug_label5.text = "fps_min=" + str(_fps_min) + " dt_max=" + str(int(_dt_max * 1000)) + "ms touch=" + str(_touch_max / 1000) + "ms\nproc=" + str(int(_proc_max * 1000)) + "ms phys=" + str(int(_phys_max * 1000)) + "ms nodos=" + str(int(Performance.get_monitor(Performance.OBJECT_NODE_COUNT)))
 		_fps_min = 999
 		_dt_max = 0.0
 		_touch_max = 0
@@ -218,49 +178,92 @@ func _process(delta):
 		_stat_timer = 0.0
 
 
-# Boton B (solo DEBUG): busca nodos que usan el shader de Distortionator (fondos de combate)
-# y muestra hasta 3 con los parametros que difieren del valor por defecto.
+# Boton B (solo DEBUG): muestra un nodo con el shader de los fondos (Distortionator) y sus
+# parametros de animacion que NO estan en cero. Pulsa de nuevo para ver el siguiente nodo.
 func _scan_bbg():
 	var found = []
 	_collect_shader_nodes(get_tree().root, found)
 	debug_bg7.visible = true
-	debug_label7.text = "bbg: " + str(found.size()) + " nodos"
-	var has_def = VisualServer.has_method("shader_get_param_default")
-	var lines = []
-	for c in found:
-		if lines.size() >= 3:
-			break
-		var m = c.material
-		var rid = m.shader.get_rid()
-		var parts = []
-		for p in m.get_property_list():
-			var pname = str(p["name"])
-			if not pname.begins_with("shader_param/"):
-				continue
-			var nm = pname.substr(13)
-			var v = m.get_shader_param(nm)
-			if v == null or typeof(v) == TYPE_OBJECT:
-				continue
-			if has_def:
-				if v != VisualServer.shader_get_param_default(rid, nm):
-					parts.append(nm + "=" + str(v))
-			elif parts.size() < 14:
-				parts.append(nm + "=" + str(v))
-		var estado = " ON " if c.is_visible_in_tree() else " off "
-		var line = str(c.name) + estado + PoolStringArray(parts).join(" ")
-		lines.append(line.left(110))
-	if lines.size() > 0:
-		debug_label7.text += "\n" + PoolStringArray(lines).join("\n")
+	if found.size() == 0:
+		debug_label7.text = "bbg: 0 nodos con shader"
+		return
+	if _bbg_index >= found.size():
+		_bbg_index = 0
+	var c = found[_bbg_index]
+	var m = c.material
+	var parts = []
+	for p in m.get_property_list():
+		var pname = str(p["name"])
+		if not pname.begins_with("shader_param/"):
+			continue
+		var nm = pname.substr(13)
+		if nm in ["opacity", "blending", "screen_size"]:
+			continue
+		var v = m.get_shader_param(nm)
+		if v == null or typeof(v) == TYPE_OBJECT:
+			continue
+		if _is_zero(v):
+			continue
+		parts.append(nm + "=" + _fmt(v))
+	var estado = " ON" if c.is_visible_in_tree() else " off"
+	var head = "bbg " + str(_bbg_index + 1) + "/" + str(found.size()) + ": " + str(c.name) + estado + " op=" + str(m.get_shader_param("opacity")) + " bl=" + str(m.get_shader_param("blending"))
+	var body = "(todos los parametros de movimiento en 0)"
+	if parts.size() > 0:
+		body = PoolStringArray(parts).join(" ")
+	debug_label7.text = head + "\n" + _wrap(body, 40, 4)
+	_bbg_index += 1
 
 
-# Boton N (solo DEBUG): cuenta nodos por clase y scripts que se ejecutan cada frame
+# Boton N (solo DEBUG): cuenta nodos por clase y scripts que se ejecutan en cada frame
 func _scan_nodes():
 	var classes = {}
 	var scripts = {}
 	var st = {"total": 0, "proc": 0, "phys": 0}
 	_count_nodes(get_tree().root, classes, scripts, st)
 	debug_bg8.visible = true
-	debug_label8.text = "nodos=" + str(st["total"]) + " proc=" + str(st["proc"]) + " phys=" + str(st["phys"]) + "\n" + _top(classes, 6) + "\n" + _top(scripts, 4)
+	debug_label8.text = "nodos=" + str(st["total"]) + " proc=" + str(st["proc"]) + " phys=" + str(st["phys"]) + "\n" + _wrap(_top(classes, 8), 40, 2) + "\n" + _wrap(_top(scripts, 8), 40, 2)
+
+
+func _is_zero(v):
+	match typeof(v):
+		TYPE_INT, TYPE_REAL:
+			return v == 0
+		TYPE_BOOL:
+			return v == false
+		TYPE_VECTOR2:
+			return v == Vector2.ZERO
+	return false
+
+
+func _fmt(v):
+	if typeof(v) == TYPE_VECTOR2:
+		return "(" + str(stepify(v.x, 0.001)) + "," + str(stepify(v.y, 0.001)) + ")"
+	if typeof(v) == TYPE_REAL:
+		return str(stepify(v, 0.001))
+	return str(v)
+
+
+# Parte un texto en lineas de maximo "width" caracteres (hasta "max_lines" lineas)
+func _wrap(text, width, max_lines):
+	var lines = []
+	var cur = ""
+	for w in text.split(" "):
+		if cur != "" and cur.length() + 1 + w.length() > width:
+			lines.append(cur)
+			cur = w
+		elif cur == "":
+			cur = w
+		else:
+			cur += " " + w
+	if cur != "":
+		lines.append(cur)
+	var out = []
+	for i in range(lines.size()):
+		if i >= max_lines:
+			out[max_lines - 1] += " ..."
+			break
+		out.append(lines[i])
+	return PoolStringArray(out).join("\n")
 
 
 func _count_nodes(node, classes, scripts, st):
@@ -307,42 +310,6 @@ func _collect_shader_nodes(node, out):
 		_collect_shader_nodes(ch, out)
 
 
-# Cuadritos con shaders de prueba (gris de fondo: si el shader falla, se queda gris)
-func _build_shader_tests():
-	var i = 0
-	for code in TEST_SHADERS:
-		var back = ColorRect.new()
-		back.color = Color(0.5, 0.5, 0.5, 1)
-		back.rect_position = Vector2(90 + i * 16, 163)
-		back.rect_size = Vector2(14, 14)
-		back.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		add_child(back)
-		var t = ColorRect.new()
-		t.rect_position = Vector2(1, 1)
-		t.rect_size = Vector2(12, 12)
-		t.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		var sh = Shader.new()
-		sh.code = code
-		var mat = ShaderMaterial.new()
-		mat.shader = sh
-		t.material = mat
-		back.add_child(t)
-		i += 1
-
-
-# Muestra el estado del Sprite "Cloud" (nube del Monte Itoi) si existe en la escena
-func _update_cloud_info():
-	var sc = get_tree().current_scene
-	var c = null
-	if sc:
-		c = sc.find_node("Cloud", true, false)
-	if c and c is Sprite and c.texture:
-		var ts = c.texture.get_size()
-		debug_label4.text = "cloud tex=" + str(int(ts.x)) + "x" + str(int(ts.y)) + " h=" + str(c.hframes) + " v=" + str(c.vframes) + " f=" + str(c.frame) + " vis=" + str(c.is_visible_in_tree()) + " sc=" + str(c.scale)
-	else:
-		debug_label4.text = ""
-
-
 # Evita botones "pegados" si la app pierde el foco o se minimiza.
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_WM_FOCUS_OUT or what == MainLoop.NOTIFICATION_APP_PAUSED:
@@ -353,8 +320,6 @@ func _notification(what):
 
 func _input(event):
 	var t0 = OS.get_ticks_usec()
-	if DEBUG:
-		n_events += 1
 	if _exit_open:
 		if event is InputEventScreenTouch and event.pressed:
 			var ep = _to_virtual(event.position)
@@ -367,9 +332,6 @@ func _input(event):
 	if event is InputEventScreenTouch:
 		var p = _to_virtual(event.position)
 		if event.pressed:
-			if DEBUG:
-				var extra = " | PAUSA" if get_tree().paused else ""
-				debug_label.text = "raw " + str(int(event.position.x)) + "," + str(int(event.position.y)) + " -> " + str(int(p.x)) + "," + str(int(p.y)) + " | " + _scene_name() + extra
 			_touch(event.index, p)
 		else:
 			_release_finger(event.index)
@@ -546,6 +508,3 @@ func _set_pressed(i, down):
 	Input.parse_input_event(ev)
 
 
-func _scene_name():
-	var sc = get_tree().current_scene
-	return sc.name if sc else "?"
