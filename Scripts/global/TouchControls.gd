@@ -1,8 +1,9 @@
 extends CanvasLayer
-# Controles tactiles v12 para MOTHER: Encore (Godot 3.6)
-# DEBUG = true: muestra 2 lineas de rendimiento arriba a la izquierda y los botones B y N.
-#   B = inspecciona los fondos de combate (parametros del shader; pulsa de nuevo para el siguiente nodo)
+# Controles tactiles v13 para MOTHER: Encore (Godot 3.6)
+# DEBUG = true: muestra 2 lineas de rendimiento arriba a la izquierda y los botones B, N y V.
+#   B = inspecciona los fondos de combate (shader, viewport y parametros; pulsa de nuevo para el siguiente nodo)
 #   N = cuenta nodos por clase y scripts que se ejecutan cada frame
+#   V = oculta/muestra los nodos de los fondos (para saber si ellos dibujan el fondo que se ve)
 # DEBUG = false: no se ve ningun texto de diagnostico ni los botones B y N.
 # - Los toques se manejan aqui y se emulan como TECLADO real (y como acciones).
 # - La cruceta es una ZONA: puedes deslizar el dedo de una direccion a otra
@@ -34,6 +35,7 @@ const BUTTONS = [
 	["ui_focus_next", "S", KEY_S, 262, 4, 24, 16],
 	["debug_scan", "B", 0, 150, 4, 24, 16],  # solo DEBUG: inspecciona fondos de combate
 	["debug_nodes", "N", 0, 178, 4, 24, 16],  # solo DEBUG: cuenta nodos y scripts activos
+	["debug_vis", "V", 0, 206, 4, 24, 16],  # solo DEBUG: oculta/muestra fondos
 ]
 
 const DPAD_COUNT = 4
@@ -114,7 +116,7 @@ func _ready():
 		debug_bg7 = ColorRect.new()
 		debug_bg7.color = Color(0, 0, 0, 0.7)
 		debug_bg7.rect_position = Vector2(0, 28)
-		debug_bg7.rect_size = Vector2(320, 62)
+		debug_bg7.rect_size = Vector2(320, 112)
 		debug_bg7.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		debug_bg7.visible = false
 		add_child(debug_bg7)
@@ -124,13 +126,13 @@ func _ready():
 		add_child(debug_label7)
 		debug_bg8 = ColorRect.new()
 		debug_bg8.color = Color(0, 0, 0, 0.7)
-		debug_bg8.rect_position = Vector2(0, 92)
-		debug_bg8.rect_size = Vector2(320, 62)
+		debug_bg8.rect_position = Vector2(0, 28)
+		debug_bg8.rect_size = Vector2(320, 112)
 		debug_bg8.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		debug_bg8.visible = false
 		add_child(debug_bg8)
 		debug_label8 = Label.new()
-		debug_label8.rect_position = Vector2(2, 93)
+		debug_label8.rect_position = Vector2(2, 29)
 		debug_label8.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		add_child(debug_label8)
 	_build_exit_panel()
@@ -184,6 +186,8 @@ func _scan_bbg():
 	var found = []
 	_collect_shader_nodes(get_tree().root, found)
 	debug_bg7.visible = true
+	debug_bg8.visible = false
+	debug_label8.text = ""
 	if found.size() == 0:
 		debug_label7.text = "bbg: 0 nodos con shader"
 		return
@@ -207,11 +211,29 @@ func _scan_bbg():
 		parts.append(nm + "=" + _fmt(v))
 	var estado = " ON" if c.is_visible_in_tree() else " off"
 	var head = "bbg " + str(_bbg_index + 1) + "/" + str(found.size()) + ": " + str(c.name) + estado + " op=" + str(m.get_shader_param("opacity")) + " bl=" + str(m.get_shader_param("blending"))
+	var vp = c.get_viewport()
+	var vpinfo = "vp=root"
+	if vp != get_tree().root:
+		vpinfo = "vp=" + str(vp.name) + " " + str(vp.size) + " upd=" + str(vp.render_target_update_mode)
 	var body = "(todos los parametros de movimiento en 0)"
 	if parts.size() > 0:
 		body = PoolStringArray(parts).join(" ")
-	debug_label7.text = head + "\n" + _wrap(body, 40, 4)
+	debug_label7.text = head + "\n" + vpinfo + "\n" + _wrap(body, 40, 7)
 	_bbg_index += 1
+
+
+# Boton V (solo DEBUG): oculta o muestra los nodos de los fondos de combate.
+# Si al ocultarlos el fondo que se ve NO desaparece, no lo estan dibujando ellos.
+func _toggle_bbg_visibility():
+	var found = []
+	_collect_shader_nodes(get_tree().root, found)
+	var make_visible = found.size() > 0 and not found[0].visible
+	for c in found:
+		c.visible = make_visible
+	debug_bg7.visible = true
+	debug_bg8.visible = false
+	debug_label8.text = ""
+	debug_label7.text = "bbg " + ("visibles" if make_visible else "OCULTOS") + ": " + str(found.size()) + " nodos"
 
 
 # Boton N (solo DEBUG): cuenta nodos por clase y scripts que se ejecutan en cada frame
@@ -221,7 +243,9 @@ func _scan_nodes():
 	var st = {"total": 0, "proc": 0, "phys": 0}
 	_count_nodes(get_tree().root, classes, scripts, st)
 	debug_bg8.visible = true
-	debug_label8.text = "nodos=" + str(st["total"]) + " proc=" + str(st["proc"]) + " phys=" + str(st["phys"]) + "\n" + _wrap(_top(classes, 8), 40, 2) + "\n" + _wrap(_top(scripts, 8), 40, 2)
+	debug_bg7.visible = false
+	debug_label7.text = ""
+	debug_label8.text = "nodos=" + str(st["total"]) + " proc=" + str(st["proc"]) + " phys=" + str(st["phys"]) + "\n" + _wrap(_top(classes, 10), 40, 4) + "\n" + _wrap(_top(scripts, 10), 40, 4)
 
 
 func _is_zero(v):
@@ -493,6 +517,10 @@ func _set_pressed(i, down):
 	if b[0] == "debug_nodes":
 		if down:
 			_scan_nodes()
+		return
+	if b[0] == "debug_vis":
+		if down:
+			_toggle_bbg_visibility()
 		return
 	if down:
 		Input.action_press(b[0])
