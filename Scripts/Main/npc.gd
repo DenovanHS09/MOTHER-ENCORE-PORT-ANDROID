@@ -52,6 +52,7 @@ var velocity := Vector2.ZERO
 var _input_vector := Vector2.ZERO
 var _is_looking := false
 var _player_nearby := false
+var _on_screen := false # true solo mientras el VisibilityNotifier2D del npc esta en pantalla (evita procesar npcs lejanos)
 
 func _ready():
 	if !OS.is_debug_build() and debug_npc:
@@ -80,6 +81,7 @@ func _ready():
 	if initial_dir == Vector2.ZERO:
 		initial_dir = Vector2(0,1)
 	_input_vector = initial_dir
+	character_sprite.blend_position(_input_vector) # orientacion inicial (la fisica puede estar apagada hasta que entre en pantalla)
 	if _automatic_shadow:
 		var size = float($Shadow.texture.get_width())/5
 		$Shadow.scale.x = $Shadow.scale.x + float(size/10)
@@ -260,7 +262,7 @@ func update_visibility_changed():
 	collisions.disabled = !is_visible_in_tree()
 	interact_area.disabled = !is_visible_in_tree() or !has_dialog()
 	
-	set_physics_process(is_visible_in_tree())
+	set_physics_process(is_visible_in_tree() and _on_screen)
 
 func _on_ViewArea_body_entered(body):
 	if body == global.get_player() and staring:
@@ -314,6 +316,8 @@ func check_appear_flags() -> bool:
 	return globaldata.check_appear_disappear_flags(appear_flag, disappear_flag)
 
 func _on_VisibilityNotifier2D_screen_entered():
+	_on_screen = true
+	set_physics_process(is_visible_in_tree())
 	if uiManager.is_in_cutscene():
 		return
 	if check_appear_flags():
@@ -323,6 +327,8 @@ func _on_VisibilityNotifier2D_screen_entered():
 		wander_timer.start()
 
 func _on_VisibilityNotifier2D_screen_exited():
+	_on_screen = false
+	set_physics_process(false)
 	if uiManager.is_in_cutscene():
 		return
 	if check_appear_flags(): 
