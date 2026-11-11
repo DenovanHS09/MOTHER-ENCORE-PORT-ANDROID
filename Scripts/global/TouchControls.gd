@@ -1,9 +1,10 @@
 extends CanvasLayer
-# Controles tactiles v13 para MOTHER: Encore (Godot 3.6)
-# DEBUG = true: muestra 2 lineas de rendimiento arriba a la izquierda y los botones B, N y V.
+# Controles tactiles v14 para MOTHER: Encore (Godot 3.6)
+# DEBUG = true: muestra 2 lineas de rendimiento arriba a la izquierda y los botones B, N, V y E.
 #   B = inspecciona los fondos de combate (shader, viewport y parametros; pulsa de nuevo para el siguiente nodo)
 #   N = cuenta nodos por clase y scripts que se ejecutan cada frame
 #   V = oculta/muestra los nodos de los fondos (para saber si ellos dibujan el fondo que se ve)
+#   E = experimentos sobre el fondo de combate (4 pasos, pulsa varias veces; ver instrucciones en pantalla)
 # DEBUG = false: no se ve ningun texto de diagnostico ni los botones B y N.
 # - Los toques se manejan aqui y se emulan como TECLADO real (y como acciones).
 # - La cruceta es una ZONA: puedes deslizar el dedo de una direccion a otra
@@ -36,6 +37,7 @@ const BUTTONS = [
 	["debug_scan", "B", 0, 150, 4, 24, 16],  # solo DEBUG: inspecciona fondos de combate
 	["debug_nodes", "N", 0, 178, 4, 24, 16],  # solo DEBUG: cuenta nodos y scripts activos
 	["debug_vis", "V", 0, 206, 4, 24, 16],  # solo DEBUG: oculta/muestra fondos
+	["debug_exp", "E", 0, 234, 4, 24, 16],  # solo DEBUG: experimentos de shader en el fondo
 ]
 
 const DPAD_COUNT = 4
@@ -66,6 +68,9 @@ var debug_bg0
 var debug_bg7
 var debug_bg8
 var _bbg_index = 0
+var _exp_step = 0
+var _exp_nodes = []
+var _exp_orig = []
 var _fps_min = 999
 var _dt_max = 0.0
 var _touch_max = 0
@@ -220,6 +225,63 @@ func _scan_bbg():
 		body = PoolStringArray(parts).join(" ")
 	debug_label7.text = head + "\n" + vpinfo + "\n" + _wrap(body, 40, 7)
 	_bbg_index += 1
+
+
+# Boton E (solo DEBUG): 4 experimentos sobre los nodos de los fondos de combate.
+# Pulsa E una vez por paso y dime que ves en cada uno.
+#  1 = tinte rojo (shader minimo)          -> comprueba que estos nodos dibujan el fondo
+#  2 = scroll con TIME (shader minimo)     -> comprueba que TIME avanza en estos nodos
+#  3 = shader ORIGINAL con move=(0.3,0)    -> comprueba el shader completo
+#  4 = restaura el fondo original
+func _run_experiment():
+	debug_bg7.visible = true
+	debug_bg8.visible = false
+	debug_label8.text = ""
+	var valid = _exp_nodes.size() > 0
+	for n in _exp_nodes:
+		if not is_instance_valid(n):
+			valid = false
+	if not valid:
+		_exp_nodes = []
+		_exp_orig = []
+		_collect_shader_nodes(get_tree().root, _exp_nodes)
+		for n in _exp_nodes:
+			_exp_orig.append(n.material)
+		_exp_step = 0
+	if _exp_nodes.size() == 0:
+		debug_label7.text = "E: no hay fondos con shader en esta escena"
+		return
+	var txt = ""
+	match _exp_step:
+		0:
+			_apply_exp_shader("shader_type canvas_item;\nvoid fragment() { COLOR = texture(TEXTURE, UV); COLOR.rgb = COLOR.rgb * vec3(1.0, 0.2, 0.2); }")
+			txt = "E 1/4: tinte ROJO.\nSe ve el fondo rojizo?"
+		1:
+			_apply_exp_shader("shader_type canvas_item;\nvoid fragment() { COLOR = texture(TEXTURE, UV + vec2(TIME * 0.3, 0.0)); }")
+			txt = "E 2/4: scroll con TIME (shader minimo).\nSe mueve? Se estira en rayas?"
+		2:
+			for i in range(_exp_nodes.size()):
+				var m = _exp_orig[i].duplicate()
+				m.set_shader_param("move", Vector2(0.3, 0.0))
+				m.set_shader_param("ping_pong_speed", Vector2.ZERO)
+				m.set_shader_param("oscillation_amplitude", Vector2.ZERO)
+				_exp_nodes[i].material = m
+			txt = "E 3/4: shader ORIGINAL con move=(0.3,0).\nSe mueve?"
+		_:
+			for i in range(_exp_nodes.size()):
+				_exp_nodes[i].material = _exp_orig[i]
+			txt = "E 4/4: fondo restaurado."
+	debug_label7.text = txt
+	_exp_step = (_exp_step + 1) % 4
+
+
+func _apply_exp_shader(code):
+	var sh = Shader.new()
+	sh.code = code
+	for n in _exp_nodes:
+		var m = ShaderMaterial.new()
+		m.shader = sh
+		n.material = m
 
 
 # Boton V (solo DEBUG): oculta o muestra los nodos de los fondos de combate.
@@ -521,6 +583,10 @@ func _set_pressed(i, down):
 	if b[0] == "debug_vis":
 		if down:
 			_toggle_bbg_visibility()
+		return
+	if b[0] == "debug_exp":
+		if down:
+			_run_experiment()
 		return
 	if down:
 		Input.action_press(b[0])
