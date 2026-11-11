@@ -49,7 +49,14 @@ func delete_reflection():
 		_obj_reflection.queue_free()
 		_has_reflection = false
 
+var _frame_counter: int = randi() % 10 # reparte la carga entre los 76+ nodos
+
 func _process(_delta):
+	# Comprobar el reflejo solo cada 10 frames (antes: en cada frame)
+	_frame_counter += 1
+	if _frame_counter < 10:
+		return
+	_frame_counter = 0
 	# Probably a more efficient way to do this. Oh well!
 	reflect_node = global.currentScene.get_node_or_null("FloorReflector")
 	# Lord forgive me for this ungodly conditional
