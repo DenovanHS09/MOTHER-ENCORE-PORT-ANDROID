@@ -1,9 +1,9 @@
 extends CanvasLayer
-# Controles tactiles v15 para MOTHER: Encore (Godot 3.6)
+# Controles tactiles v16 para MOTHER: Encore (Godot 3.6)
 # DEBUG = true: muestra 2 lineas de rendimiento arriba a la izquierda y los botones B, N, V y E.
 #   B = inspecciona los fondos de combate (shader, viewport y parametros; pulsa de nuevo para el siguiente nodo)
 #   N = cuenta nodos por clase y scripts que se ejecutan cada frame
-#   V = oculta/muestra los nodos de los fondos (para saber si ellos dibujan el fondo que se ve)
+#   V = recorre vistas de los fondos: todos ocultos, solo cada capa, todos visibles (pulsa varias veces)
 #   E = experimentos sobre el fondo de combate (4 pasos, pulsa varias veces; ver instrucciones en pantalla)
 # DEBUG = false: no se ve ningun texto de diagnostico ni los botones B y N.
 # - Los toques se manejan aqui y se emulan como TECLADO real (y como acciones).
@@ -68,6 +68,7 @@ var debug_bg0
 var debug_bg7
 var debug_bg8
 var _bbg_index = 0
+var _vis_mode = 0
 var _exp_step = 0
 var _id_2d_items = ClassDB.class_get_integer_constant("Performance", "RENDER_2D_ITEMS_IN_FRAME")
 var _id_2d_dc = ClassDB.class_get_integer_constant("Performance", "RENDER_2D_DRAW_CALLS_IN_FRAME")
@@ -234,10 +235,13 @@ func _scan_bbg():
 	var vpinfo = "vp=root"
 	if vp != get_tree().root:
 		vpinfo = "vp=" + str(vp.name) + " " + str(vp.size) + " upd=" + str(vp.render_target_update_mode)
+	var texinfo = "tex=?"
+	if "texture" in c and c.texture != null:
+		texinfo = "tex=" + str(c.texture.resource_path).get_file() + " " + str(c.texture.get_size())
 	var body = "(todos los parametros de movimiento en 0)"
 	if parts.size() > 0:
 		body = PoolStringArray(parts).join(" ")
-	debug_label7.text = head + "\n" + vpinfo + "\n" + _wrap(body, 40, 7)
+	debug_label7.text = head + "\n" + _wrap(vpinfo + " " + texinfo, 40, 2) + "\n" + _wrap(body, 40, 5)
 	_bbg_index += 1
 
 
@@ -303,25 +307,39 @@ func _apply_exp_shader(code):
 func _toggle_bbg_visibility():
 	var found = []
 	_collect_shader_nodes(get_tree().root, found)
-	var make_visible = found.size() > 0 and not found[0].visible
-	for c in found:
-		c.visible = make_visible
 	debug_bg7.visible = true
 	debug_bg8.visible = false
 	debug_label8.text = ""
-	debug_label7.text = "bbg " + ("visibles" if make_visible else "OCULTOS") + ": " + str(found.size()) + " nodos"
+	if found.size() == 0:
+		debug_label7.text = "V: no hay fondos con shader"
+		return
+	# 0 = todos visibles, 1 = todos ocultos, 2.. = solo una capa
+	_vis_mode = (_vis_mode + 1) % (found.size() + 2)
+	for i in range(found.size()):
+		var show = false
+		if _vis_mode == 0:
+			show = true
+		elif _vis_mode >= 2 and i == _vis_mode - 2:
+			show = true
+		found[i].visible = show
+	var txt = "V: TODOS visibles"
+	if _vis_mode == 1:
+		txt = "V: TODOS ocultos"
+	elif _vis_mode >= 2:
+		txt = "V: solo " + str(found[_vis_mode - 2].name)
+	debug_label7.text = txt + " (" + str(_vis_mode) + "/" + str(found.size() + 1) + ")"
 
 
 # Boton N (solo DEBUG): cuenta nodos por clase y scripts que se ejecutan en cada frame
 func _scan_nodes():
 	var classes = {}
 	var scripts = {}
-	var st = {"total": 0, "proc": 0, "phys": 0}
+	var st = {"total": 0, "proc": 0, "phys": 0, "anim": 0, "timer": 0, "atree": 0}
 	_count_nodes(get_tree().root, classes, scripts, st)
 	debug_bg8.visible = true
 	debug_bg7.visible = false
 	debug_label7.text = ""
-	debug_label8.text = "nodos=" + str(st["total"]) + " proc=" + str(st["proc"]) + " phys=" + str(st["phys"]) + "\n" + _wrap(_top(classes, 10), 40, 4) + "\n" + _wrap(_top(scripts, 10), 40, 4)
+	debug_label8.text = "nodos=" + str(st["total"]) + " proc=" + str(st["proc"]) + " phys=" + str(st["phys"]) + "\nanims=" + str(st["anim"]) + " timers=" + str(st["timer"]) + " atrees=" + str(st["atree"]) + "\n" + _wrap(_top(classes, 10), 40, 3) + "\n" + _wrap(_top(scripts, 10), 40, 3)
 
 
 func _is_zero(v):
@@ -370,6 +388,15 @@ func _count_nodes(node, classes, scripts, st):
 	st["total"] += 1
 	var cn = node.get_class()
 	classes[cn] = classes.get(cn, 0) + 1
+	if node is AnimationPlayer:
+		if node.is_playing():
+			st["anim"] += 1
+	elif node is Timer:
+		if not node.is_stopped():
+			st["timer"] += 1
+	elif node is AnimationTree:
+		if node.active:
+			st["atree"] += 1
 	var active = false
 	if node.is_processing():
 		st["proc"] += 1
