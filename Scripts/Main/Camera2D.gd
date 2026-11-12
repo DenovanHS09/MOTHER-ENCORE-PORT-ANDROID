@@ -38,6 +38,8 @@ func _process(_delta: float):
 	if _scope_arrows.visible: _scope_arrows.global_position = get_camera_screen_center()
 
 func _physics_process(delta: float):
+	if !current: # solo la camara activa necesita actualizarse (hay ~16 camaras en el mapa)
+		return
 	if !uiManager.is_in_battle() and global.get_player().get_state() != global.get_player().CAMERA:
 		offset = _base_offset + _shake_offset
 	else:
@@ -89,6 +91,8 @@ func _scoping_process(delta: float):
 	_base_offset += move_direction * SCOPE_MOVE_SPEED
 
 func _input(_event: InputEvent):
+	if !current:
+		return
 	_scope_arrows.handle_input_events()
 
 func _on_player_pause():
