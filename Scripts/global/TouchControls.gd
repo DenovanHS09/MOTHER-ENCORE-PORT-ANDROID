@@ -1,5 +1,5 @@
 extends CanvasLayer
-# Controles tactiles v14 para MOTHER: Encore (Godot 3.6)
+# Controles tactiles v15 para MOTHER: Encore (Godot 3.6)
 # DEBUG = true: muestra 2 lineas de rendimiento arriba a la izquierda y los botones B, N, V y E.
 #   B = inspecciona los fondos de combate (shader, viewport y parametros; pulsa de nuevo para el siguiente nodo)
 #   N = cuenta nodos por clase y scripts que se ejecutan cada frame
@@ -69,6 +69,10 @@ var debug_bg7
 var debug_bg8
 var _bbg_index = 0
 var _exp_step = 0
+var _id_2d_items = ClassDB.class_get_integer_constant("Performance", "RENDER_2D_ITEMS_IN_FRAME")
+var _id_2d_dc = ClassDB.class_get_integer_constant("Performance", "RENDER_2D_DRAW_CALLS_IN_FRAME")
+var _dc_max = 0
+var _items_max = 0
 var _exp_nodes = []
 var _exp_orig = []
 var _fps_min = 999
@@ -111,7 +115,7 @@ func _ready():
 		debug_bg0 = ColorRect.new()
 		debug_bg0.color = Color(0, 0, 0, 0.5)
 		debug_bg0.rect_position = Vector2(0, 0)
-		debug_bg0.rect_size = Vector2(250, 26)
+		debug_bg0.rect_size = Vector2(250, 38)
 		debug_bg0.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		add_child(debug_bg0)
 		debug_label5 = Label.new()
@@ -120,24 +124,24 @@ func _ready():
 		add_child(debug_label5)
 		debug_bg7 = ColorRect.new()
 		debug_bg7.color = Color(0, 0, 0, 0.7)
-		debug_bg7.rect_position = Vector2(0, 28)
-		debug_bg7.rect_size = Vector2(320, 112)
+		debug_bg7.rect_position = Vector2(0, 40)
+		debug_bg7.rect_size = Vector2(320, 110)
 		debug_bg7.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		debug_bg7.visible = false
 		add_child(debug_bg7)
 		debug_label7 = Label.new()
-		debug_label7.rect_position = Vector2(2, 29)
+		debug_label7.rect_position = Vector2(2, 41)
 		debug_label7.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		add_child(debug_label7)
 		debug_bg8 = ColorRect.new()
 		debug_bg8.color = Color(0, 0, 0, 0.7)
-		debug_bg8.rect_position = Vector2(0, 28)
-		debug_bg8.rect_size = Vector2(320, 112)
+		debug_bg8.rect_position = Vector2(0, 40)
+		debug_bg8.rect_size = Vector2(320, 110)
 		debug_bg8.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		debug_bg8.visible = false
 		add_child(debug_bg8)
 		debug_label8 = Label.new()
-		debug_label8.rect_position = Vector2(2, 29)
+		debug_label8.rect_position = Vector2(2, 41)
 		debug_label8.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		add_child(debug_label8)
 	_build_exit_panel()
@@ -174,14 +178,24 @@ func _process(delta):
 	var ph = Performance.get_monitor(Performance.TIME_PHYSICS_PROCESS)
 	if ph > _phys_max:
 		_phys_max = ph
+	if _id_2d_dc != 0:
+		var dc = int(Performance.get_monitor(_id_2d_dc))
+		if dc > _dc_max:
+			_dc_max = dc
+	if _id_2d_items != 0:
+		var itn = int(Performance.get_monitor(_id_2d_items))
+		if itn > _items_max:
+			_items_max = itn
 	_stat_timer += delta
 	if _stat_timer > 3.0:
-		debug_label5.text = "fps_min=" + str(_fps_min) + " dt_max=" + str(int(_dt_max * 1000)) + "ms touch=" + str(_touch_max / 1000) + "ms\nproc=" + str(int(_proc_max * 1000)) + "ms phys=" + str(int(_phys_max * 1000)) + "ms nodos=" + str(int(Performance.get_monitor(Performance.OBJECT_NODE_COUNT)))
+		debug_label5.text = "fps_min=" + str(_fps_min) + " dt_max=" + str(int(_dt_max * 1000)) + "ms touch=" + str(_touch_max / 1000) + "ms\nproc=" + str(int(_proc_max * 1000)) + "ms phys=" + str(int(_phys_max * 1000)) + "ms nodos=" + str(int(Performance.get_monitor(Performance.OBJECT_NODE_COUNT))) + "\ndibujo: llamadas=" + str(_dc_max) + " items=" + str(_items_max)
 		_fps_min = 999
 		_dt_max = 0.0
 		_touch_max = 0
 		_proc_max = 0.0
 		_phys_max = 0.0
+		_dc_max = 0
+		_items_max = 0
 		_stat_timer = 0.0
 
 
