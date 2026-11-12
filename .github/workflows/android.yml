@@ -3,8 +3,11 @@ on:
   workflow_dispatch:
     inputs:
       release:
-        description: "Compilar en modo RELEASE (escribe true) o DEBUG (false)"
+        description: "Compilar en modo RELEASE (true) o DEBUG (false)"
         default: "true"
+      lookahead:
+        description: "Batching 2D: item_reordering_lookahead (4 = normal; prueba 32)"
+        default: "4"
 jobs:
   export:
     runs-on: ubuntu-latest
@@ -45,6 +48,17 @@ jobs:
             printf '\n[input_devices]\n\npointing/emulate_mouse_from_touch=false\n' >> project.godot
           fi
           grep -n -A3 'input_devices' project.godot
+      - name: Ajustar batching 2D
+        run: |
+          LA="${{ github.event.inputs.lookahead }}"
+          if [ -n "$LA" ] && [ "$LA" != "4" ]; then
+            if grep -q 'item_reordering_lookahead' project.godot; then
+              sed -i "s|batching/parameters/item_reordering_lookahead=.*|batching/parameters/item_reordering_lookahead=$LA|" project.godot
+            else
+              sed -i "s|^\[rendering\]|[rendering]\n\nbatching/parameters/item_reordering_lookahead=$LA|" project.godot
+            fi
+          fi
+          grep -n -B1 -A2 'item_reordering' project.godot || echo "batching: valor por defecto (4)"
       - name: Plantillas de exportacion
         run: |
           DEST=$HOME/.local/share/godot/templates/3.6.2.stable
