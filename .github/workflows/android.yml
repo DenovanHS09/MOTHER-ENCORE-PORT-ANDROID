@@ -17,6 +17,23 @@ jobs:
       - uses: actions/checkout@v4
       - name: Arreglar mayusculas
         run: perl fixcase.pl
+      - name: Arreglar iconos de objetos
+        run: |
+          # El icono se busca con el nombre del objeto (Data/Items/<Nombre>.yaml) y en Android
+          # las mayusculas importan. Si el PNG existe con otras mayusculas, se hace una copia con el nombre exacto.
+          n=0
+          for y in Data/Items/*.yaml; do
+            b=$(basename "$y" .yaml)
+            for f in Graphics/Objects/Items/*.png; do
+              fb=$(basename "$f" .png)
+              if [ "${fb,,}" = "${b,,}" ] && [ "$fb" != "$b" ]; then
+                echo "icono: $fb.png -> $b.png"
+                cp "$f" "Graphics/Objects/Items/$b.png"
+                n=$((n+1))
+              fi
+            done
+          done
+          echo "iconos copiados: $n"
       - name: Dividir hoja de la nube
         run: |
           apt-get update -qq && apt-get install -y -qq imagemagick
