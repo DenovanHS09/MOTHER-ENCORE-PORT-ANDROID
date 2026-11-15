@@ -20,19 +20,16 @@ jobs:
       - name: Arreglar iconos de objetos
         run: |
           # El icono se busca con el nombre del objeto (Data/Items/<Nombre>.yaml) y en Android
-          # las mayusculas importan. Si el PNG existe con otras mayusculas, se hace una copia con el nombre exacto.
+          # las mayusculas importan. Si el PNG existe con otras mayusculas, se copia con el nombre exacto.
+          find Graphics/Objects/Items -maxdepth 1 -name '*.png' | sed 's|.*/||; s|\.png$||' > /tmp/icons.txt
+          find Data/Items -maxdepth 1 -name '*.yaml' | sed 's|.*/||; s|\.yaml$||' > /tmp/items.txt
+          awk 'NR==FNR { icon[tolower($0)]=$0; next } { l=tolower($0); if ((l in icon) && icon[l] != $0) print icon[l] "|" $0 }' /tmp/icons.txt /tmp/items.txt > /tmp/pairs.txt
           n=0
-          for y in Data/Items/*.yaml; do
-            b=$(basename "$y" .yaml)
-            for f in Graphics/Objects/Items/*.png; do
-              fb=$(basename "$f" .png)
-              if [ "${fb,,}" = "${b,,}" ] && [ "$fb" != "$b" ]; then
-                echo "icono: $fb.png -> $b.png"
-                cp "$f" "Graphics/Objects/Items/$b.png"
-                n=$((n+1))
-              fi
-            done
-          done
+          while IFS='|' read -r from to; do
+            echo "icono: $from.png -> $to.png"
+            cp "Graphics/Objects/Items/$from.png" "Graphics/Objects/Items/$to.png"
+            n=$((n+1))
+          done < /tmp/pairs.txt
           echo "iconos copiados: $n"
       - name: Dividir hoja de la nube
         run: |
