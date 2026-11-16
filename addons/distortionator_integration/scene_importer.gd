@@ -4,6 +4,7 @@ extends EditorSceneImporter
 var DEFAULT_SHADER = preload("default_shader.tres")
 var DEFAULT_TEXTURE = preload("background.png")
 var emptyStylebox = StyleBoxEmpty.new()
+const APPLY_SCRIPT = preload("bbg_apply.gd")
 
 func _get_extensions():
 	return ["dsp", "bbg"]
@@ -16,6 +17,7 @@ func _import_scene(path : String, flags : int, bake_fps : int):
 	var node := PanelContainer.new()
 	node.add_stylebox_override("panel", emptyStylebox)
 	node.name = "BBG"
+	node.set_script(APPLY_SCRIPT) # reaplica los parametros de los shaders al cargar (ver bbg_apply.gd)
 	node.anchor_top = 0
 	node.anchor_bottom = 1
 	node.anchor_left = 0
@@ -102,6 +104,7 @@ func _import_scene(path : String, flags : int, bake_fps : int):
 			layer_node.stretch_mode = stretch_modes.find(texture_stretch)
 		
 		# Set the values for the uniforms!
+		var bbg_params = {}
 		for key in keys:
 			var uniform_value = file.get_value(layer_section, key, null)
 			
@@ -118,5 +121,9 @@ func _import_scene(path : String, flags : int, bake_fps : int):
 				key,
 				uniform_value
 			)
+			bbg_params[key] = uniform_value
+		# Los parametros de un ShaderMaterial NO se guardan al importar sin pantalla (servidor/CI),
+		# pero los metadatos si. bbg_apply.gd los vuelve a poner al cargar la escena en el juego.
+		layer_node.set_meta("bbg_params", bbg_params)
 	
 	return node
