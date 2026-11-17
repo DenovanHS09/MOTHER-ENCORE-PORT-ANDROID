@@ -73,6 +73,10 @@ jobs:
             fi
           fi
           grep -n -B1 -A2 'item_reordering' project.godot || echo "batching: valor por defecto (4)"
+      - name: Numero de version
+        run: |
+          sed -i "s|^version/code=.*|version/code=$GITHUB_RUN_NUMBER|; s|^version/name=.*|version/name=\"1.0.$GITHUB_RUN_NUMBER\"|" export_presets.cfg
+          grep -n "^version/" export_presets.cfg
       - name: Plantillas de exportacion
         run: |
           DEST=$HOME/.local/share/godot/templates/3.6.2.stable
@@ -95,7 +99,14 @@ jobs:
       - name: Configurar Android
         run: |
           JAVA_PATH=$(dirname $(dirname $(readlink -f $(which java))))
-          keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore $HOME/debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999 -deststoretype pkcs12
+          if [ -f debug.keystore.b64 ]; then
+            base64 -d debug.keystore.b64 > $HOME/debug.keystore
+            echo "Clave de firma FIJA (debug.keystore.b64): el APK se puede instalar encima del anterior"
+          else
+            keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore $HOME/debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999 -deststoretype pkcs12
+            echo "AVISO: no existe debug.keystore.b64; se creo una clave NUEVA y este APK no se podra instalar encima del anterior"
+          fi
+          keytool -list -v -keystore $HOME/debug.keystore -storepass android | grep -i "SHA256"
           SETTINGS=$HOME/.config/godot/editor_settings-3.tres
           sed -i "s|export/android/java_sdk_path = \"\"|export/android/java_sdk_path = \"$JAVA_PATH\"|" $SETTINGS
           sed -i "s|export/android/android_sdk_path = \"\"|export/android/android_sdk_path = \"/usr/lib/android-sdk\"|" $SETTINGS
