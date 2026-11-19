@@ -331,8 +331,7 @@ func _on_VisibilityNotifier2D_screen_exited():
 	set_physics_process(false)
 	if uiManager.is_in_cutscene():
 		return
-	if check_appear_flags(): 
-		hide()
+	hide()
 	if wander:
 		wander_timer.stop()
 
