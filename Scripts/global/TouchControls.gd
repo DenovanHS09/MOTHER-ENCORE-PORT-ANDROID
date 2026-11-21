@@ -1,5 +1,5 @@
 extends CanvasLayer
-# Controles tactiles v17 para MOTHER: Encore (Godot 3.6)
+# Controles tactiles v18 para MOTHER: Encore (Godot 3.6)
 # DEBUG = true: muestra 2 lineas de rendimiento arriba a la izquierda y los botones B, N, V y E.
 #   B = inspecciona los fondos de combate (shader, viewport y parametros; pulsa de nuevo para el siguiente nodo)
 #   N = cuenta nodos por clase y scripts que se ejecutan cada frame
@@ -14,6 +14,10 @@ extends CanvasLayer
 # - Al perder el foco de la app (o cancelarse un toque) se sueltan todos los botones.
 
 const DEBUG = true
+
+# true = ademas muestra los botones B, V y E (inspeccion de los fondos de combate).
+# Ya esta resuelto, asi que queda en false. DEBUG = false oculta TODO el diagnostico.
+const DEBUG_FONDOS = false
 
 # true = los eventos de toque/arrastre se consumen aqui (el juego no los necesita: usa
 # teclado y botones). Evita que cada arrastre del dedo recorra todo el juego.
@@ -93,7 +97,7 @@ func _ready():
 	pause_mode = PAUSE_MODE_PROCESS
 	for b in BUTTONS:
 		var r = Rect2(b[3], b[4], b[5], b[6])
-		var hidden = (not DEBUG) and str(b[0]).begins_with("debug_")
+		var hidden = _debug_button_hidden(b[0])
 		if hidden:
 			r = Rect2(-100, -100, 1, 1)
 		rects.append(r)
@@ -153,6 +157,16 @@ func _ready():
 	# Quedarse siempre al final del arbol (asi recibimos los toques primero)
 	get_tree().root.connect("child_entered_tree", self, "_on_root_child")
 	call_deferred("_move_last")
+
+
+func _debug_button_hidden(btn_name) -> bool:
+	if not str(btn_name).begins_with("debug_"):
+		return false
+	if not DEBUG:
+		return true
+	if btn_name in ["debug_scan", "debug_vis", "debug_exp"] and not DEBUG_FONDOS:
+		return true
+	return false
 
 
 func _on_root_child(node):
@@ -605,25 +619,4 @@ func _update_dpad(pos):
 	_set_pressed(3, down)
 
 
-func _release_finger(index):
-	if index == dpad_finger:
-		dpad_finger = -1
-		for i in range(DPAD_COUNT):
-			_set_pressed(i, false)
-	if touches.has(index):
-		_set_pressed(touches[index], false)
-		touches.erase(index)
-
-
-func _release_all():
-	dpad_finger = -1
-	touches.clear()
-	for i in range(pressed.size()):
-		_set_pressed(i, false)
-
-
-func _set_pressed(i, down):
-	if pressed[i] == down:
-		return
-	pressed[i] = down
-	panels[i].col
+func _r
