@@ -16,6 +16,8 @@ var animationTree = null
 var _current_state = ""
 var _directional_tags = []
 var _all_tags = []
+var _blend_paths := []
+var _blend_applied := false
 
 onready var _anim_player = $AnimationPlayer
 
@@ -24,6 +26,21 @@ onready var _sprite_path: NodePath = _anim_root_node.get_path_to(self)
 onready var _sprite_frame_path: NodePath = "%s:frame" % _sprite_path
 
 
+# Cache compartida entre TODOS los CharacterSprite: datos del yaml ya leidos y animaciones ya construidas.
+# (se guarda en el singleton Engine; asi cada yaml se procesa una sola vez en vez de una por personaje)
+func _get_cache() -> Dictionary:
+	if !Engine.has_meta("_character_sprite_cache"):
+		Engine.set_meta("_character_sprite_cache", {"json": {}, "anims": {}})
+	return Engine.get_meta("_character_sprite_cache")
+
+func _load_json(path):
+	if Engine.editor_hint:
+		return EditorTools.get_json_data(path)
+	var json_cache := _get_cache()
+	if !json_cache["json"].has(path):
+		json_cache["json"][path] = globaldata.get_json_data(path)
+	return json_cache["json"][path]
+
 func _ready():
 	var animTree = AnimationTree.new()
 	add_child(animTree)
@@ -31,8 +48,7 @@ func _ready():
 	
 	#debug stuff
 	if yaml != "":
-		if !Engine.editor_hint: _json_data = globaldata.get_json_data(yaml)
-		else: _json_data = EditorTools.get_json_data(yaml)
+		_json_data = _load_json(yaml)
 		
 		if _json_data:
 			hframes = _json_data["size"][0]
@@ -54,8 +70,7 @@ func _ready():
 # For example, [["Talk", "Idle", 2]] will add a connection from "Talk" to "Idle" with a SWITCH_MODE_AT_END switch mode
 func set_animation(path, connections = []):
 	yaml = path
-	if !Engine.editor_hint: _json_data = globaldata.get_json_data(yaml)
-	else: _json_data = EditorTools.get_json_data(yaml)
+	_json_data = _load_json(yaml)
 
 	if _json_data:
 		hframes = _json_data["size"][0]
@@ -74,9 +89,23 @@ func set_sprite(path):
 func _create_animations(connections = []):
 	for anim in _anim_player.get_animation_list():
 		_anim_player.remove_animation(anim)
+	_directional_tags.clear()
+	_blend_applied = false
 	var singleTags = []
 	hframes = _json_data["size"][0]
 	vframes = _json_data["size"][1]
+	
+	var anim_cache := _get_cache()
+	var anim_cache_key := str(yaml) + "|" + str(_sprite_frame_path)
+	if anim_cache["anims"].has(anim_cache_key):
+		var cached = anim_cache["anims"][anim_cache_key]
+		for pair in cached["list"]:
+			_anim_player.add_animation(pair[0], pair[1])
+		_directional_tags = cached["directional"].duplicate()
+		dir = cached["dir"]
+		_create_tree(_directional_tags, cached["single"].duplicate(), connections)
+		return
+	var anim_list := []
 	
 	for i in _json_data["animations"]:
 		# If the animation has only one direction, it adds it to the single tags array
@@ -150,8 +179,10 @@ func _create_animations(connections = []):
 				directionalAnims.append([i + dirTitle, vector])
 				
 			_anim_player.add_animation(i + dirTitle, anim)
+			anim_list.append([i + dirTitle, anim])
 		_directional_tags.append([i, directionalAnims])
 	
+	anim_cache["anims"][anim_cache_key] = {"list": anim_list, "single": singleTags.duplicate(), "directional": _directional_tags.duplicate(), "dir": dir}
 	_create_tree(_directional_tags, singleTags, connections)
 
 # Sets the sprite texture
@@ -172,6 +203,8 @@ func set_spritesheet():
 
 # Creates the animation tree
 func _create_tree(tags:Array, singleTags:Array, connections := []):
+	_blend_applied = false
+	_blend_paths = []
 	var animState = AnimationNodeStateMachine.new()
 	animationTree.set_animation_player("../AnimationPlayer")
 	animationTree.tree_root = animState
@@ -277,10 +310,22 @@ func get_direction() -> Vector2:
 
 # Sets the direction for all animation states with multiple directions
 func blend_position(vector: Vector2):
+	if _blend_applied and vector == _direction:
+		return
 	_direction = vector
-	for i in _directional_tags:
-		
-		animationTree.set("parameters/"+ i[0] + "/" + i[0] + "/blend_position", _direction)
+	if _blend_paths.size() != _directional_tags.size():
+		_blend_paths = []
+		for i in _directional_tags:
+			_blend_paths.append("parameters/" + i[0] + "/" + i[0] + "/blend_position")
+	for p in _blend_paths:
+		animationTree.set(p, _direction)
+	_blend_applied = true
+
+# Activa o desactiva el arbol de animacion (un AnimationTree activo se procesa en CADA frame).
+# Pensado para npcs que estan fuera de pantalla.
+func set_animation_active(enabled: bool):
+	if animationTree:
+		animationTree.active = enabled
 
 # Sets the speed at which animations play
 func set_time_scale(scale := 1.0):
