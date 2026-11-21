@@ -1,5 +1,5 @@
 extends CanvasLayer
-# Controles tactiles v16 para MOTHER: Encore (Godot 3.6)
+# Controles tactiles v17 para MOTHER: Encore (Godot 3.6)
 # DEBUG = true: muestra 2 lineas de rendimiento arriba a la izquierda y los botones B, N, V y E.
 #   B = inspecciona los fondos de combate (shader, viewport y parametros; pulsa de nuevo para el siguiente nodo)
 #   N = cuenta nodos por clase y scripts que se ejecutan cada frame
@@ -37,6 +37,7 @@ const BUTTONS = [
 	["debug_scan", "B", 0, 150, 4, 24, 16],  # solo DEBUG: inspecciona fondos de combate
 	["debug_nodes", "N", 0, 178, 4, 24, 16],  # solo DEBUG: cuenta nodos y scripts activos
 	["debug_vis", "V", 0, 206, 4, 24, 16],  # solo DEBUG: oculta/muestra fondos
+	["debug_hide", "H", 0, 122, 4, 24, 16],  # solo DEBUG: oculta/muestra el MAPA (escena actual)
 	["debug_exp", "E", 0, 234, 4, 24, 16],  # solo DEBUG: experimentos de shader en el fondo
 ]
 
@@ -300,6 +301,20 @@ func _apply_exp_shader(code):
 		var m = ShaderMaterial.new()
 		m.shader = sh
 		n.material = m
+
+
+# Boton H (solo DEBUG): oculta o muestra el mapa (la escena actual). Sirve para medir cuanto cuesta
+# el mapa que sigue cargado detras de un combate (compara fps_min, proc y "llamadas" con y sin mapa).
+func _toggle_overworld():
+	debug_bg7.visible = true
+	debug_bg8.visible = false
+	debug_label8.text = ""
+	var sc = get_tree().current_scene
+	if sc == null or not (sc is CanvasItem):
+		debug_label7.text = "H: la escena actual no se puede ocultar"
+		return
+	sc.visible = not sc.visible
+	debug_label7.text = "H: mapa " + ("visible" if sc.visible else "OCULTO") + " (" + str(sc.name) + ")"
 
 
 # Boton V (solo DEBUG): oculta o muestra los nodos de los fondos de combate.
@@ -611,35 +626,4 @@ func _set_pressed(i, down):
 	if pressed[i] == down:
 		return
 	pressed[i] = down
-	panels[i].color = COLOR_DOWN if down else COLOR_IDLE
-	var b = BUTTONS[i]
-	if b[0] == "debug_scan":
-		if down:
-			_scan_bbg()
-		return
-	if b[0] == "debug_nodes":
-		if down:
-			_scan_nodes()
-		return
-	if b[0] == "debug_vis":
-		if down:
-			_toggle_bbg_visibility()
-		return
-	if b[0] == "debug_exp":
-		if down:
-			_run_experiment()
-		return
-	if down:
-		Input.action_press(b[0])
-	else:
-		Input.action_release(b[0])
-	var ev = InputEventKey.new()
-	ev.scancode = b[2]
-	ev.pressed = down
-	if b[2] == KEY_SHIFT:
-		ev.shift = true
-	elif b[2] == KEY_CONTROL:
-		ev.control = true
-	Input.parse_input_event(ev)
-
-
+	panels[i].col
