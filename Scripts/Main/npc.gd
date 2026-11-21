@@ -263,6 +263,8 @@ func update_visibility_changed():
 	interact_area.disabled = !is_visible_in_tree() or !has_dialog()
 	
 	set_physics_process(is_visible_in_tree() and _on_screen)
+	# un AnimationTree activo se procesa en CADA frame: solo se deja activo mientras el npc esta en pantalla
+	character_sprite.set_animation_active(is_visible_in_tree() and _on_screen)
 
 func _on_ViewArea_body_entered(body):
 	if body == global.get_player() and staring:
@@ -318,6 +320,7 @@ func check_appear_flags() -> bool:
 func _on_VisibilityNotifier2D_screen_entered():
 	_on_screen = true
 	set_physics_process(is_visible_in_tree())
+	character_sprite.set_animation_active(is_visible_in_tree())
 	if uiManager.is_in_cutscene():
 		return
 	if check_appear_flags():
@@ -329,6 +332,7 @@ func _on_VisibilityNotifier2D_screen_entered():
 func _on_VisibilityNotifier2D_screen_exited():
 	_on_screen = false
 	set_physics_process(false)
+	character_sprite.set_animation_active(false)
 	if uiManager.is_in_cutscene():
 		return
 	hide()
