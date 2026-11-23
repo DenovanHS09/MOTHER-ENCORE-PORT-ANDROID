@@ -1,3 +1,4 @@
+
 extends CanvasLayer
 # Controles tactiles (version estable: v16 + nada mas) para MOTHER: Encore (Godot 3.6)
 # DEBUG = true: muestra 2 lineas de rendimiento arriba a la izquierda y los botones B, N, V y E.
@@ -641,6 +642,5 @@ func _set_pressed(i, down):
 	elif b[2] == KEY_CONTROL:
 		ev.control = true
 	Input.parse_input_event(ev)
-
 
 
