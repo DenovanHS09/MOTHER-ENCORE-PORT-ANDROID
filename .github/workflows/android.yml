@@ -15,6 +15,18 @@ jobs:
       image: barichello/godot-ci:3.6.2
     steps:
       - uses: actions/checkout@v4
+      - name: Comprobar archivos
+        run: |
+          # Avisa si TouchControls.gd se subio incompleto (por ejemplo, un copiar y pegar cortado).
+          f=Scripts/global/TouchControls.gd
+          echo "TouchControls.gd: $(wc -l < $f) lineas"
+          echo "primera linea: $(head -n 1 $f)"
+          echo "ultima linea:  $(tail -n 1 $f)"
+          if tail -n 3 $f | grep -q "fin de TouchControls.gd"; then
+            echo "OK: TouchControls.gd esta completo"
+          else
+            echo "ADVERTENCIA: TouchControls.gd no termina con la marca de fin: puede estar incompleto o ser una version antigua"
+          fi
       - name: Arreglar mayusculas
         run: perl fixcase.pl
       - name: Arreglar iconos de objetos
@@ -130,5 +142,4 @@ jobs:
         with:
           name: apk
           path: build/mother-encore.apk
-
           
